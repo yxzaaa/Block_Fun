@@ -113,7 +113,8 @@
 				shareList: [],
 				navButtons:{
 					back:{
-						type:'circle'
+						type:'circle',
+						text:'取消'
 					},
 					share:{
 						type:'circle'

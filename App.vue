@@ -484,7 +484,7 @@
 			display: flex;
 			justify-content: space-between;
 			.button-group{
-				.fun-btn:not(:first-child){
+				.fun-btn{
 					margin-left:20upx;
 				}
 			}

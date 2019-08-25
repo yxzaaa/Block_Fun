@@ -1,10 +1,10 @@
 <template>
 	<view class="nav-bar-box" :style="{justifyContent:layout=='left'?'flex-start':'center'}">
-		<view v-show="layout == 'left'" class="left-box">
+		<view v-if="layout === 'left'" class="left-box">
 			<view class="left-title">{{title}}</view>
 			<view class="left-subtitle">{{subTitle}}</view>
 		</view>
-		<view class="center-box" v-show="layout == 'center'">
+		<view class="center-box" v-if="layout === 'center'">
 			<text
 				class="nav-bar-title" 
 				:style="{color:textColor}"
@@ -12,13 +12,13 @@
 				{{title}}
 			</text>
 		</view>
-		<view class="search-bar-box" v-show="layout=='search'">
+		<view class="search-bar-box" v-if="layout === 'search'">
 			<div class="search-input-box">
 				<input type="text" class="search-input" placeholder="请输入商品信息" :focus="searchFocus">
 				<image src="../../static/icons/input-search.png" class="input-icon" />
 			</div>
 		</view>
-		<view class="search-bar-box" v-show="layout=='searchbtn'">
+		<view class="search-bar-box" v-if="layout === 'searchbtn'">
 			<div class="search-input-box" @click="navigatorBack({text:'搜索',url:'../search/search'})">
 				<input type="text" class="search-input" placeholder="请输入商品信息" disabled>
 				<image src="../../static/icons/input-search.png" class="input-icon" />
@@ -26,8 +26,8 @@
 		</view>
 		<view
 			:class="['back-btn','icon-box',buttons && buttons.back && buttons.back.type=='circle'?'circle':'']" 
-			v-show="buttons && buttons.back"
-			@click="navigatorBack('取消')"
+			v-if="buttons && buttons.back"
+			@click="navigatorBack(buttons && buttons.back)"
 			:style="{backgroundColor:buttons && buttons.back && buttons.back.type=='circle'?'rgba(0,0,0,'+(backOpacity-priviteOpacity)+')':'transparent'}"
 		>
 			<image class="icon-img" src="../../static/icons/back.png" />
@@ -35,35 +35,35 @@
 		<view class="right-btn-list">
 			<view 
 				:class="['icon-box',buttons && buttons.share && buttons.share.type=='circle'?'circle':'']" 
-				v-show="buttons && buttons.share"
+				v-if="buttons && buttons.share"
 				:style="{backgroundColor:buttons && buttons.share && buttons.share.type=='circle'?'rgba(0,0,0,'+(backOpacity-priviteOpacity)+')':'transparent'}"
 			>
 				<image class="icon-img" src="../../static/icons/share.png" />
 			</view>
 			<view
 				:class="['icon-box',buttons && buttons.love && buttons.love.type=='circle'?'circle':'']" 
-				v-show="buttons && buttons.love"
+				v-if="buttons && buttons.love"
 				:style="{backgroundColor:buttons && buttons.love && buttons.love.type=='circle'?'rgba(0,0,0,'+(backOpacity-priviteOpacity)+')':'transparent'}"
 			>
 				<image class="icon-img" src="../../static/icons/love.png" />
 			</view>
 			<view 
 				:class="['icon-box',buttons && buttons.cart && buttons.cart.type=='circle'?'circle':'']" 
-				v-show="buttons && buttons.cart"
+				v-if="buttons && buttons.cart"
 				:style="{backgroundColor:buttons && buttons.cart && buttons.cart.type=='circle'?'rgba(0,0,0,'+(backOpacity-priviteOpacity)+')':'transparent'}"
 			>
 				<image class="icon-img" src="../../static/icons/cart.png" />
 			</view>
 			<view
 				:class="['icon-box',buttons && buttons.search && buttons.search.type=='circle'?'circle':'']" 
-				v-show="buttons && buttons.search"
+				v-if="buttons && buttons.search"
 				:style="{backgroundColor:buttons && buttons.search && buttons.search.type=='circle'?'rgba(0,0,0,'+(backOpacity-priviteOpacity)+')':'transparent'}"
 			>
 				<image class="icon-img" src="../../static/icons/search.png" />
 			</view>
 			<view
 				class="icon-text-box" 
-				v-show="buttons && buttons.textbtn"
+				v-if="buttons && buttons.textbtn"
 			>
 				<text class="text-btn" @click="navigatorBack(buttons && buttons.textbtn)">{{buttons && buttons.textbtn && buttons.textbtn.text}}</text>
 			</view>
@@ -186,7 +186,9 @@
 			}
 		}
 		.center-box{
-			
+			.nav-bar-title{
+				font-size:36upx;
+			}
 		}
 		.search-bar-box{
 			width:100%;

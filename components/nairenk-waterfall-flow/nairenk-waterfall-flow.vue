@@ -122,7 +122,7 @@
 	}
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 	.flow-box {
 		position: relative;
 		padding-bottom:20px;		

@@ -39,14 +39,14 @@
 								</view>
 							</view>
 							<view class="item-horizen count-box">
-								<text><span>$</span>{{item.total}}</text>
+								<span class="label-box"><span>$</span>{{item.total}}</span>
 							</view>
 							<view class="item-horizen label-line">
-								<text><span class="label">数量</span>{{item.count}}</text> 
-								<text><span class="label">价格</span>{{item.price}}<span class="kind">{{item.currency}}</span></text> 
+								<span class="label-box"><span class="label">数量</span>{{item.count}}</span> 
+								<span class="label-box"><span class="label">价格</span>{{item.price}}<span class="kind">{{item.currency}}</span></span> 
 							</view>
 							<view class="fun-card-buttons">
-								<fun-buttton type="text" value="查看账单" />
+								<fun-buttton type="text" value="查看账单" :url="'../xdogwallet/xdogwallet?id='+item.walletid" />
 								<view class="button-group">
 									<fun-buttton type="light" value="转账" icon="../../static/icons/zhuanrang-tiny.png" />
 									<fun-buttton value="收款" icon="../../static/icons/shoukuan.png" />
@@ -220,7 +220,7 @@
 		.count-box{
 			padding:10upx 0upx;
 			padding-top:30upx;
-			text{
+			.label-box{
 				color:#DA53A2;
 				font-size: 42upx;
 				font-weight: bold;
@@ -233,17 +233,17 @@
 		}
 		.label-line{
 			padding:15upx 0upx;
-			text{
+			.label-box{
 				display: inline-block;
 				width:240upx;
 				font-size: 24upx;
 				color:#c7c7c7;
-				span.label{
+				.label{
 					color:#999;
 					display: inline-block;
 					padding-right:20upx;
 				}
-				span.kind{
+				.kind{
 					display: inline-block;
 					padding-left:10upx;
 				}

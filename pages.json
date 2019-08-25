@@ -36,6 +36,10 @@
 				
 			}
 		}
+        ,{
+            "path" : "pages/xdogwallet/xdogwallet",
+            "style" : {}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",
