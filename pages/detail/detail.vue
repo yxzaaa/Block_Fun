@@ -1,4 +1,5 @@
 <template>
+	<!-- 商品详情页1 -->
 	<view>
 		<uni-background />
 		<uni-nav-bar 
@@ -15,11 +16,12 @@
 						:class="item.loaded" 
 						mode="aspectFill"
 						@load="imageOnLoad('imgList', index)" 
+						style="width:100%;height:738upx;"
 					></image>
 				</view>
 			</swiper-item>
 		</swiper>
-		<view class="scroll-view-wrapper">
+		<!-- <view class="scroll-view-wrapper">
 			<scroll-view class="episode-panel" :class="{Skeleton:!loaded}" scroll-x>
 				<view v-for="(item, index) in data.episodeList" :key="index"
 					:class="{current: currentEpd===item}"
@@ -28,28 +30,37 @@
 					{{item}}
 				</view>
 			</scroll-view>
-		</view>
+		</view> -->
 		<view class="info">
 			<view class="title">
-				<text :class="{Skeleton:!loaded}">{{data.title}}</text>
-				<text :class="{Skeleton:!loaded}">{{data.title2}}</text>
+				<text :class="{Skeleton:!loaded}" style="margin-top:40upx;">
+					<span style="font-size:30upx;margin-right:10upx;font-weight: bolder;">{{data.symbol}}</span>
+					<span style="font-size:40upx;font-weight:bolder;">{{data.money.split('.')[0]}}</span>
+					<span style="font-size: 30upx;font-weight: bolder;">{{data.money.split('.')[1]?'.' + data.money.split('.')[1]:''}}</span>
+				</text>
+				
+				<text :class="{Skeleton:!loaded}" style="color:#999999;font-size:24upx;margin-top:16upx;">{{data.consume}} {{data.amount}}</text>
+				<text :class="{Skeleton:!loaded}" style="background:#DA53A2;height:32upx;width:64upx;text-align: center;font-size:24upx;color:#fff;margin-top:16upx;">{{data.character}}</text>
+				<text :class="{Skeleton:!loaded}" style="color:#fff;font-size: 32upx;margin-top:16upx;">{{data.title}}</text>
+				<text :class="{Skeleton:!loaded}" style="color:#999999;font-size: 24upx;margin-top:16upx;">{{data.content}}</text>
 			</view>
-			<text class="yticon icon-xia"></text>
 		</view>
-		<view class="actions">
+		<!-- <view class="actions">
 			<text class="yticon icon-fenxiang2" @click="share"></text>
 			<text class="yticon icon-Group-"></text>
 			<text class="yticon icon-shoucang" :class="{active: data.favorite}" @click="favorite"></text>
-		</view>
+		</view> -->
 
-		<!-- 猜你喜欢 -->
+		<!-- 相关推荐-->
 		<view class="guess">
-			<view class="section-tit">猜你喜欢</view>
+			<view class="section-tit">相关推荐</view>
 			<view class="guess-list">
 				<view 
 					v-for="(item, index) in data.guessList" :key="index"
 					class="guess-item"
+					style="padding-top:16upx;"
 				>
+				<!-- 引入图片 -->
 					<view class="image-wrapper">
 						<image 
 							:src="item.src" 
@@ -58,13 +69,22 @@
 							@load="imageOnLoad('guessList', index)" 
 						></image>
 					</view>
-					<text class='title clamp' :class="{Skeleton:!loaded}">{{item.title}}</text>
-					<text class="clamp" :class="{Skeleton:!loaded}">{{item.title2}}</text>
+					<!-- 图片描述 -->
+					<view class="guess-content" style="margin-left:20upx;margin-top:0;">
+						<text class='title clamp' :class="{Skeleton:!loaded}" style="font-size: 30upx;color:#fff;">{{item.title}}</text>
+						<text class="clamp" :class="{Skeleton:!loaded}" style="font-size: 30upx;color:#fff;margin-top:10upx;">{{item.title2}}</text>
+						<text class="clamp" :class="{Skeleton:!loaded}" style="font-size:30upx;color:#999999;margin-top:14upx;">{{item.consume}} {{item.amount}}</text>
+						<text class="clamp" :class="{Skeleton:!loaded}" style="margin-top:14upx;color:#DA53A2;font-weight: bold;">
+							<span style="font-size:24upx;margin-right:8upx;">{{item.symbol}}</span>
+							<span>{{item.price.split('.')[0]}}</span>
+							<span style="font-size:24upx;">{{item.price.split('.')[1]?'.'+item.price.split('.')[1]:''}}</span>
+						</text>
+					</view>
 				</view>
 			</view>
 		</view>
 		<!-- 评论 -->
-		<view class="evalution">
+		<!-- <view class="evalution">
 			<view class="section-tit">评论</view>
 			<view class="eva-list" :class="{Skeleton:!loaded}">
 				<view  v-for="(item, index) in data.evaList" :key="index"
@@ -82,7 +102,7 @@
 					</view>
 				</view>
 			</view>
-		</view>
+		</view> -->
 		<!-- 分享 -->
 		<share 
 			ref="share" 
@@ -124,7 +144,8 @@
 						
 					},
 					cart:{
-						type:'circle'
+						type:'circle',
+						url:"../cart1/cart1"
 					},
 					// textbtn:{
 					// 	text:'取消'
@@ -175,12 +196,12 @@
 </script>
 
 <style lang="scss">
-	page{
-		background: $page-color-base;
-	}
+	// page{
+	// 	background: $page-color-base;
+	// }
 
 	.carousel {
-		height: 200px;
+		height:738upx;
 		.image-wrapper{
 			display: flex;
 			justify-content: center;
@@ -200,7 +221,7 @@
 		align-items:center;
 		height: 90upx;
 		padding: 20upx 0 20upx 40upx;
-		background: #fff;
+		
 	}
 	.episode-panel {
 		white-space: nowrap;
@@ -221,14 +242,14 @@
 		display: flex;
 		align-items: center;
 		padding: 10upx 40upx;
-		background: #fff;
+		// background: #fff;
 
 		.title {
 			flex: 1;
 			display: flex;
 			flex-direction: column;
 			font-size: $font-lg + 4upx;
-			color: $font-color-dark;
+			color: #DA53A2;
 
 			text:last-child {
 				font-size: $font-sm;
@@ -239,16 +260,12 @@
 				}
 			}
 		} 
-		.yticon {
-			font-size: 44upx;
-			color: $font-color-base;
-			margin: 0 10upx 0 30upx;
-		}
+		
 	}
 
 	.actions {
 		padding: 10upx 28upx;
-		background: #fff;
+		// background: #fff;
 
 		.yticon {
 			font-size: 46upx;
@@ -265,9 +282,8 @@
 
 	.section-tit {
 		font-size: $font-base+2upx;
-		color: $font-color-dark;
+		color: #fff;
 		margin-bottom: 30upx;
-		text-align:center;
 	}
 
 	.guess {
@@ -277,54 +293,50 @@
 		align-items: center;
 		padding: 30upx 40upx 10upx;
 		margin-top: 16upx;
-		background: #fff;
+		
+		
 	}
 
 	.guess-list {
-		display: flex;
-		flex-wrap: wrap;
+		// display: flex;
+		// flex-wrap: wrap;
 		width: 100%;
 	}
 	.guess-item {
 		display: flex;
-		flex-direction: column;
-		flex: 1;
 		overflow: hidden;
 		min-width: 40%;
 		margin-right: 26upx;
 		padding-bottom: 40upx;
 	
-		&:nth-child(2n) {
-			margin-right: 0;
-		}
-	
-		image {
-			width: 100%;
+		.image-wrapper{
+			width: 200upx;
 			height: 200upx;
 			border-radius: 10upx;
 		}
 	
-		text {
-			font-size: $font-sm;
-			color: $font-color-light;
-			&.Skeleton{
-				width: 180upx;
-				&.title{
-					width: 140upx;
-				}
-			}
-			&.title{
-				font-size: $font-base+2upx;
-				color: $font-color-dark;
-				margin-top:16upx;
-				margin-bottom: 8upx;
-			}
+		.guess-content {
+			color:#999999;
+			// font-size: $font-sm;
+			// color: $font-color-light;
+			// &.Skeleton{
+			// 	width: 180upx;
+			// 	&.title{
+			// 		width: 140upx;
+			// 	}
+			// }
+			// &.title{
+			// 	font-size: $font-base+2upx;
+			// 	color: $font-color-dark;
+			// 	margin-top:16upx;
+			// 	margin-bottom: 8upx;
+			// }
 		}
 	}
 	.evalution{
 		display:flex;
 		flex-direction:column;
-		background: #fff;
+		// background: #fff;
 		margin-top: 16upx;
 		padding: 40upx 0;
 	}
@@ -335,7 +347,7 @@
 		image{
 			width: 60upx;
 			height: 60upx;
-			border-radius: 50px;
+			// border-radius: 50px;
 			flex-shrink: 0;
 			margin-right: 24upx;
 		}

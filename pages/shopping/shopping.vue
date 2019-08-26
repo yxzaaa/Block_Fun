@@ -10,7 +10,7 @@
 		/>
 		<view class="app-container">
 			<view class="banner-box">
-				<img src="../../static/bg/dream.png"/>
+				<image src="../../static/bg/dream.png" style="width:100%;height:726"/>
 			</view>
 			<view class="section-header">
 				<text class="section-title">商品类别</text>
@@ -19,7 +19,7 @@
 			<view class="type-box">
 				<block v-for="(item,index) in typeList" :key="index">
 					<navigator style="margin-bottom:30upx;" :url="'../detail/detail?id='+item.id">
-						<img :src="item.image" style="width:100%;display:block"/>
+						<image :src="item.image" style="width:100%;display:block;height:240upx"/>
 					</navigator>
 				</block>
 			</view>
@@ -104,7 +104,8 @@
 					// 	type:'circle'
 					// },
 					cart:{
-						type:'normal'
+						type:'normal',
+						url:'../cart1/cart1'
 					},
 					// textbtn:{
 					// 	text:'取消'

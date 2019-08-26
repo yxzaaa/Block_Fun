@@ -51,8 +51,9 @@
 				:class="['icon-box',buttons && buttons.cart && buttons.cart.type=='circle'?'circle':'']" 
 				v-if="buttons && buttons.cart"
 				:style="{backgroundColor:buttons && buttons.cart && buttons.cart.type=='circle'?'rgba(0,0,0,'+(backOpacity-priviteOpacity)+')':'transparent'}"
+				@click="navigatorBack(buttons && buttons.cart)"
 			>
-				<image class="icon-img" src="../../static/icons/cart.png" />
+					<image class="icon-img" src="../../static/icons/cart.png" />	
 			</view>
 			<view
 				:class="['icon-box',buttons && buttons.search && buttons.search.type=='circle'?'circle':'']" 
