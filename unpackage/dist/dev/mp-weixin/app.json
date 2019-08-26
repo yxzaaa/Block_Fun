@@ -6,7 +6,8 @@
     "pages/profile/profile",
     "pages/search/search",
     "pages/detail/detail",
-    "pages/xdogwallet/xdogwallet"
+    "pages/xdogwallet/xdogwallet",
+    "pages/xdogdetail/xdogdetail"
   ],
   "subPackages": [],
   "window": {
@@ -48,6 +49,5 @@
       }
     ]
   },
-  "usingComponents": {},
-  "sitemapLocation": "sitemap.json"
+  "usingComponents": {}
 }

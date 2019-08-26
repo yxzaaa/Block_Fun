@@ -40,6 +40,14 @@
             "path" : "pages/xdogwallet/xdogwallet",
             "style" : {}
         }
+        ,{
+            "path" : "pages/xdogdetail/xdogdetail",
+            "style" : {
+				"app-plus":{
+					"animationType":"slide-in-bottom"
+				}
+			}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",

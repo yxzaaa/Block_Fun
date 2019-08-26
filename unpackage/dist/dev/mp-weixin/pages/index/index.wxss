@@ -8,7 +8,7 @@
 .wallet-banner.data-v-b849d806 {
   width: 750rpx;
   padding: 40rpx;
-  padding-top: calc(72px + 30rpx);
+  padding-top: 174rpx;
 }
 .wallet-banner ._img.data-v-b849d806 {
     width: 100%;

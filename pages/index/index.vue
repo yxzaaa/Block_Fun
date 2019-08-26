@@ -4,7 +4,7 @@
 		<uni-nav-bar title="Blockfun" textColor="#fff" :opacity="scroll" layout="left" :buttons="navButtons"></uni-nav-bar>
 		<view class="app-container">
 			<view class="wallet-banner">
-				<img src="static/banner.jpg" alt="">
+				<img :src="imageLib.banner" alt="">
 			</view>
 			<view class="button-list">
 				<block v-for="(item,index) in buttonList" :key="index">
@@ -16,7 +16,7 @@
 			</view>
 			<view class="news-box">
 				<view class="news-list">
-					<image src="../../static/icons/message.png"></image>
+					<image :src="imageLib.message"></image>
 					<text>{{message}}</text>
 				</view>
 				<view class="more-detail">更多</view>
@@ -35,7 +35,7 @@
 									<text style="font-size:24upx;color:#999;">{{item.blockNum}}</text>
 								</view>
 								<view>
-									<image class="button-image" src="../../static/icons/Union.png"/>
+									<image class="button-image" :src="imageLib.union"/>
 								</view>
 							</view>
 							<view class="item-horizen count-box">
@@ -48,8 +48,8 @@
 							<view class="fun-card-buttons">
 								<fun-buttton type="text" value="查看账单" :url="'../xdogwallet/xdogwallet?id='+item.walletid" />
 								<view class="button-group">
-									<fun-buttton type="light" value="转账" icon="../../static/icons/zhuanrang-tiny.png" />
-									<fun-buttton value="收款" icon="../../static/icons/shoukuan.png" />
+									<fun-buttton type="light" value="转账" icon="../static/icons/zhuanrang-tiny.png" />
+									<fun-buttton value="收款" icon="../static/icons/shoukuan.png" />
 								</view>
 							</view>
 						</view>
@@ -77,6 +77,11 @@
 					search:{
 						type:'normal'
 					}
+				},
+				imageLib:{
+					message:'../../static/icons/message.png',
+					union:'../../static/icons/Union.png',
+					banner:'../../static/banner.jpg'
 				},
 				message:"Forest 矿机即将上线，首批抢购名额1000名",
 				buttonList:[
@@ -141,7 +146,7 @@
 	.wallet-banner{
 		width:750upx;
 		padding:40upx;
-		padding-top:calc(72px + 30upx);
+		padding-top:174upx;
 		img{
 			width:100%;
 		}

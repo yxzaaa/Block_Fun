@@ -4,7 +4,7 @@
 		:style="{width:width+'upx'}" 
 		@click="buttonLink"
 	>
-		<image class="button-icon" :src="icon" v-if="icon"/>
+		<image class="button-icon" :src="icon" v-if="icon" />
 		<text>{{value}}</text>
 	</view>
 </template>

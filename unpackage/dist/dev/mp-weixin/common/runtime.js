@@ -104,11 +104,11 @@
 /******/
 /******/
 /******/ 		// mini-css-extract-plugin CSS loading
-/******/ 		var cssChunks = {"components/fun-button":1,"components/uni-background/uni-background":1,"components/uni-nav-bar/uni-nav-bar":1,"components/nairenk-waterfall-flow/nairenk-waterfall-flow":1,"components/share":1};
+/******/ 		var cssChunks = {"components/fun-button":1,"components/uni-background/uni-background":1,"components/uni-nav-bar/uni-nav-bar":1,"components/nairenk-waterfall-flow/nairenk-waterfall-flow":1,"components/share":1,"components/horizon-tab":1};
 /******/ 		if(installedCssChunks[chunkId]) promises.push(installedCssChunks[chunkId]);
 /******/ 		else if(installedCssChunks[chunkId] !== 0 && cssChunks[chunkId]) {
 /******/ 			promises.push(installedCssChunks[chunkId] = new Promise(function(resolve, reject) {
-/******/ 				var href = "" + ({"components/fun-button":"components/fun-button","components/uni-background/uni-background":"components/uni-background/uni-background","components/uni-nav-bar/uni-nav-bar":"components/uni-nav-bar/uni-nav-bar","components/nairenk-waterfall-flow/nairenk-waterfall-flow":"components/nairenk-waterfall-flow/nairenk-waterfall-flow","components/share":"components/share"}[chunkId]||chunkId) + ".wxss";
+/******/ 				var href = "" + ({"components/fun-button":"components/fun-button","components/uni-background/uni-background":"components/uni-background/uni-background","components/uni-nav-bar/uni-nav-bar":"components/uni-nav-bar/uni-nav-bar","components/nairenk-waterfall-flow/nairenk-waterfall-flow":"components/nairenk-waterfall-flow/nairenk-waterfall-flow","components/share":"components/share","components/horizon-tab":"components/horizon-tab"}[chunkId]||chunkId) + ".wxss";
 /******/ 				var fullhref = __webpack_require__.p + href;
 /******/ 				var existingLinkTags = document.getElementsByTagName("link");
 /******/ 				for(var i = 0; i < existingLinkTags.length; i++) {

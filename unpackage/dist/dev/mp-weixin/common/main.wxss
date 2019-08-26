@@ -336,9 +336,8 @@ button[type=default] {
 .placeholder {
   color: #999999;
 }
-.app-container {
-  /* padding:30upx;
-	padding-top:calc(72px + 30upx); */
+.app-container.full {
+  padding-top: 174rpx;
 }
 .section-header {
   width: 750rpx;

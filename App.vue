@@ -449,8 +449,9 @@
 		color: #999999;
 	}
 	.app-container{
-		/* padding:30upx;
-		padding-top:calc(72px + 30upx); */
+		&.full{
+			padding-top:174upx;
+		}
 	}
 	.section-header{
 		width:750upx;

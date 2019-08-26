@@ -1,6 +1,7 @@
 {
   "usingComponents": {
     "uni-nav-bar": "/components/uni-nav-bar/uni-nav-bar",
-    "uni-background": "/components/uni-background/uni-background"
+    "uni-background": "/components/uni-background/uni-background",
+    "horizon-tab": "/components/horizon-tab"
   }
 }

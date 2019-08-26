@@ -195,6 +195,11 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
           type: 'normal' } },
 
 
+      imageLib: {
+        message: '../../static/icons/message.png',
+        union: '../../static/icons/Union.png',
+        banner: '../../static/banner.jpg' },
+
       message: "Forest 矿机即将上线，首批抢购名额1000名",
       buttonList: [
       {
