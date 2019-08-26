@@ -27,7 +27,7 @@
 		<view
 			:class="['back-btn','icon-box',buttons && buttons.back && buttons.back.type=='circle'?'circle':'']" 
 			v-show="buttons && buttons.back"
-			@click="navigatorBack('取消')"
+			@click="navigatorBack(buttons && buttons.back)"
 			:style="{backgroundColor:buttons && buttons.back && buttons.back.type=='circle'?'rgba(0,0,0,'+(backOpacity-priviteOpacity)+')':'transparent'}"
 		>
 			<image class="icon-img" src="../../static/icons/back.png" />
@@ -48,11 +48,12 @@
 				<image class="icon-img" src="../../static/icons/love.png" />
 			</view>
 			<view 
-				:class="['icon-box',buttons && buttons.cart && buttons.cart.type=='circle'?'circle':'']" 
+				:class="['cart-btn','icon-box',buttons && buttons.cart && buttons.cart.type=='circle'?'circle':'']" 
 				v-show="buttons && buttons.cart"
 				:style="{backgroundColor:buttons && buttons.cart && buttons.cart.type=='circle'?'rgba(0,0,0,'+(backOpacity-priviteOpacity)+')':'transparent'}"
+				@click="navigatorBack(buttons && buttons.cart)"
 			>
-				<image class="icon-img" src="../../static/icons/cart.png" />
+					<image class="icon-img" src="../../static/icons/cart.png" />	
 			</view>
 			<view
 				:class="['icon-box',buttons && buttons.search && buttons.search.type=='circle'?'circle':'']" 
