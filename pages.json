@@ -38,13 +38,14 @@
 		}
 		,{
 			"path": "pages/cart/cart",
-			"style": {
-				
-			}
+			"style": {}
 		}
-
         ,{
-            "path" : "pages/cart1/cart1",
+			"path" : "pages/cart1/cart1",
+			"style":{}
+		},
+		{
+            "path" : "pages/xdogwallet/xdogwallet",
             "style" : {}
         }
     ],

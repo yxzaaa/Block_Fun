@@ -1,6 +1,10 @@
 <template>
-	<view :class="['fun-btn',type?type:'',block?'block':'']" :style="{width:width+'upx'}">
-		<image class="button-icon" :src="icon" v-show="icon"/>
+	<view 
+		:class="['fun-btn',type?type:'',block?'block':'']" 
+		:style="{width:width+'upx'}" 
+		@click="buttonLink"
+	>
+		<image class="button-icon" :src="icon" v-if="icon"/>
 		<text>{{value}}</text>
 	</view>
 </template>
@@ -27,6 +31,10 @@
 			width:{
 				type:String,
 				default:''
+			},
+			url:{
+				type:String,
+				default:''
 			}
 		},
 		data() {
@@ -35,6 +43,13 @@
 			};
 		},
 		mounted(){
+		},
+		methods:{
+			buttonLink(){
+				uni.navigateTo({
+					url:this.url
+				})
+			}
 		}
 	}
 </script>
