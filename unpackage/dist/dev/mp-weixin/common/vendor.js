@@ -1861,11 +1861,16 @@ var cartList = [{
 
 //详情展示页面
 var detailData = {
-  title: '纯种金毛幼犬活体有血统证书',
-  title2: '拆家小能手 你值得拥有',
+  symbol: "￥",
+  money: '6044.13',
+  consume: '消耗积分',
+  amount: '4000',
   favorite: true,
+  character: "日用",
+  title: "日本ANESSA安耐晒进口金平安热沙防晒乳防水隔离SPF50+60ml",
+  content: "防晒霜，是指添加了能阻隔或吸收紫外线的防晒剂来达到防治肌肤被晒黑、晒伤的化妆品、根据防晒原理可将防晒霜分为物理防晒霜、化学防晒霜、防晒霜需要根据具体的对象来选择不同SPF或PA值的产品。以达到防晒的目的。防晒霜的作用原理是将皮肤与紫外线隔离开来。防晒乳跟防晒霜，主要区别在于物理性状，霜剂一般的含水量在60%左右，看上去比较“稠”，呈膏状；而乳液，含水量在70%以上，看上去比较稀，有流动性。",
   imgList: [{
-    src: 'http://img0.imgtn.bdimg.com/it/u=2396068252,4277062836&fm=26&gp=0.jpg' },
+    src: '../../static/bg/detail1.png' },
 
   {
     src: 'http://img.pconline.com.cn/images/upload/upc/tx/itbbs/1309/06/c4/25310541_1378426131583.jpg' },
@@ -1881,24 +1886,32 @@ var detailData = {
   1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24],
 
   guessList: [{
-    src: 'http://img.52z.com/upload/news/image/20180530/20180530081619_31029.jpg',
-    title: '猫眼指甲油',
-    title2: '独树一帜的免照灯猫眼指甲' },
+    src: '../../static/bg/iphonex.png',
+    title: 'Apple iPhone X (A1865) 256GB',
+    title2: '深空灰色 移动联通电信4G手机',
+    consume: '消耗积分',
+    amount: '4000',
+    symbol: "￥",
+    price: '6444.13' },
 
   {
-    src: 'http://m.china-7.net/uploads/14778449362891.jpg',
-    title: '创意屋',
-    title2: '创意屋形上下双层高低床' },
+    src: '../../static/bg/p30.png',
+    title: '华为P30 (A1865) 256GB',
+    title2: '深空灰色 移动联通通信4G手机',
+    consume: '消耗积分',
+    amount: '4000',
+    symbol: "￥",
+    price: '4999.21' }],
 
-  {
-    src: 'http://www.k73.com/up/allimg/130415/22-130415093527.jpg',
-    title: 'MissCandy 指甲油',
-    title2: '十分适合喜欢素净的妹纸，尽显淡雅的气质' },
 
-  {
-    src: 'http://img0.imgtn.bdimg.com/it/u=2108933440,2194129200&fm=214&gp=0.jpg	',
-    title: 'RMK 2017星空海蓝唇釉',
-    title2: '唇釉质地，上唇后很滋润。少女也会心动的蓝色，透明液体形状。' }],
+
+
+
+
+
+
+
+
 
 
   evaList: [{
@@ -8318,17 +8331,6 @@ var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 2));
 var _shopping = _interopRequireDefault(__webpack_require__(/*! ./pages/shopping/shopping.vue */ 23));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 createPage(_shopping.default);
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["createPage"]))
-
-/***/ }),
-
-/***/ 26:
-/*!****************************************!*\
-  !*** D:/Block_Fun/static/bg/dream.png ***!
-  \****************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "static/img/dream.2f8092e6.png";
 
 /***/ }),
 

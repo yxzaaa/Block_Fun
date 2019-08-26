@@ -6,6 +6,8 @@
     "pages/profile/profile",
     "pages/search/search",
     "pages/detail/detail",
+    "pages/cart/cart",
+    "pages/cart1/cart1",
     "pages/xdogwallet/xdogwallet",
     "pages/xdogdetail/xdogdetail"
   ],

@@ -73,6 +73,33 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
+  var g0 = _vm.data.money.split(".")
+  var g1 = _vm.data.money.split(".")
+  var g2 = _vm.data.money.split(".")
+
+  var l0 = _vm.__map(_vm.data.guessList, function(item, index) {
+    var g3 = item.price.split(".")
+    var g4 = item.price.split(".")
+    var g5 = item.price.split(".")
+    return {
+      $orig: _vm.__get_orig(item),
+      g3: g3,
+      g4: g4,
+      g5: g5
+    }
+  })
+
+  _vm.$mp.data = Object.assign(
+    {},
+    {
+      $root: {
+        g0: g0,
+        g1: g1,
+        g2: g2,
+        l0: l0
+      }
+    }
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -203,6 +230,26 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 {
   components: {
     share: share,
@@ -231,7 +278,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
         cart: {
-          type: 'circle' }
+          type: 'circle',
+          url: "../cart1/cart1" }
 
         // textbtn:{
         // 	text:'取消'
