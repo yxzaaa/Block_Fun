@@ -1,10 +1,10 @@
 <template>
 	<view 
-		:class="['fun-btn',type?type:'',block?'block':'']" 
-		:style="{width:width+'upx'}" 
+		:class="['fun-btn',type?type:'',large?'large':'']" 
+		:style="{width:width,color:color}" 
 		@click="buttonLink"
 	>
-		<image class="button-icon" :src="icon" v-if="icon"/>
+		<image class="button-icon" :src="icon" v-if="icon" />
 		<text>{{value}}</text>
 	</view>
 </template>
@@ -12,10 +12,6 @@
 <script>
 	export default {
 		props:{
-			block:{
-				type:Boolean,
-				default:false
-			},
 			icon:{
 				type:String,
 				default:''
@@ -32,9 +28,17 @@
 				type:String,
 				default:''
 			},
+			color:{
+				type:String,
+				default:''
+			},
 			url:{
 				type:String,
 				default:''
+			},
+			large:{
+				type:Boolean,
+				default:false
 			}
 		},
 		data() {
@@ -57,7 +61,7 @@
 <style lang="scss">
 	.fun-btn{
 		height:64upx;
-		line-height: 58upx;
+		line-height: 64upx;
 		font-size: 26upx;
 		border-radius: 32upx;
 		background:#DA53A2;
@@ -65,21 +69,22 @@
 		padding:0px 36upx;
 		display:inline-block;
 		text-align:center;
-		.button-icon{
-			width:24upx;
-			height:24upx;
-			margin:20upx 0upx;
-			margin-right:20upx;
-			display: inline-block;
-			vertical-align:middle;
-		}
+		
 		text{
 			vertical-align:middle;
 			display: inline-block;
 		}
-		&.block{
-			display: block;
-			width:100%;
+		.button-icon{
+			width:24upx;
+			height:24upx;
+			margin:20upx 0upx;
+			margin-right:14upx;
+			display: inline-block;
+			vertical-align:middle;
+		}
+		&.large .button-icon{
+			width:26upx;
+			height:26upx;
 		}
 		&.light{
 			background: #fff;
@@ -90,6 +95,10 @@
 			color:#c7c7c7;
 			padding:0px;
 			font-size: 24upx;
+		}
+		&.large{
+			font-size: 28upx;
+			color:#DA53A2;
 		}
 	}
 </style>
