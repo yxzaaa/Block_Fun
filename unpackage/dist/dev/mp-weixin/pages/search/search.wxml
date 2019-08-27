@@ -1,1 +1,0 @@
-<view class="data-v-062854d2"><uni-background vue-id="1" class="data-v-062854d2" bind:__l="__l"></uni-background><uni-nav-bar vue-id="2" title="购物" layout="search" textColor="#fff" opacity="{{scroll}}" buttons="{{navButtons}}" class="data-v-062854d2" bind:__l="__l"></uni-nav-bar><view class="app-container data-v-062854d2"></view></view>

@@ -195,7 +195,7 @@
 	}
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 	// page{
 	// 	background: $page-color-base;
 	// }

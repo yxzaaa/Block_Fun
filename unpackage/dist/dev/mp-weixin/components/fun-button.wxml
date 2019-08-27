@@ -1,1 +1,0 @@
-<view data-event-opts="{{[['tap',[['buttonLink',['$event']]]]]}}" class="{{['fun-btn',type?type:'',block?'block':'']}}" style="{{'width:'+(width+'upx')+';'}}" bindtap="__e"><block wx:if="{{icon}}"><image class="button-icon" src="{{icon}}"></image></block><text>{{value}}</text></view>

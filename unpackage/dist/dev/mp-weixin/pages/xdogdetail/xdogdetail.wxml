@@ -1,1 +1,0 @@
-<view class="container"><uni-background vue-id="1" bind:__l="__l"></uni-background><uni-nav-bar vue-id="2" title="详情" textColor="#fff" opacity="{{scroll}}" layout="center" buttons="{{navButtons}}" bind:__l="__l"></uni-nav-bar><view class="app-container full _div"></view></view>

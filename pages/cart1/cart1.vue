@@ -100,7 +100,7 @@
 	}
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 	// 
 	.guess-list {
 		// display: flex;
