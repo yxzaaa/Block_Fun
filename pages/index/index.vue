@@ -48,8 +48,8 @@
 							<view class="fun-card-buttons">
 								<fun-buttton type="text" value="查看账单" :url="'../xdogwallet/xdogwallet?id='+item.walletid" />
 								<view class="button-group">
-									<fun-buttton type="light" value="转账" icon="../static/icons/zhuanrang-tiny.png" />
-									<fun-buttton value="收款" icon="../static/icons/shoukuan.png" />
+									<fun-buttton type="light" value="转账" icon="~/static/icons/zhuanrang-tiny.png" />
+									<fun-buttton value="收款" icon="~/static/icons/shoukuan.png" />
 								</view>
 							</view>
 						</view>
