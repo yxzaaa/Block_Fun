@@ -216,7 +216,7 @@
 			margin-bottom:20upx;
 		}
 		.title-box{
-			width:425upx;
+			width:420upx;
 			padding:0px 30upx;
 			text{
 				display: block;
