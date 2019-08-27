@@ -41,6 +41,23 @@
 		font-style: normal;
 		src: url('https://at.alicdn.com/t/font_1078604_w4kpxh0rafi.ttf') format('truetype');
 	}
+	
+	@font-face {
+		font-family: 'PingFang';
+		font-weight: normal;
+		font-style: normal;
+		src: url('./static/fonts/苹方字体.ttf') format('truetype');
+	}
+	
+	@font-face {
+		font-family: 'Montserrat-Bold';
+		src: url('./static/fonts/Montserrat-Medium.otf') format('truetype');
+	}
+	
+	@font-face {
+		font-family: 'Montserrat-Light';
+		src: url('./static/fonts/Montserrat-Light.otf') format('truetype');
+	}
 
 	.yticon {
 		font-family: "yticon" !important;
@@ -363,6 +380,13 @@
 	image,
 	video {
 		box-sizing: border-box;
+	}
+	
+	*{
+		font-family: 'PingFang';
+	}
+	text span{
+		font-family: inherit;
 	}
 	/* 骨架屏替代方案 */
 	.Skeleton {

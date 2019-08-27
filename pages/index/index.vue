@@ -4,7 +4,7 @@
 		<uni-nav-bar title="Blockfun" textColor="#fff" :opacity="scroll" layout="left" :buttons="navButtons"></uni-nav-bar>
 		<view class="app-container">
 			<view class="wallet-banner">
-				<img :src="imageLib.banner" alt="">
+				<image :src="imageLib.banner" alt="" />
 			</view>
 			<view class="button-list">
 				<block v-for="(item,index) in buttonList" :key="index">
@@ -31,8 +31,8 @@
 							<view class="item-horizen">
 								<image class="wallet-list-avatar" :src="item.avatar"></image>
 								<view class="title-box">
-									<text style="font-size: 32upx;color:#fff;">{{item.title}}</text>
-									<text style="font-size:24upx;color:#999;">{{item.blockNum}}</text>
+									<text style="font-size:32upx;color:#fff;font-family:'Montserrat-Bold';">{{item.title}}</text>
+									<text style="font-size:24upx;color:#999;font-family:'Montserrat-Light';">{{item.blockNum}}</text>
 								</view>
 								<view>
 									<image class="button-image" :src="imageLib.union"/>
@@ -48,8 +48,8 @@
 							<view class="fun-card-buttons">
 								<fun-buttton type="text" value="查看账单" :url="'../xdogwallet/xdogwallet?id='+item.walletid" />
 								<view class="button-group">
-									<fun-buttton type="light" value="转账" icon="~/static/icons/zhuanrang-tiny.png" />
-									<fun-buttton value="收款" icon="~/static/icons/shoukuan.png" />
+									<fun-buttton type="light" value="转账" icon="../../static/icons/zhuanrang-tiny.png" />
+									<fun-buttton value="收款" icon="../../static/icons/shoukuan.png" />
 								</view>
 							</view>
 						</view>
@@ -147,8 +147,9 @@
 		width:750upx;
 		padding:40upx;
 		padding-top:174upx;
-		img{
+		image{
 			width:100%;
+			height:520upx;
 		}
 	}
 	.button-list{
@@ -228,11 +229,13 @@
 			.label-box{
 				color:#DA53A2;
 				font-size: 42upx;
-				font-weight: bold;
+				font-family:'Montserrat-Bold';
 				span{
+					color:#DA53A2;
 					font-size: 32upx;
 					display: inline-block;
 					padding-right:10upx;
+					font-family:'Montserrat-Bold';
 				}
 			}
 		}

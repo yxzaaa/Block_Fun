@@ -178,12 +178,13 @@
 			.left-title{
 				color:#fff;
 				font-size: 18px;
-				font-weight: bold;
+				font-family:'Montserrat-Bold';
 			}
 			.left-subtitle{
-				color:#fff;
+				color:#c7c7c7;
 				font-size: 10px;
 				padding-left:5upx;
+				font-family:'Montserrat-Light';
 			}
 		}
 		.center-box{
