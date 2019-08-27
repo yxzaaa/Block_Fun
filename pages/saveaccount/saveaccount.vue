@@ -26,7 +26,7 @@
 					>
 						1gmHhylYGlhyHLhlkgesLmncXWibFAWohJD
 					</view>
-					<view>
+					<view style="display:flex;justify-content: center;">
 						<fun-button 
 							type="text" 
 							color="#DA53A2" 
@@ -34,7 +34,6 @@
 							value="复制地址" 
 							large
 							width="200upx"
-							style="margin:auto;display:block;"
 						/>
 					</view>
 				</view>

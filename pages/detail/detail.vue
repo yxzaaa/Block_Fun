@@ -76,7 +76,7 @@
 						<text class="clamp" :class="{Skeleton:!loaded}" style="font-size:30upx;color:#999999;margin-top:14upx;">{{item.consume}} {{item.amount}}</text>
 						<text class="clamp" :class="{Skeleton:!loaded}" style="margin-top:14upx;color:#DA53A2;font-family:'Montserrat-Bold';">
 							<span style="font-size:24upx;margin-right:8upx;">{{item.symbol}}</span>
-							<span>{{item.price.split('.')[0]}}</span>
+							<span>{{item.price?item.price.split('.')[0]:''}}</span>
 							<span style="font-size:24upx;">{{item.price.split('.')[1]?'.'+item.price.split('.')[1]:''}}</span>
 						</text>
 					</view>
