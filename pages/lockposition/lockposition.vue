@@ -1,14 +1,14 @@
 <template>
 	<view class="container">
 		<uni-background />
-		<uni-nav-bar title="Blockfun" textColor="#fff" :opacity="scroll" layout="left" :buttons="navButtons"></uni-nav-bar>
+		<uni-nav-bar title="智能锁仓" textColor="#fff" :opacity="scroll" layout="center" :buttons="navButtons"></uni-nav-bar>
 		<view class="app-container">
 			<view class="wallet-banner">
 				<image :src="imageLib.banner" alt="" />
 			</view>
 			<view class="button-list">
 				<block v-for="(item,index) in buttonList" :key="index">
-					<navigator class="button-list-item" :url="item.link">
+					<navigator class="button-list-item" url="../shopping/shopping">
 						<image :src="item.iconSrc"></image>
 						<text>{{item.name}}</text>
 					</navigator>
@@ -74,8 +74,12 @@
 			return {
 				scroll:0,
 				navButtons:{
-					search:{
-						type:'normal'
+					back:{
+						type:'normal',
+						text:'取消'
+					},
+					textbtn:{
+						text:'锁仓规则'
 					}
 				},
 				imageLib:{
@@ -87,23 +91,19 @@
 				buttonList:[
 					{
 						name:'智能锁仓',
-						iconSrc:'../../static/icons/suocang.png',
-						link:'../lockposition/lockposition'
+						iconSrc:'../../static/icons/suocang.png'
 					},
 					{
 						name:'抵押借贷',
-						iconSrc:'../../static/icons/jiedai.png',
-						link:'../lockposition/lockposition'
+						iconSrc:'../../static/icons/jiedai.png'
 					},
 					{
 						name:'场外交易',
-						iconSrc:'../../static/icons/jiaoyi.png',
-						link:'../lockposition/lockposition'
+						iconSrc:'../../static/icons/jiaoyi.png'
 					},
 					{
 						name:'信任转让',
-						iconSrc:'../../static/icons/zhuanrang.png',
-						link:'../lockposition/lockposition'
+						iconSrc:'../../static/icons/zhuanrang.png'
 					},
 				],
 				walletList:[

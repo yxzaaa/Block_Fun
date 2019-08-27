@@ -189,7 +189,7 @@
 		}
 		.center-box{
 			.nav-bar-title{
-				font-size:36upx;
+				font-size:32upx;
 			}
 		}
 		.search-bar-box{
@@ -243,7 +243,7 @@
 			.text-btn{
 				line-height:36px;
 				color:#DA53A2;
-				font-size: 30upx;
+				font-size: 28upx;
 			}
 		}
 		.icon-box.circle{

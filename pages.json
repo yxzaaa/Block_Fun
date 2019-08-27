@@ -56,6 +56,22 @@
 				}
 			}
         }
+        ,{
+            "path" : "pages/publicnotice/publicnotice",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/transaccount/transaccount",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/saveaccount/saveaccount",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/lockposition/lockposition",
+            "style" : {}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",
