@@ -110,15 +110,20 @@
 				width:400upx;
 				.left-item-title{
 					display: block;
-					color:#fff;font-weight: bold;
+					color:#fff;
 					font-size: 32upx;
 					line-height: 52upx;
+					font-family:'Montserrat-Bold';
+					span{
+						font-family:'Montserrat-Bold';
+					}
 				}
 				.left-item-date{
 					display: block;
 					color:#999;
 					font-size: 26upx;
 					line-height: 52upx;
+					font-family:'Montserrat-Light';
 				}
 			}
 			.right-item{
@@ -129,7 +134,10 @@
 				.right-item-text{
 					font-size: 38upx;
 					color:#56CCF2;
-					font-weight: bold;
+					font-family:'Montserrat-Bold';
+					span{
+						font-family:'Montserrat-Bold';
+					}
 				}
 				image{
 					width:42upx;

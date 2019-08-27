@@ -178,17 +178,18 @@
 			.left-title{
 				color:#fff;
 				font-size: 18px;
-				font-weight: bold;
+				font-family:'Montserrat-Bold';
 			}
 			.left-subtitle{
-				color:#fff;
+				color:#c7c7c7;
 				font-size: 10px;
 				padding-left:5upx;
+				font-family:'Montserrat-Light';
 			}
 		}
 		.center-box{
 			.nav-bar-title{
-				font-size:36upx;
+				font-size:32upx;
 			}
 		}
 		.search-bar-box{
@@ -242,7 +243,7 @@
 			.text-btn{
 				line-height:36px;
 				color:#DA53A2;
-				font-size: 30upx;
+				font-size: 28upx;
 			}
 		}
 		.icon-box.circle{

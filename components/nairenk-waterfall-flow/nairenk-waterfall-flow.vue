@@ -17,11 +17,11 @@
 					<text class="item-consume">{{item.consume}}</text>
 				</view>
 				<view>
-					<text style="color:#DA53A2;font-size:28upx;font-weight: bold;margin-right:5upx;">{{item.symbol}}</text>
-					<text style="color:#DA53A2;font-size:36upx;font-weight: bold">
+					<text style="color:#DA53A2;font-size:28upx;margin-right:5upx;font-family:'Montserrat-Bold';">{{item.symbol}}</text>
+					<span style="color:#DA53A2;font-size:36upx;font-family:'Montserrat-Bold';">
 						{{item.money.split('.')[0]}}
-						<span style="font-size: 24upx;">{{item.money.split('.')[1]?'.'+item.money.split('.')[1]:''}}</span>
-					</text>
+						<span style="font-size: 24upx;font-family:'Montserrat-Bold';">{{item.money.split('.')[1]?'.'+item.money.split('.')[1]:''}}</span>
+					</span>
 				</view>
 			</view>
 		</view>

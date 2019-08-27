@@ -41,6 +41,23 @@
 		font-style: normal;
 		src: url('https://at.alicdn.com/t/font_1078604_w4kpxh0rafi.ttf') format('truetype');
 	}
+	
+	@font-face {
+		font-family: 'PingFang';
+		font-weight: normal;
+		font-style: normal;
+		src: url('./static/fonts/苹方字体.ttf') format('truetype');
+	}
+	
+	@font-face {
+		font-family: 'Montserrat-Bold';
+		src: url('./static/fonts/Montserrat-Medium.otf') format('truetype');
+	}
+	
+	@font-face {
+		font-family: 'Montserrat-Light';
+		src: url('./static/fonts/Montserrat-Light.otf') format('truetype');
+	}
 
 	.yticon {
 		font-family: "yticon" !important;
@@ -364,6 +381,13 @@
 	video {
 		box-sizing: border-box;
 	}
+	
+	*{
+		font-family: 'PingFang';
+	}
+	text span{
+		font-family: inherit;
+	}
 	/* 骨架屏替代方案 */
 	.Skeleton {
 		background: #f3f3f3;
@@ -464,8 +488,9 @@
 	}
 	.fun-card{
 		width:100%;
-		background: rgba(255,255,255,0.1);
+		background: rgba(45,31,37,0.7);
 		border-radius: 8upx;
+		overflow:hidden;
 		.fun-card-item{
 			padding:40upx;
 		}
@@ -490,12 +515,98 @@
 				}
 			}
 		}
+		.submit-btn{
+			width:100%;
+			height:100upx;
+			line-height: 100upx;
+			text-align: center;
+			font-size:28upx;
+			color:#DA53A2;
+			background: rgba(218,83,162,0.2);
+		}
 	}
 	.button-image{
 		width:32upx;
 		height:32upx;
 		margin:30upx;
 		display: block;
+	}
+	
+	.status-box{
+		width:100%;
+		display:flex;
+		justify-content: space-between;
+		.left-status{
+			text{
+				display: block;
+				line-height: 52upx;
+			}
+		}
+		.right-status{
+			text-align:right;
+			text{
+				display: block;
+				line-height: 52upx;
+			}
+		}
+	}
+	
+	.form-item{
+		width:100%;
+		padding-bottom:20upx;
+		.form-label{
+			display: block;
+			width:100%;
+			font-size: 28upx;
+			color:#fff;
+			line-height: 40upx;
+		}
+		.form-value-box{
+			padding-bottom:30upx;
+			view{
+				display: flex;
+				align-items: center;
+			}
+		}
+		.input-field{
+			width:100%;
+			border-radius: 6upx;
+			background: #15030B;
+			line-height: 72upx;
+			padding:0upx 20upx;
+			display:flex;
+			justify-content:space-between;
+			.input-left{
+				color:#999999;
+			}
+			.input-right{
+				color:#999999;
+			}
+		}
+		.form-input-box{
+			padding:30upx 0upx;
+			display: flex;
+			justify-content: space-between;
+			border-bottom:1px solid rgba(255,255,255,.2);
+			.form-input-field{
+				width:calc(100% - 150upx);
+				font-size: 26upx;
+				color:#c7c7c7;
+			}
+			.form-input-btns{
+				padding:0upx 20upx;
+				width:150upx;
+				image{
+					width:40upx;
+					height:40upx;
+					margin-left:15upx;
+				}
+				text{
+					color:#DA53A2;
+					font-size:26upx;
+				}
+			}
+		}
 	}
 	
 	/* page{

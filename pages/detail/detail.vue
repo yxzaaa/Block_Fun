@@ -34,9 +34,9 @@
 		<view class="info">
 			<view class="title">
 				<text :class="{Skeleton:!loaded}" style="margin-top:40upx;">
-					<span style="font-size:30upx;margin-right:10upx;font-weight: bolder;">{{data.symbol}}</span>
-					<span style="font-size:40upx;font-weight:bolder;">{{data.money.split('.')[0]}}</span>
-					<span style="font-size: 30upx;font-weight: bolder;">{{data.money.split('.')[1]?'.' + data.money.split('.')[1]:''}}</span>
+					<span style="font-size:30upx;margin-right:10upx;font-family:'Montserrat-Bold';">{{data.symbol}}</span>
+					<span style="font-size:40upx;font-family:'Montserrat-Bold';">{{data.money.split('.')[0]}}</span>
+					<span style="font-size: 30upx;font-family:'Montserrat-Bold';">{{data.money.split('.')[1]?'.' + data.money.split('.')[1]:''}}</span>
 				</text>
 				
 				<text :class="{Skeleton:!loaded}" style="color:#999999;font-size:24upx;margin-top:16upx;">{{data.consume}} {{data.amount}}</text>
@@ -74,7 +74,7 @@
 						<text class='title clamp' :class="{Skeleton:!loaded}" style="font-size: 30upx;color:#fff;">{{item.title}}</text>
 						<text class="clamp" :class="{Skeleton:!loaded}" style="font-size: 30upx;color:#fff;margin-top:10upx;">{{item.title2}}</text>
 						<text class="clamp" :class="{Skeleton:!loaded}" style="font-size:30upx;color:#999999;margin-top:14upx;">{{item.consume}} {{item.amount}}</text>
-						<text class="clamp" :class="{Skeleton:!loaded}" style="margin-top:14upx;color:#DA53A2;font-weight: bold;">
+						<text class="clamp" :class="{Skeleton:!loaded}" style="margin-top:14upx;color:#DA53A2;font-family:'Montserrat-Bold';">
 							<span style="font-size:24upx;margin-right:8upx;">{{item.symbol}}</span>
 							<span>{{item.price.split('.')[0]}}</span>
 							<span style="font-size:24upx;">{{item.price.split('.')[1]?'.'+item.price.split('.')[1]:''}}</span>

@@ -4,11 +4,11 @@
 		<uni-nav-bar title="Blockfun" textColor="#fff" :opacity="scroll" layout="left" :buttons="navButtons"></uni-nav-bar>
 		<view class="app-container">
 			<view class="wallet-banner">
-				<img :src="imageLib.banner" alt="">
+				<image :src="imageLib.banner" alt="" />
 			</view>
 			<view class="button-list">
 				<block v-for="(item,index) in buttonList" :key="index">
-					<navigator class="button-list-item" url="../shopping/shopping">
+					<navigator class="button-list-item" :url="item.link">
 						<image :src="item.iconSrc"></image>
 						<text>{{item.name}}</text>
 					</navigator>
@@ -19,7 +19,7 @@
 					<image :src="imageLib.message"></image>
 					<text>{{message}}</text>
 				</view>
-				<view class="more-detail">更多</view>
+				<navigator class="more-detail" url="../publicnotice/publicnotice">更多</navigator>
 			</view>
 			<view class="section-header">
 				<text class="section-title">我的钱包</text>
@@ -31,8 +31,8 @@
 							<view class="item-horizen">
 								<image class="wallet-list-avatar" :src="item.avatar"></image>
 								<view class="title-box">
-									<text style="font-size: 32upx;color:#fff;">{{item.title}}</text>
-									<text style="font-size:24upx;color:#999;">{{item.blockNum}}</text>
+									<text style="font-size:32upx;color:#fff;font-family:'Montserrat-Bold';">{{item.title}}</text>
+									<text style="font-size:24upx;color:#999;font-family:'Montserrat-Light';">{{item.blockNum}}</text>
 								</view>
 								<view>
 									<image class="button-image" :src="imageLib.union"/>
@@ -46,10 +46,10 @@
 								<span class="label-box"><span class="label">价格</span>{{item.price}}<span class="kind">{{item.currency}}</span></span> 
 							</view>
 							<view class="fun-card-buttons">
-								<fun-buttton type="text" value="查看账单" :url="'../xdogwallet/xdogwallet?id='+item.walletid" />
+								<fun-button type="text" value="查看账单" :url="'../xdogwallet/xdogwallet?id='+item.walletid" />
 								<view class="button-group">
-									<fun-buttton type="light" value="转账" icon="../../static/icons/zhuanrang-tiny.png" />
-									<fun-buttton value="收款" icon="../../static/icons/shoukuan.png" />
+									<fun-button type="light" value="转账" :url="'../transaccount/transaccount?id='+item.walletid" icon="../../static/icons/zhuanrang-tiny.png" />
+									<fun-button value="收款" :url="'../saveaccount/saveaccount?id='+item.walletid" icon="../../static/icons/shoukuan.png" />
 								</view>
 							</view>
 						</view>
@@ -63,12 +63,12 @@
 <script>
 	import UniNavBar from '@/components/uni-nav-bar/uni-nav-bar.vue';
 	import UniBackground from '@/components/uni-background/uni-background.vue';
-	import FunButtton from '@/components/fun-button.vue';
+	import FunButton from '@/components/fun-button.vue';
 	export default{
 		components:{
 			UniNavBar,
 			UniBackground,
-			FunButtton
+			FunButton
 		},
 		data(){
 			return {
@@ -87,19 +87,23 @@
 				buttonList:[
 					{
 						name:'智能锁仓',
-						iconSrc:'../../static/icons/suocang.png'
+						iconSrc:'../../static/icons/suocang.png',
+						link:'../lockposition/lockposition'
 					},
 					{
 						name:'抵押借贷',
-						iconSrc:'../../static/icons/jiedai.png'
+						iconSrc:'../../static/icons/jiedai.png',
+						link:'../lockposition/lockposition'
 					},
 					{
 						name:'场外交易',
-						iconSrc:'../../static/icons/jiaoyi.png'
+						iconSrc:'../../static/icons/jiaoyi.png',
+						link:'../lockposition/lockposition'
 					},
 					{
 						name:'信任转让',
-						iconSrc:'../../static/icons/zhuanrang.png'
+						iconSrc:'../../static/icons/zhuanrang.png',
+						link:'../lockposition/lockposition'
 					},
 				],
 				walletList:[
@@ -147,8 +151,9 @@
 		width:750upx;
 		padding:40upx;
 		padding-top:174upx;
-		img{
+		image{
 			width:100%;
+			height:520upx;
 		}
 	}
 	.button-list{
@@ -211,7 +216,7 @@
 			margin-bottom:20upx;
 		}
 		.title-box{
-			width:425upx;
+			width:420upx;
 			padding:0px 30upx;
 			text{
 				display: block;
@@ -228,11 +233,13 @@
 			.label-box{
 				color:#DA53A2;
 				font-size: 42upx;
-				font-weight: bold;
+				font-family:'Montserrat-Bold';
 				span{
+					color:#DA53A2;
 					font-size: 32upx;
 					display: inline-block;
 					padding-right:10upx;
+					font-family:'Montserrat-Bold';
 				}
 			}
 		}
