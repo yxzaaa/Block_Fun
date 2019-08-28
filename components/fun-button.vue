@@ -61,7 +61,7 @@
 <style lang="scss">
 	.fun-btn{
 		height:64upx;
-		line-height: 60upx;
+		line-height: 64upx;
 		font-size: 26upx;
 		border-radius: 32upx;
 		background:#DA53A2;
@@ -82,10 +82,6 @@
 			display: inline-block;
 			vertical-align:middle;
 		}
-		&.large .button-icon{
-			width:26upx;
-			height:26upx;
-		}
 		&.light{
 			background: #fff;
 			color:#DA53A2;
@@ -94,11 +90,16 @@
 			background: transparent;
 			color:#c7c7c7;
 			padding:0px;
-			font-size: 24upx;
 		}
 		&.large{
-			font-size: 28upx;
-			color:#DA53A2;
+			font-size: 30upx;
+			line-height: 80upx;
+			height:80upx;
+			border-radius: 40upx;
+		}
+		&.large .button-icon{
+			width:30upx;
+			height:30upx;
 		}
 	}
 </style>

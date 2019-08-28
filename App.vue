@@ -481,6 +481,15 @@
 			color:#fff;
 		}
 	}
+	
+	.button-group{
+		display:flex;
+		justify-content:space-between;
+		.fun-btn{
+			/* margin-left:20upx; */
+		}
+	}
+	
 	.fun-card{
 		width:100%;
 		background: rgba(45,31,37,0.7);
@@ -504,11 +513,6 @@
 			padding:20upx 0px;
 			display: flex;
 			justify-content: space-between;
-			.button-group{
-				.fun-btn{
-					margin-left:20upx;
-				}
-			}
 		}
 		.submit-btn{
 			width:100%;
@@ -525,6 +529,15 @@
 		height:32upx;
 		margin:30upx;
 		display: block;
+	}
+	.fixed-buttons{
+		position: fixed;
+		bottom:0px;
+		left:0px;
+		width:750upx;
+		padding:20upx 40upx;
+		background: #2F282B;
+		z-index:1000;
 	}
 	
 	.status-box{
