@@ -3,58 +3,132 @@
 		<uni-background />
 		<uni-nav-bar title="智能锁仓" textColor="#fff" :opacity="scroll" layout="center" :buttons="navButtons"></uni-nav-bar>
 		<view class="app-container">
+			<view class="fixed-buttons">
+				<view class="button-group">
+					<fun-button value="自动锁仓" width="320upx" type="light" large></fun-button>
+					<fun-button value="邀请好友锁仓" width="320upx" icon="../../static/icons/icon_invite.png" large></fun-button>
+				</view>
+			</view>
 			<view class="wallet-banner">
 				<image :src="imageLib.banner" alt="" />
 			</view>
-			<view class="button-list">
-				<block v-for="(item,index) in buttonList" :key="index">
-					<navigator class="button-list-item" url="../shopping/shopping">
-						<image :src="item.iconSrc"></image>
-						<text>{{item.name}}</text>
-					</navigator>
-				</block>
-			</view>
-			<view class="news-box">
-				<view class="news-list">
-					<image :src="imageLib.message"></image>
-					<text>{{message}}</text>
-				</view>
-				<navigator class="more-detail" url="../publicnotice/publicnotice">更多</navigator>
-			</view>
-			<view class="section-header">
-				<text class="section-title">我的钱包</text>
-			</view>
-			<view class="wallet-list">
-				<block v-for="item in walletList" :key="item.walletid">
-					<view class="fun-card">
-						<view class="fun-card-item">
-							<view class="item-horizen">
-								<image class="wallet-list-avatar" :src="item.avatar"></image>
-								<view class="title-box">
-									<text style="font-size:32upx;color:#fff;font-family:'Montserrat-Bold';">{{item.title}}</text>
-									<text style="font-size:24upx;color:#999;font-family:'Montserrat-Light';">{{item.blockNum}}</text>
+			<view style="padding:0px 40upx;padding-bottom:20upx;">
+				<view class="fun-card">
+					<view class="fun-card-item">
+						<view style="position: relative;width:100%;text-align: center;font-size: 30upx;color:#fff;">
+							锁仓总收益
+							<fun-button value="账单" type="text" color="#DA53A2"
+							style="position:absolute;top:-12upx;right:0upx;"></fun-button>
+						</view>
+						<view class="lock-total-box">
+							<view class="lock-item-box">
+								<view class="lock-item">
+									<text style="font-size:56upx;color:#DA53A2;font-family: 'Montserrat-Bold';">6</text>
+									<text style="font-size:28upx;color:#999;font-family: 'Montserrat-Light';line-height: 48upx;">Forest</text>
 								</view>
-								<view>
-									<image class="button-image" :src="imageLib.union"/>
+								<view class="lock-item">
+									<text style="font-size:56upx;color:#DA53A2;font-family: 'Montserrat-Bold';">88</text>
+									<text style="font-size:28upx;color:#999;font-family: 'Montserrat-Light';line-height: 48upx;">Xdog</text>
+								</view>
+								<view class="lock-item-block">
+									今日收益
 								</view>
 							</view>
-							<view class="item-horizen count-box">
-								<span class="label-box"><span>$</span>{{item.total}}</span>
-							</view>
-							<view class="item-horizen label-line">
-								<span class="label-box"><span class="label">数量</span>{{item.count}}</span> 
-								<span class="label-box"><span class="label">价格</span>{{item.price}}<span class="kind">{{item.currency}}</span></span> 
-							</view>
-							<view class="fun-card-buttons">
-								<fun-button type="text" value="查看账单" :url="'../xdogwallet/xdogwallet?id='+item.walletid" />
-								<view class="button-group">
-									<fun-button type="light" value="转账" :url="'../transaccount/transaccount?id='+item.walletid" icon="../../static/icons/zhuanrang-tiny.png" />
-									<fun-button value="收款" :url="'../saveaccount/saveaccount?id='+item.walletid" icon="../../static/icons/shoukuan.png" />
+							<view class="lock-item-vertical"></view>
+							<view class="lock-item-box">
+								<view class="lock-item">
+									<text style="font-size:56upx;color:#DA53A2;font-family: 'Montserrat-Bold';">54</text>
+									<text style="font-size:28upx;color:#999;font-family: 'Montserrat-Light';line-height: 48upx;">Forest</text>
+								</view>
+								<view class="lock-item">
+									<text style="font-size:56upx;color:#DA53A2;font-family: 'Montserrat-Bold';">452</text>
+									<text style="font-size:28upx;color:#999;font-family: 'Montserrat-Light';line-height: 48upx;">Xdog</text>
+								</view>
+								<view class="lock-item-block">
+									累计收益
 								</view>
 							</view>
 						</view>
 					</view>
-				</block>
+				</view>
+				<view class="fun-card" style="margin-top:30upx;background: transparent;">
+					<view class="fun-card-item">
+						<view class="lock-total-box" style="padding:0upx;">
+							<view class="lock-item-box">
+								<view style="color:#fff;font-size: 28upx;text-align: center;padding:10upx;">今日收益</view>
+								<view class="lock-item-block">
+									<view class="lock-item">
+										<text style="font-size:28upx;color:#fff;font-family: 'Montserrat-Bold';display: inline-block;padding:0upx 10upx;">2</text>
+										<text style="font-size:24upx;color:#999;font-family: 'Montserrat-Light';line-height: 48upx;display: inline-block;">Forest</text>
+									</view>
+									<view class="lock-item">
+										<text style="font-size:28upx;color:#fff;font-family: 'Montserrat-Bold';display: inline-block;padding:0upx 10upx;">30</text>
+										<text style="font-size:24upx;color:#999;font-family: 'Montserrat-Light';line-height: 48upx;display: inline-block;">Xdog</text>
+									</view>
+									<view class="lock-item-block" style="font-size: 24upx;padding-top:6upx;">
+										自主锁仓
+									</view>
+								</view>
+								<view class="lock-item-block">
+									<view class="lock-item">
+										<text style="font-size:28upx;color:#fff;font-family: 'Montserrat-Bold';display: inline-block;padding:0upx 10upx;">2</text>
+										<text style="font-size:24upx;color:#999;font-family: 'Montserrat-Light';line-height: 48upx;display: inline-block;">Forest</text>
+									</view>
+									<view class="lock-item">
+										<text style="font-size:28upx;color:#fff;font-family: 'Montserrat-Bold';display: inline-block;padding:0upx 10upx;">30</text>
+										<text style="font-size:24upx;color:#999;font-family: 'Montserrat-Light';line-height: 48upx;display: inline-block;">Xdog</text>
+									</view>
+									<view class="lock-item-block" style="font-size: 24upx;padding-top:6upx;">
+										推广收益
+									</view>
+								</view>
+							</view>
+							<view class="lock-item-vertical" style="height:270upx;margin-top:20upx;"></view>
+							<view class="lock-item-box">
+								<view style="color:#fff;font-size: 28upx;text-align: center;padding:10upx;">累计收益</view>
+								<view class="lock-item-block">
+									<view class="lock-item">
+										<text style="font-size:28upx;color:#fff;font-family: 'Montserrat-Bold';display: inline-block;padding:0upx 10upx;">20</text>
+										<text style="font-size:24upx;color:#999;font-family: 'Montserrat-Light';line-height: 48upx;display: inline-block;">Forest</text>
+									</view>
+									<view class="lock-item">
+										<text style="font-size:28upx;color:#fff;font-family: 'Montserrat-Bold';display: inline-block;padding:0upx 10upx;">888</text>
+										<text style="font-size:24upx;color:#999;font-family: 'Montserrat-Light';line-height: 48upx;display: inline-block;">Xdog</text>
+									</view>
+									<view class="lock-item-block" style="font-size: 24upx;padding-top:6upx;">
+										自主锁仓
+									</view>
+								</view>
+								<view class="lock-item-block">
+									<view class="lock-item">
+										<text style="font-size:28upx;color:#fff;font-family: 'Montserrat-Bold';display: inline-block;padding:0upx 10upx;">20</text>
+										<text style="font-size:24upx;color:#999;font-family: 'Montserrat-Light';line-height: 48upx;display: inline-block;">Forest</text>
+									</view>
+									<view class="lock-item">
+										<text style="font-size:28upx;color:#fff;font-family: 'Montserrat-Bold';display: inline-block;padding:0upx 10upx;">888</text>
+										<text style="font-size:24upx;color:#999;font-family: 'Montserrat-Light';line-height: 48upx;display: inline-block;">Xdog</text>
+									</view>
+									<view class="lock-item-block" style="font-size: 24upx;padding-top:6upx;">
+										推广收益
+									</view>
+								</view>
+							</view>
+						</view>
+					</view>
+				</view>
+			</view>
+			<view class="lockpay-box">
+				<view class="lock-tab">
+					<view :class="['lock-tab-item',activeTab == 0?'active':'']">
+						<text>锁仓收益</text>
+					</view>
+					<view :class="['lock-tab-item',activeTab == 1?'active':'']">
+						<text>推广收益</text>
+					</view>
+				</view>
+				<view class="lock-table">
+					
+				</view>
 			</view>
 		</view>
 	</view>
@@ -85,59 +159,9 @@
 				imageLib:{
 					message:'../../static/icons/message.png',
 					union:'../../static/icons/Union.png',
-					banner:'../../static/banner.jpg'
+					banner:'../../static/banner1.jpg'
 				},
-				message:"Forest 矿机即将上线，首批抢购名额1000名",
-				buttonList:[
-					{
-						name:'智能锁仓',
-						iconSrc:'../../static/icons/suocang.png'
-					},
-					{
-						name:'抵押借贷',
-						iconSrc:'../../static/icons/jiedai.png'
-					},
-					{
-						name:'场外交易',
-						iconSrc:'../../static/icons/jiaoyi.png'
-					},
-					{
-						name:'信任转让',
-						iconSrc:'../../static/icons/zhuanrang.png'
-					},
-				],
-				walletList:[
-					{
-						walletid:1,
-						avatar:'../../static/avatar/fortoken.png',
-						title:'Forset Wallet',
-						blockNum:'0xEc9…x34e518da',
-						total:'8398.58',
-						count:'10000',
-						price:'0.88',
-						currency:'USD'
-					},
-					{
-						walletid:2,
-						avatar:'../../static/avatar/fortoken.png',
-						title:'Forset Wallet',
-						blockNum:'0xEc9…x34e518da',
-						total:'8398.58',
-						count:'10000',
-						price:'0.88',
-						currency:'USD'
-					},
-					{
-						walletid:3,
-						avatar:'../../static/avatar/fortoken.png',
-						title:'Forset Wallet',
-						blockNum:'0xEc9…x34e518da',
-						total:'8398.58',
-						count:'10000',
-						price:'0.88',
-						currency:'USD'
-					},
-				]
+				activeTab:0
 			}
 		},
 		onPageScroll(val){
@@ -149,115 +173,74 @@
 <style lang="scss" scoped>
 	.wallet-banner{
 		width:750upx;
-		padding:40upx;
+		padding:30upx 40upx;
 		padding-top:174upx;
+		position:relative;
 		image{
 			width:100%;
 			height:520upx;
+			display: block;
 		}
 	}
-	.button-list{
-		display: flex;
-		justify-content: space-between;
-		padding:0px 20upx;
-		.button-list-item{
-			width:25%;
+	.lock-total-box{
+		width:100%;
+		display:flex;
+		justify-content:space-between;
+		padding:20upx 0px;
+		padding-top:40upx;
+		.lock-item-vertical{
+			width:2upx;
+			background:rgba(255,255,255,0.1);
+			height:108upx;
+		}
+		.lock-item-box{
+			width:46%;
 			display:flex;
-			justify-content:center;
-			align-items:center;
+			justify-content:space-around;
 			flex-wrap:wrap;
-			image{
-				width:72upx;
-				height:72upx;
-			}
-			text{
+			.lock-item-block{
+				width:100%;
 				text-align: center;
-				width:100%;
-				color:#fff;
-				font-size: 24upx;
-				line-height: 56upx;
-			}
-		}
-	}
-	.news-box{
-		width:750upx;
-		padding:40upx;
-		padding-top:50upx;
-		padding-bottom:20upx;
-		display: flex;
-		justify-content: space-between;
-		.news-list{
-			display:flex;
-			align-items:center;
-			image{
-				width:36upx;
-				height:36upx;
-				margin-right:15upx;
-			}
-			text{
-				font-size: 22upx;
-				color:#999;
-				max-width: 500upx;
-				overflow: hidden;
-				text-overflow: ellipsis;
-				white-space: nowrap;
-			}
-		}
-		.more-detail{
-			color:#666;
-			font-size: 22upx;
-			line-height: 40upx;
-		}
-	}
-	.wallet-list{
-		padding:0px 40upx;
-		padding-bottom:20upx;
-		.fun-card{
-			margin-bottom:20upx;
-		}
-		.title-box{
-			width:425upx;
-			padding:0px 30upx;
-			text{
-				display: block;
-				width:100%;
-			}
-		}
-		.wallet-list-avatar{
-			width:80upx;
-			height:80upx;
-		}
-		.count-box{
-			padding:10upx 0upx;
-			padding-top:30upx;
-			.label-box{
-				color:#DA53A2;
-				font-size: 42upx;
-				font-family:'Montserrat-Bold';
-				span{
-					color:#DA53A2;
-					font-size: 32upx;
-					display: inline-block;
-					padding-right:10upx;
-					font-family:'Montserrat-Bold';
-				}
-			}
-		}
-		.label-line{
-			padding:15upx 0upx;
-			.label-box{
-				display: inline-block;
-				width:240upx;
-				font-size: 24upx;
+				padding-top:30upx;
+				font-size: 28upx;
 				color:#c7c7c7;
-				.label{
-					color:#999;
-					display: inline-block;
-					padding-right:20upx;
+				display:flex;
+				justify-content:space-around;
+				flex-wrap:wrap;
+			}
+			.lock-item{
+				width:50%;
+				text-align:center;
+				text{
+					display: block;
 				}
-				.kind{
+			}
+		}
+	}
+	.lockpay-box{
+		width:750upx;
+		background: #000;
+		margin-bottom:30upx;
+		.lock-table{
+			padding:20upx 40upx;
+			
+		}
+		.lock-tab{
+			border-bottom:2upx solid rgba(255,255,255,0.1);
+			display:flex;
+			justify-content:space-between;
+			.lock-tab-item{
+				width:50%;
+				text-align:center;
+				text{
+					font-size:28upx;
+					color:#fff;
+					line-height:80upx;
+					height:80upx;
 					display: inline-block;
-					padding-left:10upx;
+				}
+				&.active text{
+					border-bottom:2upx solid #fff;
 				}
 			}
 		}

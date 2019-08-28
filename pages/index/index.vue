@@ -47,7 +47,7 @@
 							</view>
 							<view class="fun-card-buttons">
 								<fun-button type="text" value="查看账单" :url="'../xdogwallet/xdogwallet?id='+item.walletid" />
-								<view class="button-group">
+								<view class="button-group" style="width:350upx;">
 									<fun-button type="light" value="转账" :url="'../transaccount/transaccount?id='+item.walletid" icon="../../static/icons/zhuanrang-tiny.png" />
 									<fun-button value="收款" :url="'../saveaccount/saveaccount?id='+item.walletid" icon="../../static/icons/shoukuan.png" />
 								</view>
