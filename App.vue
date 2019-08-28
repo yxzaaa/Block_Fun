@@ -471,11 +471,22 @@
 		&.full{
 			padding-top:174upx;
 		}
+		&.fixbutton{
+			padding-bottom:120upx;
+		}
 	}
 	.section-header{
 		width:750upx;
 		padding:40upx;
 		padding-bottom:30upx;
+		display:flex;
+		justify-content:flex-start;
+		align-items:center;
+		.section-icon{
+			width:40upx;
+			height:40upx;
+			margin-right:10upx;
+		}
 		.section-title{
 			font-size: 32upx;
 			color:#fff;

@@ -1,19 +1,28 @@
 <template>
 	<view class="container">
 		<uni-background />
-		<uni-nav-bar title="Xdog 钱包" textColor="#fff" :opacity="scroll" layout="center" :buttons="navButtons"></uni-nav-bar>
+		<uni-nav-bar title="账单" textColor="#fff" :opacity="scroll" layout="center" :buttons="navButtons"></uni-nav-bar>
 		<view class="app-container full">
 			<view class="horizon-tab">
-				<horizon-tab :tabs="navTabs" padding="40"/>
+				<horizon-tab :tabs="navTabs" padding="20"/>
 			</view>
 			<view class="horizon-list">
 				<block v-for="(item,index) in xdogList" :key="item.id">
 					<navigator class="horizon-list-item" :url="'../xdogdetail/xdogdetail?id='+item.id">
+						<view class="avatar-item">
+							<image :src="item.avatar"></image>
+						</view>
 						<view class="left-item">
 							<text class="left-item-title">{{item.title}}</text>
 							<text class="left-item-date">{{item.date}}</text>
 						</view>
+						<view class="center-item">
+							<text>{{item.symbol}}</text>
+						</view>
 						<view class="right-item">
+							<view v-if="item.status == '!'" class="pre-image">
+								<image :src="imageLib.downlock"></image>
+							</view>
 							<span class="right-item-text" :style="{color:item.status == '+'?'#DA53A2':item.status == '-'?'#56CCF2':'#F2C94C'}">
 								<span>{{item.status}}</span>
 								{{item.values}}
@@ -47,7 +56,8 @@
 					}
 				},
 				imageLib:{
-					more:'../../static/icons/more.png'
+					more:'../../static/icons/more.png',
+					downlock:'../../static/icons/downlock.png'
 				},
 				navTabs:[
 					{
@@ -56,37 +66,47 @@
 					},
 					{
 						id:2,
-						text:'转入'
+						text:'推广分红'
 					},
 					{
 						id:3,
-						text:'转出'
+						text:'锁仓分红'
 					},
 					{
 						id:4,
-						text:'失败'
+						text:'锁仓明细'
+					},
+					{
+						id:5,
+						text:'USTD支付'
 					},
 				],
 				xdogList:[
 					{
 						id:1,
-						title:'0xEc9***x34e518da',
+						avatar:'../../static/icons/icon_fenhong.png',
+						title:'自主锁仓分红',
 						date:'2019/02/04 01:13',
 						status:'+',
+						symbol:'Forest',
 						values:'88.65'
 					},
 					{
 						id:2,
-						title:'0xEc9***x34e518da',
+						avatar:'../../static/icons/icon_goumaikuangji.png',
+						title:'SVIP资格购买',
 						date:'2019/02/04 01:13',
 						status:'-',
+						symbol:'USTD',
 						values:'88.65'
 					},
 					{
 						id:3,
-						title:'0xEc9***x34e518da',
+						avatar:'../../static/icons/icon_suocang.png',
+						title:'参与自主锁仓',
 						date:'2019/02/04 01:13',
 						status:'!',
+						symbol:'Forest',
 						values:'88.65'
 					},
 				]
@@ -106,14 +126,33 @@
 			display: flex;
 			justify-content: space-between;
 			align-items: center;
+			.avatar-item{
+				width:56upx;
+				margin-right:10upx;
+				height:90upx;
+				image{
+					width:56upx;
+					height:56upx;
+				}
+			}
+			.center-item{
+				width:100upx;
+				font-size: 26upx;
+				color:#fff;
+				text{
+					font-family:'Montserrat-Bold';
+				}
+			}
 			.left-item{
-				width:400upx;
+				width:300upx;
 				.left-item-title{
 					display: block;
 					color:#fff;
 					font-size: 32upx;
 					line-height: 52upx;
-					font-family:'Montserrat-Bold';
+					overflow:hidden;
+					text-overflow:ellipsis;
+					white-space:nowrap;
 					span{
 						font-family:'Montserrat-Bold';
 					}
@@ -121,12 +160,19 @@
 				.left-item-date{
 					display: block;
 					color:#999;
-					font-size: 26upx;
+					font-size: 24upx;
 					line-height: 52upx;
 					font-family:'Montserrat-Light';
 				}
 			}
 			.right-item{
+				.pre-image{
+					image{
+						width:28upx;
+						height:28upx;
+						margin-right:10upx;
+					}
+				}
 				width:300upx;
 				display: flex;
 				justify-content: flex-end;

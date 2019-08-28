@@ -90,6 +90,14 @@
 				
 			}
 		}
+        ,{
+            "path" : "pages/paymentnote/paymentnote",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/lockrule/lockrule",
+            "style" : {}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",
