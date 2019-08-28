@@ -9,33 +9,50 @@
 			:opacity="scroll"
 			:buttons="navButtons"
 		/>
-		
-		<view class="guess-list">
-			<view 
-				v-for="(item, index) in data.guessList" :key="index"
-				class="guess-item"
-				style="padding-top:16upx;"
-			>
-			<!-- 引入图片 -->
-				<view class="image-wrapper">
-					<image 
-						:src="item.src" 
-						:class="item.loaded" 
-						mode="aspectFill"
-						@load="imageOnLoad('guessList', index)" 
-						style="width:200upx;height:200upx;"
-					></image>
-				</view>
-				<!-- 图片描述 -->
-				<view class="guess-content" style="margin-left:20upx;margin-top:0;">
-					<text class='title clamp' :class="{Skeleton:!loaded}" style="font-size: 30upx;color:#fff;">{{item.title}}</text>
-					<text class="clamp" :class="{Skeleton:!loaded}" style="font-size: 30upx;color:#fff;margin-top:10upx;">{{item.title2}}</text>
-					<text class="clamp" :class="{Skeleton:!loaded}" style="font-size:30upx;color:#999999;margin-top:14upx;">{{item.consume}} {{item.amount}}</text>
-					<text class="clamp" :class="{Skeleton:!loaded}" style="margin-top:14upx;color:#DA53A2;font-family:'Montserrat-Bold';">
-						<span style="font-size:24upx;margin-right:8upx;">{{item.symbol}}</span>
-						<span>{{item.price.split('.')[0]}}</span>
-						<span style="font-size:24upx;">{{item.price.split('.')[1]?'.'+item.price.split('.')[1]:''}}</span>
-					</text>
+		<view class="guess">
+			<view class="guess-list">
+				<view 
+					v-for="(item, index) in data.guessList" :key="index"
+					class="guess-item"
+					
+				>
+				
+				
+				<!-- 引入图片 -->
+					<view style="line-height: 160upx;padding-right:40upx;">
+						<image
+							:src="item.src1" 
+							@load="imageOnLoad('guessList', index)" 
+							style="width:40upx;height:40upx;"
+						></image>
+					</view>
+					<view class="image-wrapper">
+					
+							
+						
+						<image 
+							:src="item.src" 
+							:class="item.loaded" 
+							mode="aspectFill"
+							@load="imageOnLoad('guessList', index)" 
+							style="width:160upx;height:160upx;"
+						></image>
+					</view>
+					<!-- 图片描述 -->
+					<view class="guess-content" style="margin-left:20upx;margin-top:0;">
+						<span :class="{Skeleton:!loaded}" style="font-size: 28upx;color:#fff;">{{item.title}}</span>
+						<text :class="{Skeleton:!loaded}" style="font-size:24upx;color:#999999;margin-top:12upx;">{{item.consume}} {{item.amount}}</text>
+						<span :class="{Skeleton:!loaded}" style="margin-top:12upx;color:#DA53A2;">
+							<span style="font-size:24upx;margin-right:8upx;display: inline-block;font-family:'Montserrat-Bold';">{{item.symbol}}</span>
+							<span style="display: inline-block;font-family:'Montserrat-Bold';">{{item.price.split('.')[0]}}</span>
+							<span style="font-size:24upx;display: inline-block;font-family:'Montserrat-Bold';">{{item.price.split('.')[1]?'.'+item.price.split('.')[1]:''}}</span>
+							<span class="cut" style="position:absolute;right:50upx;display: inline-block;">
+								<span style="margin-right:20upx;font-size:30upx;color:#fff;font-weight: bold;display: inline-block;"> - </span>
+								<span style="display:inline-block;#99999;background:#280617;font-size:24upx;color:#fff;width:64upx;height:40upx;line-height: 40upx;text-align: center;">{{item.number}}</span>
+								<span style="margin-left:20upx;font-size:30upx;color:#fff;font-weight: bold;display: inline-block;"> + </span>
+							</span>
+						</span>
+					</view>
 				</view>
 			</view>
 		</view>
@@ -59,10 +76,12 @@
 				scroll:0,
 				navButtons:{
 					back:{
-						type:'normal'
+						type:'normal',
+						text:'取消'
 					},
 					textbtn:{
-						text:"管理"
+						text:"管理",
+						url:"../order-management/order-management"
 					},
 					
 				},
@@ -101,43 +120,39 @@
 </script>
 
 <style lang="scss" scoped>
-	// 
+	.guess {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items:center;
+		padding:30upx 40upx 10upx;
+		margin-top:150upx;
+	}
 	.guess-list {
+		margin:0 auto;
 		// display: flex;
 		// flex-wrap: wrap;
-		margin-top:200upx;
-		width: 100%;
+		width:670upx;
+		height:160upx;
 	}
 	.guess-item {
 		display: flex;
-		overflow: hidden;
-		min-width: 40%;
-		margin-right: 26upx;
+		width:100%;
 		padding-bottom: 40upx;
 	
 		.image-wrapper{
-			width: 200upx;
-			height: 200upx;
+			width: 160upx;
+			height: 160upx;
 			border-radius: 10upx;
 		}
+		.guess-content{
+			height:160upx;
+			width:420upx;
+			span,text{
+				display: block;
+			}
+		}
 	}
-	// 
-	// 	.guess-content {
-	// 		color:#999999;
-	// 		// font-size: $font-sm;
-	// 		// color: $font-color-light;
-	// 		// &.Skeleton{
-	// 		// 	width: 180upx;
-	// 		// 	&.title{
-	// 		// 		width: 140upx;
-	// 		// 	}
-	// 		// }
-	// 		// &.title{
-	// 		// 	font-size: $font-base+2upx;
-	// 		// 	color: $font-color-dark;
-	// 		// 	margin-top:16upx;
-	// 		// 	margin-bottom: 8upx;
-	// 		// }
-	// 	}
-	// 
+	
+		
 </style>

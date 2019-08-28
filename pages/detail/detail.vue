@@ -71,6 +71,13 @@
 					</view>
 					<!-- 图片描述 -->
 					<view class="guess-content" style="margin-left:20upx;margin-top:0;">
+						<span class='title clamp' :class="{Skeleton:!loaded}" style="font-size:24upx;color:#fff;white-space: normal;width:448upx;height:88upx;">{{item.title}}</span>
+						<span class="clamp" :class="{Skeleton:!loaded}" style="font-size:24upx;color:#999999;margin-top:14upx;">{{item.consume}} {{item.amount}}</span>
+						<span class="clamp" :class="{Skeleton:!loaded}" style="margin-top:8upx;color:#DA53A2;font-family:'Montserrat-Bold';">
+							<span style="font-size:24upx;margin-right:8upx;font-family:'Montserrat-Bold';">{{item.symbol}}</span>
+							<span style="font-family:'Montserrat-Bold';">{{item.price.split('.')[0]}}</span>
+							<span style="font-size:24upx;font-family:'Montserrat-Bold';">{{item.price.split('.')[1]?'.'+item.price.split('.')[1]:''}}</span>
+						</span>
 						<text class='title clamp' :class="{Skeleton:!loaded}" style="font-size: 30upx;color:#fff;">{{item.title}}</text>
 						<text class="clamp" :class="{Skeleton:!loaded}" style="font-size: 30upx;color:#fff;margin-top:10upx;">{{item.title2}}</text>
 						<text class="clamp" :class="{Skeleton:!loaded}" style="font-size:30upx;color:#999999;margin-top:14upx;">{{item.consume}} {{item.amount}}</text>
@@ -304,19 +311,21 @@
 	}
 	.guess-item {
 		display: flex;
-		overflow: hidden;
-		min-width: 40%;
-		margin-right: 26upx;
-		padding-bottom: 40upx;
+		padding-bottom:40upx;
 	
 		.image-wrapper{
 			width: 200upx;
 			height: 200upx;
 			border-radius: 10upx;
+			image{
+				width:200upx;
+				height:200upx;
+			}
 		}
 	
 		.guess-content {
 			color:#999999;
+			height:200upx;
 			// font-size: $font-sm;
 			// color: $font-color-light;
 			// &.Skeleton{
