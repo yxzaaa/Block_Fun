@@ -1,37 +1,56 @@
 <template>
-	<view class="content">
-		<view class="row b-b">
-			<text class="tit">联系人</text>
-			<input class="input" type="text" v-model="addressData.name" placeholder="收货人姓名" placeholder-class="placeholder" />
+	<view>
+		<uni-background />
+		<uni-nav-bar
+			title="新建收货地址"
+			textColor="#fff"
+			:opacity="scroll"
+			:buttons="navButtons"
+		/>
+		<view class="content">
+			<view class="row b-b" style="padding-top:40upx;">
+				<text class="tit">收货人姓名</text>
+				<input class="input" type="text" v-model="addressData.name" placeholder="请输入收货人姓名" placeholder-class="placeholder" />
+			</view>
+			<view class="row b-b">
+				<text class="tit">手机号</text>
+				<input class="input" type="number" v-model="addressData.mobile" placeholder="请输入11位手机号" placeholder-class="placeholder" />
+			</view>
+			<view class="row b-b">
+				<text class="tit">所属区域</text>
+				<input class="input" type="text" v-model="addressData.name" placeholder="请选择市区" placeholder-class="placeholder" />
+				
+				<!-- <text @click="chooseLocation" class="input">
+					{{addressData.addressName}}
+				</text> -->
+				<!-- <text class="yticon icon-shouhuodizhi"></text> -->
+			</view>
+			<view class="row b-b"> 
+				<text class="tit">详细地址</text>
+				<input class="input" type="text" v-model="addressData.area" placeholder="请选择市区" placeholder-class="placeholder" />
+			</view>
+			
+			
+	<!-- 		<button class="add-btn" @click="confirm">提交</button> -->
 		</view>
-		<view class="row b-b">
-			<text class="tit">手机号</text>
-			<input class="input" type="number" v-model="addressData.mobile" placeholder="收货人手机号码" placeholder-class="placeholder" />
+		<view class="default" style="margin-left:40upx;">
+			<image src="../../static/bg/Group.png" style="width:40upx;height:40upx;"></image>
+			<text style="color:#fff;font-size: 24upx;">设为默认</text>
 		</view>
-		<view class="row b-b">
-			<text class="tit">地址</text>
-			<text @click="chooseLocation" class="input">
-				{{addressData.addressName}}
-			</text>
-			<text class="yticon icon-shouhuodizhi"></text>
-		</view>
-		<view class="row b-b"> 
-			<text class="tit">门牌号</text>
-			<input class="input" type="text" v-model="addressData.area" placeholder="楼号、门牌" placeholder-class="placeholder" />
-		</view>
-		
-		<view class="row default-row">
-			<text class="tit">设为默认</text>
-			<switch :checked="addressData.defaule" color="#fa436a" @change="switchChange" />
-		</view>
-		<button class="add-btn" @click="confirm">提交</button>
 	</view>
 </template>
 
 <script>
+	import UniNavBar from '@/components/uni-nav-bar/uni-nav-bar.vue';
+	import UniBackground from '@/components/uni-background/uni-background.vue';
 	export default {
+		components:{
+			UniNavBar,
+			UniBackground,
+		},
 		data() {
 			return {
+				scroll:0,
 				addressData: {
 					name: '',
 					mobile: '',
@@ -39,8 +58,17 @@
 					address: '',
 					area: '',
 					default: false
-				}
+				},
+				navButtons:{
+					back:{
+						type:'normal',
+						text:'取消'
+					}
+				},
 			}
+		},
+		onPageScroll(val){
+			this.scroll=val.scrollTop
 		},
 		onLoad(option){
 			let title = '新增收货地址';
@@ -54,6 +82,7 @@
 				title
 			})
 		},
+		
 		methods: {
 			switchChange(e){
 				this.addressData.default = e.detail;
@@ -101,24 +130,27 @@
 </script>
 
 <style lang="scss">
-	page{
-		background: $page-color-base;
-		padding-top: 16upx;
+	.content{
+		margin: 160upx 40upx 0;
+		border-radius:10upx;
+		background: #493740;
 	}
 
 	.row{
 		display: flex;
-		align-items: center;
-		position: relative;
-		padding:0 30upx;
-		height: 110upx;
-		background: #fff;
+		flex-direction: column;
+		align-content: space-around;
+		width:590upx;
+		height:140upx;
+		border-bottom:1px solid rgba(255,255,255,.2);
+		margin:50upx 0 40upx;
+		margin-left:40upx;
+		
 		
 		.tit{
-			flex-shrink: 0;
-			width: 120upx;
+			
 			font-size: 30upx;
-			color: $font-color-dark;
+			color: #fff;
 		}
 		.input{
 			flex: 1;

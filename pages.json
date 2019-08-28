@@ -72,6 +72,24 @@
             "path" : "pages/lockposition/lockposition",
             "style" : {}
         }
+        ,{
+            "path" : "pages/order-management/order-management",
+            "style" : {}
+        },
+		{
+			"path": "pages/address/address",
+			"style": 
+			{
+				
+			}
+		},
+		{
+			"path": "pages/address/addressManage",
+			"style": 
+			{
+				
+			}
+		}
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",

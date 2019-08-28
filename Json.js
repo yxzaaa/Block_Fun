@@ -209,21 +209,33 @@ const detailData = {
 	],
 	guessList: [{
 			src: '../../static/bg/iphonex.png',
-			title: 'Apple iPhone X (A1865) 256GB',
-			title2: '深空灰色 移动联通电信4G手机',
+			src1:'../../static/bg/checkbox.png',
+			title: 'Apple iPhone X (A1865) 256GB 深空灰色 移动联通电信4G手机',
 			consume:'消耗积分',
 			amount:'4000',
 			symbol:"￥",
-			price:'6444.13'
+			price:'6444.13',
+			number:'0'
 		},
 		{
 			src: '../../static/bg/p30.png',
-			title: '华为P30 (A1865) 256GB',
-			title2: '深空灰色 移动联通通信4G手机',
+			src1:'../../static/bg/check.png',
+			title: '华为P30 (A1865) 256GB 深空灰色 移动联通电信4G手机',
 			consume:'消耗积分',
 			amount:'4000',
 			symbol:"￥",
 			price:'4999.21',
+			number:'0',
+		},
+		{
+			src: '../../static/bg/apple.png',
+			src1:'../../static/bg/checkbox.png',
+			title: 'Apple iPhone X(A1865) 256GB 深空灰色 移动联通电信4G手机',
+			consume:'消耗积分',
+			amount:'4000',
+			symbol:"￥",
+			price:'4999.21',
+			number:'0',
 		},
 		// {
 		// 	src: 'http://www.k73.com/up/allimg/130415/22-130415093527.jpg',

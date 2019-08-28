@@ -10,7 +10,7 @@
 		/>
 		<view class="app-container">
 			<view class="banner-box">
-				<image src="../../static/bg/dream.png" style="width:100%;height:726"/>
+				<image src="../../static/bg/dream.png" style="width:100%;height:726upx;"/>
 			</view>
 			<view class="section-header">
 				<text class="section-title">商品类别</text>
