@@ -61,7 +61,7 @@
 <style lang="scss">
 	.fun-btn{
 		height:64upx;
-		line-height: 64upx;
+		line-height: 60upx;
 		font-size: 26upx;
 		border-radius: 32upx;
 		background:#DA53A2;

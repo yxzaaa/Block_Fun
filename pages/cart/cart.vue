@@ -218,7 +218,7 @@
 	}
 </script>
 
-<style lang='scss'>
+<style lang='scss' scoped>
 	.container{
 		padding-bottom: 134upx;
 		/* 空白页 */

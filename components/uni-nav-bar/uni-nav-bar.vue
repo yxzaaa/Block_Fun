@@ -139,19 +139,19 @@
 		top:0;
 		left:0;
 		width:100%;
-		padding-top:28px;
-		height:72px;
+		padding-top:56upx;
+		height:144upx;
 		z-index:10000;
 		display:flex;
 		align-items:center;
 		.back-btn{
 			position:absolute;
-			bottom:4px;
+			bottom:8upx;
 			left:24upx;
 		}
 		.right-btn-list{
 			position:absolute;
-			bottom:4px;
+			bottom:8upx;
 			right:30upx;
 			display:flex;
 			justify-content:flex-end;
@@ -177,12 +177,12 @@
 			padding:0upx 30upx;
 			.left-title{
 				color:#fff;
-				font-size: 18px;
+				font-size: 36upx;
 				font-family:'Montserrat-Bold';
 			}
 			.left-subtitle{
 				color:#c7c7c7;
-				font-size: 10px;
+				font-size: 20upx;
 				padding-left:5upx;
 				font-family:'Montserrat-Light';
 			}
@@ -194,13 +194,13 @@
 		}
 		.search-bar-box{
 			width:100%;
-			padding:2px 30upx;
+			padding:4upx 30upx;
 			display:flex;
 			justify-content:space-between;
 			.search-input-box{
 				position:relative;
 				width:596upx;
-				height:40px;
+				height:80upx;
 				.search-input{
 					width:100%;
 					height:100%;
@@ -208,40 +208,40 @@
 					background: #15030B;
 					color:#fff;
 					opacity: 0.5;
-					font-size: 15px;
+					font-size: 30upx;
 					padding-right:80upx;
 				}
 				.input-icon{
 					position: absolute;
-					width:30px;
-					height:30px;
-					top:5px;
-					right:5px;
+					width:60upx;
+					height:60upx;
+					top:10upx;
+					right:10upx;
 				}
 			}
 			.leave-search{
 				color:#fff;
-				font-size: 16px;
+				font-size: 32upx;
 				width:100upx;
-				line-height: 40px;
+				line-height: 80upx;
 			}
 		}
 		.icon-box{
-			width:36px;
-			height:36px;
-			border-radius:18px;
+			width:72upx;
+			height:72upx;
+			border-radius:36upx;
 			text-align:center;
 			.icon-img{
-				width:36px;
-				height:36px;
+				width:72upx;
+				height:72upx;
 				display: inline-block;
 			}
 		}
 		.icon-text-box{
-			height:36px;
-			padding:0px 5px;
+			height:72upx;
+			padding:0px 10upx;
 			.text-btn{
-				line-height:36px;
+				line-height:72upx;
 				color:#DA53A2;
 				font-size: 28upx;
 			}

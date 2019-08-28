@@ -35,6 +35,8 @@
 	/*
 		全局公共样式和字体图标
 	*/
+	@import url('./static/fonts/montserrat.css');
+   
 	@font-face {
 		font-family: yticon;
 		font-weight: normal;
@@ -44,19 +46,7 @@
 	
 	@font-face {
 		font-family: 'PingFang';
-		font-weight: normal;
-		font-style: normal;
-		src: url('./static/fonts/苹方字体.ttf') format('truetype');
-	}
-	
-	@font-face {
-		font-family: 'Montserrat-Bold';
-		src: url('./static/fonts/Montserrat-Medium.otf') format('truetype');
-	}
-	
-	@font-face {
-		font-family: 'Montserrat-Light';
-		src: url('./static/fonts/Montserrat-Light.otf') format('truetype');
+		src: url('./static/fonts/PingFang.ttf') format('truetype');  
 	}
 
 	.yticon {
@@ -385,6 +375,11 @@
 	*{
 		font-family: 'PingFang';
 	}
+	
+	body{
+		background-color:#15030B;
+	}
+	
 	text span{
 		font-family: inherit;
 	}
@@ -399,7 +394,7 @@
 	.image-wrapper {
 		font-size: 0;
 		background: #f3f3f3;
-		border-radius: 4px;
+		border-radius: 8upx;
 
 		image {
 			width: 100%;
@@ -496,7 +491,7 @@
 		}
 		.fun-horizen{
 			width:100%;
-			height:1px;
+			height:2upx;
 			background: rgba(255,255,255,.1);
 		}
 		.item-horizen{

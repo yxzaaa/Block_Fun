@@ -5,7 +5,7 @@
 			v-for="(item, index) in newList" :key="index"
 			:data-index="index"
 			 @click="choose"
-			 :style="{marginBottom:index==newList.length-1 || newList.length-2?'130upx':'',top:top[index]+'px'}"
+			 :style="{marginBottom:index==newList.length-1 || index==newList.length-2?'130upx':'',top:top[index]+'px'}"
 			 >
 			<view class="pic">
 				<image class="image" mode="widthFix" :src="item.image" style="width: 100%; display: block;" ></image>
