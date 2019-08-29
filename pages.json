@@ -98,6 +98,10 @@
             "path" : "pages/lockrule/lockrule",
             "style" : {}
         }
+        ,{
+            "path" : "pages/autolock/autolock",
+            "style" : {}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",
