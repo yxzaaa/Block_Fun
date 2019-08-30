@@ -90,6 +90,14 @@
 				
 			}
 		}
+        ,{
+            "path" : "pages/confirm-order/confirm-order",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/choose-address/choose-address",
+            "style" : {}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",
