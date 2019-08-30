@@ -661,6 +661,11 @@
 			font-size: 28upx;
 			color:#fff;
 			line-height: 40upx;
+			.des-item{
+				float:right;
+				color:#999;
+				font-size: 24upx;
+			}
 		}
 		.form-value-box{
 			padding-bottom:30upx;
@@ -677,11 +682,35 @@
 			padding:0upx 20upx;
 			display:flex;
 			justify-content:space-between;
+			flex-wrap:wrap;
 			.input-left{
 				color:#999999;
 			}
 			.input-right{
 				color:#999999;
+			}
+		}
+		.radio-box{
+			width:100%;
+			height:56upx;
+			display:flex;
+			justify-content:space-between;
+			align-items: center;
+			border-radius:8upx;
+			margin-top:10upx;
+			border:1px solid rgba(255,255,255,.5);
+			text{
+				line-height:56upx;
+				display: block;
+				color:#fff;
+				font-size:26upx;
+				text-align:center;
+				border-radius:8upx;
+				font-weight:bolder;
+				&.active{
+					background:#fff;
+					color:#DA53A2;
+				}
 			}
 		}
 		.form-input-box{
@@ -697,6 +726,8 @@
 			.form-input-btns{
 				padding:0upx 20upx;
 				width:150upx;
+				display:flex;
+				justify-content:flex-end;
 				image{
 					width:40upx;
 					height:40upx;
