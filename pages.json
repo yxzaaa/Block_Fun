@@ -91,13 +91,11 @@
 			}
 		}
         ,{
-<<<<<<< HEAD
             "path" : "pages/confirm-order/confirm-order",
             "style" : {}
         }
         ,{
             "path" : "pages/choose-address/choose-address",
-=======
             "path" : "pages/paymentnote/paymentnote",
             "style" : {}
         }
@@ -107,7 +105,6 @@
         }
         ,{
             "path" : "pages/autolock/autolock",
->>>>>>> f1905c991cb00913fe8dcca070f2f654b5a34617
             "style" : {}
         }
     ],
