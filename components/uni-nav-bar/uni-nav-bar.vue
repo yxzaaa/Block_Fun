@@ -189,7 +189,7 @@
 		}
 		.center-box{
 			.nav-bar-title{
-				font-size:32upx;
+				font-size:34upx;
 			}
 		}
 		.search-bar-box{
