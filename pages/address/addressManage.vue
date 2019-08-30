@@ -35,7 +35,10 @@
 		</view>
 		<view class="default" style="margin-left:40upx;">
 			<image src="../../static/bg/Group.png" style="width:40upx;height:40upx;"></image>
-			<text style="color:#fff;font-size: 24upx;">设为默认</text>
+				<navigator url='../confirm-order/confirm-order'>
+					<text style="color:#fff;font-size: 24upx;">设为默认</text>
+					
+				</navigator>
 		</view>
 	</view>
 </template>

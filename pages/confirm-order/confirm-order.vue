@@ -1,26 +1,25 @@
 <template>
 	<view>
-		
-		<uni-background /> <!-- 背景色-->
-		<!-- 导航栏 -->
-		<uni-nav-bar 	
-			title="确认订单"
-			textColor="#fff"
+		<uni-background />
+		<uni-nav-bar 
+			title="确认订单" 
+			textColor="#fff" 
 			:opacity="scroll"
 			:buttons="navButtons"
 		/>
-		<!-- 新建收货地址 -->
-		<view class="address">
-			
-				<view class="site">
-					<image src="../../static/bg/location.png" style="width:64upx;height:64upx;"></image>
-					<navigator class="toaddress" url="../address/addressManage">新建收货地址</navigator>
-				</view>
-				
-				<image src="../../static/bg/right.png" style="width:40upx;height:40upx;"></image>
-			
-		</view>
-		
+		<navigator class="tosite" url="../choose-address/choose-address">
+			<view class="site">
+				<image src="../../static/bg/location.png" style="width:64upx;height:64upx;"></image>
+				<span class="person-info">
+					<span class="name-phone">
+						<span class="name" style="font-size:28upx;color:#fff;">王依依</span>
+						<span class="phone" style="font-size:24upx;color:#999999;;">133xxxx1232</span>
+					</span>
+					<span class="adress" style="font-size:24upx;display: block;color:#999999;;">北京市朝阳区朝阳路朝阳小区10号楼102</span>
+				</span>
+			</view>
+			<image src="../../static/bg/right.png" style="width:40upx;height:40upx;"></image>
+		</navigator>
 		<!-- 购物车详情 -->
 		<view class="guess">
 			<view class="guess-list">
@@ -28,7 +27,7 @@
 					v-for="(item, index) in data.guessList" :key="index"
 					class="guess-item"	
 				>
-
+		
 				<!-- 引入图片 -->
 					<view class="image-wrapper">
 						<image 
@@ -57,15 +56,13 @@
 				</view>
 			</view>
 		</view>
-				
 	</view>
-				
-		
 </template>
+
 <script>
+	
 	import UniNavBar from '@/components/uni-nav-bar/uni-nav-bar.vue';
 	import UniBackground from '@/components/uni-background/uni-background.vue';
-	import share from '@/components/share';
 	export default {
 		components:{
 			UniNavBar,
@@ -79,16 +76,10 @@
 						type:'normal',
 						text:'取消'
 					},
-					textbtn:{
-						text:"完成",
-						
-					},
 					
 				},
-				loaded:false,
 				data:{
-					guessList:[{},{}],
-				
+					guessList:[{},{},{}],
 				}
 			};
 		},
@@ -116,63 +107,73 @@
 				this.currentEpd = epd;
 			},
 		}
-		
 	}
 </script>
 
 <style lang="scss" scoped>
-	.address{
-		width:750upx;
-		height:64upx;
-		padding:40upx;
-		padding-top:214upx;
-		padding-bottom:80upx;
-		border-bottom:1px solid rgba(255,255,255,0.1);
-		display:flex;
-		align-items:center;
-		justify-content:space-between;
-		.site{
+		.tosite{
+			width:750upx;
+			height:64upx;
+			padding:40upx;
+			padding-top:214upx;
+			padding-bottom:80upx;
+			border-bottom:1px solid rgba(255,255,255,0.1);
+			display:flex;
+			align-items:center;
+			justify-content:space-between;
+			.tosite{
+				display: flex;
+			}
+			.site{
+				width:686upx;
+				height:106upx;
+				display: flex;
+				align-items: center;
+				.person-info{
+					margin-left:20upx;
+					.phone{
+						margin-left:20upx;
+					}
+				}
+				.toaddress{
+					color:#fff;
+					font-size:28upx;
+					margin-left:32upx;
+				}
+			}
+			
+		}
+		.guess {
 			display: flex;
-			align-items: center;
-			.toaddress{
-				color:#fff;
-				font-size:28upx;
-				margin-left:32upx;
+			flex-direction: column;
+			justify-content: center;
+			align-items:center;
+			padding:30upx 40upx 10upx;
+		}
+		.guess-list {
+			margin:0 auto;
+			// display: flex;
+			// flex-wrap: wrap;
+			width:670upx;
+		}
+		.guess-item {
+			display: flex;
+			width:100%;
+			padding-bottom: 40upx;
+		
+			.image-wrapper{
+				width: 160upx;
+				height: 160upx;
+				border-radius: 10upx;
+			}
+			.guess-content{
+				height:160upx;
+				span,text{
+					display: block;
+				}
 			}
 		}
-		
-	}
-	.guess {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items:center;
-		padding:30upx 40upx 10upx;
-	}
-	.guess-list {
-		margin:0 auto;
-		// display: flex;
-		// flex-wrap: wrap;
-		width:670upx;
-	}
-	.guess-item {
-		display: flex;
-		width:100%;
-		padding-bottom: 40upx;
-	
-		.image-wrapper{
-			width: 160upx;
-			height: 160upx;
-			border-radius: 10upx;
-		}
-		.guess-content{
-			height:160upx;
-			span,text{
-				display: block;
-			}
-		}
-	}
 	
 	
-		
+
 </style>

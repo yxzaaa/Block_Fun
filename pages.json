@@ -91,6 +91,11 @@
 			}
 		}
         ,{
+            "path" : "pages/confirm-order/confirm-order",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/choose-address/choose-address",
             "path" : "pages/paymentnote/paymentnote",
             "style" : {}
         }
