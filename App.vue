@@ -517,19 +517,18 @@
 			/* margin-left:20upx; */
 		}
 	}
-	
-	.fun-card{
+	.fun-horizen{
 		width:100%;
+		height:2upx;
+		background: rgba(255,255,255,.1);
+	}
+	.fun-card{
+		width:670upx;
 		background: rgba(45,31,37,0.7);
 		border-radius: 8upx;
 		overflow:hidden;
 		.fun-card-item{
 			padding:40upx;
-		}
-		.fun-horizen{
-			width:100%;
-			height:2upx;
-			background: rgba(255,255,255,.1);
 		}
 		.item-horizen{
 			display: flex;
@@ -578,6 +577,9 @@
 			background: #3A1F2D;
 			color:#fff;
 			font-size: 28upx;
+			&.trans{
+				background: transparent;
+			}
 		}
 		.fun-table-body{
 			width:100%;
@@ -587,9 +589,28 @@
 				display:flex;
 				justify-content:space-between;
 				overflow:hidden;
-				background:#281920;
 				&.noborder{
 					border:none;
+				}
+				.trans{
+					background:transparent;
+					padding:15upx;
+					line-height: 44upx;
+					color:#999;
+					text-align: center;
+					font-size:26upx;
+					&.white{
+						color:#fff;
+					}
+					&.four{
+						width:25%;
+					}
+					&.five{
+						width:20%;
+					}
+					&.small{
+						font-size:24upx;
+					}
 				}
 				.deep{
 					background: #281920;
@@ -690,29 +711,6 @@
 				color:#999999;
 			}
 		}
-		.radio-box{
-			width:100%;
-			height:56upx;
-			display:flex;
-			justify-content:space-between;
-			align-items: center;
-			border-radius:8upx;
-			margin-top:10upx;
-			border:1px solid rgba(255,255,255,.5);
-			text{
-				line-height:56upx;
-				display: block;
-				color:#fff;
-				font-size:26upx;
-				text-align:center;
-				border-radius:8upx;
-				font-weight:bolder;
-				&.active{
-					background:#fff;
-					color:#DA53A2;
-				}
-			}
-		}
 		.form-input-box{
 			padding:30upx 0upx;
 			display: flex;
@@ -740,7 +738,33 @@
 			}
 		}
 	}
-	
+	.radio-box{
+		width:100%;
+		height:56upx;
+		display:flex;
+		justify-content:space-between;
+		align-items: center;
+		border-radius:8upx;
+		margin-top:10upx;
+		border:1px solid rgba(255,255,255,.5);
+		position:relative;
+		&.noborder{
+			border:none;
+		}
+		text{
+			line-height:56upx;
+			display: block;
+			color:#fff;
+			font-size:26upx;
+			text-align:center;
+			border-radius:8upx;
+			font-weight:bolder;
+			&.active{
+				background:#fff;
+				color:#DA53A2;
+			}
+		}
+	}
 	/* page{
 		background-image:url(static/bg.jpg);
 		background-size:100% auto;

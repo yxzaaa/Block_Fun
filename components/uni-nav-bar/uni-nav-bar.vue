@@ -141,7 +141,7 @@
 		width:100%;
 		padding-top:56upx;
 		height:144upx;
-		z-index:10000;
+		z-index:998;
 		display:flex;
 		align-items:center;
 		.back-btn{
@@ -174,7 +174,7 @@
 			overflow: hidden;
 		}
 		.left-box{
-			padding:0upx 30upx;
+			padding:0upx 40upx;
 			.left-title{
 				color:#fff;
 				font-size: 36upx;

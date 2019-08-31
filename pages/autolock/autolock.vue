@@ -3,7 +3,7 @@
 		<uni-background />
 		<uni-nav-bar title="自主锁仓" textColor="#fff" :opacity="scroll" layout="center" :buttons="navButtons"></uni-nav-bar>
 		<view class="app-container full">
-			<view style="padding:0upx 40upx;">
+			<view style="padding:0upx 40upx;padding-bottom:30upx;">
 				<view class="fun-card">
 					<view class="fun-card-item" v-if="!isVip">
 						<view class="main-title">您还不具备锁仓资格</view>
@@ -19,10 +19,10 @@
 								钱包手续费分红（总收益的30%）；自主锁仓资格；邀请锁仓返佣；OTC挂单资格；金牌理财资格（私募）；
 							</text>
 						</view>
-						<view class="gold-button">
+						<view class="gold-button" @click="openVip">
 							<image :src="imageLib.goldbg"></image>
-							<text style="font-size: 24upx;color:#26262B;">199 USTD/年</text>
-							<text style="font-size: 32upx;color:#26262B;">· 成为 SVIP</text>
+							<text style="font-size: 24upx;color:#26262B;position: relative;z-index: 2;">199 USTD/年 </text>
+							<text style="font-size: 32upx;color:#26262B;position: relative;z-index: 2;padding-left:10upx;"> · 成为 SVIP</text>
 						</view>
 					</view>
 					<view class="fun-card-item" v-else>
@@ -185,6 +185,22 @@
 		onPageScroll(val){
 			this.scroll = val.scrollTop;
 		},
+		methods:{
+			openVip(){
+				uni.showModal({
+					title:'购买 SVIP 会员',
+					content:'您即将购买SVIP会员，我们将从您的钱包中直接扣除199USDT，会员有效期一年。',
+					success:res=>{
+						console.log(res);
+						if(res.confirm){
+							
+						}else if(res.cancel){
+							
+						}
+					}
+				})
+			}
+		}
 	}
 </script>
 
@@ -207,12 +223,17 @@
 		position:relative;
 		overflow:hidden;
 		margin-top:20upx;
+		text-align:center;
 		image{
 			position:absolute;
 			top:0px;
 			left:0px;
 			width:100%;
 			height:100%;
+			z-index:0;
+		}
+		text{
+			font-weight: bold;
 		}
 	}
 	.section-part{

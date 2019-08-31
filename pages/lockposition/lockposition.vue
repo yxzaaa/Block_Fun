@@ -6,7 +6,7 @@
 			<view class="fixed-buttons">
 				<view class="button-group">
 					<fun-button value="自动锁仓" width="320upx" type="light" large url="../autolock/autolock"></fun-button>
-					<fun-button value="邀请好友锁仓" width="320upx" icon="../../static/icons/icon_invite.png" large></fun-button>
+					<fun-button value="邀请好友锁仓" width="320upx" icon="../../static/icons/icon_invite.png" large url="../invitefriends/invitefriends"></fun-button>
 				</view>
 			</view>
 			<view class="wallet-banner">

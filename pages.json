@@ -107,6 +107,14 @@
             "path" : "pages/autolock/autolock",
             "style" : {}
         }
+        ,{
+            "path" : "pages/invitefriends/invitefriends",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/transout/transout",
+            "style" : {}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",
