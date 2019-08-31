@@ -1,11 +1,17 @@
 <template>
-	<div class="fixed-container">
+	<div class="fixed-container" :style="{backgroundImage:'url('+src+')'}">
 		
 	</div>
 </template>
 
 <script>
 	export default{
+		props:{
+			src:{
+				type:String,
+				default:"../../static/bg.jpg"
+			}
+		},
 		data(){
 			return {
 				
@@ -21,7 +27,6 @@
 		height:100vh;
 		top:0;
 		left:0;
-		background-image:url(../../static/bg.jpg);
 		background-size:100% auto;
 		background-repeat: no-repeat;
 		background-color:#15030B;

@@ -91,7 +91,7 @@
 							<view class="deep four">三个月</view>
 							<view class="light four">五个月</view>
 						</view>
-						<view class="fun-table-tr">
+						<view class="fun-table-tr noborder">
 							<view class="deep four shadow">一级</view>
 							<view class="light four white">3%</view>
 							<view class="deep four white">5%</view>

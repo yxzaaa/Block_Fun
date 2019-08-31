@@ -115,7 +115,15 @@
             "style" : {}
         }
         ,{
+            "path" : "pages/invitefriends/invitefriends",
+            "style" : {}
+		}
+		,{
             "path" : "pages/pay-result/pay-result",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/transout/transout",
             "style" : {}
         }
     ],
