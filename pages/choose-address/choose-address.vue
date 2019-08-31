@@ -9,7 +9,7 @@
 				:opacity="scroll"
 				:buttons="navButtons"
 			/>
-			<navigator class="tosite" url="../choose-address/choose-address">
+			<navigator class="tosite" url="../pay-order/pay-order">
 				<view class="site">
 					<span class="person-info">
 						<span class="name-phone">
