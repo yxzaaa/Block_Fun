@@ -96,9 +96,12 @@
         }
         ,{
             "path" : "pages/choose-address/choose-address",
-            "path" : "pages/paymentnote/paymentnote",
             "style" : {}
         }
+		,{
+			"path" : "pages/paymentnote/paymentnote",
+			"style":{}
+		}
         ,{
             "path" : "pages/lockrule/lockrule",
             "style" : {}
@@ -108,7 +111,15 @@
             "style" : {}
         }
         ,{
+            "path" : "pages/pay-order/pay-order",
+            "style" : {}
+        }
+        ,{
             "path" : "pages/invitefriends/invitefriends",
+            "style" : {}
+		}
+		,{
+            "path" : "pages/pay-result/pay-result",
             "style" : {}
         }
         ,{
