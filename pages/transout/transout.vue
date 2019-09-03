@@ -2,6 +2,9 @@
 	<view class="container">
 		<uni-background />
 		<uni-nav-bar title="场外交易" textColor="#fff" :opacity="scroll" layout="center" :buttons="navButtons"></uni-nav-bar>
+		<view class="fiexd-btn" @click="openVip()">
+			<image :src="imageLib.add"></image>
+		</view>
 		<view class="app-container full">
 			<view class="radio-box noborder" style="width:750upx;padding:0px 235upx;">
 				<text style="width:50%;" class="active">买币</text>
@@ -105,20 +108,65 @@
 					alipay:'../../static/icons/icon_alipay.png',
 					wechatpay:'../../static/icons/icon_wechatpay.png',
 					unionpay:'../../static/icons/icon_unionpay.png',
+					add:'../../static/icons/icon_add.png',
 				},
 				activeTab:0,
 				transList:[
 					{},{},{}
-				]
+				],
+				isVip:false
 			}
 		},
 		onPageScroll(val){
 			this.scroll = val.scrollTop;
 		},
+		methods:{
+			openVip(){
+				if(this.isVip){
+					uni.navigateTo({
+						url:''
+					})
+				}else{
+					uni.showModal({
+						title:'您当前没有发布挂单资格',
+						content:'升级为SVIP用户后，即可享有挂单资格',
+						confirmText:'去升级',
+						success:res=>{
+							console.log(res);
+							if(res.confirm){
+								uni.navigateTo({
+									url:'../paysvip/paysvip'
+								})
+							}else if(res.cancel){
+								
+							}
+						}
+					})
+				}
+			}
+		}
 	}
 </script>
 
 <style lang="scss" scoped>
+	.fiexd-btn{
+		position: fixed;
+		right:70upx;
+		bottom:120upx;
+		background: #fff;
+		width:98upx;
+		height:96upx;
+		border-radius: 48upx;
+		box-shadow: 0px 0px 10px rgba(0, 9, 33, 0.4);
+		display:flex;
+		justify-content:center;
+		align-items:center;
+		z-index:998;
+		image{
+			width:64upx;
+			height:64upx;
+		}
+	}
 	.transout-tabs{
 		width:750upx;
 		padding:0upx 40upx;

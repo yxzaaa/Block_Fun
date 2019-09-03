@@ -126,6 +126,10 @@
             "path" : "pages/transout/transout",
             "style" : {}
         }
+        ,{
+            "path" : "pages/paysvip/paysvip",
+            "style" : {}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",

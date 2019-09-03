@@ -527,6 +527,7 @@
 		background: rgba(45,31,37,0.7);
 		border-radius: 8upx;
 		overflow:hidden;
+		position:relative;
 		.fun-card-item{
 			padding:40upx;
 		}
