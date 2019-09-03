@@ -134,6 +134,10 @@
             "path" : "pages/publishbill/publishbill",
             "style" : {}
         }
+        ,{
+            "path" : "pages/payways/payways",
+            "style" : {}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",
