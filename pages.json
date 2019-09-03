@@ -130,6 +130,10 @@
             "path" : "pages/paysvip/paysvip",
             "style" : {}
         }
+        ,{
+            "path" : "pages/publishbill/publishbill",
+            "style" : {}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",

@@ -114,7 +114,7 @@
 				transList:[
 					{},{},{}
 				],
-				isVip:false
+				isVip:true
 			}
 		},
 		onPageScroll(val){
@@ -124,7 +124,7 @@
 			openVip(){
 				if(this.isVip){
 					uni.navigateTo({
-						url:''
+						url:'../publishbill/publishbill'
 					})
 				}else{
 					uni.showModal({
