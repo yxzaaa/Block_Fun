@@ -75,8 +75,9 @@
 		background:#DA53A2;
 		color:#fff;
 		padding:0px 36upx;
-		display:inline-block;
-		text-align:center;
+		display:flex;
+		justify-content: center;
+		align-items: center;
 		position:relative;
 		text{
 			vertical-align:middle;
