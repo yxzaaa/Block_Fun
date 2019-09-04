@@ -18,7 +18,7 @@
 					<text>Xdag</text>
 					<text>Forest</text>
 				</view>
-				<fun-button value="我的挂单" type="text" color="#DA53A2"></fun-button>
+				<fun-button value="我的挂单" type="text" color="#DA53A2" url="../mybill/mybill"></fun-button>
 			</view>
 			<view class="fun-card" style="margin:20upx 40upx;">
 				<view class="fun-card-item" style="text-align: center;padding:20upx;">
@@ -99,7 +99,7 @@
 					},
 					textbtn:{
 						text:'订单记录',
-						url:'../lockrule/lockrule'
+						url:'../ordernotes/ordernotes'
 					}
 				},
 				imageLib:{

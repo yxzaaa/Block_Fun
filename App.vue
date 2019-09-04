@@ -475,6 +475,12 @@
 			padding-bottom:120upx;
 		}
 	}
+	.main-title{
+		font-size: 32upx;
+		color:#fff;
+		text-align: center;
+		padding:30upx 0upx;
+	}
 	.section-header{
 		width:750upx;
 		padding:40upx;
@@ -565,7 +571,7 @@
 		width:750upx;
 		padding:20upx 40upx;
 		background: #2F282B;
-		z-index:1000;
+		z-index:997;
 	}
 	.fun-table{
 		width:100%;
@@ -670,6 +676,30 @@
 			text{
 				display: block;
 				line-height: 52upx;
+			}
+		}
+	}
+	.check-box{
+		border:1px solid rgba(255,255,255,0.5);
+		border-radius: 18upx;
+		width:96upx;
+		height:36upx;
+		overflow: hidden;
+		display: flex;
+		align-items: center;
+		margin:0px;
+		text{
+			transition: all .3s;
+			width:56upx;
+			border-radius: 0px;
+			height:26upx;
+			border-radius:13upx;
+			background:rgba(255,255,255,0.5);
+			position:relative;
+			transform:translateX(35upx);
+			&.active{
+				background:rgba(255,255,255,1);
+				transform:translateX(4upx);
 			}
 		}
 	}

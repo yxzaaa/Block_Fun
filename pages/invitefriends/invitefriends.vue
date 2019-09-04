@@ -173,12 +173,6 @@
 </script>
 
 <style lang="scss" scoped>
-	.main-title{
-		font-size: 32upx;
-		color:#fff;
-		text-align: center;
-		padding:30upx 0upx;
-	}
 	.lock-total-box{
 		width:100%;
 		display:flex;

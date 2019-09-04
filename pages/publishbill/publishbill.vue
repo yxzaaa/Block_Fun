@@ -26,12 +26,15 @@
 								</view>
 							</view>
 						</view>
+
 						<view class="horizon-list-item">
 							<view class="left-item"><text class="left-item-name">币种</text></view>
-							<view class="right-item" style="height:48upx;">
-								<text>USDT</text>
-								<image :src="imageLib.more"></image>
-							</view>
+							<picker @change="countTypeChange" :value="currCountType" :range="countTypes" mode="selector">
+								<view class="right-item" style="height:48upx;">
+									<text>{{countTypes[currCountType]}}</text>
+									<image :src="imageLib.more"></image>
+								</view>
+							</picker>
 						</view>
 						<view class="horizon-list-item">
 							<view class="left-item"><text class="left-item-name">法币</text></view>
@@ -73,7 +76,7 @@
 								<text style="font-size: 24upx;color:#999;padding-left:14upx;">选填</text>
 							</view>
 							<view class="right-item" style="height:48upx;">
-								<input type="text" placeholder="建议-10 ~ 0" style="font-size: 24upx;width:150upx;">
+								<input type="text" placeholder="建议-10 ~ 0" style="font-size: 24upx;width:150upx;text-align: center;">
 								<text style="color:#DA53A2">%</text>
 							</view>
 							<view style="width:100%;height:2upx;background: rgba(255,255,255,0.2);margin:10upx 0upx;"></view>
@@ -128,7 +131,7 @@
 					<view class="fun-card-item">
 						<view class="horizon-list-item">
 							<view class="left-item"><text class="left-item-name">留言</text></view>
-							<view class="right-item" style="height:48upx;">
+							<view class="right-item" style="height:48upx;" @click="message()">
 								<text style="font-size: 24upx;color:#999;">1.付款需要些时间，请耐心等待…</text>
 								<image :src="imageLib.more"></image>
 							</view>
@@ -159,30 +162,25 @@
 						text:'取消'
 					}
 				},
-				isVip:false,
 				imageLib:{
-					goldbg:'../../static/gold_btn.jpg',
-					checked:'../../static/icons/checked.png',
 					more:'../../static/icons/more.png'
-				}
+				},
+				currCountType:0,
+				countTypes:[
+					'USDT','Forest','Xdag'
+				]
 			};
 		},
 		onPageScroll(val){
 			this.scroll = val.scrollTop;
 		},
 		methods:{
-			openVip(){
-				uni.showModal({
-					title:'购买 SVIP 会员',
-					content:'您即将购买SVIP会员，我们将从您的钱包中直接扣除199USDT，会员有效期一年。',
-					success:res=>{
-						console.log(res);
-						if(res.confirm){
-							
-						}else if(res.cancel){
-							
-						}
-					}
+			countTypeChange(e){
+				this.currCountType = e.target.value;
+			},
+			message(){
+				uni.navigateTo({
+					url:'../message/message'
 				})
 			}
 		}
