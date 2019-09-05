@@ -1,7 +1,7 @@
 <template>
 	<view 
 		:class="['fun-btn',type?type:'',large?'large':'']" 
-		:style="{width:width,color:color}" 
+		:style="{width:width,color:color,background:background}" 
 		@click="buttonLink"
 	>
 		<image class="button-icon" :src="icon" v-if="icon" />
@@ -39,6 +39,10 @@
 			large:{
 				type:Boolean,
 				default:false
+			},
+			background:{
+				type:String,
+				default:''
 			}
 		},
 		data() {
@@ -50,9 +54,13 @@
 		},
 		methods:{
 			buttonLink(){
-				uni.navigateTo({
-					url:this.url
-				})
+				if(this.url != ''){
+					uni.navigateTo({
+						url:this.url
+					})
+				}else{
+					this.$emit('handle','');
+				}
 			}
 		}
 	}
@@ -67,9 +75,10 @@
 		background:#DA53A2;
 		color:#fff;
 		padding:0px 36upx;
-		display:inline-block;
-		text-align:center;
-		
+		display:flex;
+		justify-content: center;
+		align-items: center;
+		position:relative;
 		text{
 			vertical-align:middle;
 			display: inline-block;
