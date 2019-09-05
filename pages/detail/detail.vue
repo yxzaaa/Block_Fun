@@ -42,18 +42,13 @@
 				<text :class="{Skeleton:!loaded}" style="color:#999999;font-size:24upx;margin-top:16upx;">{{data.consume}} {{data.amount}}</text>
 				<text :class="{Skeleton:!loaded}" style="background:#DA53A2;height:32upx;width:64upx;text-align: center;font-size:24upx;color:#fff;margin-top:16upx;">{{data.character}}</text>
 				<text :class="{Skeleton:!loaded}" style="color:#fff;font-size: 32upx;margin-top:16upx;">{{data.title}}</text>
-				<text :class="{Skeleton:!loaded}" style="color:#999999;font-size: 24upx;margin-top:16upx;">{{data.content}}</text>
+				<text :class="{Skeleton:!loaded}" style="color:#999999;font-size: 24upx;margin-top:16upx;width:670upx;height:322upx;line-height:44upx;">{{data.content}}</text>
 			</view>
 		</view>
-		<!-- <view class="actions">
-			<text class="yticon icon-fenxiang2" @click="share"></text>
-			<text class="yticon icon-Group-"></text>
-			<text class="yticon icon-shoucang" :class="{active: data.favorite}" @click="favorite"></text>
-		</view> -->
 
 		<!-- 相关推荐-->
 		<view class="guess">
-			<view class="section-tit">相关推荐</view>
+			<view class="section-tit" style="float:left;">相关推荐</view>
 			<view class="guess-list">
 				<view 
 					v-for="(item, index) in data.guessList" :key="index"
@@ -83,26 +78,6 @@
 				</view>
 			</view>
 		</view>
-		<!-- 评论 -->
-		<!-- <view class="evalution">
-			<view class="section-tit">评论</view>
-			<view class="eva-list" :class="{Skeleton:!loaded}">
-				<view  v-for="(item, index) in data.evaList" :key="index"
-					class="eva-item"
-				>
-					<image :src="item.src" mode="aspectFill"></image>
-					<view class="eva-right">
-						<text>{{item.nickname}}</text>
-						<text>{{item.time}}</text>
-						<view class="zan-box">
-							<text>{{item.zan}}</text>
-							<text class="yticon icon-shoucang"></text>
-						</view>
-						<text class="content">{{item.content}}</text>
-					</view>
-				</view>
-			</view>
-		</view> -->
 		<!-- 分享 -->
 		<share 
 			ref="share" 
@@ -241,8 +216,8 @@
 	.info {
 		display: flex;
 		align-items: center;
-		padding: 10upx 40upx;
-		// background: #fff;
+		padding: 10upx 38upx 72upx;
+		border-bottom:1px solid rgba(255,255,255,0.1);	
 
 		.title {
 			flex: 1;
@@ -281,7 +256,7 @@
 	}
 
 	.section-tit {
-		font-size: $font-base+2upx;
+		font-size: 32upx;
 		color: #fff;
 		margin-bottom: 30upx;
 	}

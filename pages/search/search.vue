@@ -9,7 +9,7 @@
 			:buttons="navButtons"
 		/>
 		<view class="app-container">
-		
+			
 		</view>
 	</view>
 </template>
@@ -40,7 +40,8 @@
 					// 	type:'normal'
 					// },
 					textbtn:{
-						text:'取消'
+						text:'取消',
+						
 					} 
 				}
 			};

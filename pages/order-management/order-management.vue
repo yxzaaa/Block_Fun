@@ -79,10 +79,7 @@
 						type:'normal',
 						text:'取消'
 					},
-					textbtn:{
-						text:"完成",
-						
-					},
+					
 					
 				},
 				loaded:false,

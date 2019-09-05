@@ -126,6 +126,66 @@
             "path" : "pages/transout/transout",
             "style" : {}
         }
+        ,{
+            "path" : "pages/order-manage-all/order-manage-all",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/order-topay/order-topay",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/order-dealing/order-dealing",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/order-totake/order-totake",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/order-finished/order-finished",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/order-cancel/order-cancel",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/favorite/favorite",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/finance/finance",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/bill/bill",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/realname-attest/realname-attest",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/security/security",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/amendpaypassword/amendpaypassword",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/forgetpaypassword/forgetpaypassword",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/helpcenter/helpcenter",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/aboutus/aboutus",
+            "style" : {}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",
