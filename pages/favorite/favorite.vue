@@ -4,33 +4,32 @@
 		<uni-background /> <!-- 背景色-->
 		<!-- 导航栏 -->
 		<uni-nav-bar 	
-			title="确认订单"
+			title="收藏夹"
 			textColor="#fff"
 			:opacity="scroll"
 			:buttons="navButtons"
 		/>
-		<!-- 新建收货地址 -->
-		<view class="address">
-			
-				<view class="site">
-					<image src="../../static/bg/location.png" style="width:64upx;height:64upx;"></image>
-					<navigator class="toaddress" url="../address/addressManage">新建收货地址</navigator>
-				</view>
-				
-				<image src="../../static/bg/right.png" style="width:40upx;height:40upx;"></image>
-			
-		</view>
-		
-		<!-- 购物车详情 -->
 		<view class="guess">
 			<view class="guess-list">
 				<view 
 					v-for="(item, index) in data.guessList" :key="index"
-					class="guess-item"	
+					class="guess-item"
+					
 				>
-
+				
+				
 				<!-- 引入图片 -->
+					<view style="line-height: 160upx;padding-right:40upx;">
+						<image
+							:src="item.src1" 
+							@load="imageOnLoad('guessList', index)" 
+							style="width:40upx;height:40upx;"
+						></image>
+					</view>
 					<view class="image-wrapper">
+					
+							
+						
 						<image 
 							:src="item.src" 
 							:class="item.loaded" 
@@ -43,11 +42,11 @@
 					<view class="guess-content" style="margin-left:20upx;margin-top:0;">
 						<span :class="{Skeleton:!loaded}" style="font-size: 28upx;color:#fff;">{{item.title}}</span>
 						<text :class="{Skeleton:!loaded}" style="font-size:24upx;color:#999999;margin-top:12upx;">{{item.consume}} {{item.amount}}</text>
-						<span :class="{Skeleton:!loaded}" style="color:#DA53A2;position:relative;">
+						<span :class="{Skeleton:!loaded}" style="margin-top:12upx;color:#DA53A2;">
 							<span style="font-size:24upx;margin-right:8upx;display: inline-block;font-family:'Montserrat-Bold';">{{item.symbol}}</span>
 							<span style="display: inline-block;font-family:'Montserrat-Bold';">{{item.price.split('.')[0]}}</span>
 							<span style="font-size:24upx;display: inline-block;font-family:'Montserrat-Bold';">{{item.price.split('.')[1]?'.'+item.price.split('.')[1]:''}}</span>
-							<span class="cut" style="position:absolute;right:50upx;bottom:4upx;display: inline-block;">
+							<span class="cut" style="position:absolute;right:50upx;display: inline-block;">
 								<span style="margin-right:20upx;font-size:30upx;color:#fff;font-weight: bold;display: inline-block;"> - </span>
 								<span style="display:inline-block;#99999;background:#280617;font-size:24upx;color:#fff;width:64upx;height:40upx;line-height: 40upx;text-align: center;">{{item.number}}</span>
 								<span style="margin-left:20upx;font-size:30upx;color:#fff;font-weight: bold;display: inline-block;"> + </span>
@@ -57,11 +56,12 @@
 				</view>
 			</view>
 		</view>
-				
-	</view>
-				
 		
+	</view>
+		
+
 </template>
+
 <script>
 	import UniNavBar from '@/components/uni-nav-bar/uni-nav-bar.vue';
 	import UniBackground from '@/components/uni-background/uni-background.vue';
@@ -79,13 +79,15 @@
 						type:'normal',
 						text:'取消'
 					},
-					
+					textbtn:{
+						text:"完成",
+						url:""
+					},
 					
 				},
 				loaded:false,
 				data:{
 					guessList:[{},{}],
-				
 				}
 			};
 		},
@@ -118,39 +120,20 @@
 </script>
 
 <style lang="scss" scoped>
-	.address{
-		width:750upx;
-		height:64upx;
-		padding:40upx;
-		padding-top:214upx;
-		padding-bottom:80upx;
-		border-bottom:1px solid rgba(255,255,255,0.1);
-		display:flex;
-		align-items:center;
-		justify-content:space-between;
-		.site{
-			display: flex;
-			align-items: center;
-			.toaddress{
-				color:#fff;
-				font-size:28upx;
-				margin-left:32upx;
-			}
-		}
-		
-	}
 	.guess {
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
 		align-items:center;
 		padding:30upx 40upx 10upx;
+		margin-top:150upx;
 	}
 	.guess-list {
 		margin:0 auto;
 		// display: flex;
 		// flex-wrap: wrap;
 		width:670upx;
+		height:160upx;
 	}
 	.guess-item {
 		display: flex;
@@ -164,12 +147,12 @@
 		}
 		.guess-content{
 			height:160upx;
+			width:420upx;
 			span,text{
 				display: block;
 			}
 		}
 	}
-	
 	
 		
 </style>
