@@ -68,7 +68,7 @@
 									<image style="width:40upx;height:24upx;" class="left-item-avatar" :src="imageLib.unionpay"></image>
 								</view>
 								<view class="right-item">
-									<fun-button value="购买" width="220upx"></fun-button>
+									<fun-button value="购买" width="220upx" url="../buyusdt/buyusdt"></fun-button>
 								</view>
 							</view>
 						</view>

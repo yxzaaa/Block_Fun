@@ -154,6 +154,10 @@
             "path" : "pages/walletorderdetail/walletorderdetail",
             "style" : {}
         }
+        ,{
+            "path" : "pages/buyusdt/buyusdt",
+            "style" : {}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",
