@@ -46,7 +46,9 @@
 				</span>
 			</view>
 		</view>
-		<fun-button value="现金支付" width="670upx" class="funbtn" url="../pay-result/pay-result"></fun-button>
+		<view class="button-group">
+			<fun-button value="现金支付" width="670upx" class="funbtn" url="../pay-result/pay-result"></fun-button>
+		</view>
 	</view>
 </template>
 
@@ -145,9 +147,14 @@
 			font-size: 28upx;
 		}
 	}
-	.funbtn{
+	.button-group{
+		width:100%;
+		height:120upx;
+		background:#2F282B;
 		position:fixed;
-		left:40upx;
-		bottom:86upx;
+		bottom:0;
+		left:0;
+		padding:20upx 40upx;
+		
 	}
 </style>

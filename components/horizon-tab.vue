@@ -45,6 +45,7 @@
 			padding:0upx 20upx;
 			color:rgba(255,255,255,.5);
 			font-size:28upx;
+			line-height: 52upx;
 			transition:all .2s;
 			position:relative;
 			&.active{

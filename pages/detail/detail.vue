@@ -4,98 +4,114 @@
 		<uni-background />
 		<uni-nav-bar 
 			:opacity="scroll"
-			:buttons="navButtons"
-			
-			
+			:buttons="navButtons"			
 		/>
-		<swiper class="carousel" indicator-dots=true circular=true interval="3000" duration="700">
-			<swiper-item v-for="(item,index) in data.imgList" :key="index">
-				<view class="image-wrapper">
-					<image
-						:src="item.src" 
-						:class="item.loaded" 
-						mode="aspectFill"
-						@load="imageOnLoad('imgList', index)" 
-						style="width:100%;height:738upx;"
-					></image>
-				</view>
-			</swiper-item>
-		</swiper>
-		<!-- <view class="scroll-view-wrapper">
-			<scroll-view class="episode-panel" :class="{Skeleton:!loaded}" scroll-x>
-				<view v-for="(item, index) in data.episodeList" :key="index"
-					:class="{current: currentEpd===item}"
-					@click="changeEpd(index)"
-				>
-					{{item}}
-				</view>
-			</scroll-view>
-		</view> -->
-		<view class="info">
-			<view class="title">
-				<text :class="{Skeleton:!loaded}" style="margin-top:40upx;">
-					<span style="font-size:30upx;margin-right:10upx;font-family:'Montserrat-Bold';">{{data.symbol}}</span>
-					<span style="font-size:40upx;font-family:'Montserrat-Bold';">{{data.money.split('.')[0]}}</span>
-					<span style="font-size: 30upx;font-family:'Montserrat-Bold';">{{data.money.split('.')[1]?'.' + data.money.split('.')[1]:''}}</span>
-				</text>
-				
-				<text :class="{Skeleton:!loaded}" style="color:#999999;font-size:24upx;margin-top:16upx;">{{data.consume}} {{data.amount}}</text>
-				<text :class="{Skeleton:!loaded}" style="background:#DA53A2;height:32upx;width:64upx;text-align: center;font-size:24upx;color:#fff;margin-top:16upx;">{{data.character}}</text>
-				<text :class="{Skeleton:!loaded}" style="color:#fff;font-size: 32upx;margin-top:16upx;">{{data.title}}</text>
-				<text :class="{Skeleton:!loaded}" style="color:#999999;font-size: 24upx;margin-top:16upx;width:670upx;height:322upx;line-height:44upx;">{{data.content}}</text>
-			</view>
-		</view>
-
-		<!-- 相关推荐-->
-		<view class="guess">
-			<view class="section-tit" style="float:left;">相关推荐</view>
-			<view class="guess-list">
-				<view 
-					v-for="(item, index) in data.guessList" :key="index"
-					class="guess-item"
-					style="padding-top:16upx;"
-				>
-				<!-- 引入图片 -->
+		<view class="app-container fixbutton">
+			<swiper class="carousel" indicator-dots=true circular=true interval="3000" duration="700">
+				<swiper-item v-for="(item,index) in data.imgList" :key="index">
 					<view class="image-wrapper">
-						<image 
+						<image
 							:src="item.src" 
 							:class="item.loaded" 
 							mode="aspectFill"
-							@load="imageOnLoad('guessList', index)" 
+							@load="imageOnLoad('imgList', index)" 
+							style="width:100%;height:738upx;"
 						></image>
 					</view>
-					<!-- 图片描述 -->
-					<view class="guess-content" style="margin-left:20upx;margin-top:0;">
-						<span class='title clamp' :class="{Skeleton:!loaded}" style="font-size:24upx;color:#fff;white-space: normal;width:448upx;height:88upx;">{{item.title}}</span>
-						<span class="clamp" :class="{Skeleton:!loaded}" style="font-size:24upx;color:#999999;margin-top:14upx;">{{item.consume}} {{item.amount}}</span>
-						<span class="clamp" :class="{Skeleton:!loaded}" style="margin-top:8upx;color:#DA53A2;font-family:'Montserrat-Bold';">
-							<span style="font-size:24upx;margin-right:8upx;font-family:'Montserrat-Bold';">{{item.symbol}}</span>
-							<span style="font-family:'Montserrat-Bold';">{{item.price.split('.')[0]}}</span>
-							<span style="font-size:24upx;font-family:'Montserrat-Bold';">{{item.price.split('.')[1]?'.'+item.price.split('.')[1]:''}}</span>
-						</span>
-						
+				</swiper-item>
+			</swiper>
+			<!-- <view class="scroll-view-wrapper">
+				<scroll-view class="episode-panel" :class="{Skeleton:!loaded}" scroll-x>
+					<view v-for="(item, index) in data.episodeList" :key="index"
+						:class="{current: currentEpd===item}"
+						@click="changeEpd(index)"
+					>
+						{{item}}
+					</view>
+				</scroll-view>
+			</view> -->
+			<view class="info">
+				<view class="title">
+					<text :class="{Skeleton:!loaded}" style="margin-top:40upx;">
+						<span style="font-size:30upx;margin-right:10upx;font-family:'Montserrat-Bold';">{{data.symbol}}</span>
+						<span style="font-size:40upx;font-family:'Montserrat-Bold';">{{data.money.split('.')[0]}}</span>
+						<span style="font-size: 30upx;font-family:'Montserrat-Bold';">{{data.money.split('.')[1]?'.' + data.money.split('.')[1]:''}}</span>
+					</text>
+					
+					<text :class="{Skeleton:!loaded}" style="color:#999999;font-size:24upx;margin-top:16upx;">{{data.consume}} {{data.amount}}</text>
+					<text :class="{Skeleton:!loaded}" style="background:#DA53A2;height:32upx;width:64upx;text-align: center;font-size:24upx;color:#fff;margin-top:16upx;">{{data.character}}</text>
+					<text :class="{Skeleton:!loaded}" style="color:#fff;font-size: 32upx;margin-top:16upx;">{{data.title}}</text>
+					<text :class="{Skeleton:!loaded}" style="color:#999999;font-size: 24upx;margin-top:16upx;width:670upx;height:322upx;line-height:44upx;">{{data.content}}</text>
+				</view>
+			</view>
+			
+			<!-- 相关推荐-->
+			<view class="guess">
+				<view class="section-tit" style="float:left;">相关推荐</view>
+				<view class="guess-list">
+					<view 
+						v-for="(item, index) in data.guessList" :key="index"
+						class="guess-item"
+						style="padding-top:16upx;"
+					>
+					<!-- 引入图片 -->
+						<view class="image-wrapper">
+							<image 
+								:src="item.src" 
+								:class="item.loaded" 
+								mode="aspectFill"
+								@load="imageOnLoad('guessList', index)" 
+							></image>
+						</view>
+						<!-- 图片描述 -->
+						<view class="guess-content" style="margin-left:20upx;margin-top:0;">
+							<span class='title clamp' :class="{Skeleton:!loaded}" style="font-size:24upx;color:#fff;white-space: normal;width:448upx;height:88upx;">{{item.title}}</span>
+							<span class="clamp" :class="{Skeleton:!loaded}" style="font-size:24upx;color:#999999;margin-top:14upx;">{{item.consume}} {{item.amount}}</span>
+							<span class="clamp" :class="{Skeleton:!loaded}" style="margin-top:8upx;color:#DA53A2;font-family:'Montserrat-Bold';">
+								<span style="font-size:24upx;margin-right:8upx;font-family:'Montserrat-Bold';">{{item.symbol}}</span>
+								<span style="font-family:'Montserrat-Bold';">{{item.price.split('.')[0]}}</span>
+								<span style="font-size:24upx;font-family:'Montserrat-Bold';">{{item.price.split('.')[1]?'.'+item.price.split('.')[1]:''}}</span>
+							</span>
+							
+						</view>
 					</view>
 				</view>
 			</view>
+			
+			<!-- 底部按钮 -->
+			<view class="fixed-buttons" style="display: flex;justify-content: space-between;">
+				<view style="width:72upx;height:72upx;" class="button-group">
+					<image src="../../static/bg/listen.png" style="width:72upx;height:72upx;"></image>
+				</view>
+				
+				<view class="button-group" style="width:500upx;">
+					<fun-button value="加入购物车" type="light" width="240upx" large url="../pay-result/pay-result"></fun-button>
+					<fun-button value="立即购买" width="240upx" large url="../pay-result/pay-result"></fun-button>
+				</view>
+				
+			</view>
+			<!-- 分享 -->
+			<share 
+				ref="share" 
+				:contentHeight="580"
+				:shareList="shareList"
+			></share>
 		</view>
-		<!-- 分享 -->
-		<share 
-			ref="share" 
-			:contentHeight="580"
-			:shareList="shareList"
-		></share>
+		
 	</view>
 </template>
 
 <script>
 	import UniNavBar from '@/components/uni-nav-bar/uni-nav-bar.vue';
 	import UniBackground from '@/components/uni-background/uni-background.vue';
+	import FunButton from '@/components/fun-button.vue';
 	import share from '@/components/share';
 	export default {
 		components: {
 			share,
 			UniNavBar,
 			UniBackground,
+			FunButton
 		},
 		data() {
 			return {
@@ -273,8 +289,6 @@
 	}
 
 	.guess-list {
-		// display: flex;
-		// flex-wrap: wrap;
 		width: 100%;
 	}
 	.guess-item {
@@ -294,20 +308,6 @@
 		.guess-content {
 			color:#999999;
 			height:200upx;
-			// font-size: $font-sm;
-			// color: $font-color-light;
-			// &.Skeleton{
-			// 	width: 180upx;
-			// 	&.title{
-			// 		width: 140upx;
-			// 	}
-			// }
-			// &.title{
-			// 	font-size: $font-base+2upx;
-			// 	color: $font-color-dark;
-			// 	margin-top:16upx;
-			// 	margin-bottom: 8upx;
-			// }
 		}
 	}
 	.evalution{
@@ -351,5 +351,13 @@
 			color: #333;
 			padding-top:20upx;
 		}
+	}
+	.bottombar{
+		width:100%;
+		height:120upx;
+		position:fixed;
+		bottom:0;
+		left:0;
+		background:#2F282B;
 	}
 </style>

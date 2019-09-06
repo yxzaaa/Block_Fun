@@ -36,10 +36,6 @@
 				
 			}
 		}
-		,{
-			"path": "pages/cart/cart",
-			"style": {}
-		}
         ,{
 			"path" : "pages/cart1/cart1",
 			"style":{}
@@ -212,6 +208,14 @@
         }
         ,{
             "path" : "pages/walletorderdetail/walletorderdetail",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/assignment/assignment",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/pledge-debit/pledge-debit",
             "style" : {}
         }
     ],
