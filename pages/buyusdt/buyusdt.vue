@@ -2,7 +2,7 @@
 	<view class="container">
 		<uni-background />
 		<uni-nav-bar title="买USDT" textColor="#fff" :opacity="scroll" layout="center" :buttons="navButtons"></uni-nav-bar>
-		<view class="app-container full fixbutton">
+		<view class="app-container full">
 			<view class="modal-box" v-if="showModal">
 				<view class="modal">
 					<view class="modal-top-item">
@@ -22,8 +22,7 @@
 			</view>
 			<view class="fixed-buttons">
 				<view class="button-group">
-					<fun-button value="申请仲裁" width="320upx" type="light" large url="../autolock/autolock"></fun-button>
-					<fun-button value="点击放行" width="320upx" large @handle="letgo()"></fun-button>
+					<fun-button value="购买" width="670upx" large @handle="letgo()" icon="../../static/icons/icon_buy_light.png"></fun-button>
 				</view>
 			</view>
 			<view style="padding:0upx 40upx">
@@ -85,17 +84,12 @@
 								<text class="left-item-label">USDT</text>
 							</view>
 							<view class="right-item">
-								<input type="text" class="input-field" placeholder="输入购买数量" 
-									style="width:220upx;text-align: right;color:#DA53A2;font-size: 32upx;font-family:'Montserrat-Bold';"
-								>
+								<input type="text" class="input-field" placeholder="输入购买数量" />
 							</view>
 						</view>
-						<view class="horizon-list-item">
-							<view class="left-item">
-								<text class="left-item-label">姓名</text>
-							</view>
+						<view class="horizon-list-item" style="justify-content: flex-end;">
 							<view class="right-item">
-								<text class="left-item-name">王大锤</text>
+								<image class="left-item-avatar" :src="imageLib.equal"></image>
 							</view>
 						</view>
 						<view class="horizon-list-item">
@@ -103,7 +97,8 @@
 								<text class="left-item-label">收款码</text>
 							</view>
 							<view class="right-item">
-								<text class="left-item-name" style="color:#DA53A2">点击查看</text>
+								<text class="left-item-name" 
+								style="color:#fff;font-family:'Montserrat-Light';font-size:32upx;">39457.987</text>
 							</view>
 						</view>
 					</view>
@@ -127,7 +122,7 @@
 					<view class="section-subtitle">交易提醒</view>
 					<view class="section-part">
 						<span class="list-num">1.</span>
-						请您及时在订单有效期内付款并点击【已支付】按钮，避免超时自动放单造成的财产损失；
+						交易前请详细了解买家的交易信息；
 					</view>
 					<view class="section-part">
 						<span class="list-num">2.</span>
@@ -137,10 +132,33 @@
 						<span class="list-num">3.</span>
 						如遇到问题，请通过“帮助”或联系客服来解决问题；
 					</view>
+					<view class="section-part">
+						<span class="list-num">4.</span>
+						您不需要支付任何手续费，交易手续费将由广告发布者承担，请安心交易；
+					</view>
 				</view>
-				<view style="width:200upx;margin:20upx auto">
-					<fun-button value="联系客服" type="text" color="#DA53A2" large width="200upx" icon="../../static/icons/Shape.png"></fun-button>
-				</view>
+			</view>
+		</view>
+		<view class="section-content" style="padding:10upx 0upx;background:#2D1F25;padding:20upx 40upx 150upx;margin-top:20upx;">
+			<view class="section-part">
+				<span class="list-num">1.</span>
+				交易发起前，请您确认已阅读并同意卖家提出的条款，并再次确认交易内容无误后，再点击购买按钮；
+			</view>
+			<view class="section-part">
+				<span class="list-num">2.</span>
+				交易发起后，请您于付款期限截止前转帐至指定账户，并标记已支付，逾期系统将自动取消交易；
+			</view>
+			<view class="section-part">
+				<span class="list-num">3.</span>
+				交易发起后，系统会自动将卖家的数字货币锁定，待卖家确认收到您的转帐后，将会释放数字货币至您的账户中；
+			</view>
+			<view class="section-part">
+				<span class="list-num">4.</span>
+				交易过程请使用平台的聊天系统进行沟通，平台外的对话记录将无法作为交易纠纷的依据；
+			</view>
+			<view class="section-part">
+				<span class="list-num">5.</span>
+				温馨提示:24小时内，5分钟内无责取消机会有3次，无责取消次数用完或者订单创建超过5分钟后取消，则会被冻结5天。
 			</view>
 		</view>
 	</view>
@@ -172,6 +190,7 @@
 					wechatpay:'../../static/icons/icon_wechatpay.png',
 					unionpay:'../../static/icons/icon_unionpay.png',
 					contact:'../../static/icons/icon_contact.png',
+					equal:'../../static/icons/icon_equal.png'
 				},
 				showModal:false
 			}
@@ -191,6 +210,16 @@
 </script>
 
 <style lang="scss" scoped>
+	.section-part{
+		position: relative;
+		padding-left:30upx;
+		.list-num{
+			position: absolute;
+			line-height: 30upx;
+			top:12upx;
+			left:0upx;
+		}
+	}
 	.modal-box{
 		position: fixed;
 		top:0px;
@@ -328,6 +357,13 @@
 			align-items:center;
 			color:#999;
 			font-size: 24upx;
+			.input-field{
+				width:220upx;
+				text-align: right;
+				color:#DA53A2;
+				font-size: 28upx;
+				font-weight:bold;
+			}
 			.left-item-name{
 				color:#fff;
 				font-size: 26upx;

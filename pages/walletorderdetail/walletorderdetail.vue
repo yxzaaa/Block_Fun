@@ -215,6 +215,16 @@
 </script>
 
 <style lang="scss" scoped>
+	.section-part{
+		position: relative;
+		padding-left:30upx;
+		.list-num{
+			position: absolute;
+			line-height: 30upx;
+			top:12upx;
+			left:0upx;
+		}
+	}
 	.modal-box{
 		position: fixed;
 		top:0px;
