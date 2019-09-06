@@ -796,6 +796,34 @@
 			}
 		}
 	}
+	.swiper-box{
+		width:750upx;
+		height:calc(100vh - 250upx);
+	}
+	.fix-tabs-box{
+		width:750upx;
+		padding:0upx 40upx;
+		display: flex;
+		justify-content: space-between;
+		border-bottom:1px solid rgba(255,255,255,0.2);
+		.fix-tabs-item{
+			width:50%;
+			line-height: 72upx;
+			height:72upx;
+			display:flex;
+			justify-content:center;
+			text{
+				color:rgba(255,255,255,0.5);
+				transition:all .4s;
+				font-size:32upx;
+				&.active{
+					color:#fff;
+					font-weight: bold;
+					border-bottom:3upx solid #fff;
+				}
+			}
+		}
+	}
 	/* page{
 		background-image:url(static/bg.jpg);
 		background-size:100% auto;

@@ -2,17 +2,17 @@
 	<view>
 		<uni-background />
 		<uni-nav-bar 
-			title="新人转让" 
+			title="信任转让" 
 			textColor="#fff" 
 			:opacity="scroll"
 			:buttons="navButtons"
 		/>
 		<view class="currency-box">
-			<span style="color:#fff;opacity: 0.5;font-family: Noto Sans S Chinese;font-size: 24upx;">币种</span>
+			<span style="color:#fff;opacity: 0.5;font-size: 24upx;">币种</span>
 			<view class="text">
 				<image src="../../static/bg/tree.png"></image>
-				<span style="color:#fff;font-family: Noto Sans S Chinese;font-size: 26upx;margin-left:20upx;">Forbidden Forest Coin</span>
-				<span style="color:#fff;font-family: Noto Sans S Chinese;font-size: 26upx;padding-left:10upx;border-left:1px solid rgba(255,255,255,0.5);margin-left:16upx;">Forest</span>
+				<span style="color:#fff;font-size: 26upx;margin-left:20upx;">Forbidden Forest Coin</span>
+				<span style="color:#fff;font-size: 26upx;padding-left:10upx;border-left:1px solid rgba(255,255,255,0.5);margin-left:16upx;">Forest</span>
 			</view>
 		</view>
 		<view class="assignment-box">
@@ -136,7 +136,6 @@
 			flex-direction: column;
 			justify-content: space-between;
 			span{
-				font-family: PingFang SC;
 				font-size: 28upx;
 				color: #FFFFFF;
 			}
@@ -153,7 +152,6 @@
 			height:176upx;
 			margin-top:61upx;
 			.number{
-				font-family: PingFang SC;
 				font-size: 28upx;
 				color: #FFFFFF;
 			}
@@ -163,20 +161,17 @@
 				justify-content:space-between;
 				border-bottom:1px solid rgba(255,255,255,0.1);
 				input{
-					font-family: Noto Sans S Chinese;
 					font-size: 24upx;
 					color: #FFFFFF;			
 					opacity: 0.5;
 					margin-bottom:18upx;
 				}
 				.button{
-					font-family: PingFang SC;
 					font-size: 26upx;
 					color: #DA53A2;
 				}
 			}
 			.upper-limit{
-				font-family: Noto Sans S Chinese;
 				font-size: 24upx;
 				color: #FFFFFF;			
 				opacity: 0.5;
@@ -187,7 +182,6 @@
 			height:148upx;
 			margin-top:58upx;
 			span{
-				font-family: PingFang SC;
 				font-size: 28upx;
 				color: #FFFFFF;
 			}
@@ -211,7 +205,6 @@
 		line-height: 100upx;
 		background: rgba(218, 83, 162,0.3);
 		color:#DA53A2;
-		font-family: PingFang SC;
 		font-size: 16px;
 		margin:0 40upx;
 		border-radius:0 0 10upx 10upx;
@@ -228,7 +221,6 @@
 			height:32upx;
 		}
 		span{
-			font-family: Noto Sans S Chinese;
 			font-size: 28upx;
 			color: #DA53A2;
 		}
@@ -242,7 +234,6 @@
 		margin-top:58upx;
 		span{
 			margin:0 auto;
-			font-family: PingFang SC;
 			font-size: 28upx;
 			color: #FFFFFF;
 		}
@@ -269,7 +260,6 @@
 			margin-top:30upx;
 			display: flex;
 			span{
-				font-family: Noto Sans S Chinese;
 				font-size: 20upx;
 				text-align: center;			
 				color: #FFFFFF;
@@ -285,7 +275,6 @@
 		padding:59upx 40upx 0;
 		margin-bottom:122upx;
 		.info{
-			font-family: PingFang SC;
 			font-size: 26upx;	
 			color: #FFFFFF;
 			opacity: 0.5;
@@ -298,7 +287,6 @@
 			span{
 				display: flex;
 				span{
-					font-family: Noto Sans S Chinese;
 					font-size: 24upx;
 					color:#fff;
 					opacity: 0.5;

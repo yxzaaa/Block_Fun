@@ -280,23 +280,29 @@
 				border:none;
 				thead{
 					tr{
+						display:flex;
+						justify-content:space-around;
 						th{
 							border:none;
 							text-align: center;
 							line-height: 64upx;
 							font-size: 28upx;
 							color:#fff;
+							width:33.3%;
 						}
 					}
 				}
 				tbody{
 					tr{
+						display:flex;
+						justify-content:space-around;
 						td{
 							border:none;
 							text-align: center;
 							line-height: 64upx;
 							font-size: 28upx;
 							color:#c7c7c7;
+							width:33.3%;
 						}
 					}
 				}
