@@ -218,6 +218,10 @@
             "path" : "pages/pledge-debit/pledge-debit",
             "style" : {}
         }
+        ,{
+            "path" : "pages/buyusdt/buyusdt",
+            "style" : {}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",

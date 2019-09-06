@@ -247,7 +247,6 @@
 			.left-item-name{
 				color:#fff;
 				font-size: 26upx;
-				padding-right:15upx;
 			}
 			.right-item-text{
 				font-size: 38upx;

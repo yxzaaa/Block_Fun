@@ -1,8 +1,8 @@
 <template>
 	<view class="container">
 		<uni-background />
-		<uni-nav-bar title="订单详情" textColor="#fff" :opacity="scroll" layout="center" :buttons="navButtons"></uni-nav-bar>
-		<view class="app-container full fixbutton">
+		<uni-nav-bar title="买USDT" textColor="#fff" :opacity="scroll" layout="center" :buttons="navButtons"></uni-nav-bar>
+		<view class="app-container full">
 			<view class="modal-box" v-if="showModal">
 				<view class="modal">
 					<view class="modal-top-item">
@@ -22,34 +22,17 @@
 			</view>
 			<view class="fixed-buttons">
 				<view class="button-group">
-					<fun-button value="申请仲裁" width="320upx" type="light" large url="../autolock/autolock"></fun-button>
-					<fun-button value="点击放行" width="320upx" large @handle="letgo()"></fun-button>
+					<fun-button value="购买" width="670upx" large @handle="letgo()" icon="../../static/icons/icon_buy_light.png"></fun-button>
 				</view>
 			</view>
 			<view style="padding:0upx 40upx">
-				<view class="fun-card">
-					<view class="fun-card-item" style="padding:20upx;">
-						<view class="horizon-list-item" style="justify-content: center;">
-							<text style="color:rgba(255,255,255,0.5);font-size:24upx;">对方将订单标记为 "已支付"，请尽快点击【放行】</text>
-						</view>
-					</view>
-				</view>
-				<view class="main-title" style="text-align: left;">进行中</view>
-				<view class="fun-horizen" style="margin-bottom:20upx;"></view>
 				<view class="horizon-list-item">
 					<view class="left-item">
-						<text class="left-item-label">订单编号</text>
+						<image class="left-item-avatar" :src="imageLib.union"></image>
+						<text class="left-item-name">美好即将发生</text>
 					</view>
 					<view class="right-item">
-						<text class="left-item-name">2A4EF9Q3FA8WDAMW19Z668PAFR</text>
-					</view>
-				</view>
-				<view class="horizon-list-item">
-					<view class="left-item">
-						<text class="left-item-label">创建时间</text>
-					</view>
-					<view class="right-item">
-						<text class="left-item-name">2019/01/28 20:35</text>
+						<text class="left-item-label">11单 · 61.11% 完成率</text>
 					</view>
 				</view>
 				<view class="horizon-list-item">
@@ -57,15 +40,15 @@
 						<text class="left-item-label">价格</text>
 					</view>
 					<view class="right-item">
-						<text class="left-item-name">6.6868 CNY</text>
+						<text class="left-item-name">6.6868</text>
 					</view>
 				</view>
 				<view class="horizon-list-item">
 					<view class="left-item">
-						<text class="left-item-label">限额</text>
+						<text class="left-item-label">限量</text>
 					</view>
 					<view class="right-item">
-						<text class="left-item-name">100 USDT</text>
+						<text class="left-item-name">100 - 1000</text>
 					</view>
 				</view>
 				<view class="horizon-list-item">
@@ -73,37 +56,24 @@
 						<text class="left-item-label">总金额</text>
 					</view>
 					<view class="right-item">
-						<text style="font-size: 40upx;color:#fff;font-family: 'Montserrat-Bold';">668.68 CNY</text>
+						<text class="left-item-name">668.68 - 66868</text>
 					</view>
 				</view>
-				<view class="fun-card" style="margin-top:20upx;">
-					<view class="fun-card-item" style='padding:20upx 30upx;'>
-						<view class="horizon-list-item">
-							<view class="left-item">
-								<image class="left-item-avatar" :src="imageLib.union"></image>
-								<text class="left-item-name">美好即将发生</text>
-							</view>
-							<view class="right-item">
-								<view class="button-group" style="width:300upx;">
-									<view class="order-btn">
-										<image :src="imageLib.call"></image>
-									</view>
-									<view class="order-btn">
-										<image :src="imageLib.contact"></image>
-									</view>
-								</view>
-							</view>
-						</view>
+				<view class="horizon-list-item">
+					<view class="left-item">
+						<image style="width:24upx;height:24upx;" class="left-item-avatar" :src="imageLib.alipay"></image>
+						<image style="width:24upx;height:24upx;" class="left-item-avatar" :src="imageLib.wechatpay"></image>
+						<image style="width:40upx;height:24upx;" class="left-item-avatar" :src="imageLib.unionpay"></image>
+					</view>
+					<view class="right-item">
+						<text style="font-size: 28upx;color:#fff;">浮动价</text>
 					</view>
 				</view>
 				<view class="fun-card" style="margin-top: 30upx;margin-bottom: 40upx;">
 					<view class="fun-card-item">
 						<view class="horizon-list-item">
 							<view class="left-item" style="width:500upx;">
-								<text class="left-item-name">收款信息</text>
-							</view>
-							<view class="right-item">
-								<text class="left-item-label">微信</text>
+								<text class="left-item-name">您想要购买多少？</text>
 							</view>
 						</view>
 					</view>
@@ -111,18 +81,15 @@
 					<view class="fun-card-item">
 						<view class="horizon-list-item">
 							<view class="left-item">
-								<text class="left-item-label">账号</text>
+								<text class="left-item-label">USDT</text>
 							</view>
 							<view class="right-item">
-								<text class="left-item-name">15816168188</text>
+								<input type="text" class="input-field" placeholder="输入购买数量" />
 							</view>
 						</view>
-						<view class="horizon-list-item">
-							<view class="left-item">
-								<text class="left-item-label">姓名</text>
-							</view>
+						<view class="horizon-list-item" style="justify-content: flex-end;">
 							<view class="right-item">
-								<text class="left-item-name">王大锤</text>
+								<image class="left-item-avatar" :src="imageLib.equal"></image>
 							</view>
 						</view>
 						<view class="horizon-list-item">
@@ -130,7 +97,8 @@
 								<text class="left-item-label">收款码</text>
 							</view>
 							<view class="right-item">
-								<text class="left-item-name" style="color:#DA53A2">点击查看</text>
+								<text class="left-item-name" 
+								style="color:#fff;font-family:'Montserrat-Light';font-size:32upx;">39457.987</text>
 							</view>
 						</view>
 					</view>
@@ -154,7 +122,7 @@
 					<view class="section-subtitle">交易提醒</view>
 					<view class="section-part">
 						<span class="list-num">1.</span>
-						请您及时在订单有效期内付款并点击【已支付】按钮，避免超时自动放单造成的财产损失；
+						交易前请详细了解买家的交易信息；
 					</view>
 					<view class="section-part">
 						<span class="list-num">2.</span>
@@ -164,10 +132,33 @@
 						<span class="list-num">3.</span>
 						如遇到问题，请通过“帮助”或联系客服来解决问题；
 					</view>
+					<view class="section-part">
+						<span class="list-num">4.</span>
+						您不需要支付任何手续费，交易手续费将由广告发布者承担，请安心交易；
+					</view>
 				</view>
-				<view style="width:200upx;margin:20upx auto">
-					<fun-button value="联系客服" type="text" color="#DA53A2" large width="200upx" icon="../../static/icons/Shape.png"></fun-button>
-				</view>
+			</view>
+		</view>
+		<view class="section-content" style="padding:10upx 0upx;background:#2D1F25;padding:20upx 40upx 150upx;margin-top:20upx;">
+			<view class="section-part">
+				<span class="list-num">1.</span>
+				交易发起前，请您确认已阅读并同意卖家提出的条款，并再次确认交易内容无误后，再点击购买按钮；
+			</view>
+			<view class="section-part">
+				<span class="list-num">2.</span>
+				交易发起后，请您于付款期限截止前转帐至指定账户，并标记已支付，逾期系统将自动取消交易；
+			</view>
+			<view class="section-part">
+				<span class="list-num">3.</span>
+				交易发起后，系统会自动将卖家的数字货币锁定，待卖家确认收到您的转帐后，将会释放数字货币至您的账户中；
+			</view>
+			<view class="section-part">
+				<span class="list-num">4.</span>
+				交易过程请使用平台的聊天系统进行沟通，平台外的对话记录将无法作为交易纠纷的依据；
+			</view>
+			<view class="section-part">
+				<span class="list-num">5.</span>
+				温馨提示:24小时内，5分钟内无责取消机会有3次，无责取消次数用完或者订单创建超过5分钟后取消，则会被冻结5天。
 			</view>
 		</view>
 	</view>
@@ -195,7 +186,11 @@
 				imageLib:{
 					union:'../../static/avatar/fortoken.png',
 					call:'../../static/icons/icon_call.png',
+					alipay:'../../static/icons/icon_alipay.png',
+					wechatpay:'../../static/icons/icon_wechatpay.png',
+					unionpay:'../../static/icons/icon_unionpay.png',
 					contact:'../../static/icons/icon_contact.png',
+					equal:'../../static/icons/icon_equal.png'
 				},
 				showModal:false
 			}
@@ -362,10 +357,16 @@
 			align-items:center;
 			color:#999;
 			font-size: 24upx;
+			.input-field{
+				width:220upx;
+				text-align: right;
+				color:#DA53A2;
+				font-size: 28upx;
+				font-weight:bold;
+			}
 			.left-item-name{
 				color:#fff;
 				font-size: 26upx;
-				padding-right:15upx;
 			}
 			.right-item-text{
 				font-size: 38upx;
