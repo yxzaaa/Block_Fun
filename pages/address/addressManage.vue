@@ -7,34 +7,34 @@
 			:opacity="scroll"
 			:buttons="navButtons"
 		/>
-		<view class="content">
-			<view class="row b-b" style="padding-top:40upx;">
-				<text class="tit">收货人姓名</text>
+		<view class="content" style="padding:40upx;">
+			<view class="row b-b">
+				<text class="tit" style="padding:0px;">收货人姓名</text>
 				<input class="input" type="text" v-model="addressData.name" placeholder="请输入收货人姓名" placeholder-class="placeholder" />
 			</view>
 			<view class="row b-b">
 				<text class="tit">手机号</text>
-				<input class="input" type="number" v-model="addressData.mobile" placeholder="请输入11位手机号" placeholder-class="placeholder" />
+				<input class="input" type="number" placeholder="请输入11位手机号" placeholder-class="placeholder" />
 			</view>
 			<view class="row b-b">
 				<text class="tit">所属区域</text>
-				<input class="input" type="text" v-model="addressData.name" placeholder="请选择市区" placeholder-class="placeholder" />
+				<input class="input" type="text" placeholder="请选择市区" placeholder-class="placeholder" />
 				
 			</view>
 			<view class="row b-b"> 
 				<text class="tit">详细地址</text>
-				<input class="input" type="text" v-model="addressData.area" placeholder="请选择市区" placeholder-class="placeholder" />
+				<input class="input" type="text" placeholder="请选择市区" placeholder-class="placeholder" />
 			</view>
 			
 		</view>
-		<view class="default" style="margin-left:40upx;display: flex;align-items: center;">
-			<image src="../../static/bg/Group.png" style="width:40upx;height:40upx;"></image>
-				<view>
-					<text style="color:#fff;font-size: 24upx;">设为默认</text>
-				</view>
+		<view class="default" style="padding:30upx 40upx;display: flex;align-items: center;">
+			<image src="../../static/bg/Group.png" style="width:40upx;height:40upx;margin-right:14upx;"></image>
+			<text style="color:#fff;font-size: 24upx;">设为默认</text>
 		</view>
-		<view class="button-group">
-			<fun-button value="保存并使用" width="670upx"  large url="../confirm-order/confirm-order"></fun-button>
+		<view class="fixed-buttons">
+			<view class="button-group">
+				<fun-button value="保存并使用" width="670upx"  large url="../confirm-order/confirm-order"></fun-button>
+			</view>
 		</view>
 	</view>
 </template>
@@ -142,21 +142,20 @@
 		flex-direction: column;
 		align-content: space-around;
 		width:590upx;
-		height:140upx;
-		border-bottom:1px solid rgba(255,255,255,.2);
-		margin:50upx 0 40upx;
-		margin-left:40upx;
 		
 		
 		.tit{
 			
 			font-size: 30upx;
 			color: #fff;
+			padding-top:30upx;
 		}
 		.input{
 			flex: 1;
-			font-size: 30upx;
-			color: $font-color-dark;
+			font-size: 26upx;
+			height:80upx;
+			color: rgba(255,255,255,.5);
+			border-bottom:1px solid rgba(255,255,255,.2);
 		}
 		.icon-shouhuodizhi{
 			font-size: 36upx;
@@ -186,13 +185,6 @@
 		box-shadow: 1px 2px 5px rgba(219, 63, 96, 0.4);
 	}
 	.button-group{
-		width:750upx;
-		height:120upx;
-		position:fixed;
-		bottom:0;
-		background:#2F282B;
-		padding:20upx 40upx;
-		display:flex;
-		justify-content:space-between;
+		width:670upx;
 	}
 </style>

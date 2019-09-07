@@ -12,8 +12,8 @@
 		<!-- 待付款计时器 -->
 		<view class="topay">
 			<view style="display: flex;flex-direction: column;">
-				<span style="font-family: PingFang SC;color:#fff;font-size: 32upx;">待付款</span>
-				<span style="font-family: PingFang SC;color:#999999;font-size: 24upx;margin-top:12upx;">
+				<span style="color:#fff;font-size: 32upx;">待付款</span>
+				<span style="color:#999999;font-size: 24upx;margin-top:12upx;">
 					订单将于
 					<span style="color:#DA53A2;">1小时 30分 28秒</span>
 					后关闭
@@ -46,10 +46,10 @@
 					<image :src="item.image" style="width:160upx;height:160upx;display: block;"></image>
 				</view>
 				<view class="text">
-					<span style="color:#fff;font-size:24upx;font-family: PingFang SC;width:470upx;height:66upx;line-height: 34upx;display: block;">{{item.title}}</span>
+					<span style="color:#fff;font-size:24upx;width:470upx;height:66upx;line-height: 34upx;display: block;">{{item.title}}</span>
 					<span style="display: block;">
-						<span style="color: #999999;font-size:20upx;margin-right:20upx;">数量：{{item.number}}</span>
-						<span style="color: #999999;font-size:20upx;">颜色：{{item.color}}</span>
+						<span style="color: #999999;font-size:24upx;margin-right:24upx;">数量：{{item.number}}</span>
+						<span style="color: #999999;font-size:24upx;">颜色：{{item.color}}</span>
 					</span>
 					<span>
 						<span style="color:#fff;font-size:28upx;font-family: Montserrat-Bold;margin-right: 6upx;">{{item.symbol}}</span>
@@ -73,13 +73,20 @@
 			</view>
 		</view>
 		<view class="money">
-			<span style="color:#fff;font-size: 28upx;margin-right: 20upx;">实付款</span>
+			<span style="color:#fff;font-size: 28upx;margin-right: 24upx;">实付款</span>
 			<span style="color:#DA53A2;font-size:28upx;font-family: Montserrat-Bold;font-weight: 600;">￥ 6444.13</span>
+		</view>
+		<view class="fixed-buttons">
+			<view class="button-group">
+				<fun-button value="取消订单" width="240upx" background="#291A21" large url=""></fun-button>
+				<fun-button value="去支付" width="240upx" large url="../pay-order/pay-order"></fun-button>
+			</view>
 		</view>
 	</view>
 </template>
 
 <script>
+	import FunButton from '@/components/fun-button.vue';
 	import UniNavBar from '@/components/uni-nav-bar/uni-nav-bar.vue';
 	import UniBackground from '@/components/uni-background/uni-background.vue';
 	
@@ -87,6 +94,7 @@
 		components:{
 			UniNavBar,
 			UniBackground,
+			FunButton
 		},
 		data() {
 			return {
@@ -119,6 +127,9 @@
 				]
 			}
 		},
+		onPageScroll(val){
+			this.scroll = val.scrollTop;
+		},
 		methods: {
 			
 		}
@@ -129,7 +140,6 @@
 	.topay{
 		display: flex;
 		width:100%;
-		height:200upx;
 		padding:6upx 40upx 58upx 80upx;
 		margin-top:176upx;
 		align-items: flex-end;
@@ -138,10 +148,7 @@
 	}
 	.tosite{
 		width:750upx;
-		height:64upx;
 		padding:40upx;
-		padding-top:60upx;
-		padding-bottom:80upx;
 		border-bottom:1px solid rgba(255,255,255,0.1);
 		display:flex;
 		align-items:center;
@@ -155,9 +162,9 @@
 			display: flex;
 			align-items: center;
 			.person-info{
-				margin-left:20upx;
+				margin-left:24upx;
 				.phone{
-					margin-left:20upx;
+					margin-left:24upx;
 				}
 			}
 			.toaddress{
@@ -179,13 +186,12 @@
 			.image{
 				width:160upx;
 				height:160upx;
-				margin-right: 20upx;
+				margin-right: 24upx;
 			}
 		}
 	}
 	.orderinfo{
 		width:670upx;
-		height:228upx;
 		background:#2D1F25;
 		margin-left:40upx;
 		padding:40upx;
@@ -196,13 +202,11 @@
 			display: flex;
 			justify-content: space-between;
 			.content{
-				font-family: PingFang SC;
 				font-size: 24upx;
 				color:#fff;
 				opacity: 0.5;
 			}
 			.ordernum{
-				font-family: PingFang SC;
 				font-size: 24upx;
 				color:#fff;
 			}
@@ -212,13 +216,11 @@
 			display: flex;
 			justify-content: space-between;
 			.content{
-				font-family: PingFang SC;
 				font-size: 24upx;
 				color:#fff;
 				opacity: 0.5;
 			}
 			.date{
-				font-family: PingFang SC;
 				font-size: 24upx;
 				color:#fff;
 			}	
@@ -228,13 +230,11 @@
 			display: flex;
 			justify-content: space-between;
 			.content{
-				font-family: PingFang SC;
 				font-size: 24upx;
 				color:#fff;
 				opacity: 0.5;
 			}
 			.paynow{
-				font-family: PingFang SC;
 				font-size: 24upx;
 				color:#fff;
 			}
@@ -247,5 +247,13 @@
 		display: flex;
 		justify-content: flex-end;
 		align-items: center;;
+	}
+	.fixed-buttons{
+		display: flex;
+		justify-content: flex-end;
+		.button-group{
+			width:500upx;
+			
+		}
 	}
 </style>

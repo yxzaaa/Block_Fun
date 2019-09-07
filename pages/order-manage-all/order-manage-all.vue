@@ -8,11 +8,55 @@
 			:buttons="navButtons"
 		/>
 		<view class="app-container full">
-			<horizon-tab :tabs="statusTabs" padding="45" style="padding-bottom: 60upx;"></horizon-tab>
+			
+			<!-- 顶部滑动 -->
+			<horizon-tab :tabs="statusTabs" padding="45"></horizon-tab>
+			
 			<view class="managebox"> <!-- 待办管理 -->
 				<view class="backlog"> 
 					<span>tb31231234234314</span>
-					<view style="font-size: 28upx;color: #DA53A2;font-family: PingFang SC;">待付款</view>
+					<view style="font-size: 28upx;color: #DA53A2;">待付款</view>
+				</view>
+				<view class="goodslist">
+					<block 
+					v-for="(item,index) in imgList"
+					:key = "index"
+					>
+						<navigator class="goods" :url="'../order-topay/order-topay?id='+index">
+							<view class="image">
+								<image :src="item.image" style="width:160upx;height:160upx;display: block;"></image>
+							</view>
+							<view class="text">
+								<span style="color:#fff;font-size:24upx;width:470upx;height:66upx;line-height: 34upx;display: block;">{{item.title}}</span>
+								<span style="display: block;">
+									<span style="color: #999999;font-size:24upx;margin-right:24upx;">数量：{{item.number}}</span>
+									<span style="color: #999999;font-size:24upx;">颜色：{{item.color}}</span>
+								</span>
+								<span>
+									<span style="color:#fff;font-size:28upx;font-family: Montserrat-Bold;margin-right: 6upx;">{{item.symbol}}</span>
+									<span style="color:#fff;font-size:28upx;font-weight: bold;font-family: Montserrat-Bold;">{{item.price}}</span>
+								</span>
+							</view>
+						</navigator>
+					</block>
+				</view>
+				<view class="account">
+					<span style="color:#fff;font-size: 24upx;opacity: 0.7;margin-right:24upx;">
+						共 <span style="margin:0 6upx;"> 2 </span> 件
+					</span>
+					<span style="color:#fff;font-size: 28upx;">
+						合计<span style="color:#DA53A2;font-family: Montserrat-Bold;font-weight: 600;margin-left:12upx;">￥ 6444.13</span>
+					</span>
+				</view>
+				<view class="button-group">
+					<fun-button value="取消订单" width="200upx" class="funbtn1" background="#291A21" color="#999"></fun-button>
+					<fun-button value="去支付" width="200upx" class="funbtn" url="../pay-order/pay-order"></fun-button>
+				</view>
+			</view>
+			<view class="managebox"> <!-- 待办管理 -->
+				<view class="backlog"> 
+					<span>tb31231234234314</span>
+					<view style="font-size: 28upx;color: #56CCF2;">待收货</view>
 				</view>
 				<view class="goodslist">
 					<view class="goods"
@@ -23,10 +67,10 @@
 							<image :src="item.image" style="width:160upx;height:160upx;display: block;"></image>
 						</view>
 						<view class="text">
-							<span style="color:#fff;font-size:24upx;font-family: PingFang SC;width:470                       upx;height:66upx;line-height: 34upx;display: block;">{{item.title}}</span>
+							<span style="color:#fff;font-size:24upx;width:470upx;height:66upx;line-height: 34upx;display: block;">{{item.title}}</span>
 							<span style="display: block;">
-								<span style="color: #999999;font-size:20upx;margin-right:20upx;">数量：{{item.number}}</span>
-								<span style="color: #999999;font-size:20upx;">颜色：{{item.color}}</span>
+								<span style="color: #999999;font-size:24upx;margin-right:24upx;">数量：{{item.number}}</span>
+								<span style="color: #999999;font-size:24upx;">颜色：{{item.color}}</span>
 							</span>
 							<span>
 								<span style="color:#fff;font-size:28upx;font-family: Montserrat-Bold;margin-right: 6upx;">{{item.symbol}}</span>
@@ -36,7 +80,83 @@
 					</view>
 				</view>
 				<view class="account">
-					<span style="color:#fff;font-size: 20upx;opacity: 0.7;margin-right:20upx;">
+					<span style="color:#fff;font-size: 24upx;opacity: 0.7;margin-right:24upx;">
+						共 <span style="margin:0 6upx;"> 2 </span> 件
+					</span>
+					<span style="color:#fff;font-size: 28upx;">
+						合计<span style="color:#DA53A2;font-family: Montserrat-Bold;font-weight: 600;margin-left:12upx;">￥ 6444.13</span>
+					</span>
+				</view>
+				<view class="button-group">
+					<fun-button value="确认收货" width="200upx" class="funbtn"></fun-button>
+				</view>
+			</view>
+			<view class="managebox"> <!-- 待办管理 -->
+				<view class="backlog"> 
+					<span>tb31231234234314</span>
+					<view style="font-size: 28upx;color: #F2C94C;">待处理</view>
+				</view>
+				<view class="goodslist">
+					<view class="goods"
+					v-for="(item,index) in imgList"
+					:key = "index"
+					>
+						<view class="image">
+							<image :src="item.image" style="width:160upx;height:160upx;display: block;"></image>
+						</view>
+						<view class="text">
+							<span style="color:#fff;font-size:24upx;width:470upx;height:66upx;line-height: 34upx;display: block;">{{item.title}}</span>
+							<span style="display: block;">
+								<span style="color: #999999;font-size:24upx;margin-right:24upx;">数量：{{item.number}}</span>
+								<span style="color: #999999;font-size:24upx;">颜色：{{item.color}}</span>
+							</span>
+							<span>
+								<span style="color:#fff;font-size:28upx;font-family: Montserrat-Bold;margin-right: 6upx;">{{item.symbol}}</span>
+								<span style="color:#fff;font-size:28upx;font-weight: bold;font-family: Montserrat-Bold;">{{item.price}}</span>
+							</span>
+						</view>
+					</view>
+				</view>
+				<view class="account">
+					<span style="color:#fff;font-size: 24upx;opacity: 0.7;margin-right:24upx;">
+						共 <span style="margin:0 6upx;"> 2 </span> 件
+					</span>
+					<span style="color:#fff;font-size: 28upx;">
+						合计<span style="color:#DA53A2;font-family: Montserrat-Bold;font-weight: 600;margin-left:12upx;">￥ 6444.13</span>
+					</span>
+				</view>
+				<view class="button-group">
+					<fun-button value="取消订单" background="#291A21" color="#999999" width="200upx" class="funbtn"></fun-button>
+				</view>
+			</view>
+			<view class="managebox"> <!-- 待办管理 -->
+				<view class="backlog"> 
+					<span>tb31231234234314</span>
+					<view style="font-size: 28upx;color: #999999;">已取消</view>
+				</view>
+				<view class="goodslist">
+					<view class="goods"
+					v-for="(item,index) in imgList"
+					:key = "index"
+					>
+						<view class="image">
+							<image :src="item.image" style="width:160upx;height:160upx;display: block;"></image>
+						</view>
+						<view class="text">
+							<span style="color:#fff;font-size:24upx;width:470upx;height:66upx;line-height: 34upx;display: block;">{{item.title}}</span>
+							<span style="display: block;">
+								<span style="color: #999999;font-size:24upx;margin-right:24upx;">数量：{{item.number}}</span>
+								<span style="color: #999999;font-size:24upx;">颜色：{{item.color}}</span>
+							</span>
+							<span>
+								<span style="color:#fff;font-size:28upx;font-family: Montserrat-Bold;margin-right: 6upx;">{{item.symbol}}</span>
+								<span style="color:#fff;font-size:28upx;font-weight: bold;font-family: Montserrat-Bold;">{{item.price}}</span>
+							</span>
+						</view>
+					</view>
+				</view>
+				<view class="account">
+					<span style="color:#fff;font-size: 24upx;opacity: 0.7;margin-right:24upx;">
 						共 <span style="margin:0 6upx;"> 2 </span> 件
 					</span>
 					<span style="color:#fff;font-size: 28upx;">
@@ -47,7 +167,7 @@
 			<view class="managebox"> <!-- 待办管理 -->
 				<view class="backlog"> 
 					<span>tb31231234234314</span>
-					<view style="font-size: 28upx;color: #56CCF2;font-family: PingFang SC;">待收货</view>
+					<view style="font-size: 28upx;color: #999999;">已完成</view>
 				</view>
 				<view class="goodslist">
 					<view class="goods"
@@ -58,10 +178,10 @@
 							<image :src="item.image" style="width:160upx;height:160upx;display: block;"></image>
 						</view>
 						<view class="text">
-							<span style="color:#fff;font-size:24upx;font-family: PingFang SC;width:470                       upx;height:66upx;line-height: 34upx;display: block;">{{item.title}}</span>
+							<span style="color:#fff;font-size:24upx;width:470upx;height:66upx;line-height: 34upx;display: block;">{{item.title}}</span>
 							<span style="display: block;">
-								<span style="color: #999999;font-size:20upx;margin-right:20upx;">数量：{{item.number}}</span>
-								<span style="color: #999999;font-size:20upx;">颜色：{{item.color}}</span>
+								<span style="color: #999999;font-size:24upx;margin-right:24upx;">数量：{{item.number}}</span>
+								<span style="color: #999999;font-size:24upx;">颜色：{{item.color}}</span>
 							</span>
 							<span>
 								<span style="color:#fff;font-size:28upx;font-family: Montserrat-Bold;margin-right: 6upx;">{{item.symbol}}</span>
@@ -71,112 +191,7 @@
 					</view>
 				</view>
 				<view class="account">
-					<span style="color:#fff;font-size: 20upx;opacity: 0.7;margin-right:20upx;">
-						共 <span style="margin:0 6upx;"> 2 </span> 件
-					</span>
-					<span style="color:#fff;font-size: 28upx;">
-						合计<span style="color:#DA53A2;font-family: Montserrat-Bold;font-weight: 600;margin-left:12upx;">￥ 6444.13</span>
-					</span>
-				</view>
-			</view>
-			<view class="managebox"> <!-- 待办管理 -->
-				<view class="backlog"> 
-					<span>tb31231234234314</span>
-					<view style="font-size: 28upx;color: #F2C94C;font-family: PingFang SC;">待处理</view>
-				</view>
-				<view class="goodslist">
-					<view class="goods"
-					v-for="(item,index) in imgList"
-					:key = "index"
-					>
-						<view class="image">
-							<image :src="item.image" style="width:160upx;height:160upx;display: block;"></image>
-						</view>
-						<view class="text">
-							<span style="color:#fff;font-size:24upx;font-family: PingFang SC;width:470                       upx;height:66upx;line-height: 34upx;display: block;">{{item.title}}</span>
-							<span style="display: block;">
-								<span style="color: #999999;font-size:20upx;margin-right:20upx;">数量：{{item.number}}</span>
-								<span style="color: #999999;font-size:20upx;">颜色：{{item.color}}</span>
-							</span>
-							<span>
-								<span style="color:#fff;font-size:28upx;font-family: Montserrat-Bold;margin-right: 6upx;">{{item.symbol}}</span>
-								<span style="color:#fff;font-size:28upx;font-weight: bold;font-family: Montserrat-Bold;">{{item.price}}</span>
-							</span>
-						</view>
-					</view>
-				</view>
-				<view class="account">
-					<span style="color:#fff;font-size: 20upx;opacity: 0.7;margin-right:20upx;">
-						共 <span style="margin:0 6upx;"> 2 </span> 件
-					</span>
-					<span style="color:#fff;font-size: 28upx;">
-						合计<span style="color:#DA53A2;font-family: Montserrat-Bold;font-weight: 600;margin-left:12upx;">￥ 6444.13</span>
-					</span>
-				</view>
-			</view>
-			<view class="managebox"> <!-- 待办管理 -->
-				<view class="backlog"> 
-					<span>tb31231234234314</span>
-					<view style="font-size: 28upx;color: #999999;font-family: PingFang SC;">已取消</view>
-				</view>
-				<view class="goodslist">
-					<view class="goods"
-					v-for="(item,index) in imgList"
-					:key = "index"
-					>
-						<view class="image">
-							<image :src="item.image" style="width:160upx;height:160upx;display: block;"></image>
-						</view>
-						<view class="text">
-							<span style="color:#fff;font-size:24upx;font-family: PingFang SC;width:470                       upx;height:66upx;line-height: 34upx;display: block;">{{item.title}}</span>
-							<span style="display: block;">
-								<span style="color: #999999;font-size:20upx;margin-right:20upx;">数量：{{item.number}}</span>
-								<span style="color: #999999;font-size:20upx;">颜色：{{item.color}}</span>
-							</span>
-							<span>
-								<span style="color:#fff;font-size:28upx;font-family: Montserrat-Bold;margin-right: 6upx;">{{item.symbol}}</span>
-								<span style="color:#fff;font-size:28upx;font-weight: bold;font-family: Montserrat-Bold;">{{item.price}}</span>
-							</span>
-						</view>
-					</view>
-				</view>
-				<view class="account">
-					<span style="color:#fff;font-size: 20upx;opacity: 0.7;margin-right:20upx;">
-						共 <span style="margin:0 6upx;"> 2 </span> 件
-					</span>
-					<span style="color:#fff;font-size: 28upx;">
-						合计<span style="color:#DA53A2;font-family: Montserrat-Bold;font-weight: 600;margin-left:12upx;">￥ 6444.13</span>
-					</span>
-				</view>
-			</view>
-			<view class="managebox"> <!-- 待办管理 -->
-				<view class="backlog"> 
-					<span>tb31231234234314</span>
-					<view style="font-size: 28upx;color: #999999;font-family: PingFang SC;">已完成</view>
-				</view>
-				<view class="goodslist">
-					<view class="goods"
-					v-for="(item,index) in imgList"
-					:key = "index"
-					>
-						<view class="image">
-							<image :src="item.image" style="width:160upx;height:160upx;display: block;"></image>
-						</view>
-						<view class="text">
-							<span style="color:#fff;font-size:24upx;font-family: PingFang SC;width:470                       upx;height:66upx;line-height: 34upx;display: block;">{{item.title}}</span>
-							<span style="display: block;">
-								<span style="color: #999999;font-size:20upx;margin-right:20upx;">数量：{{item.number}}</span>
-								<span style="color: #999999;font-size:20upx;">颜色：{{item.color}}</span>
-							</span>
-							<span>
-								<span style="color:#fff;font-size:28upx;font-family: Montserrat-Bold;margin-right: 6upx;">{{item.symbol}}</span>
-								<span style="color:#fff;font-size:28upx;font-weight: bold;font-family: Montserrat-Bold;">{{item.price}}</span>
-							</span>
-						</view>
-					</view>
-				</view>
-				<view class="account">
-					<span style="color:#fff;font-size: 20upx;opacity: 0.7;margin-right:20upx;">
+					<span style="color:#fff;font-size: 24upx;opacity: 0.7;margin-right:24upx;">
 						共 <span style="margin:0 6upx;"> 2 </span> 件
 					</span>
 					<span style="color:#fff;font-size: 28upx;">
@@ -193,11 +208,13 @@
 	import UniNavBar from '@/components/uni-nav-bar/uni-nav-bar.vue';
 	import UniBackground from '@/components/uni-background/uni-background.vue';
 	import HorizonTab from '@/components/horizon-tab.vue';
+	import FunButton from '@/components/fun-button.vue';
 	export default {
 		components:{
 			UniNavBar,
 			UniBackground,
-			HorizonTab
+			HorizonTab,
+			FunButton
 		},
 		data() {
 			return {
@@ -249,8 +266,7 @@
 <style lang="scss" scoped>
 	.managebox{
 		width:750upx;
-		height:734upx;
-		padding:0px 40upx;
+		padding:60upx 40upx;
 		border-bottom:1px solid rgba(255,255,255,0.1);
 		.backlog{
 			width:670upx;
@@ -259,7 +275,6 @@
 			justify-content: space-between;
 			align-items:center;
 			span{
-				font-family: PingFang SC;
 				font-size: 28upx;
 				color:#fff;
 			}
@@ -276,7 +291,7 @@
 				.image{
 					width:160upx;
 					height:160upx;
-					margin-right: 20upx;
+					margin-right: 24upx;
 				}
 			}
 		}
@@ -284,6 +299,14 @@
 			display: flex;
 			justify-content: flex-end;
 			align-items: center;
+		}
+	}
+	.button-group{
+		display: flex;
+		justify-content:flex-end;
+		margin-top:64upx;
+		.funbtn1{
+			margin-right:40upx;
 		}
 	}
 </style>

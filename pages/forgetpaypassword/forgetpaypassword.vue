@@ -21,6 +21,7 @@
 				</view>
 			</view>
 		</view>
+		<view class="commit">确认</view>
 	</view>
 </template>
 
@@ -91,5 +92,16 @@
 				}
 			}
 		}
+	}
+	.commit{
+		width:670upx;
+		height:80upx;
+		margin:80upx 40upx;
+		background:#DA53A2;
+		text-align: center;
+		line-height:80upx;
+		color:#fff;
+		font-size: 28upx;
+		border-radius: 2000upx;
 	}
 </style>

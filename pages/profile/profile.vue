@@ -7,14 +7,14 @@
 			textColor="#fff"
 		/>
 		<view class="user-info">
-			<image src="../../static/bg/logo.png" style="width:120upx;height:120upx;"></image>
+			<image src="../../static/bg/logo.png" style="width:124upx;height:124upx;"></image>
 			<view class="info">
 				<span class="id">13936525463</span>
 				<span class="users" style="margin-top:30upx;">
 					<span class="user" style="margin-right:44upx;font-size:24upx;font-family: Montserrat-bold;color:#999999;">
 						UID：100001
 					</span>
-					<span style="font-size:24upx;color:#999999;border:1px solid #999999;padding:4upx 20upx;">一键复制</span>
+					<span style="font-size:24upx;color:#999999;border:1px solid #999999;padding:4upx 24upx;border-radius:6upx;">一键复制</span>
 				</span>
 			</view>
 		</view>
@@ -35,38 +35,46 @@
 			</view>
 		</view>
 		<view class="managebox">
-			<view class="manage">
-				<span class="title">订单管理</span>
-				<view>
-					<span class="goodsinfo">
-						<span class="number">5</span>
-						<span class="text">条订单信息</span>
-					</span>
-					<image src="../../static/bg/message.png" style="width:72upx;height:72upx;"></image>
+			<!-- 点击跳转到订单管理页面 -->
+			<navigator url="../order-manage-all/order-manage-all">
+				<view class="manage">
+					<span class="title">订单管理</span>
+					<view>
+						<span class="goodsinfo">
+							<span class="number">5</span>
+							<span class="text">条订单信息</span>
+						</span>
+						<image src="../../static/bg/message.png" style="width:72upx;height:72upx;"></image>
+					</view>
 				</view>
-			</view>
-			<view class="manage">
-				<span class="title">购物车</span>
-				<view>
-					<span class="goodsinfo">
-						<span class="number">1</span>
-						<span class="text">条商品信息</span>
-					</span>
-					<image src="../../static/bg/cart.png" style="width:72upx;height:72upx;"></image>
+			</navigator>
+			<!-- 点击跳转到购物车页面 -->
+			<navigator url="../cart1/cart1">
+				<view class="manage">
+					<span class="title">购物车</span>
+					<view>
+						<span class="goodsinfo">
+							<span class="number">1</span>
+							<span class="text">条商品信息</span>
+						</span>
+						<image src="../../static/bg/cart.png" style="width:72upx;height:72upx;"></image>
+					</view>
 				</view>
-			</view>
+			</navigator>	
 		</view>
 		<view class="managebox">
-			<view class="manage">
-				<span class="title">收藏夹</span>
-				<view>
-					<span class="goodsinfo">
-						<span class="number">5</span>
-						<span class="text">条收藏信息</span>
-					</span>
-					<image src="../../static/bg/sign.png" style="width:72upx;height:72upx;"></image>
+			<navigator url="../favorite/favorite-manage">
+				<view class="manage">
+					<span class="title">收藏夹</span>
+					<view>
+						<span class="goodsinfo">
+							<span class="number">5</span>
+							<span class="text">条收藏信息</span>
+						</span>
+						<image src="../../static/bg/sign.png" style="width:72upx;height:72upx;"></image>
+					</view>
 				</view>
-			</view>
+			</navigator>
 			<view class="manage">
 				<span class="title">在线客服</span>
 				<view>
@@ -79,41 +87,51 @@
 			</view>
 		</view>
 		<view class="action">
-			<view class="action-item">
-				<view>
-					<image src="../../static/bg/finance.png"></image>
-					<span>我的财务</span>
+			<navigator url="../finance/finance">
+				<view class="action-item">
+					<view>
+						<image src="../../static/bg/finance.png"></image>
+						<span>我的财务</span>
+					</view>
+					<image src="../../static/bg/jiantou.png"></image>
 				</view>
-				<image src="../../static/bg/jiantou.png"></image>
-			</view>
-			<view class="action-item">
-				<view>
-					<image src="../../static/bg/realname.png"></image>
-					<span>实名认证</span>
+			</navigator>
+			<navigator url="../realname-attest/realname-attest">
+				<view class="action-item">
+					<view>
+						<image src="../../static/bg/realname.png"></image>
+						<span>实名认证</span>
+					</view>
+					<image src="../../static/bg/jiantou.png"></image>
 				</view>
-				<image src="../../static/bg/jiantou.png"></image>
-			</view>
-			<view class="action-item">
-				<view>
-					<image src="../../static/bg/save.png"></image>
-					<span>安全中心</span>
+			</navigator>
+			<navigator url="../security/security">
+				<view class="action-item">
+					<view>
+						<image src="../../static/bg/save.png"></image>
+						<span>安全中心</span>
+					</view>
+					<image src="../../static/bg/jiantou.png"></image>
 				</view>
-				<image src="../../static/bg/jiantou.png"></image>
-			</view>
-			<view class="action-item">
-				<view>
-					<image src="../../static/bg/help.png"></image>
-					<span>帮助中心</span>
+			</navigator>
+			<navigator url="../helpcenter/helpcenter">
+				<view class="action-item">
+					<view>
+						<image src="../../static/bg/help.png"></image>
+						<span>帮助中心</span>
+					</view>
+					<image src="../../static/bg/jiantou.png"></image>
 				</view>
-				<image src="../../static/bg/jiantou.png"></image>
-			</view>
-			<view class="action-item" style="border:none;margin-bottom: 0;">
-				<view>
-					<image src="../../static/bg/about.png"></image>
-					<span>关于我们</span>
+			</navigator>
+			<navigator url="../aboutus/aboutus">
+				<view class="action-item" style="border:none;margin-bottom: 0;">
+					<view>
+						<image src="../../static/bg/about.png"></image>
+						<span>关于我们</span>
+					</view>
+					<image src="../../static/bg/jiantou.png"></image>
 				</view>
-				<image src="../../static/bg/jiantou.png"></image>
-			</view>
+			</navigator>
 		</view>
 		<view class="exit">
 			退出登录
@@ -148,7 +166,7 @@
 	.user-info{
 		display: flex;
 		width:490upx;
-		height:120upx;
+		height:124upx;
 		margin-top:216upx;
 		margin-left:40upx;
 		justify-content:space-between;
@@ -204,10 +222,9 @@
 		display:flex;
 		justify-content:space-between;
 		.manage{
-			background: #2D1F25;
-			opacity: 0.8;
+			background: rgba(45, 31, 37,.8);
 			padding:40upx;
-			width:46%;
+			width:324upx;
 			height:200upx;
 			border-radius:8upx;
 			.title{
@@ -231,12 +248,12 @@
 					font-family: Montserrat;
 					font-style: normal;
 					font-weight: 600;
-					font-size: 20upx;
+					font-size: 24upx;
 				}
 				.text{
 					color:#999999;
 					font-family: PingFang SC;
-					font-size: 20upx;
+					font-size: 24upx;
 				}
 			}
 		}
@@ -244,8 +261,7 @@
 	.action{
 		width:670upx;
 		height:600upx;
-		background: #2D1F25;
-		opacity: 0.8;
+		background: rgba(45, 31, 37,.8);
 		border-radius: 8upx;
 		margin:40upx 40upx 0;
 		padding:40upx 30upx;
@@ -280,11 +296,10 @@
 		}
 	}
 	.exit{
-		width:630upx;
+		width:670upx;
 		height:88upx;
-		margin:120upx 60upx 190upx;
-		background: #2D1F25;
-		opacity: 0.8;
+		margin:124upx 40upx 190upx;
+		background: rgba(45, 31, 37,.8);
 		border-radius: 4px;
 		text-align: center;
 		line-height: 88upx;

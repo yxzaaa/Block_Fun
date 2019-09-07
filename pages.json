@@ -238,6 +238,14 @@
             "path" : "pages/investpage/investpage",
             "style" : {}
         }
+        ,{
+            "path" : "pages/favorite/favorite-manage",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/cart1/cart2",
+            "style" : {}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",

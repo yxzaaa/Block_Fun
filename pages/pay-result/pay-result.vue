@@ -38,8 +38,11 @@
 				<span class="paynow">现金支付</span>
 			</view>
 		</view>
-		<fun-button value="现金支付" width="670upx" class="funbtn" url="../pay-result/pay-result"></fun-button>
-	</view>
+		<view class="fixed-buttons">
+			<view class="button-group">
+				<fun-button value="现金支付" width="670upx" large url="../pay-result/pay-result"></fun-button>
+			</view>
+		</view>	</view>
 </template>
 
 <script>
@@ -103,7 +106,6 @@
 	}
 	.orderinfo{
 		width:670upx;
-		height:228upx;
 		background:#2D1F25;
 		margin-top:148upx;
 		margin-left:40upx;
@@ -161,9 +163,8 @@
 			
 		}
 	}
-	.funbtn{
-		position:fixed;
-		left:40upx;
-		bottom:86upx;
+
+	.button-group{
+		width:670upx;
 	}
 </style>

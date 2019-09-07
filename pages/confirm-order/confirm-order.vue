@@ -24,25 +24,23 @@
 		<view class="guess">
 			<view class="guess-list">
 				<view 
-					v-for="(item, index) in data.guessList" :key="index"
+					v-for="(item, index) in guessList" 
+					:key="index"
 					class="guess-item"	
 				>
-		
 				<!-- 引入图片 -->
 					<view class="image-wrapper">
 						<image 
 							:src="item.src" 
-							:class="item.loaded" 
 							mode="aspectFill"
-							@load="imageOnLoad('guessList', index)" 
 							style="width:160upx;height:160upx;"
 						></image>
 					</view>
 					<!-- 图片描述 -->
 					<view class="guess-content" style="margin-left:20upx;margin-top:0;">
-						<span :class="{Skeleton:!loaded}" style="font-size: 28upx;color:#fff;">{{item.title}}</span>
-						<text :class="{Skeleton:!loaded}" style="font-size:24upx;color:#999999;margin-top:12upx;">{{item.consume}} {{item.amount}}</text>
-						<span :class="{Skeleton:!loaded}" style="color:#DA53A2;position:relative;">
+						<span style="font-size: 28upx;color:#fff;">{{item.title}}</span>
+						<text style="font-size:24upx;color:#999999;margin-top:12upx;">{{item.consume}} {{item.amount}}</text>
+						<span style="color:#DA53A2;position:relative;">
 							<span style="font-size:24upx;margin-right:8upx;display: inline-block;font-family:'Montserrat-Bold';">{{item.symbol}}</span>
 							<span style="display: inline-block;font-family:'Montserrat-Bold';">{{item.price.split('.')[0]}}</span>
 							<span style="font-size:24upx;display: inline-block;font-family:'Montserrat-Bold';">{{item.price.split('.')[1]?'.'+item.price.split('.')[1]:''}}</span>
@@ -60,14 +58,14 @@
 			<view class="finish">
 				<view class="price">
 					<span class="cash">
-						<span style="font-size: 20upx;color:#999999">现金：</span>
-						<span style="font-size: 20upx;color:#DA53A2;font-family:'Montserrat-Bold';">￥</span>
-						<span style="font-size: 24upx;color:#DA53A2;font-family:'Montserrat-Bold';">6444.</span>
-						<span style="font-size: 20upx;color:#DA53A2;font-family:'Montserrat-Bold';">12</span>
+						<span style="font-size: 24upx;color:#999999">现金：</span>
+						<span style="font-size: 24upx;color:#DA53A2;font-family:'Montserrat-Bold';">￥</span>
+						<span style="font-size: 28upx;color:#DA53A2;font-family:'Montserrat-Bold';">6444.</span>
+						<span style="font-size: 24upx;color:#DA53A2;font-family:'Montserrat-Bold';">12</span>
 					</span>
 					<span>
-						<span style="font-size: 20upx;color:#999999;">积分：</span>
-						<span style="font-size: 20upx;color:#fff;">4000</span>
+						<span style="font-size: 24upx;color:#999999;">积分：</span>
+						<span style="font-size: 24upx;color:#fff;">4000</span>
 					</span>
 				</view>
 				<fun-button value="提交订单" width="240upx" url="../pay-order/pay-order"></fun-button>
@@ -97,34 +95,44 @@
 					},
 					
 				},
-				data:{
-					guessList:[{},{},{}],
-				}
+				guessList: [{
+						src: '../../static/bg/iphonex.png',
+						src1:'../../static/bg/checkbox.png',
+						title: 'Apple iPhone X (A1865) 256GB 深空灰色 移动联通电信4G手机',
+						consume:'消耗积分',
+						amount:'4000',
+						symbol:"￥",
+						price:'6444.13',
+						number:'0'
+					},
+					{
+						src: '../../static/bg/p30.png',
+						src1:'../../static/bg/check.png',
+						title: '华为P30 (A1865) 256GB 深空灰色 移动联通电信4G手机',
+						consume:'消耗积分',
+						amount:'4000',
+						symbol:"￥",
+						price:'4999.21',
+						number:'0',
+					},
+					{
+						src: '../../static/bg/apple.png',
+						src1:'../../static/bg/checkbox.png',
+						title: 'Apple iPhone X(A1865) 256GB 深空灰色 移动联通电信4G手机',
+						consume:'消耗积分',
+						amount:'4000',
+						symbol:"￥",
+						price:'4999.21',
+						number:'0',
+					},
+				],
 			};
 		},
 		onPageScroll(val){
 			this.scroll = val.scrollTop;
 		},
-		async onLoad(){
-			let detailData = await this.$api.json('detailData');
-			let shareList = await this.$api.json('shareList');
-			this.loaded = true;
-			this.data = detailData;
-			this.shareList = shareList;
-			uni.setNavigationBarTitle({
-				title: detailData.title
-			})
-		},
 		methods:{
-			imageOnLoad(key,index){
-				this.$set(this.data[key][index], 'loaded', 'loaded');
-			},
-			changeEpd(index){
-				let list = this.data.episodeList;
-				let epd = list[index];
-				this.$api.msg(`切换到第${epd}项`);
-				this.currentEpd = epd;
-			},
+			
 		}
 	}
 </script>
@@ -211,6 +219,10 @@
 				flex-direction: column;
 				align-content: center;
 				align-items: flex-end;
+				span{
+					display: inline-block;
+					line-height:32upx;
+				}
 			}
 		}
 	}
