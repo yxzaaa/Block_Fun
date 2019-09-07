@@ -48,7 +48,9 @@
 										</view>
 									</view>
 									<view class="debit-btn">
-										<button>借款</button>
+										<navigator :url="'../borrowpage/borrowpage?id='+index">
+											<view>借款</view>
+										</navigator>
 									</view>
 								</view>
 							</block>
@@ -83,7 +85,9 @@
 										</view>
 									</view>
 									<view class="debit-btn">
-										<button>投资</button>
+										<navigator :url="'../investpage/investpage?id='+index">
+											<view>投资</view>
+										</navigator>
 									</view>
 								</view>
 							</block>
@@ -189,7 +193,7 @@
 			display:flex;
 			justify-content:flex-end;
 			
-			button{
+			view{
 				width:192upx;
 				height:64upx;
 				background: #DA53A2;
