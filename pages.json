@@ -222,6 +222,10 @@
             "path" : "pages/buyusdt/buyusdt",
             "style" : {}
         }
+        ,{
+            "path" : "pages/paymethods/paymethods",
+            "style" : {}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",

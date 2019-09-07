@@ -98,7 +98,7 @@
 	}
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 	.horizon-list{
 		padding:40upx 0upx;
 		.horizon-list-item{

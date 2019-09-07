@@ -33,6 +33,14 @@
 			<image class="icon-img" src="../../static/icons/back.png" />
 		</view>
 		<view class="right-btn-list">
+			<view
+				@click="navigatorBack(buttons && buttons.setting)"
+				:class="['icon-box',buttons && buttons.share && buttons.share.type=='circle'?'circle':'']" 
+				v-if="buttons && buttons.setting"
+				:style="{backgroundColor:buttons && buttons.setting && buttons.setting.type=='circle'?'rgba(0,0,0,'+(backOpacity-priviteOpacity)+')':'transparent'}"
+			>
+				<image class="icon-img" src="../../static/icons/icon_settings.png" />
+			</view>
 			<view 
 				:class="['icon-box',buttons && buttons.share && buttons.share.type=='circle'?'circle':'']" 
 				v-if="buttons && buttons.share"
@@ -123,6 +131,8 @@
 					uni.navigateBack({
 						delta:1
 					})
+				}else if(obj.text === 'handle'){
+					this.$emit('handle',obj.classify)
 				}else{
 					uni.navigateTo({
 						url:obj.url

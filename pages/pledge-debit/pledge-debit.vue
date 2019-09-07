@@ -8,6 +8,9 @@
 			:buttons="navButtons"
 		/>
 		<view class="app-container full">
+			<view class="fiexd-btn" @click="openVip()">
+				<image :src="imageLib.add"></image>
+			</view>
 			<view class="fix-tabs-box">
 				<view class="fix-tabs-item">
 					<text :class="{active:activeTab == 0}" @click="toggleTab(0)">我要借款</text>
@@ -20,7 +23,7 @@
 				<swiper-item>
 					<scroll-view scroll-y='true' style="width:100%;height:100%;">
 						<view style="padding:40upx;padding-bottom:0px;">
-							<block v-for="(item,index) in dataList" :key="index">
+							<block v-for="(item,index) in borrowList" :key="index">
 								<view class="debitbox">
 									<view class="debit-info">
 										<view class="debit">
@@ -55,7 +58,7 @@
 				<swiper-item>
 					<scroll-view scroll-y='true' style="width:100%;height:100%;">
 						<view style="padding:40upx;padding-bottom:0px;">
-							<block v-for="(item,index) in dataList" :key="index">
+							<block v-for="(item,index) in investList" :key="index">
 								<view class="debitbox">
 									<view class="debit-info">
 										<view class="debit">
@@ -88,9 +91,6 @@
 					</scroll-view>
 				</swiper-item>
 			</swiper>
-			<view class="addbtn" style="width:96upx;height:96upx;">
-				<image src="../../static/bg/addbtn.png" style="width:96upx;height:96upx;"></image>
-			</view>
 		</view>
 	</view>
 </template>
@@ -114,8 +114,14 @@
 						text:'取消'
 					},		
 				},
-				dataList:[
+				imageLib:{
+					add:'../../static/icons/icon_add.png',
+				},
+				borrowList:[
 					{},{},{},{}
+				],
+				investList:[
+					{},{},{}
 				]
 			}
 		},
@@ -196,9 +202,22 @@
 			
 		}
 	}
-	.addbtn{
+	.fiexd-btn{
 		position: fixed;
-		bottom:136upx;
 		right:70upx;
+		bottom:120upx;
+		background: #fff;
+		width:98upx;
+		height:96upx;
+		border-radius: 48upx;
+		box-shadow: 0px 0px 10px rgba(0, 9, 33, 0.4);
+		display:flex;
+		justify-content:center;
+		align-items:center;
+		z-index:998;
+		image{
+			width:64upx;
+			height:64upx;
+		}
 	}
 </style>

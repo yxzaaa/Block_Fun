@@ -45,17 +45,19 @@
 						</view>
 						<view class="horizon-list-item">
 							<view class="left-item"><text class="left-item-name">付款方式</text></view>
-							<view class="right-item" style="height:48upx;">
+							<view class="right-item" style="height:48upx;" @click="link('../paymethods/paymethods')">
 								<text>请选择</text>
 								<image :src="imageLib.more"></image>
 							</view>
 						</view>
 						<view class="horizon-list-item">
 							<view class="left-item"><text class="left-item-name">付款期限</text></view>
-							<view class="right-item" style="height:48upx;">
-								<text>15分钟</text>
-								<image :src="imageLib.more"></image>
-							</view>
+							<picker @change="payTimeChange" :value="currPayTime" :range="currTimes" mode="selector">
+								<view class="right-item" style="height:48upx;">
+									<text>{{currTimes[currPayTime]}}分钟</text>
+									<image :src="imageLib.more"></image>
+								</view>
+							</picker>
 						</view>
 					</view>
 				</view>
@@ -166,8 +168,12 @@
 					more:'../../static/icons/more.png'
 				},
 				currCountType:0,
+				currPayTime:0,
 				countTypes:[
 					'USDT','Forest','Xdag'
+				],
+				currTimes:[
+					'15','20','30'
 				]
 			};
 		},
@@ -178,9 +184,18 @@
 			countTypeChange(e){
 				this.currCountType = e.target.value;
 			},
+			payTimeChange(e){
+				console.log(e);
+				this.currPayTime = e.target.value;
+			},
 			message(){
 				uni.navigateTo({
 					url:'../message/message'
+				})
+			},
+			link(url){
+				uni.navigateTo({
+					url
 				})
 			}
 		}

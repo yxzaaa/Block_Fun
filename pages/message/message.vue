@@ -5,7 +5,7 @@
 		<view class="app-container full">
 			<view class="fun-card" style="margin:30upx 40upx;width:670upx;">
 				<view class="fun-card-item">
-					<textarea name="" id="" cols="30" rows="10" style="color:#fff;" maxlength="100" @input="checkLength"></textarea>
+					<textarea name="" id="" cols="30" rows="10" style="color:#fff;font-size: 32upx;" maxlength="100" @input="checkLength"></textarea>
 					<view style="color:#999;text-align: right;font-size: 24upx;">{{length}} / {{max}}</view>
 				</view>
 				<view class="submit-btn" @click="saveMessage">
