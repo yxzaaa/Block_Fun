@@ -57,7 +57,23 @@
 				</view>
 			</view>
 		</view>
-				
+		<view class="button-group">
+			<view class="finish">
+				<view class="price">
+					<span class="cash">
+						<span style="font-size: 20upx;color:#999999">现金：</span>
+						<span style="font-size: 20upx;color:#DA53A2;font-family:'Montserrat-Bold';">￥</span>
+						<span style="font-size: 24upx;color:#DA53A2;font-family:'Montserrat-Bold';">6444.</span>
+						<span style="font-size: 20upx;color:#DA53A2;font-family:'Montserrat-Bold';">12</span>
+					</span>
+					<span>
+						<span style="font-size: 20upx;color:#999999;">积分：</span>
+						<span style="font-size: 20upx;color:#fff;">4000</span>
+					</span>
+				</view>
+				<fun-button value="提交订单" width="240upx" url="../order-management/order-management"></fun-button>
+			</view>
+		</view>
 	</view>
 				
 		
@@ -66,10 +82,12 @@
 	import UniNavBar from '@/components/uni-nav-bar/uni-nav-bar.vue';
 	import UniBackground from '@/components/uni-background/uni-background.vue';
 	import share from '@/components/share';
+	import FunButton from '@/components/fun-button.vue';
 	export default {
 		components:{
 			UniNavBar,
 			UniBackground,
+			FunButton
 		},
 		data() {
 			return {
@@ -169,7 +187,28 @@
 			}
 		}
 	}
-	
+	.button-group{
+		width:750upx;
+		height:120upx;
+		position:fixed;
+		bottom:0;
+		background:#2F282B;
+		padding:20upx 40upx;
+		display:flex;
+		justify-content:flex-end;
+		
+		.finish{
+			display: flex;
+			align-items: center;
+			.price{
+				display: flex;
+				margin-right:20upx;
+				flex-direction: column;
+				align-content: center;
+				align-items: flex-end;
+			}
+		}
+	}
 	
 		
 </style>

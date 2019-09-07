@@ -20,25 +20,21 @@
 				<text class="tit">所属区域</text>
 				<input class="input" type="text" v-model="addressData.name" placeholder="请选择市区" placeholder-class="placeholder" />
 				
-				<!-- <text @click="chooseLocation" class="input">
-					{{addressData.addressName}}
-				</text> -->
-				<!-- <text class="yticon icon-shouhuodizhi"></text> -->
 			</view>
 			<view class="row b-b"> 
 				<text class="tit">详细地址</text>
 				<input class="input" type="text" v-model="addressData.area" placeholder="请选择市区" placeholder-class="placeholder" />
 			</view>
 			
-			
-	<!-- 		<button class="add-btn" @click="confirm">提交</button> -->
 		</view>
-		<view class="default" style="margin-left:40upx;">
+		<view class="default" style="margin-left:40upx;display: flex;align-items: center;">
 			<image src="../../static/bg/Group.png" style="width:40upx;height:40upx;"></image>
-				<navigator url='../confirm-order/confirm-order'>
+				<view>
 					<text style="color:#fff;font-size: 24upx;">设为默认</text>
-					
-				</navigator>
+				</view>
+		</view>
+		<view class="button-group">
+			<fun-button value="保存并使用" width="670upx"  large url="../confirm-order/confirm-order"></fun-button>
 		</view>
 	</view>
 </template>
@@ -46,10 +42,12 @@
 <script>
 	import UniNavBar from '@/components/uni-nav-bar/uni-nav-bar.vue';
 	import UniBackground from '@/components/uni-background/uni-background.vue';
+	import FunButton from '@/components/fun-button.vue';
 	export default {
 		components:{
 			UniNavBar,
 			UniBackground,
+			FunButton
 		},
 		data() {
 			return {
@@ -186,5 +184,15 @@
 		background-color: $base-color;
 		border-radius: 10upx;
 		box-shadow: 1px 2px 5px rgba(219, 63, 96, 0.4);
+	}
+	.button-group{
+		width:750upx;
+		height:120upx;
+		position:fixed;
+		bottom:0;
+		background:#2F282B;
+		padding:20upx 40upx;
+		display:flex;
+		justify-content:space-between;
 	}
 </style>
