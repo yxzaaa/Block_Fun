@@ -34,8 +34,8 @@
 				</view>
 			</view>
 		</view>
-		<view class="managebox">
-			<view class="manage">
+		<view class="managebox" url="../order-manage-all/order-manage-all">
+			<navigator class="manage">
 				<span class="title">订单管理</span>
 				<view>
 					<span class="goodsinfo">
@@ -44,7 +44,7 @@
 					</span>
 					<image src="../../static/bg/message.png" style="width:72upx;height:72upx;"></image>
 				</view>
-			</view>
+			</navigator>
 			<view class="manage">
 				<span class="title">购物车</span>
 				<view>
