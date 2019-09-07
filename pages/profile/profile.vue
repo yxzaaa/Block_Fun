@@ -14,7 +14,7 @@
 					<span class="user" style="margin-right:44upx;font-size:24upx;font-family: Montserrat-bold;color:#999999;">
 						UID：100001
 					</span>
-					<span style="font-size:24upx;font-family: Montserrat-bold;color:#999999;border:1px solid #999999;padding:4upx 20upx;">一键复制</span>
+					<span style="font-size:24upx;color:#999999;border:1px solid #999999;padding:4upx 20upx;">一键复制</span>
 				</span>
 			</view>
 		</view>
