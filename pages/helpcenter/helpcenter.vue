@@ -7,7 +7,7 @@
 			:opacity="scroll"
 			:buttons="navButtons"
 		/>
-		<view style="font-family: PingFang SC;font-size: 16px;color:#fff;margin:210upx 30upx 0;">一、钱包板块</view>
+		<view style="font-size: 16px;color:#fff;margin:210upx 30upx 0;">一、钱包板块</view>
 		<view class="helpbox">
 			<view class="help">
 				<span class="title">1.钱包转让</span>
@@ -79,7 +79,7 @@
 				</span>
 			</view>
 		</view>
-		<view style="font-family: PingFang SC;font-size: 16px;color:#fff;margin:34upx 30upx 0;">二、矿池板块</view>
+		<view style="font-size: 16px;color:#fff;margin:34upx 30upx 0;">二、矿池板块</view>
 		<view class="helpbox" style="width:690upx;height:632upx;">
 			<view class="help" style="">
 				<span class="title">1.闪挖</span>
@@ -145,12 +145,10 @@
 		width:690upx;
 		height:1908upx;
 		background: #2D1F25;
-		opacity: 0.8;
 		border-radius: 8upx;
 		margin:34upx 30upx 54upx;
 		padding:54upx 30upx 46upx;
 		.title{
-			font-family: Noto Sans S Chinese;
 			font-size: 30upx;	
 			color: #FFFFFF;
 			opacity: 0.5;
@@ -166,7 +164,6 @@
 			border-bottom:1px solid rgba(255,255,255,0.1);
 			margin-top:34upx;
 			span{
-				font-family: Noto Sans S Chinese;
 				font-size: 28upx;
 				color: #FFFFFF;
 			}

@@ -7,12 +7,12 @@
 			:opacity="scroll"
 			:buttons="navButtons"
 		/>
-		<view style="width:120upx;height:120upx;margin:216upx 316upx 32upx;">
-			<image src="../../static/bg/logo.png" style="width:120upx;height:120upx;"></image>
+		<view style="width:124upx;height:124upx;margin:216upx 316upx 32upx;">
+			<image src="../../static/bg/logo.png" style="width:124upx;height:124upx;"></image>
 		</view>
-		<view style="margin:0 310upx 12upx;color:#fff;font-family: Montserrat-Bold;font-weight: 600;font-size: 28upx;">Blockfun</view>
-		<view style="margin:0 346upx 28upx;font-size: 20upx;color:#fff;width:60upx;height:24upx;">V1.0.1</view>
-		<view style="width:670upx;height:240upx;color:#fff;font-family: Noto Sans S Chinese;font-size: 26upx;margin:0 40upx 90upx;line-height: 48upx;">Blockfun，是一款专门为Forest/Xdag这类优质创新资产而生的矿池全生态产品，产品涵盖移动轻钱包、矿池管理、矿机购买、云算力租赁、闪电挖矿、智能锁仓、场外交易、抵押借贷等，努力为矿工用户们提供更加全面高效的矿圈全场景服务。</view>
+		<view style="margin:0 310upx 12upx;color:#fff;font-weight: 600;font-size: 28upx;">Blockfun</view>
+		<view style="margin:0 346upx 28upx;font-size: 24upx;color:#fff;width:60upx;height:24upx;">V1.0.1</view>
+		<view style="width:670upx;height:240upx;color:#fff;font-size: 26upx;margin:0 40upx 90upx;line-height: 48upx;">Blockfun，是一款专门为Forest/Xdag这类优质创新资产而生的矿池全生态产品，产品涵盖移动轻钱包、矿池管理、矿机购买、云算力租赁、闪电挖矿、智能锁仓、场外交易、抵押借贷等，努力为矿工用户们提供更加全面高效的矿圈全场景服务。</view>
 		<view class="savebox">
 			<view class="design">
 				<view class="left">
@@ -93,7 +93,6 @@
 		width:670upx;
 		height:482upx;
 		background: #2D1F25;
-		opacity: 0.8;
 		border-radius: 4px;
 		margin:0 40upx;
 		padding:40upx 30upx;
@@ -119,7 +118,6 @@
 					margin-right: 40upx;					
 				}
 				span{
-					font-family: Noto Sans S Chinese;
 					font-size:28upx;
 					color: #FFFFFF;
 				}
@@ -133,8 +131,7 @@
 					height:26upx;					
 				}
 				span{
-					margin-right: 20upx;
-					font-family: PingFang SC;
+					margin-right: 24upx;
 					font-size: 24upx;
 					color: #FFFFFF;
 					opacity: 0.5;

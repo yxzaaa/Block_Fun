@@ -9,7 +9,7 @@
 				:opacity="scroll"
 				:buttons="navButtons"
 			/>
-			<navigator class="tosite" url="../pay-order/pay-order">
+			<navigator class="tosite" url="../address/addressManage">
 				<view class="site">
 					<span class="person-info">
 						<span class="name-phone">
@@ -21,7 +21,7 @@
 				</view>
 				<span style="border-left:1px solid rgba(255,255,255,0.4);display: block;padding-left:40upx;font-size:24upx;color:#DA53A2;font-family: PingFang SC;width:80upx;">编辑</span>
 			</navigator>
-			<navigator class="tosite" url="../choose-address/choose-address" style="padding-top:100upx;">
+			<navigator class="tosite" url="../address/addressManage" style="padding-top:100upx;">
 				<view class="site">
 					<span class="person-info">
 						<span class="name-phone">
@@ -34,16 +34,23 @@
 				<span style="border-left:1px solid rgba(255,255,255,0.4);display: block;padding-left:40upx;font-size:24upx;color:#DA53A2;font-family: PingFang SC;width:80upx;">编辑</span>
 				
 			</navigator>
+			<view class="fixed-buttons">
+				<view class="button-group">
+					<fun-button value="创建新地址" width="670upx"  large url="../address/addressManage"></fun-button>
+				</view>
+			</view>
 	</view>
 </template>
 
 <script>
 	import UniBackground from '@/components/uni-background/uni-background.vue';
 	import UniNavBar from '@/components/uni-nav-bar/uni-nav-bar.vue';
+	import FunButton from '@/components/fun-button.vue';
 	export default {
 		components:{
 			UniNavBar,
 			UniBackground,
+			FunButton
 		},
 		data() {
 			return {
@@ -100,5 +107,8 @@
 			}
 		}
 		
+	}
+	.button-group{
+		width:670upx;
 	}
 </style>

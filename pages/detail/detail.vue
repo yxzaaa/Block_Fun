@@ -8,13 +8,11 @@
 		/>
 		<view class="app-container fixbutton">
 			<swiper class="carousel" indicator-dots=true circular=true interval="3000" duration="700">
-				<swiper-item v-for="(item,index) in data.imgList" :key="index">
+				<swiper-item v-for="(item,index) in imgList" :key="index">
 					<view class="image-wrapper">
 						<image
 							:src="item.src" 
-							:class="item.loaded" 
 							mode="aspectFill"
-							@load="imageOnLoad('imgList', index)" 
 							style="width:100%;height:738upx;"
 						></image>
 					</view>
@@ -32,25 +30,25 @@
 			</view> -->
 			<view class="info">
 				<view class="title">
-					<text :class="{Skeleton:!loaded}" style="margin-top:40upx;">
-						<span style="font-size:30upx;margin-right:10upx;font-family:'Montserrat-Bold';">{{data.symbol}}</span>
-						<span style="font-size:40upx;font-family:'Montserrat-Bold';">{{data.money.split('.')[0]}}</span>
-						<span style="font-size: 30upx;font-family:'Montserrat-Bold';">{{data.money.split('.')[1]?'.' + data.money.split('.')[1]:''}}</span>
+					<text style="margin-top:40upx;">
+						<span style="font-size:30upx;margin-right:10upx;font-family:'Montserrat-Bold';">{{symbol}}</span>
+						<span style="font-size:40upx;font-family:'Montserrat-Bold';">{{money.split('.')[0]}}</span>
+						<span style="font-size: 30upx;font-family:'Montserrat-Bold';">{{money.split('.')[1]?'.' + money.split('.')[1]:''}}</span>
 					</text>
 					
-					<text :class="{Skeleton:!loaded}" style="color:#999999;font-size:24upx;margin-top:16upx;">{{data.consume}} {{data.amount}}</text>
-					<text :class="{Skeleton:!loaded}" style="background:#DA53A2;height:32upx;width:64upx;text-align: center;font-size:24upx;color:#fff;margin-top:16upx;">{{data.character}}</text>
-					<text :class="{Skeleton:!loaded}" style="color:#fff;font-size: 32upx;margin-top:16upx;">{{data.title}}</text>
-					<text :class="{Skeleton:!loaded}" style="color:#999999;font-size: 24upx;margin-top:16upx;width:670upx;height:322upx;line-height:44upx;">{{data.content}}</text>
+					<text style="color:#999999;font-size:24upx;margin-top:16upx;">{{consume}} {{amount}}</text>
+					<text style="background:#DA53A2;height:32upx;width:64upx;text-align: center;font-size:24upx;color:#fff;margin-top:16upx;">{{character}}</text>
+					<text style="color:#fff;font-size: 32upx;margin-top:16upx;">{{title}}</text>
+					<text style="color:#999999;font-size: 24upx;margin-top:16upx;width:670upx;height:322upx;line-height:44upx;">{{content}}</text>
 				</view>
 			</view>
 			
 			<!-- 相关推荐-->
 			<view class="guess">
-				<view class="section-tit" style="float:left;">相关推荐</view>
+				<view class="section-tit">相关推荐</view>
 				<view class="guess-list">
 					<view 
-						v-for="(item, index) in data.guessList" :key="index"
+						v-for="(item, index) in guessList" :key="index"
 						class="guess-item"
 						style="padding-top:16upx;"
 					>
@@ -58,16 +56,14 @@
 						<view class="image-wrapper">
 							<image 
 								:src="item.src" 
-								:class="item.loaded" 
 								mode="aspectFill"
-								@load="imageOnLoad('guessList', index)" 
 							></image>
 						</view>
 						<!-- 图片描述 -->
 						<view class="guess-content" style="margin-left:20upx;margin-top:0;">
-							<span class='title clamp' :class="{Skeleton:!loaded}" style="font-size:24upx;color:#fff;white-space: normal;width:448upx;height:88upx;">{{item.title}}</span>
-							<span class="clamp" :class="{Skeleton:!loaded}" style="font-size:24upx;color:#999999;margin-top:14upx;">{{item.consume}} {{item.amount}}</span>
-							<span class="clamp" :class="{Skeleton:!loaded}" style="margin-top:8upx;color:#DA53A2;font-family:'Montserrat-Bold';">
+							<span class='title clamp' style="font-size:24upx;color:#fff;white-space: normal;width:448upx;height:88upx;">{{item.title}}</span>
+							<span class="clamp" style="font-size:24upx;color:#999999;margin-top:14upx;">{{item.consume}} {{item.amount}}</span>
+							<span class="clamp" style="margin-top:8upx;color:#DA53A2;font-family:'Montserrat-Bold';">
 								<span style="font-size:24upx;margin-right:8upx;font-family:'Montserrat-Bold';">{{item.symbol}}</span>
 								<span style="font-family:'Montserrat-Bold';">{{item.price.split('.')[0]}}</span>
 								<span style="font-size:24upx;font-family:'Montserrat-Bold';">{{item.price.split('.')[1]?'.'+item.price.split('.')[1]:''}}</span>
@@ -85,17 +81,10 @@
 				</view>
 				
 				<view class="button-group" style="width:500upx;">
-					<fun-button value="加入购物车" type="light" width="240upx" large url="../pay-result/pay-result"></fun-button>
-					<fun-button value="立即购买" width="240upx" large url="../pay-result/pay-result"></fun-button>
+					<fun-button value="加入购物车" type="light" width="240upx" large></fun-button>
+					<fun-button value="立即购买" width="240upx" large url="../order-management/order-management"></fun-button>
 				</view>
-				
 			</view>
-			<!-- 分享 -->
-			<share 
-				ref="share" 
-				:contentHeight="580"
-				:shareList="shareList"
-			></share>
 		</view>
 		
 	</view>
@@ -118,10 +107,59 @@
 				scroll:0,
 				loaded: false,
 				currentEpd: 1,
-				data: {
-					guessList: [{},{},{},{}] 
-				},
-				shareList: [],
+				symbol:"￥",
+				money: '6044.13',
+				consume: '消耗积分',
+				amount:'4000',
+				favorite: true,
+				character:"日用",
+				title:"日本ANESSA安耐晒进口金平安热沙防晒乳防水隔离SPF50+60ml",
+				content:"防晒霜，是指添加了能阻隔或吸收紫外线的防晒剂来达到防治肌肤被晒黑、晒伤的化妆品、根据防晒原理可将防晒霜分为物理防晒霜、化学防晒霜、防晒霜需要根据具体的对象来选择不同SPF或PA值的产品。以达到防晒的目的。防晒霜的作用原理是将皮肤与紫外线隔离开来。防晒乳跟防晒霜，主要区别在于物理性状，霜剂一般的含水量在60%左右，看上去比较“稠”，呈膏状；而乳液，含水量在70%以上，看上去比较稀，有流动性。",
+				imgList: [
+					{
+						src: '../../static/bg/detail1.png'
+					},
+					{
+						src: 'http://img.pconline.com.cn/images/upload/upc/tx/itbbs/1309/06/c4/25310541_1378426131583.jpg'
+					},
+					{
+						src: 'http://img.pconline.com.cn/images/upload/upc/tx/photoblog/1610/26/c4/28926240_1477451226577_mthumb.jpg'
+					},
+					{
+						src: 'http://picture.ik123.com/uploads/allimg/190219/12-1Z219105139.jpg'
+					}, 
+				],
+				guessList: [{
+						src: '../../static/bg/iphonex.png',
+						src1:'../../static/bg/checkbox.png',
+						title: 'Apple iPhone X (A1865) 256GB 深空灰色 移动联通电信4G手机',
+						consume:'消耗积分',
+						amount:'4000',
+						symbol:"￥",
+						price:'6444.13',
+						number:'0'
+					},
+					{
+						src: '../../static/bg/p30.png',
+						src1:'../../static/bg/check.png',
+						title: '华为P30 (A1865) 256GB 深空灰色 移动联通电信4G手机',
+						consume:'消耗积分',
+						amount:'4000',
+						symbol:"￥",
+						price:'4999.21',
+						number:'0',
+					},
+					{
+						src: '../../static/bg/apple.png',
+						src1:'../../static/bg/checkbox.png',
+						title: 'Apple iPhone X(A1865) 256GB 深空灰色 移动联通电信4G手机',
+						consume:'消耗积分',
+						amount:'4000',
+						symbol:"￥",
+						price:'4999.21',
+						number:'0',
+					},
+				],
 				navButtons:{
 					back:{
 						type:'circle',
@@ -147,42 +185,11 @@
 		onPageScroll(val){
 			this.scroll = val.scrollTop;
 		},
-		async onLoad(){
-			let detailData = await this.$api.json('detailData');
-			let shareList = await this.$api.json('shareList');
-			this.loaded = true;
-			this.data = detailData;
-			this.shareList = shareList;
-			uni.setNavigationBarTitle({
-				title: detailData.title
-			})
+		onLoad(){
 		},
 		methods:{
-			imageOnLoad(key,index){
-				this.$set(this.data[key][index], 'loaded', 'loaded');
-			},
-			changeEpd(index){
-				let list = this.data.episodeList;
-				let epd = list[index];
-				this.$api.msg(`切换到第${epd}项`);
-				this.currentEpd = epd;
-			},
-			//分享
-			share(){
-				this.$refs.share.toggleMask();	
-			},
-			//收藏
-			favorite(){
-				this.data.favorite = !this.data.favorite;
-			}
+			
 		},
-		//处理遮罩层物理返回键
-		onBackPress(){
-			if(this.$refs.share.show){
-				this.$refs.share.toggleMask();
-				return true;
-			}
-		}
 	}
 </script>
 
@@ -246,9 +253,6 @@
 				font-size: $font-sm;
 				color: $font-color-light;
 				margin-top: 4upx;
-				&.Skeleton{
-					width:220upx;
-				}
 			}
 		} 
 		
@@ -262,12 +266,7 @@
 			font-size: 46upx;
 			color: $font-color-base;
 			padding: 10upx 12upx;
-			&.active{
-				color: #ff4443;
-			}
-			&:nth-child(2) {
-				font-size: 50upx;
-			}
+			
 		}
 	}
 
@@ -280,7 +279,7 @@
 	.guess {
 		display: flex;
 		flex-direction: column;
-		justify-content: center;
+		justify-content: flex-start;
 		align-items: center;
 		padding: 30upx 40upx 10upx;
 		margin-top: 16upx;

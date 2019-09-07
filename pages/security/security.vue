@@ -8,26 +8,31 @@
 			:buttons="navButtons"
 		/>
 		<view class="savebox">
-			<view class="design">
-				<view class="left">
-					<image src="../../static/bg/password.png"></image>
-					<span>支付密码</span>
+			<navigator url="../amendpaypassword/amendpaypassword">
+				<view class="design">
+					<view class="left">
+						<image src="../../static/bg/password.png"></image>
+						<span>支付密码</span>
+					</view>
+					<view class="right">
+						<span>修改</span>
+						<image src="../../static/bg/right.png"></image>
+					</view>
 				</view>
-				<view class="right">
-					<span>修改</span>
-					<image src="../../static/bg/right.png"></image>
+			</navigator>
+			<navigator url="../forgetpaypassword/forgetpaypassword">
+				<view class="design">
+					<view class="left">
+						<image src="../../static/bg/lock.png"></image>
+						<span>登录密码</span>
+					</view>
+					<view class="right">
+						<span>修改</span>
+						<image src="../../static/bg/right.png"></image>
+					</view>
 				</view>
-			</view>
-			<view class="design">
-				<view class="left">
-					<image src="../../static/bg/lock.png"></image>
-					<span>登录密码</span>
-				</view>
-				<view class="right">
-					<span>修改</span>
-					<image src="../../static/bg/right.png"></image>
-				</view>
-			</view>
+			</navigator>
+			
 			<view class="design">
 				<view class="left">
 					<image src="../../static/bg/finger.png"></image>
@@ -86,7 +91,6 @@
 		width:670upx;
 		height:482upx;
 		background: #2D1F25;
-		opacity: 0.8;
 		border-radius: 4px;
 		margin:216upx 40upx;
 		padding:40upx 30upx;

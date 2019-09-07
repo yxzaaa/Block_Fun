@@ -7,7 +7,7 @@
 			:opacity="scroll"
 			:buttons="navButtons"
 		/>
-		<view style="margin:220upx 30upx 0;font-size:24upx;font-family: Noto Sans S Chinese;color:#fff;opacity: 0.5;">
+		<view style="margin:224upx 30upx 0;font-size:24upx;color:#fff;opacity: 0.5;">
 			总资产
 		</view>
 		<view class="fortune" style="display: flex;justify-content: space-between;width:750upx;padding:0 30upx;margin-top: 16upx;align-items: flex-end;">
@@ -15,10 +15,10 @@
 				<span style="font-size: 36upx;color:#fff;font-family: Montserrat-Bold;margin-right:10upx;">$</span>
 				<span style="font-size: 60upx;color:#fff;font-family: Montserrat-Bold">6888.68</span>
 			</span>
-			<span style="font-size:24upx;font-family: Noto Sans S Chinese;color:#fff;opacity: 0.5;">资产类型3种</span>
+			<span style="font-size:24upx;color:#fff;opacity: 0.5;">资产类型3种</span>
 		</view>
 		<view class="fortunetype">
-			<view style="font-size:32upx;font-family: PingFang SC;color:#fff;margin:116upx 30upx 0;">
+			<view style="font-size:32upx;color:#fff;margin:116upx 30upx 0;">
 				资产类型：<span>矿机</span>
 			</view>
 			<view class="typeinfo">
@@ -31,14 +31,14 @@
 					<span class="numb">10</span>
 				</view>
 				<view>
-					<span class="type">矿机总价值<span style="font-size: 20upx;margin-left:10upx;">($)</span>
+					<span class="type">矿机总价值<span style="font-size: 24upx;margin-left:10upx;">($)</span>
 					</span>
 					<span class="numb">16000</span>
 				</view>
 			</view>
 		</view>
 		<view class="fortunetype">
-			<view style="font-size:32upx;font-family: PingFang SC;color:#fff;margin:0 30upx 0;">
+			<view style="font-size:32upx;color:#fff;margin:0 30upx 0;">
 				资产类型：<span>USDT</span>
 			</view>
 			<view class="typeinfo">
@@ -51,14 +51,14 @@
 					<span class="numb">10</span>
 				</view>
 				<view>
-					<span class="type">币种总价值<span style="font-size: 20upx;margin-left:10upx;">($)</span>
+					<span class="type">币种总价值<span style="font-size: 24upx;margin-left:10upx;">($)</span>
 					</span>
 					<span class="numb">16000</span>
 				</view>
 			</view>
 		</view>
 		<view class="fortunetype">
-			<view style="font-size:32upx;font-family: PingFang SC;color:#fff;margin:0 30upx 0;">
+			<view style="font-size:32upx;color:#fff;margin:0 30upx 0;">
 				资产类型：<span>运算力</span>
 			</view>
 			<view class="typeinfo">
@@ -71,7 +71,7 @@
 					<span class="numb">10</span>
 				</view>
 				<view>
-					<span class="type">资产总价值<span style="font-size: 20upx;margin-left:10upx;">($)</span>
+					<span class="type">资产总价值<span style="font-size: 24upx;margin-left:10upx;">($)</span>
 					</span>
 					<span class="numb">16000</span>
 				</view>
@@ -96,7 +96,8 @@
 				},
 				navButtons:{
 					back:{
-						type:'normal'
+						type:'normal',
+						text:'取消'
 					},
 					textbtn:{
 						text:'账单',
@@ -119,7 +120,7 @@
 		width:690upx;
 		height:212upx;
 		margin:24upx 30upx 54upx;
-		padding:34upx 36upx 42upx 38upx;
+		padding:40upx;
 		background: #2D1F25;
 		display: flex;
 		justify-content: space-between;
@@ -129,13 +130,11 @@
 			align-items: center;
 			justify-content: space-between;
 			.type{
-				font-family: PingFang SC;
 				font-size: 28upx;
 				color: #FFFFFF;			
 				opacity: 0.5;
 			}
 			.numb{
-				font-family: Montserrat;
 				font-style: normal;
 				font-weight: 600;
 				font-size: 28upx;

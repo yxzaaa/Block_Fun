@@ -46,8 +46,10 @@
 				</span>
 			</view>
 		</view>
-		<view class="button-group">
-			<fun-button value="现金支付" width="670upx" class="funbtn" url="../pay-result/pay-result"></fun-button>
+		<view class="fixed-buttons">
+			<view class="button-group">
+				<fun-button value="现金支付" width="670upx" large url="../pay-result/pay-result"></fun-button>
+			</view>
 		</view>
 	</view>
 </template>
@@ -113,7 +115,6 @@
 	}
 	.payStyle{
 		width:670upx;
-		height:228upx;
 		background:#2D1F25;
 		margin-top:148upx;
 		margin-left:40upx;
@@ -148,13 +149,6 @@
 		}
 	}
 	.button-group{
-		width:100%;
-		height:120upx;
-		background:#2F282B;
-		position:fixed;
-		bottom:0;
-		left:0;
-		padding:20upx 40upx;
-		
+		width:670upx;
 	}
 </style>

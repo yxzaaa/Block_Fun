@@ -80,7 +80,7 @@
 					},
 					textbtn:{
 						text:"完成",
-						url:"../favorite/favorite-manage"
+						url:"../cart1/cart1"
 					},
 					
 				},

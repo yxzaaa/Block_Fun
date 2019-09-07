@@ -7,31 +7,34 @@
 			:opacity="scroll"
 			:buttons="navButtons"
 		/>
-		<view class="idbox">
-			<view class="idcard">
-				<view class="cardbox">
-					<view>
-						<image src="../../static/bg/idcard1.png"></image>
-						<span>身份证正面</span>
+		<view class="app-container full">
+			<view class="idbox">
+				<view class="idcard">
+					<view class="cardbox">
+						<view>
+							<image src="../../static/bg/idcard1.png"></image>
+							<span>身份证正面</span>
+						</view>
+						<view>
+							<image src="../../static/bg/idcard2.png"></image>
+							<span>身份证反面</span>
+						</view>
 					</view>
-					<view>
-						<image src="../../static/bg/idcard2.png"></image>
-						<span>身份证反面</span>
+					<view class="person-card">
+						<image src="../../static/bg/photo.png"></image>
+						<span>手持身份证拍照</span>
 					</view>
 				</view>
-				<view class="person-card">
-					<image src="../../static/bg/photo.png"></image>
-					<span>手持身份证拍照</span>
+				<view class="idtext">
+					<span>身份证姓名</span>
+					<input type="text" value="请填写真实姓名">
+				</view>
+				<view class="idtext" style="margin-top:34upx;">
+					<span>身份证号码</span>
+					<input type="text" value="请填写15位或18位身份证号">
 				</view>
 			</view>
-			<view class="idtext">
-				<span>身份证姓名</span>
-				<input type="text" value="请填写真实姓名">
-			</view>
-			<view class="idtext" style="margin-top:34upx;">
-				<span>身份证号码</span>
-				<input type="text" value="请填写15位或18位身份证号">
-			</view>
+			<view class="commit">提交</view>
 		</view>
 	</view>
 	
@@ -69,11 +72,9 @@
 <style lang="scss" scoped>
 	.idbox{
 		width:670upx;
-		height:900upx;
 		background:#2D1F25;
-		opacity: 0.8;
 		border-radius:8upx;
-		margin:218upx 40upx 120upx;
+		margin:0upx 40upx 124upx;
 		padding:58upx 30upx;
 		.idcard{
 			display: flex;
@@ -101,7 +102,6 @@
 						margin-bottom: 4upx;
 					}
 					span{
-						font-family: PingFang SC;
 						font-size: 24upx;
 						color: #FFFFFF;
 						opacity: 0.5;
@@ -124,7 +124,6 @@
 					margin-bottom: 4upx;
 				}
 				span{
-					font-family: PingFang SC;
 					font-size: 24upx;
 					color: #FFFFFF;
 					opacity: 0.5;
@@ -134,7 +133,6 @@
 		.idtext{
 			span{
 				color:#fff;
-				font-family: PingFang SC;
 				font-size: 28upx;
 			}
 			input{
@@ -144,10 +142,21 @@
 				height:88upx;
 				color:#fff;
 				opacity: 0.5;
-				margin-top:20upx;
+				margin-top:24upx;
 				padding:28upx 30upx;
 				font-size:24upx;
 			}
 		}
+	}
+	.commit{
+		width:670upx;
+		height:80upx;
+		margin:120upx 40upx;
+		background:#DA53A2;
+		text-align: center;
+		line-height:80upx;
+		color:#fff;
+		font-size: 28upx;
+		border-radius: 2000upx;
 	}
 </style>

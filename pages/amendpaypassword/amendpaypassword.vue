@@ -18,6 +18,7 @@
 			<view></view>
 		</view>
 		<view style="margin:0 40upx;color:#DA53A2;font-family: PingFang SC;font-size: 28upx;">忘记密码？</view>
+		<view class="commit">确认</view>
 	</view>
 </template>
 
@@ -65,5 +66,16 @@
 			opacity: 0.1;
 			border-radius: 4upx;
 		}
+	}
+	.commit{
+		width:670upx;
+		height:80upx;
+		margin:80upx 40upx;
+		background:#DA53A2;
+		text-align: center;
+		line-height:80upx;
+		color:#fff;
+		font-size: 28upx;
+		border-radius: 2000upx;
 	}
 </style>

@@ -390,24 +390,6 @@
 		border-radius: 8upx;
 	}
 
-	/* 图片载入替代方案 */
-	.image-wrapper {
-		font-size: 0;
-		background: #f3f3f3;
-		border-radius: 8upx;
-
-		image {
-			width: 100%;
-			height: 100%;
-			transition: .6s;
-			opacity: 0;
-
-			&.loaded {
-				opacity: 1;
-			}
-		}
-	}
-
 	.clamp {
 		overflow: hidden;
 		text-overflow: ellipsis;
