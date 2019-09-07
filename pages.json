@@ -230,6 +230,14 @@
             "path" : "pages/editpaymethod/editpaymethod",
             "style" : {}
         }
+        ,{
+            "path" : "pages/borrowpage/borrowpage",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/investpage/investpage",
+            "style" : {}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",
