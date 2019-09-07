@@ -13,7 +13,7 @@
 						<view class="right-item">
 							<image :src="imageLib.check" v-if="item.status == 'canUse' && item.checked == 0 && !editing" @click="setChecked(index)"></image>
 							<image :src="imageLib.checked" v-if="item.status == 'canUse' && item.checked == 1 && !editing"></image>
-							<text v-if="item.status == 'noUse' || editing">{{item.status == 'noUse'?'去填写':'去修改'}}</text>
+							<text v-if="item.status == 'noUse' || editing" :style="{color:item.status == 'noUse'?'#fff':'rgba(255,255,255,0.5)'}" @click="editPay(item.name)">{{item.status == 'noUse'?'未填写':'已填写'}}</text>
 							<image :src="imageLib.more" v-if="item.status == 'noUse' || editing"></image>
 						</view>
 					</view>
@@ -90,6 +90,11 @@
 				if(res == 'setting'){
 					this.editing = this.editing?false:true;
 				}
+			},
+			editPay(name){
+				uni.navigateTo({
+					url:'../editpaymethod/editpaymethod?name='+name
+				})
 			}
 		}
 	}
