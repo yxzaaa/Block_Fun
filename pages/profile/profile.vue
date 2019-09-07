@@ -14,7 +14,7 @@
 					<span class="user" style="margin-right:44upx;font-size:24upx;font-family: Montserrat-bold;color:#999999;">
 						UID：100001
 					</span>
-					<span style="font-size:24upx;color:#999999;border:1px solid #999999;padding:4upx 20upx;border-radius: 6upx;">一键复制</span>
+					<span style="font-size:24upx;color:#999999;border:1px solid #999999;padding:4upx 20upx;">一键复制</span>
 				</span>
 			</view>
 		</view>
@@ -34,8 +34,8 @@
 				</view>
 			</view>
 		</view>
-		<view class="managebox" url="../order-manage-all/order-manage-all">
-			<navigator class="manage">
+		<view class="managebox">
+			<view class="manage">
 				<span class="title">订单管理</span>
 				<view>
 					<span class="goodsinfo">
@@ -44,7 +44,7 @@
 					</span>
 					<image src="../../static/bg/message.png" style="width:72upx;height:72upx;"></image>
 				</view>
-			</navigator>
+			</view>
 			<view class="manage">
 				<span class="title">购物车</span>
 				<view>
@@ -158,6 +158,7 @@
 			.id{
 				font-family: Montserrat-bold;
 				font-style: normal;
+				font-weight: 600;
 				font-size: 32upx;
 				color:#fff;
 			}
@@ -189,6 +190,7 @@
 				span{
 					font-size:24upx;
 					color: #DA53A2;
+					font-family:  PingFang SC;
 				}
 				
 			}
@@ -226,14 +228,15 @@
 					margin-right:12upx;
 					display: block;
 					color: #DA53A2;
-					font-family: 'Montserrat-Bold';
+					font-family: Montserrat;
 					font-style: normal;
 					font-weight: 600;
-					font-size: 24upx;
+					font-size: 20upx;
 				}
 				.text{
 					color:#999999;
-					font-size: 24upx;
+					font-family: PingFang SC;
+					font-size: 20upx;
 				}
 			}
 		}
@@ -277,9 +280,9 @@
 		}
 	}
 	.exit{
-		width:670upx;
+		width:630upx;
 		height:88upx;
-		margin:80upx 40upx;
+		margin:120upx 60upx 190upx;
 		background: #2D1F25;
 		opacity: 0.8;
 		border-radius: 4px;
