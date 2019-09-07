@@ -93,7 +93,7 @@
 					{
 						name:'抵押借贷',
 						iconSrc:'../../static/icons/jiedai.png',
-						link:'../lockposition/lockposition'
+						link:'../pledge-debit/pledge-debit'
 					},
 					{
 						name:'场外交易',
@@ -103,7 +103,7 @@
 					{
 						name:'信任转让',
 						iconSrc:'../../static/icons/zhuanrang.png',
-						link:'../lockposition/lockposition'
+						link:'../assignment/assignment'
 					},
 				],
 				walletList:[

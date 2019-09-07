@@ -6,7 +6,6 @@
 			:opacity="scroll"
 			title="游戏"
 			textColor="#fff"
-			
 		/>
 		<swiper class="carousel" indicator-dots=true circular=true interval="3000" duration="700">
 			<swiper-item v-for="(item,index) in data.imgList" :key="index">
@@ -22,7 +21,7 @@
 			</swiper-item>
 		</swiper>
 		<view style="padding:60upx 40upx 40upx;display: flex;justify-content: space-between;align-items: center;">
-			<span style="font-family: PingFang SC;font-size: 32upx;color:#fff;">游戏圈</span>
+			<span style="font-size: 32upx;color:#fff;">游戏圈</span>
 			<span style="display: flex; align-items: center;">
 				<span style="color:#fff;opacity: 0.5;font-size: 20upx;margin-right:4upx;">更多</span>
 				<image src="../../static/bg/right2.png" style="width:16upx;height:32upx;"></image>
@@ -169,7 +168,6 @@
 			span{
 				color:#fff;
 				font-size:24upx;
-				font-family: PingFang SC;
 				text-align: center;
 				margin:24upx 0 36upx;
 			}

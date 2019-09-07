@@ -14,7 +14,7 @@
 					<span class="user" style="margin-right:44upx;font-size:24upx;font-family: Montserrat-bold;color:#999999;">
 						UID：100001
 					</span>
-					<span style="font-size:24upx;color:#999999;border:1px solid #999999;padding:4upx 20upx;">一键复制</span>
+					<span style="font-size:24upx;color:#999999;border:1px solid #999999;padding:4upx 20upx;border-radius: 6upx;">一键复制</span>
 				</span>
 			</view>
 		</view>
@@ -158,7 +158,6 @@
 			.id{
 				font-family: Montserrat-bold;
 				font-style: normal;
-				font-weight: 600;
 				font-size: 32upx;
 				color:#fff;
 			}
@@ -190,7 +189,6 @@
 				span{
 					font-size:24upx;
 					color: #DA53A2;
-					font-family:  PingFang SC;
 				}
 				
 			}
@@ -228,15 +226,14 @@
 					margin-right:12upx;
 					display: block;
 					color: #DA53A2;
-					font-family: Montserrat;
+					font-family: 'Montserrat-Bold';
 					font-style: normal;
 					font-weight: 600;
-					font-size: 20upx;
+					font-size: 24upx;
 				}
 				.text{
 					color:#999999;
-					font-family: PingFang SC;
-					font-size: 20upx;
+					font-size: 24upx;
 				}
 			}
 		}
@@ -280,9 +277,9 @@
 		}
 	}
 	.exit{
-		width:630upx;
+		width:670upx;
 		height:88upx;
-		margin:120upx 60upx 190upx;
+		margin:80upx 40upx;
 		background: #2D1F25;
 		opacity: 0.8;
 		border-radius: 4px;
