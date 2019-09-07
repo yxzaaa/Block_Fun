@@ -1,36 +1,56 @@
 <template>
 	<view class="container">
 		<uni-background src="../../static/bg1.jpg"/>
-		<uni-nav-bar title="我要借款" textColor="#fff" :opacity="scroll" layout="center" :buttons="navButtons"></uni-nav-bar>
+		<uni-nav-bar title="发布借贷挂单" textColor="#fff" :opacity="scroll" layout="center" :buttons="navButtons"></uni-nav-bar>
 		<div class="app-container full fixbutton">
+			<view class="modal-box" v-if="showModal">
+				<view class="modal">
+					<view class="modal-top-item">
+						<view class="modal-title">预计放款金额</view>
+						<view class="modal-content">
+							<view style="font-size: 24upx;padding-top:10upx;text-align: left;">1.质押率：Forest 的质押率为 50%，即放款比例为本金的50%；</view>
+							<view style="font-size: 24upx;padding-top:10upx;text-align: left;">2.补仓线：Forest 的补仓线为 75%，抵押市值到达 75% 后，会通知借款方补仓；</view>
+							<view style="font-size: 24upx;padding-top:10upx;text-align: left;">3.平仓线：Forest 的平仓线为 60%，抵押市值到达 60% 后，投资人有权进行平仓；</view>
+						</view>
+					</view>
+					<view class="modal-btns">
+						<view style="border-left:1px solid #eee;color:#0A61C9;width:100%;" @click="showModal = false">关闭</view>
+					</view>
+				</view>
+			</view>
 			<view class="fixed-buttons">
 				<view class="button-group">
 					<fun-button 
-						value="确定抵押" 
+						value="立即发布" 
 						width="670upx"  
 						large 
 					></fun-button>
 				</view>
+				<view class="certs">
+					<image :src="checkCert?imageLib.certChecked:imageLib.certCheck" class="check-cert"></image>
+					<span class="cert-text">我已经阅读并同意 <span class="cert-name">《用户协议》</span> 和 <span class="cert-name">《质押合同》</span></span>
+				</view>
 			</view>
-			<view class="user-info" style="padding-top:40upx;">
-				<text>总利息</text>
-			</view>
-			<view class="user-count">
-				<text style="font-family: 'Montserrat-Bold';font-size:64upx;">12</text>
+			<view class="user-count" style="padding-top:20upx;">
+				<text style="font-family: 'Montserrat-Bold';font-size:64upx;">800.00</text>
 				<text>USDT</text>
 			</view>
-			<view class="user-info">
-				<text style="color:rgba(255,255,255,0.5);font-size: 26upx;">日利率0.1%</text>
+			<view class="user-info" @click="showInfo">
+				<text style="color:rgba(255,255,255,0.5);font-size: 26upx;">预计放款金额</text>
+				<image style="width:36upx;height:36upx;margin-left:8upx;" :src="imageLib.info"></image>
 			</view>
 			<view style="padding:40upx;">
 				<view class="fun-card">
 					<view class="fun-card-item">
 						<view class="horizon-list-item">
 							<view class="left-item">
-								<text class="left-item-label">Forest 单价</text>
+								<text class="left-item-label">交易类型</text>
 							</view>
-							<view class="right-item">
-								<text class="left-item-name">0.168 USDT</text>
+							<view class="right-item" style="width:272upx;">
+								<view class="radio-box">
+									<text style="width:50%;" class="active">借款</text>
+									<text style="width:50%;">投资</text>
+								</view>
 							</view>
 						</view>
 						<view class="horizon-list-item">
@@ -43,43 +63,57 @@
 						</view>
 						<view class="horizon-list-item">
 							<view class="left-item">
-								<text class="left-item-label">投资周期</text>
+								<text class="left-item-label">抵押币种</text>
 							</view>
 							<view class="right-item">
-								<text class="left-item-name">15 天</text>
+								<text class="left-item-name">Forest</text>
 							</view>
 						</view>
 						<view class="horizon-list-item">
 							<view class="left-item">
-								<text class="left-item-label">抵押总量</text>
+								<text class="left-item-label">Forest参考价格</text>
 							</view>
 							<view class="right-item">
-								<text class="left-item-name">10000</text>
+								<text class="left-item-name">0.1667 USDT</text>
 							</view>
 						</view>
 						<view class="horizon-list-item">
 							<view class="left-item">
-								<text class="left-item-label">我要借款</text>
+								<text class="left-item-label">抵押单价</text>
 							</view>
 							<view class="right-item">
-								<input style="font-size: 26upx;color:#fff;text-align: right;" type="text" placeholder="请输入您的借款金额"/>
-							</view>
-						</view>
-						<view style="width:100%;height:3upx;background:rgba(255,255,255,0.2);margin:20upx 0upx;"></view>
-						<view class="horizon-list-item">
-							<view class="left-item">
-								<text class="left-item-label">需要抵押</text>
-							</view>
-							<view class="right-item">
-								<text class="left-item-name">15 个</text>
+								<input style="font-size: 26upx;color:#fff;text-align: right;" type="text" placeholder="请输入抵押单价"/>
 							</view>
 						</view>
 						<view class="horizon-list-item">
 							<view class="left-item">
-								<text class="left-item-label">还款方式</text>
+								<text class="left-item-label">抵押数量</text>
 							</view>
 							<view class="right-item">
-								<text class="left-item-name">先息后本</text>
+								<input style="font-size: 26upx;color:#fff;text-align: right;" type="text" placeholder="请输入抵押数量"/>
+							</view>
+						</view>
+						<!-- <view style="width:100%;height:3upx;background:rgba(255,255,255,0.2);margin:20upx 0upx;"></view> -->
+						<view class="horizon-list-item">
+							<view class="left-item">
+								<text class="left-item-label">抵押周期</text>
+							</view>
+							<view class="right-item" style="height:48upx;">
+								<picker @change="pickerChange" :value="currClass" :range="classLib" mode="selector">
+									<view 
+									style="padding:0upx 20upx;border-radius: 6upx;height:100%;background: #2D1F25;line-height: 48upx;color:#fff;display: flex;justify-content: center;align-items: center;">
+										<text style="#999;">{{classLib[currClass]}}</text>
+										<image :src="imageLib.sanjiao" style="width:20upx;height:14upx;"></image>
+									</view>
+								</picker>
+							</view>
+						</view>
+						<view class="horizon-list-item">
+							<view class="left-item">
+								<text class="left-item-label">预计利息</text>
+							</view>
+							<view class="right-item">
+								<text class="left-item-name">0.8 USDT</text>
 							</view>
 						</view>
 						<view class="horizon-list-item">
@@ -110,27 +144,54 @@
 		data() {
 			return {
 				scroll:0,
+				showModal:false,
+				checkCert:true,
 				navButtons:{
 					back:{
 						type:'normal',
 						text:'取消'
 					}
 				},
-				erweima:'../../static/image.png',
+				imageLib:{
+					info:'../../static/icons/icon_info.png',
+					sanjiao:'../../static/icons/sanjiao.png',
+					certCheck:'../../static/icons/cert_check.png',
+					certChecked:'../../static/icons/cert_checked.png',
+				},
 				userInfo:{
 					avatar:'../../static/avatar/fortoken.png',
 					username:'Xdog',
 					usercount:'+8089.23'
-				}
+				},
+				currClass:0,
+				classLib:[
+					'全部','进行中','仲裁中','已结束'
+				]
 			};
 		},
 		onPageScroll(val){
 			this.scroll = val.scrollTop;
 		},
+		methods:{
+			pickerChange(e){
+				this.currClass = e.target.value;
+			},
+			showInfo(){
+				this.showModal = true;
+			}
+		}
 	}
 </script>
 
 <style lang="scss" scoped>
+	.radio-box{
+		border-radius: 10upx;
+		overflow: hidden;
+		margin:0px;
+		text{
+			border-radius: 0px;
+		}
+	}
 	.user-info{
 		width:750upx;
 		display:flex;

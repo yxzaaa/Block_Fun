@@ -572,6 +572,26 @@
 		padding:20upx 40upx;
 		background: #2F282B;
 		z-index:997;
+		.certs{
+			width:100%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			padding:10upx 0;
+			padding-top:30upx;
+			.check-cert{
+				width:24upx;
+				height:24upx;
+				margin-right:10upx;
+			}
+			.cert-text{
+				color:#999;
+				font-size:24upx;
+				.cert-name{
+					color:#DA53A2;
+				}
+			}
+		}
 	}
 	.fun-table{
 		width:100%;
@@ -793,6 +813,79 @@
 			&.active{
 				background:#fff;
 				color:#DA53A2;
+			}
+		}
+	}
+	.modal-box{
+		position: fixed;
+		top:0px;
+		left:0px;
+		width:750upx;
+		height:100vh;
+		background: rgba(0,0,0,.5);
+		z-index:1000;
+		display:flex;
+		justify-content:center;
+		align-items:center;
+		.modal{
+			width:560upx;
+			border-radius: 12upx;
+			background: #fff;
+			overflow: hidden;
+			.modal-top-item{
+				width:100%;
+				padding:20upx 40upx;
+				.modal-title{
+					width:100%;
+					line-height: 64upx;
+					font-size: 30upx;
+					color:#000;
+					padding-bottom:20upx;
+					text-align: center;
+					font-weight: bold;
+				}
+				.modal-content{
+					width:100%;
+					line-height: 48upx;
+					font-size: 26upx;
+					color:#000;
+					.input-box{
+						width:100%;
+						display:flex;
+						justify-content:center;
+						align-items:center;
+						
+						input{
+							display: block;
+							width:300upx;
+							height:64upx;
+							line-height: 64upx;
+							color:#DA53A2;
+							background: #F2F8FF;
+							text-align: center;
+							font-weight: bold;
+							font-size: 36upx;
+							font-family:'Montserrat-Bold';
+						}
+					}
+				}
+			}
+			.modal-btns{
+				border-top:1px solid #eee;
+				width:100%;
+				display: flex;
+				justify-content: space-between;
+				view{
+					width:50%;
+					line-height: 100upx;
+					height:100upx;
+					color:#000;
+					text-align: center;
+					font-size: 32upx;
+					&:active{
+						background: #eee;
+					}
+				}
 			}
 		}
 	}

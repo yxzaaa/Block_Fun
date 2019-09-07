@@ -73,13 +73,6 @@
             "style" : {}
         },
 		{
-			"path": "pages/address/address",
-			"style": 
-			{
-				
-			}
-		},
-		{
 			"path": "pages/address/addressManage",
 			"style": 
 			{
@@ -191,10 +184,6 @@
             "style" : {}
         }
         ,{
-            "path" : "pages/payways/payways",
-            "style" : {}
-        }
-        ,{
             "path" : "pages/message/message",
             "style" : {}
         }
@@ -236,6 +225,10 @@
         }
         ,{
             "path" : "pages/investpage/investpage",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/publishborrow/publishborrow",
             "style" : {}
         }
     ],
