@@ -8,9 +8,7 @@
 					<view class="modal-top-item">
 						<view class="modal-title">请输入您的支付密码</view>
 						<view class="modal-content">
-							<view class="input-box">
-								<input maxlength='6' type="password">
-							</view>
+							<possword-inputer></possword-inputer>
 							<view style="font-size: 24upx;padding-top:20upx;text-align: center;">确定抵押后，您抵押的 Forest 将自动冻结</view>
 						</view>
 					</view>
@@ -177,11 +175,13 @@
 	import UniNavBar from '@/components/uni-nav-bar/uni-nav-bar.vue';
 	import UniBackground from '@/components/uni-background/uni-background.vue';
 	import FunButton from '@/components/fun-button.vue';
+	import PosswordInputer from '@/components/possword-inputer.vue';
 	export default{
 		components:{
 			UniNavBar,
 			UniBackground,
-			FunButton
+			FunButton,
+			PosswordInputer
 		},
 		data(){
 			return {
@@ -223,78 +223,6 @@
 			line-height: 30upx;
 			top:12upx;
 			left:0upx;
-		}
-	}
-	.modal-box{
-		position: fixed;
-		top:0px;
-		left:0px;
-		width:750upx;
-		height:100vh;
-		background: rgba(0,0,0,.5);
-		z-index:1000;
-		display:flex;
-		justify-content:center;
-		align-items:center;
-		.modal{
-			width:560upx;
-			border-radius: 12upx;
-			background: #fff;
-			overflow: hidden;
-			.modal-top-item{
-				width:100%;
-				padding:20upx 40upx;
-				.modal-title{
-					width:100%;
-					line-height: 64upx;
-					font-size: 30upx;
-					color:#000;
-					padding-bottom:20upx;
-					text-align: center;;
-				}
-				.modal-content{
-					width:100%;
-					line-height: 48upx;
-					font-size: 26upx;
-					color:#000;
-					.input-box{
-						width:100%;
-						display:flex;
-						justify-content:center;
-						align-items:center;
-						
-						input{
-							display: block;
-							width:300upx;
-							height:64upx;
-							line-height: 64upx;
-							color:#DA53A2;
-							background: #F2F8FF;
-							text-align: center;
-							font-weight: bold;
-							font-size: 36upx;
-							font-family:'Montserrat-Bold';
-						}
-					}
-				}
-			}
-			.modal-btns{
-				border-top:1px solid #eee;
-				width:100%;
-				display: flex;
-				justify-content: space-between;
-				view{
-					width:50%;
-					line-height: 100upx;
-					height:100upx;
-					color:#000;
-					text-align: center;
-					font-size: 32upx;
-					&:active{
-						background: #eee;
-					}
-				}
-			}
 		}
 	}
 	.fun-card-item{

@@ -8,7 +8,7 @@
 			:buttons="navButtons"
 		/>
 		<view class="app-container full">
-			<view class="fiexd-btn" @click="openVip()">
+			<view class="fiexd-btn" @click="publish()">
 				<image :src="imageLib.add"></image>
 			</view>
 			<view class="fix-tabs-box">
@@ -111,7 +111,7 @@
 		data() {
 			return {
 				scroll:0,
-				activeTab:1,
+				activeTab:0,
 				navButtons:{
 					back:{
 						type:'normal',
@@ -138,6 +138,11 @@
 			},
 			toggleTab(index){
 				this.activeTab = index;
+			},
+			publish(){
+				uni.navigateTo({
+					url:'../publishborrow/publishborrow'
+				})
 			}
 		}
 	}

@@ -153,7 +153,7 @@
 		}
 	}
 	.horizon-list-item{
-		padding:10upx 0upx;
+		padding:16upx 0upx;
 		display: flex;
 		justify-content: space-between;
 		align-items: center;

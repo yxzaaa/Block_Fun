@@ -73,13 +73,6 @@
             "style" : {}
         },
 		{
-			"path": "pages/address/address",
-			"style": 
-			{
-				
-			}
-		},
-		{
 			"path": "pages/address/addressManage",
 			"style": 
 			{
@@ -191,10 +184,6 @@
             "style" : {}
         }
         ,{
-            "path" : "pages/payways/payways",
-            "style" : {}
-        }
-        ,{
             "path" : "pages/message/message",
             "style" : {}
         }
@@ -239,11 +228,19 @@
             "style" : {}
         }
         ,{
+            "path" : "pages/publishborrow/publishborrow",
+            "style" : {}
+        }
+        ,{
             "path" : "pages/favorite/favorite-manage",
             "style" : {}
         }
         ,{
             "path" : "pages/cart1/cart2",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/login/login",
             "style" : {}
         }
     ],
