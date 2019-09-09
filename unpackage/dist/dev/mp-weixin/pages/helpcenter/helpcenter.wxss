@@ -1,0 +1,49 @@
+@charset "UTF-8";
+/* 页面左右间距 */
+/* 文字尺寸 */
+/*文字颜色*/
+/* 边框颜色 */
+/* 图片加载中颜色 */
+/* 行为相关颜色 */
+.helpbox.data-v-0ac9fd52 {
+  width: 690rpx;
+  height: 1908rpx;
+  background: #2D1F25;
+  border-radius: 8rpx;
+  margin: 34rpx 30rpx 54rpx;
+  padding: 54rpx 30rpx 46rpx;
+}
+.helpbox .title.data-v-0ac9fd52 {
+    font-size: 30rpx;
+    color: #FFFFFF;
+    opacity: 0.5;
+    margin-bottom: 40rpx;
+    display: block;
+}
+.helpbox .method.data-v-0ac9fd52 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-align: start;
+    -webkit-align-items: flex-start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+    width: 630rpx;
+    height: 75rpx;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: 34rpx;
+}
+.helpbox .method ._span.data-v-0ac9fd52 {
+      font-size: 28rpx;
+      color: #FFFFFF;
+}
+.helpbox .method image.data-v-0ac9fd52 {
+      width: 12rpx;
+      height: 22rpx;
+}
+

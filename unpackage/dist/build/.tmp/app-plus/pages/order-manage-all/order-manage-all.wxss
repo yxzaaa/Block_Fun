@@ -1,0 +1,89 @@
+@charset "UTF-8";
+/* 页面左右间距 */
+/* 文字尺寸 */
+/*文字颜色*/
+/* 边框颜色 */
+/* 图片加载中颜色 */
+/* 行为相关颜色 */
+.managebox.data-v-772dd282 {
+  width: 750rpx;
+  padding: 60rpx 40rpx;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.managebox .backlog.data-v-772dd282 {
+    width: 670rpx;
+    height: 40rpx;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+}
+.managebox .backlog ._span.data-v-772dd282 {
+      font-size: 28rpx;
+      color: #fff;
+}
+.managebox .goodslist.data-v-772dd282 {
+    width: 100%;
+    margin: 60rpx 0 0 0;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-flex-shrink: 0;
+        -ms-flex-negative: 0;
+            flex-shrink: 0;
+}
+.managebox .goodslist .goods.data-v-772dd282 {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      margin-bottom: 40rpx;
+}
+.managebox .goodslist .goods .image.data-v-772dd282 {
+        width: 160rpx;
+        height: 160rpx;
+        margin-right: 24rpx;
+}
+.managebox .account.data-v-772dd282 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: end;
+    -webkit-justify-content: flex-end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+}
+.button-group.data-v-772dd282 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  margin-top: 64rpx;
+}
+.button-group .funbtn1.data-v-772dd282 {
+    margin-right: 40rpx;
+}
+

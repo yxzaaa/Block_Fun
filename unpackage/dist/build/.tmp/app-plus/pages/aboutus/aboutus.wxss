@@ -1,0 +1,94 @@
+@charset "UTF-8";
+/* 页面左右间距 */
+/* 文字尺寸 */
+/*文字颜色*/
+/* 边框颜色 */
+/* 图片加载中颜色 */
+/* 行为相关颜色 */
+.savebox.data-v-0f692414 {
+  width: 670rpx;
+  height: 482rpx;
+  background: #2D1F25;
+  border-radius: 4px;
+  margin: 0 40rpx;
+  padding: 40rpx 30rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+.savebox .design.data-v-0f692414 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-align: start;
+    -webkit-align-items: flex-start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+    width: 610rpx;
+    height: 81rpx;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.savebox .design .left.data-v-0f692414 {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: center;
+      -webkit-align-items: center;
+          -ms-flex-align: center;
+              align-items: center;
+      -webkit-box-pack: justify;
+      -webkit-justify-content: space-between;
+          -ms-flex-pack: justify;
+              justify-content: space-between;
+}
+.savebox .design .left image.data-v-0f692414 {
+        width: 36rpx;
+        height: 36rpx;
+        border: 1px dashed rgba(255, 255, 255, 0.5);
+        margin-right: 40rpx;
+}
+.savebox .design .left ._span.data-v-0f692414 {
+        font-size: 28rpx;
+        color: #FFFFFF;
+}
+.savebox .design .right.data-v-0f692414 {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: center;
+      -webkit-align-items: center;
+          -ms-flex-align: center;
+              align-items: center;
+      -webkit-box-pack: justify;
+      -webkit-justify-content: space-between;
+          -ms-flex-pack: justify;
+              justify-content: space-between;
+}
+.savebox .design .right image.data-v-0f692414 {
+        width: 26rpx;
+        height: 26rpx;
+}
+.savebox .design .right ._span.data-v-0f692414 {
+        margin-right: 24rpx;
+        font-size: 24rpx;
+        color: #FFFFFF;
+        opacity: 0.5;
+}
+

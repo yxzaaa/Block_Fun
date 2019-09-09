@@ -1,0 +1,137 @@
+@charset "UTF-8";
+/* 页面左右间距 */
+/* 文字尺寸 */
+/*文字颜色*/
+/* 边框颜色 */
+/* 图片加载中颜色 */
+/* 行为相关颜色 */
+.idbox.data-v-40e7266b {
+  width: 670rpx;
+  background: #2D1F25;
+  border-radius: 8rpx;
+  margin: 0rpx 40rpx 124rpx;
+  padding: 58rpx 30rpx;
+}
+.idbox .idcard.data-v-40e7266b {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+}
+.idbox .idcard .cardbox.data-v-40e7266b {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -webkit-flex-direction: column;
+          -ms-flex-direction: column;
+              flex-direction: column;
+      -webkit-box-pack: justify;
+      -webkit-justify-content: space-between;
+          -ms-flex-pack: justify;
+              justify-content: space-between;
+}
+.idbox .idcard .cardbox view.data-v-40e7266b {
+        width: 290rpx;
+        height: 186rpx;
+        border-radius: 8rpx;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        margin-bottom: 30rpx;
+        margin-right: 30rpx;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: column;
+            -ms-flex-direction: column;
+                flex-direction: column;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+            -ms-flex-align: center;
+                align-items: center;
+        -webkit-box-pack: center;
+        -webkit-justify-content: center;
+            -ms-flex-pack: center;
+                justify-content: center;
+}
+.idbox .idcard .cardbox view image.data-v-40e7266b {
+          width: 40rpx;
+          height: 38rpx;
+          border: 1px dashed rgba(255, 255, 255, 0.5);
+          padding: 4rpx 0;
+          margin-bottom: 4rpx;
+}
+.idbox .idcard .cardbox view ._span.data-v-40e7266b {
+          font-size: 24rpx;
+          color: #FFFFFF;
+          opacity: 0.5;
+}
+.idbox .idcard .person-card.data-v-40e7266b {
+      width: 290rpx;
+      height: 400rpx;
+      border-radius: 8rpx;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -webkit-flex-direction: column;
+          -ms-flex-direction: column;
+              flex-direction: column;
+      -webkit-box-align: center;
+      -webkit-align-items: center;
+          -ms-flex-align: center;
+              align-items: center;
+      -webkit-box-pack: center;
+      -webkit-justify-content: center;
+          -ms-flex-pack: center;
+              justify-content: center;
+}
+.idbox .idcard .person-card image.data-v-40e7266b {
+        border: 1px dashed rgba(255, 255, 255, 0.5);
+        width: 48rpx;
+        height: 48rpx;
+        margin-bottom: 4rpx;
+}
+.idbox .idcard .person-card ._span.data-v-40e7266b {
+        font-size: 24rpx;
+        color: #FFFFFF;
+        opacity: 0.5;
+}
+.idbox .idtext ._span.data-v-40e7266b {
+    color: #fff;
+    font-size: 28rpx;
+}
+.idbox .idtext input.data-v-40e7266b {
+    background: #15030B;
+    border-radius: 10rpx;
+    width: 610rpx;
+    height: 88rpx;
+    color: #fff;
+    opacity: 0.5;
+    margin-top: 24rpx;
+    padding: 28rpx 30rpx;
+    font-size: 24rpx;
+}
+.commit.data-v-40e7266b {
+  width: 670rpx;
+  height: 80rpx;
+  margin: 120rpx 40rpx;
+  background: #DA53A2;
+  text-align: center;
+  line-height: 80rpx;
+  color: #fff;
+  font-size: 28rpx;
+  border-radius: 2000rpx;
+}
+

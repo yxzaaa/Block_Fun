@@ -1,0 +1,54 @@
+@charset "UTF-8";
+/* 页面左右间距 */
+/* 文字尺寸 */
+/*文字颜色*/
+/* 边框颜色 */
+/* 图片加载中颜色 */
+/* 行为相关颜色 */
+.guess.data-v-6b341071 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 30rpx 40rpx 10rpx;
+  margin-top: 150rpx;
+}
+.guess-list.data-v-6b341071 {
+  margin: 0 auto;
+  width: 670rpx;
+  height: 160rpx;
+}
+.guess-item.data-v-6b341071 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  padding-bottom: 40rpx;
+}
+.guess-item .image-wrapper.data-v-6b341071 {
+    width: 160rpx;
+    height: 160rpx;
+    border-radius: 10rpx;
+}
+.guess-item .guess-content.data-v-6b341071 {
+    height: 160rpx;
+    width: 420rpx;
+}
+.guess-item .guess-content ._span.data-v-6b341071, .guess-item .guess-content text.data-v-6b341071 {
+      display: block;
+}
+

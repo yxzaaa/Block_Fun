@@ -1,0 +1,61 @@
+@charset "UTF-8";
+/* 页面左右间距 */
+/* 文字尺寸 */
+/*文字颜色*/
+/* 边框颜色 */
+/* 图片加载中颜色 */
+/* 行为相关颜色 */
+.handler-status.data-v-83eff604 {
+  padding: 30rpx 0rpx;
+}
+.handler-status .right-status text.data-v-83eff604 {
+    display: inline-block;
+}
+.user-info.data-v-83eff604 {
+  width: 750rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 20rpx 0;
+}
+.user-info image.data-v-83eff604 {
+    width: 48rpx;
+    height: 48rpx;
+    margin-right: 20rpx;
+}
+.user-info text.data-v-83eff604 {
+    color: #fff;
+    font-size: 32rpx;
+}
+.user-count.data-v-83eff604 {
+  width: 750rpx;
+  text-align: center;
+  padding: 30rpx 0;
+}
+.user-count text.data-v-83eff604 {
+    color: #DA53A2;
+    font-size: 52rpx;
+    font-family: 'Montserrat-Bold';
+}
+.erweima.data-v-83eff604 {
+  width: 200rpx;
+  height: 200rpx;
+  background: #fff;
+  border-radius: 12rpx;
+  margin: auto;
+  padding: 20rpx;
+}
+.erweima image.data-v-83eff604 {
+    width: 100%;
+    height: 100%;
+}
+

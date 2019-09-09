@@ -1,0 +1,61 @@
+@charset "UTF-8";
+/* 页面左右间距 */
+/* 文字尺寸 */
+/*文字颜色*/
+/* 边框颜色 */
+/* 图片加载中颜色 */
+/* 行为相关颜色 */
+.fun-btn {
+  height: 64rpx;
+  line-height: 64rpx;
+  font-size: 26rpx;
+  border-radius: 32rpx;
+  background: #DA53A2;
+  color: #fff;
+  padding: 0px 36rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: relative;
+}
+.fun-btn text {
+    vertical-align: middle;
+    display: inline-block;
+}
+.fun-btn .button-icon {
+    width: 24rpx;
+    height: 24rpx;
+    margin: 20rpx 0rpx;
+    margin-right: 14rpx;
+    display: inline-block;
+    vertical-align: middle;
+}
+.fun-btn.light {
+    background: #fff;
+    color: #DA53A2;
+}
+.fun-btn.text {
+    background: transparent;
+    color: #c7c7c7;
+    padding: 0px;
+}
+.fun-btn.large {
+    font-size: 30rpx;
+    line-height: 80rpx;
+    height: 80rpx;
+    border-radius: 40rpx;
+}
+.fun-btn.large .button-icon {
+    width: 30rpx;
+    height: 30rpx;
+}
+

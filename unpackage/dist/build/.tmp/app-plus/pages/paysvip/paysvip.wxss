@@ -1,0 +1,64 @@
+@charset "UTF-8";
+/* 页面左右间距 */
+/* 文字尺寸 */
+/*文字颜色*/
+/* 边框颜色 */
+/* 图片加载中颜色 */
+/* 行为相关颜色 */
+.main-title.data-v-41fb46a2 {
+  font-size: 36rpx;
+  color: #fff;
+  text-align: center;
+  line-height: 64rpx;
+  font-weight: bolder;
+  padding-bottom: 10rpx;
+}
+.main-title.gold.data-v-41fb46a2 {
+    color: #26262B;
+}
+.card-bg.data-v-41fb46a2 {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+.gold-button.data-v-41fb46a2 {
+  width: 100%;
+  border-radius: 10rpx;
+  line-height: 80rpx;
+  position: relative;
+  overflow: hidden;
+  margin-top: 20rpx;
+  text-align: center;
+}
+.gold-button image.data-v-41fb46a2 {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+.gold-button text.data-v-41fb46a2 {
+    font-weight: bold;
+}
+.section-part.data-v-41fb46a2 {
+  position: relative;
+  padding-left: 30rpx;
+}
+.section-part .list-num.data-v-41fb46a2 {
+    position: absolute;
+    line-height: 30rpx;
+    top: 12rpx;
+    left: 0rpx;
+}
+.section-describe.data-v-41fb46a2 {
+  display: block;
+  color: #26262B;
+}
+.section-part.data-v-41fb46a2 {
+  color: #CCB382;
+}
+

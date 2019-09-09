@@ -1,0 +1,118 @@
+@charset "UTF-8";
+/* 页面左右间距 */
+/* 文字尺寸 */
+/*文字颜色*/
+/* 边框颜色 */
+/* 图片加载中颜色 */
+/* 行为相关颜色 */
+.debitbox.data-v-b6bd1760 {
+  width: 670rpx;
+  background: rgba(45, 31, 37, 0.8);
+  border-radius: 10px;
+  margin-bottom: 30rpx;
+}
+.debitbox .debit-info.data-v-b6bd1760 {
+    width: 100%;
+    height: 186rpx;
+    padding: 40rpx;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+.debitbox .debit-info .debit.data-v-b6bd1760 {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -webkit-flex-direction: column;
+          -ms-flex-direction: column;
+              flex-direction: column;
+      -webkit-box-pack: justify;
+      -webkit-justify-content: space-between;
+          -ms-flex-pack: justify;
+              justify-content: space-between;
+      text-align: center;
+}
+.debitbox .debit-info .debit .text.data-v-b6bd1760 {
+        font-size: 24rpx;
+        color: #FFFFFF;
+        opacity: 0.5;
+}
+.debitbox .debit-info .debit .text ._span.data-v-b6bd1760 {
+          font-size: 24rpx;
+          color: #FFFFFF;
+          margin-left: 12rpx;
+}
+.debitbox .debit-info .debit .number.data-v-b6bd1760 {
+        margin-top: 14rpx;
+        font-family: 'Montserrat-Bold';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 40rpx;
+        color: #FFFFFF;
+}
+.debitbox .debit-info .debit .number ._span.data-v-b6bd1760 {
+          font-size: 22rpx;
+          color: #FFFFFF;
+          margin-left: 12rpx;
+}
+.debitbox .debit-btn.data-v-b6bd1760 {
+    width: 670rpx;
+    height: 123rpx;
+    padding: 29rpx 40rpx 30rpx 438rpx;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: end;
+    -webkit-justify-content: flex-end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
+}
+.debitbox .debit-btn view.data-v-b6bd1760 {
+      width: 192rpx;
+      height: 64rpx;
+      background: #DA53A2;
+      border-radius: 200rpx;
+      text-align: center;
+      line-height: 64rpx;
+      color: #FEFEFE;
+      font-size: 28rpx;
+}
+.fiexd-btn.data-v-b6bd1760 {
+  position: fixed;
+  right: 70rpx;
+  bottom: 120rpx;
+  background: #fff;
+  width: 98rpx;
+  height: 96rpx;
+  border-radius: 48rpx;
+  -webkit-box-shadow: 0px 0px 10px rgba(0, 9, 33, 0.4);
+          box-shadow: 0px 0px 10px rgba(0, 9, 33, 0.4);
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  z-index: 998;
+}
+.fiexd-btn image.data-v-b6bd1760 {
+    width: 64rpx;
+    height: 64rpx;
+}
+

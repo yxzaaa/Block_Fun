@@ -1,0 +1,170 @@
+@charset "UTF-8";
+/* 页面左右间距 */
+/* 文字尺寸 */
+/*文字颜色*/
+/* 边框颜色 */
+/* 图片加载中颜色 */
+/* 行为相关颜色 */
+.wallet-banner.data-v-5477e3d7 {
+  width: 750rpx;
+  padding: 30rpx 40rpx;
+  padding-top: 174rpx;
+  position: relative;
+}
+.wallet-banner image.data-v-5477e3d7 {
+    width: 100%;
+    height: 520rpx;
+    display: block;
+}
+.lock-total-box.data-v-5477e3d7 {
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 20rpx 0px;
+  padding-top: 40rpx;
+}
+.lock-total-box .lock-item-vertical.data-v-5477e3d7 {
+    width: 2rpx;
+    background: rgba(255, 255, 255, 0.1);
+    height: 108rpx;
+}
+.lock-total-box .lock-item-box.data-v-5477e3d7 {
+    width: 46%;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-justify-content: space-around;
+        -ms-flex-pack: distribute;
+            justify-content: space-around;
+    -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+}
+.lock-total-box .lock-item-box .lock-item-block.data-v-5477e3d7 {
+      width: 100%;
+      text-align: center;
+      padding-top: 30rpx;
+      font-size: 28rpx;
+      color: #c7c7c7;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-justify-content: space-around;
+          -ms-flex-pack: distribute;
+              justify-content: space-around;
+      -webkit-flex-wrap: wrap;
+          -ms-flex-wrap: wrap;
+              flex-wrap: wrap;
+}
+.lock-total-box .lock-item-box .lock-item.data-v-5477e3d7 {
+      width: 50%;
+      text-align: center;
+}
+.lock-total-box .lock-item-box .lock-item text.data-v-5477e3d7 {
+        display: block;
+}
+.lockpay-box.data-v-5477e3d7 {
+  width: 750rpx;
+  background: #000;
+  margin-bottom: 30rpx;
+}
+.lockpay-box .lock-table.data-v-5477e3d7 {
+    padding: 20rpx 40rpx;
+}
+.lockpay-box .lock-table ._table.data-v-5477e3d7 {
+      width: 100%;
+      border: none;
+}
+.lockpay-box .lock-table ._table ._thead ._tr.data-v-5477e3d7 {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-justify-content: space-around;
+            -ms-flex-pack: distribute;
+                justify-content: space-around;
+}
+.lockpay-box .lock-table ._table ._thead ._tr ._th.data-v-5477e3d7 {
+          border: none;
+          text-align: center;
+          line-height: 64rpx;
+          font-size: 28rpx;
+          color: #fff;
+          width: 33.3%;
+}
+.lockpay-box .lock-table ._table ._tbody ._tr.data-v-5477e3d7 {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-justify-content: space-around;
+            -ms-flex-pack: distribute;
+                justify-content: space-around;
+}
+.lockpay-box .lock-table ._table ._tbody ._tr ._td.data-v-5477e3d7 {
+          border: none;
+          text-align: center;
+          line-height: 64rpx;
+          font-size: 28rpx;
+          color: #c7c7c7;
+          width: 33.3%;
+}
+.lockpay-box .lock-tab.data-v-5477e3d7 {
+    border-bottom: 2rpx solid rgba(255, 255, 255, 0.1);
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+}
+.lockpay-box .lock-tab .lock-tab-item.data-v-5477e3d7 {
+      width: 50%;
+      text-align: center;
+}
+.lockpay-box .lock-tab .lock-tab-item text.data-v-5477e3d7 {
+        font-size: 28rpx;
+        color: #fff;
+        line-height: 80rpx;
+        height: 80rpx;
+        display: inline-block;
+}
+.lockpay-box .lock-tab .lock-tab-item.active text.data-v-5477e3d7 {
+        border-bottom: 2rpx solid #fff;
+}
+.text-vertical-top.data-v-5477e3d7 {
+  font-size: 56rpx;
+  color: #DA53A2;
+  font-family: 'Montserrat-Bold';
+}
+.text-vertical-bottom.data-v-5477e3d7 {
+  font-size: 28rpx;
+  color: #999;
+  font-family: 'Montserrat-Light';
+  line-height: 48rpx;
+}
+.text-horizon-left.data-v-5477e3d7 {
+  font-size: 28rpx;
+  color: #fff;
+  font-family: 'Montserrat-Bold';
+  display: inline-block !important;
+  padding: 0rpx 10rpx;
+}
+.text-horizon-right.data-v-5477e3d7 {
+  font-size: 24rpx;
+  color: #999;
+  font-family: 'Montserrat-Light';
+  line-height: 48rpx;
+  display: inline-block !important;
+}
+
