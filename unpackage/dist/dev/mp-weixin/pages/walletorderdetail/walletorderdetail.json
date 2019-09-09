@@ -1,8 +1,0 @@
-{
-  "usingComponents": {
-    "uni-nav-bar": "/components/uni-nav-bar/uni-nav-bar",
-    "uni-background": "/components/uni-background/uni-background",
-    "fun-button": "/components/fun-button",
-    "possword-inputer": "/components/possword-inputer"
-  }
-}

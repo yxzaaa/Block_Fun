@@ -79,9 +79,13 @@
 		justify-content: center;
 		align-items: center;
 		position:relative;
+		transition:all .1s;
 		text{
 			vertical-align:middle;
 			display: inline-block;
+		}
+		&:active{
+			opacity: 0.8;
 		}
 		.button-icon{
 			width:24upx;

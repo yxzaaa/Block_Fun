@@ -1,7 +1,0 @@
-{
-  "animationType": "slide-in-bottom",
-  "usingComponents": {
-    "uni-nav-bar": "/components/uni-nav-bar/uni-nav-bar",
-    "uni-background": "/components/uni-background/uni-background"
-  }
-}

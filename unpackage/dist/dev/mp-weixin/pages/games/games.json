@@ -1,8 +1,0 @@
-{
-  "navigationBarTitleText": "游戏",
-  "usingComponents": {
-    "share": "/components/share",
-    "uni-nav-bar": "/components/uni-nav-bar/uni-nav-bar",
-    "uni-background": "/components/uni-background/uni-background"
-  }
-}

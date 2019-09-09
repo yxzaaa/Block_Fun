@@ -1,22 +1,34 @@
 <template>
 	<view class="password-box">
-		<text class="item-text">{{password[0]}}</text>
-		<text class="item-text">{{password[1]}}</text>
-		<text class="item-text">{{password[2]}}</text>
-		<text class="item-text">{{password[3]}}</text>
-		<text class="item-text">{{password[4]}}</text>
-		<text class="item-text">{{password[5]}}</text>
-		<input type="number" class="password-input" maxlength="6" v-model="password" focus @blur="inputBlur"/>
+		<text class="item-text" :style="{width:size,height:size,background:background}">{{password[0]}}</text>
+		<text class="item-text" :style="{width:size,height:size,background:background}">{{password[1]}}</text>
+		<text class="item-text" :style="{width:size,height:size,background:background}">{{password[2]}}</text>
+		<text class="item-text" :style="{width:size,height:size,background:background}">{{password[3]}}</text>
+		<text class="item-text" :style="{width:size,height:size,background:background}">{{password[4]}}</text>
+		<text class="item-text" :style="{width:size,height:size,background:background}">{{password[5]}}</text>
+		<input type="number" class="password-input" maxlength="6" v-model="password" @blur="inputBlur" :focus="true"/>
 	</view>
 </template>
 
 <script>
 	export default {
+		props:{
+			size:{
+				type:String,
+				default:'64upx'
+			},
+			background:{
+				type:String,
+				default:'#F2F8FF'
+			}
+		},
 		data() {
 			return {
 				password:'',
 				setFocus:true
 			};
+		},
+		mounted(){
 		},
 		methods:{
 			inputBlur(){
