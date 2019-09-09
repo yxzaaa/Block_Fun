@@ -8,9 +8,7 @@
 					<view class="modal-top-item">
 						<view class="modal-title">请输入您的支付密码</view>
 						<view class="modal-content">
-							<view class="input-box">
-								<input maxlength='6' type="password">
-							</view>
+							<possword-inputer></possword-inputer>
 							<view style="font-size: 24upx;padding-top:20upx;text-align: center;">确定抵押后，您抵押的 Forest 将自动冻结</view>
 						</view>
 					</view>
@@ -177,11 +175,13 @@
 	import UniNavBar from '@/components/uni-nav-bar/uni-nav-bar.vue';
 	import UniBackground from '@/components/uni-background/uni-background.vue';
 	import FunButton from '@/components/fun-button.vue';
+	import PosswordInputer from '@/components/possword-inputer.vue';
 	export default{
 		components:{
 			UniNavBar,
 			UniBackground,
-			FunButton
+			FunButton,
+			PosswordInputer
 		},
 		data(){
 			return {
