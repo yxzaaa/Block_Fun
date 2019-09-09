@@ -1,7 +1,7 @@
 <template>
 	<view class="container">
 		<uni-background src="../../static/bg/login_bg.jpg"/>
-		<uni-nav-bar title="用户登录" textColor="#fff" layout="center"></uni-nav-bar>
+		<uni-nav-bar title="找回密码" textColor="#fff" layout="center"></uni-nav-bar>
 		<view class="app-container full">
 			<view class="logo-box">
 				<image :src="imageLib.logo"></image>
@@ -13,8 +13,13 @@
 					<input type="text" class="login-form-input" placeholder="手机号码"/>
 				</view>
 				<view class="login-form-item">
+					<image class="login-form-label" :src="imageLib.cert"></image>
+					<input type="text" class="login-form-input"  placeholder="验证码" style="width:420upx;"/>
+					<text style="width:180upx;text-align: right;color:#DA53A2;font-size: 28upx;">获取验证码</text>
+				</view>
+				<view class="login-form-item">
 					<image class="login-form-label" :src="imageLib.password"></image>
-					<input type="text" class="login-form-input"  placeholder="登录密码" password/>
+					<input type="text" class="login-form-input"  placeholder="请输入8~16位新密码" password />
 				</view>
 				<view style="padding-top:90upx;">
 					<fun-button value="登 录" large></fun-button>

@@ -16,18 +16,24 @@
 					<image class="login-form-label" :src="imageLib.password"></image>
 					<input type="text" class="login-form-input"  placeholder="登录密码" password/>
 				</view>
-				<view style="padding-top:90upx;">
-					<fun-button value="登 录" large></fun-button>
+				<view class="login-form-item">
+					<image class="login-form-label" :src="imageLib.password"></image>
+					<input type="text" class="login-form-input"  placeholder="确认密码" password/>
 				</view>
-				<view class="horizon-list">
-					<view class="horizon-list-item">
-						<view class="left-item">
-							<text class="left-item-date">忘记密码</text>
-						</view>
-						<view class="right-item">
-							<text class="right-item-text">没有账号？去注册</text>
-						</view>
-					</view>
+				<view class="login-form-item">
+					<image class="login-form-label" :src="imageLib.cert"></image>
+					<input type="text" class="login-form-input"  placeholder="验证码" style="width:420upx;"/>
+					<text style="width:180upx;text-align: right;color:#DA53A2;font-size: 28upx;">获取验证码</text>
+				</view>
+				<view class="login-form-item">
+					<image class="login-form-label" :src="imageLib.code"></image>
+					<input type="text" class="login-form-input"  placeholder="邀请码" />
+				</view>
+				<view style="padding-top:90upx;">
+					<fun-button value="注 册" large></fun-button>
+				</view>
+				<view class="horizon-list" style="text-align:center;font-size: 24upx;color:#DA53A2;">
+					<text>点击注册表示您同意《用户注册协议》</text>
 				</view>
 			</view>
 		</view>
@@ -65,7 +71,7 @@
 		justify-content: center;
 		align-items: center;
 		flex-wrap:wrap;
-		padding:60upx;
+		padding:40upx;
 		image{
 			width:120upx;
 			height:120upx;
