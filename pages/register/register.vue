@@ -1,7 +1,7 @@
 <template>
 	<view class="container">
 		<uni-background src="../../static/bg/login_bg.jpg"/>
-		<uni-nav-bar title="用户登录" textColor="#fff" layout="center"></uni-nav-bar>
+		<uni-nav-bar title="用户注册" textColor="#fff" layout="center" :buttons="navButtons"></uni-nav-bar>
 		<view class="app-container full">
 			<view class="logo-box">
 				<image :src="imageLib.logo"></image>
@@ -52,6 +52,12 @@
 		},
 		data() {
 			return {
+				navButtons:{
+					back:{
+						type:'normal',
+						text:'取消'
+					}
+				},
 				imageLib:{
 					logo:'../../static/bg/logo.png',
 					phone:'../../static/icons/icon_shoujihao.png',

@@ -10,22 +10,26 @@
 			<view class="login-form">
 				<view class="login-form-item">
 					<image class="login-form-label" :src="imageLib.phone"></image>
-					<input type="text" class="login-form-input" placeholder="手机号码"/>
+					<input type="text" class="login-form-input" placeholder="手机号码" maxlength="11" v-model="mobile"/>
 				</view>
 				<view class="login-form-item">
 					<image class="login-form-label" :src="imageLib.password"></image>
-					<input type="text" class="login-form-input"  placeholder="登录密码" password/>
+					<input type="text" class="login-form-input"  placeholder="登录密码" password maxlength="16" v-model="possword"/>
 				</view>
 				<view style="padding-top:90upx;">
-					<fun-button value="登 录" large></fun-button>
+					<fun-button value="登 录" large @handle="login"></fun-button>
 				</view>
 				<view class="horizon-list">
 					<view class="horizon-list-item">
 						<view class="left-item">
-							<text class="left-item-date">忘记密码</text>
+							<navigator url="../passwordback/passwordback">
+								<text class="left-item-date">忘记密码</text>
+							</navigator>
 						</view>
 						<view class="right-item">
-							<text class="right-item-text">没有账号？去注册</text>
+							<navigator url="../register/register">
+								<text class="right-item-text">没有账号？去注册</text>
+							</navigator>
 						</view>
 					</view>
 				</view>
@@ -52,9 +56,41 @@
 					password:'../../static/icons/icon_mima.png',
 					cert:'../../static/icons/icon_yanzhengma.png',
 					code:'../../static/icons/icon_yaoqingma.png',
-				}
+				},
+				mobile:'',
+				password:''
 			};
 		},
+		methods:{
+			login(){
+				uni.request({
+					url:this.$baseurl + '/login',
+					method:"POST",
+					data:{
+						mobile:this.mobile,
+						password:this.password
+					},
+					dataType:'json',
+					success:res=>{
+						console.log(res);
+					}
+				})
+				// if(this.username === '15275295437' && this.userpwd === '12345678'){
+				// 	uni.setStorageSync('userInfo',{
+				// 		id:1,
+				// 		username:this.username
+				// 	})
+				// 	uni.reLaunch({
+				// 		url:'../index/index'
+				// 	})
+				// }else{
+				// 	uni.showToast({
+				// 		title:'手机号或密码错误',
+				// 		icon:'none'
+				// 	})
+				// }
+			}
+		}
 	}
 </script>
 

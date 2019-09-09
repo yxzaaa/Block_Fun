@@ -31,6 +31,8 @@ const json = type=>{
 		}, 500)
 	})
 }
+//定义全局网络请求url
+const baseurl = "http://blockfuntest.dm1.in"
 
 const prePage = ()=>{
 	let pages = getCurrentPages();
@@ -46,6 +48,7 @@ Vue.config.productionTip = false
 Vue.prototype.$fire = new Vue();
 Vue.prototype.$store = store;
 Vue.prototype.$api = {msg, json, prePage};
+Vue.prototype.$baseurl = baseurl;
 
 App.mpType = 'app'
 
