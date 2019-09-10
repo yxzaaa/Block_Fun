@@ -72,13 +72,23 @@
 				this.$http({
 					url:'/member/login',
 					data:{
-						mobile:this.mobile,
+						mobile:'86'+this.mobile,
 						password:this.password
 					},
 					success:res=>{
 						console.log(res);
 						if(res.code == 200){
-							
+							uni.setStorage({
+								key: 'userInfo',
+								data:{
+									token:res.result.authorization
+								},
+								success:res=>{
+									uni.switchTab({
+										url:'../index/index'
+									})
+								}
+							})
 						}else{
 							uni.showToast({
 								title:res.error,
