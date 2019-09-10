@@ -139,7 +139,6 @@
 				display:block;
 			}
 			input{
-				font-family: Noto Sans S Chinese;
 				font-size: 24upx;
 				color: #FFFFFF;			
 				opacity: 0.5;

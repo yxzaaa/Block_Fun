@@ -10,8 +10,15 @@
 		/>
 		<view class="app-container">
 			<view class="banner-box">
-
-				<image src="../../static/bg/dream.png" style="width:100%;height:726upx"/>
+				<swiper :indicator-dots="true" :autoplay="true">
+					<block v-for="(item,index) in bannerList"
+					:key="index"
+					>
+						<swiper-item>
+							<image :src="item.src" style="width:100%;height:726upx"/>
+						</swiper-item>
+					</block>
+				</swiper>
 			</view>
 			<view class="section-header">
 				<text class="section-title" style="color:#fff;font-size: 32upx;">商品类别</text>
@@ -49,6 +56,7 @@
 		data() {
 			return {
 				scroll:0,
+				bannerList:[],
 				typeList:[
 					{	
 						id:1,

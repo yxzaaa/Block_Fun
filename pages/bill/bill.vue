@@ -14,7 +14,7 @@
 				<view class="earning" style="margin-top:40upx;">
 					<view class="earn-text">
 						<view class="earn-img" style="width:36upx;height:36upx;margin-right: 24upx;">
-							<image src="../../static/bg/dig.png" style="width:36upx;height:36upx"></image>
+							<image src="../../static/bg/dig.png" style="width:100%;height:100%"></image>
 						</view>
 						<view class="earn-pro">
 							<span style="color:#fff;font-size: 28upx;">挖矿收益</span>

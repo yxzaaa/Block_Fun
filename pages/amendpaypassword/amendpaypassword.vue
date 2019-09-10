@@ -5,10 +5,10 @@
 			:opacity="scroll"
 			:buttons="navButtons"
 		/>
-		<view style="width:288upx;height:68upx;line-height:68upx;margin:216upx 40upx 0;color:#fff;font-family: PingFang SC;font-size: 48upx;">
+		<view style="width:288upx;height:68upx;line-height:68upx;margin:216upx 40upx 0;color:#fff;font-size: 48upx;">
 			修改支付密码
 		</view>
-		<view style="width:224upx;height:40upx;line-height:40upx;margin:20upx 40upx 0;color:#fff;font-family: PingFang SC;font-size: 28upx;">请输入原支付密码</view>
+		<view style="width:224upx;height:40upx;line-height:40upx;margin:20upx 40upx 0;color:#fff;font-size: 28upx;">请输入原支付密码</view>
 		<view class="input">
 			<view></view>
 			<view></view>
@@ -17,7 +17,7 @@
 			<view></view>
 			<view></view>
 		</view>
-		<view style="margin:0 40upx;color:#DA53A2;font-family: PingFang SC;font-size: 28upx;">忘记密码？</view>
+		<view style="margin:0 40upx;color:#DA53A2;font-size: 28upx;">忘记密码？</view>
 		<view class="commit">确认</view>
 	</view>
 </template>

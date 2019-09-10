@@ -208,7 +208,6 @@
 				span{
 					font-size:24upx;
 					color: #DA53A2;
-					font-family:  PingFang SC;
 				}
 				
 			}
@@ -245,14 +244,13 @@
 					margin-right:12upx;
 					display: block;
 					color: #DA53A2;
-					font-family: Montserrat;
+					font-family: Montserrat-Bold;
 					font-style: normal;
 					font-weight: 600;
 					font-size: 24upx;
 				}
 				.text{
 					color:#999999;
-					font-family: PingFang SC;
 					font-size: 24upx;
 				}
 			}
@@ -260,7 +258,6 @@
 	}
 	.action{
 		width:670upx;
-		height:600upx;
 		background: rgba(45, 31, 37,.8);
 		border-radius: 8upx;
 		margin:40upx 40upx 0;
@@ -268,13 +265,16 @@
 		.action-item{
 			display:flex;
 			width:610upx;
-			height:81upx;
+			line-height:80upx;
+			align-items: center;
 			border-bottom:1px solid rgba(255,255,255,0.1);
 			justify-content:space-between;
 			margin-bottom:39upx;
 			view{
 				display:flex;
 				justify-content:space-between;
+				align-items:center;
+				line-heihgt:80upx;
 				image{
 					width:36upx;
 					height:36upx;
@@ -284,7 +284,6 @@
 				span{
 					font-size:28upx;
 					color: #fff;
-					font-family: PingFang SC;
 				}
 			}
 			image{

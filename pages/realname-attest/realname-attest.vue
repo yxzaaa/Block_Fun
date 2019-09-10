@@ -27,11 +27,11 @@
 				</view>
 				<view class="idtext">
 					<span>身份证姓名</span>
-					<input type="text" value="请填写真实姓名">
+					<input type="text" placeholder="请填写真实姓名">
 				</view>
 				<view class="idtext" style="margin-top:34upx;">
 					<span>身份证号码</span>
-					<input type="text" value="请填写15位或18位身份证号">
+					<input type="text" placeholder="请填写15位或18位身份证号">
 				</view>
 			</view>
 			<view class="commit">提交</view>
@@ -97,7 +97,6 @@
 					image{
 						width:40upx;
 						height:38upx;
-						border:1px dashed rgba(255,255,255,0.5);
 						padding:4upx 0;
 						margin-bottom: 4upx;
 					}
@@ -118,7 +117,6 @@
 				align-items:center;
 				justify-content:center;
 				image{
-					border:1px dashed rgba(255,255,255,0.5);
 					width:48upx;
 					height:48upx;
 					margin-bottom: 4upx;
@@ -136,14 +134,14 @@
 				font-size: 28upx;
 			}
 			input{
-				background: #15030B;
+				background: rgba(21, 3, 11,0.5);
 				border-radius:10upx;
 				width:610upx;
 				height:88upx;
-				color:#fff;
-				opacity: 0.5;
 				margin-top:24upx;
-				padding:28upx 30upx;
+				padding:0 30upx;
+				line-height:88upx;
+				color:rgba(255,255,255,0.5);
 				font-size:24upx;
 			}
 		}
