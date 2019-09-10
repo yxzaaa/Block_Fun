@@ -14,7 +14,7 @@
 				</view>
 				<view class="login-form-item">
 					<image class="login-form-label" :src="imageLib.password"></image>
-					<input type="text" class="login-form-input"  placeholder="登录密码" password maxlength="16" v-model="possword"/>
+					<input type="text" class="login-form-input"  placeholder="登录密码" password maxlength="16" v-model="password"/>
 				</view>
 				<view style="padding-top:90upx;">
 					<fun-button value="登 录" large @handle="login"></fun-button>
@@ -63,16 +63,22 @@
 		},
 		methods:{
 			login(){
-				uni.request({
-					url:this.$baseurl + '/login',
-					method:"POST",
+				this.$http({
+					url:'/member/login',
 					data:{
 						mobile:this.mobile,
 						password:this.password
 					},
-					dataType:'json',
 					success:res=>{
 						console.log(res);
+						if(res.code == 200){
+							
+						}else{
+							uni.showToast({
+								title:res.error,
+								icon:'none'
+							})
+						}
 					}
 				})
 				// if(this.username === '15275295437' && this.userpwd === '12345678'){
