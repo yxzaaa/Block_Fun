@@ -15,8 +15,8 @@
 					:key="index"
 					>
 						<swiper-item>
-							<image :src="item.src" style="width:100%;height:726upx"/>
-						</swiper-item>
+<!-- 							<image :src="item.src" style="width:100%;height:726upx"/>
+ -->						</swiper-item>
 					</block>
 				</swiper>
 			</view>
