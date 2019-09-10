@@ -61,6 +61,12 @@
 				password:''
 			};
 		},
+		onLoad(option){
+			console.log(option.register);
+			if(option.register === 'successs'){
+				
+			}
+		},
 		methods:{
 			login(){
 				this.$http({
@@ -81,20 +87,6 @@
 						}
 					}
 				})
-				// if(this.username === '15275295437' && this.userpwd === '12345678'){
-				// 	uni.setStorageSync('userInfo',{
-				// 		id:1,
-				// 		username:this.username
-				// 	})
-				// 	uni.reLaunch({
-				// 		url:'../index/index'
-				// 	})
-				// }else{
-				// 	uni.showToast({
-				// 		title:'手机号或密码错误',
-				// 		icon:'none'
-				// 	})
-				// }
 			}
 		}
 	}
