@@ -1,7 +1,7 @@
 <template>
 	<view class="container">
 		<uni-background src="../../static/bg/login_bg.jpg"/>
-		<uni-nav-bar title="用户登录" textColor="#fff" layout="center"></uni-nav-bar>
+		<uni-nav-bar title="找回密码" textColor="#fff" layout="center" :buttons="navButtons"></uni-nav-bar>
 		<view class="app-container full">
 			<view class="logo-box">
 				<image :src="imageLib.logo"></image>
@@ -10,29 +10,23 @@
 			<view class="login-form">
 				<view class="login-form-item">
 					<image class="login-form-label" :src="imageLib.phone"></image>
-					<input type="text" class="login-form-input" placeholder="手机号码" maxlength="11" v-model="mobile"/>
+					<input type="text" class="login-form-input" placeholder="手机号码" maxlength="11"/>
+				</view>
+				<view class="login-form-item">
+					<image class="login-form-label" :src="imageLib.cert"></image>
+					<input type="text" class="login-form-input"  placeholder="验证码" style="width:420upx;" maxlength="6"/>
+					<text style="width:180upx;text-align: right;color:#DA53A2;font-size: 28upx;">获取验证码</text>
 				</view>
 				<view class="login-form-item">
 					<image class="login-form-label" :src="imageLib.password"></image>
-					<input type="text" class="login-form-input"  placeholder="登录密码" password maxlength="16" v-model="password"/>
+					<input type="text" class="login-form-input"  placeholder="请输入8~16位新密码" password maxlength="16"/>
 				</view>
 				<view style="padding-top:90upx;">
-					<fun-button value="登 录" large @handle="login"></fun-button>
+					<fun-button value="确 认" large></fun-button>
 				</view>
-				<view class="horizon-list">
-					<view class="horizon-list-item">
-						<view class="left-item">
-							<navigator url="../passwordback/passwordback">
-								<text class="left-item-date">忘记密码</text>
-							</navigator>
-						</view>
-						<view class="right-item">
-							<navigator url="../register/register">
-								<text class="right-item-text">没有账号？去注册</text>
-							</navigator>
-						</view>
-					</view>
-				</view>
+				<!-- <view style="padding-top:20upx;">
+					<fun-button value="取消" type="text" color="#999" width="630upx"></fun-button>
+				</view> -->
 			</view>
 		</view>
 	</view>
@@ -50,45 +44,21 @@
 		},
 		data() {
 			return {
+				navButtons:{
+					back:{
+						type:'normal',
+						text:'取消'
+					}
+				},
 				imageLib:{
 					logo:'../../static/bg/logo.png',
 					phone:'../../static/icons/icon_shoujihao.png',
 					password:'../../static/icons/icon_mima.png',
 					cert:'../../static/icons/icon_yanzhengma.png',
 					code:'../../static/icons/icon_yaoqingma.png',
-				},
-				mobile:'',
-				password:''
+				}
 			};
 		},
-		onLoad(option){
-			console.log(option.register);
-			if(option.register === 'successs'){
-				
-			}
-		},
-		methods:{
-			login(){
-				this.$http({
-					url:'/member/login',
-					data:{
-						mobile:this.mobile,
-						password:this.password
-					},
-					success:res=>{
-						console.log(res);
-						if(res.code == 200){
-							
-						}else{
-							uni.showToast({
-								title:res.error,
-								icon:'none'
-							})
-						}
-					}
-				})
-			}
-		}
 	}
 </script>
 

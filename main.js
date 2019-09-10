@@ -31,6 +31,8 @@ const json = type=>{
 		}, 500)
 	})
 }
+//定义全局网络请求url
+const baseurl = "http://blockfuntest.dm1.in"
 
 const prePage = ()=>{
 	let pages = getCurrentPages();
@@ -41,11 +43,28 @@ const prePage = ()=>{
 	return prePage.$vm;
 }
 
+const httpRequest = (options)=>{
+	uni.request({
+		url:baseurl + options.url,
+		header:options.header || {
+			"Content-Type":"application/x-www-form-urlencoded",
+			"Authorization":uni.getStorageSync('userInfo').token || ''
+		},
+		method:options.method || "POST",
+		data:options.data,
+		dataType:'json',
+		success:res=>{
+			options.success(res.data);
+		}
+	})
+}
+
 
 Vue.config.productionTip = false
 Vue.prototype.$fire = new Vue();
 Vue.prototype.$store = store;
 Vue.prototype.$api = {msg, json, prePage};
+Vue.prototype.$http = httpRequest;
 
 App.mpType = 'app'
 

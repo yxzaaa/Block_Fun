@@ -19,6 +19,10 @@
 						this.login(res.data);
 					}
 				});
+			}else{
+				uni.navigateTo({
+					url:'/pages/login/login'
+				})
 			}
 			
 		},

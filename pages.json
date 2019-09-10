@@ -243,6 +243,14 @@
             "path" : "pages/login/login",
             "style" : {}
         }
+        ,{
+            "path" : "pages/register/register",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/passwordback/passwordback",
+            "style" : {}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",
