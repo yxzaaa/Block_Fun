@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import store from './store'
 import App from './App'
+import md5 from 'js-md5'
 
 
 import Json from './Json' //测试用数据
@@ -44,11 +45,19 @@ const prePage = ()=>{
 }
 
 const httpRequest = (options)=>{
+	var token = '';
+	if(options.apiType){
+		if(options.apiType === 'mall'){
+			token = uni.getStorageSync('userInfo').mall
+		}else if(options.apiType === 'wallet'){
+			token = uni.getStorageSync('userInfo').token
+		}
+	}
 	uni.request({
 		url:baseurl + options.url,
 		header:options.header || {
 			"Content-Type":"application/x-www-form-urlencoded",
-			"Authorization":uni.getStorageSync('userInfo').token || ''
+			"Authorization":token
 		},
 		method:options.method || "POST",
 		data:options.data,
@@ -65,6 +74,7 @@ Vue.prototype.$fire = new Vue();
 Vue.prototype.$store = store;
 Vue.prototype.$api = {msg, json, prePage};
 Vue.prototype.$http = httpRequest;
+Vue.prototype.$md5 = md5;
 
 App.mpType = 'app'
 

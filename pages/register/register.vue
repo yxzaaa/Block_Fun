@@ -81,14 +81,14 @@
 			getCode(){
 				if(this.codeDelay === 0 && this.phone.length === 11){
 					this.$http({
-						url:'/member/sendsms',
+						url:'/v1/users/register/send-code',
 						data:{
-							mobile:'86'+this.phone
+							login_name:'86'+this.phone
 						},
 						success:res=>{
 							console.log(res);
 							if(res.code == 200){
-								this.registerSid = res.result.sid;
+								// this.registerSid = res.result.sid;
 								this.codeDelay = 60;
 								this.codeTimer = setInterval(()=>{
 									if(this.codeDelay>0){
@@ -100,7 +100,7 @@
 								},1000);
 							}else{
 								uni.showToast({
-									title:res.error,
+									title:res.message,
 									icon:'none'
 								})
 							}
@@ -116,11 +116,13 @@
 			register(){
 				if(this.password === this.confirmPassword){
 					this.$http({
-						url:'/member/register',
+						url:'/v1/users/register',
 						data:{
-							sid:this.registerSid,
-							code:this.checkCode,
-							password:this.password
+							login_name:'86'+this.phone,
+							password:this.password,
+							password_hash:md5(this.password),
+							invite_code:this.visitCode,
+							validate_code:this.checkCode
 						},
 						success:res=>{
 							console.log(res);

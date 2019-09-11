@@ -70,19 +70,18 @@
 		methods:{
 			login(){
 				this.$http({
-					url:'/member/login',
+					url:'/v1/users/login',
 					data:{
-						mobile:'86'+this.mobile,
-						password:this.password
+						login_name:'86'+this.mobile,
+						password:this.password,
+						password_hash:this.$md5(this.password)
 					},
 					success:res=>{
 						console.log(res);
 						if(res.code == 200){
 							uni.setStorage({
 								key: 'userInfo',
-								data:{
-									token:res.result.authorization
-								},
+								data:res.data,
 								success:res=>{
 									uni.switchTab({
 										url:'../index/index'
@@ -91,7 +90,7 @@
 							})
 						}else{
 							uni.showToast({
-								title:res.error,
+								title:res.message,
 								icon:'none'
 							})
 						}
