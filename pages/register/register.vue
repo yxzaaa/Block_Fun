@@ -85,6 +85,9 @@
 						data:{
 							login_name:'86'+this.phone
 						},
+						header:{
+							"Content-Type":"application/x-www-form-urlencoded"
+						},
 						success:res=>{
 							console.log(res);
 							if(res.code == 200){
@@ -120,7 +123,7 @@
 						data:{
 							login_name:'86'+this.phone,
 							password:this.password,
-							password_hash:md5(this.password),
+							password_hash:this.$md5(this.password),
 							invite_code:this.visitCode,
 							validate_code:this.checkCode
 						},
