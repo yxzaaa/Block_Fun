@@ -45,19 +45,12 @@ const prePage = ()=>{
 }
 
 const httpRequest = (options)=>{
-	var token = '';
-	if(options.apiType){
-		if(options.apiType === 'mall'){
-			token = uni.getStorageSync('userInfo').mall
-		}else if(options.apiType === 'wallet'){
-			token = uni.getStorageSync('userInfo').token
-		}
-	}
 	uni.request({
 		url:baseurl + options.url,
 		header:options.header || {
 			"Content-Type":"application/x-www-form-urlencoded",
-			"Authorization":token
+			"Authorization":uni.getStorageSync('userInfo').token || '',
+			"Mall":uni.getStorageSync('userInfo').mall || ''
 		},
 		method:options.method || "POST",
 		data:options.data,

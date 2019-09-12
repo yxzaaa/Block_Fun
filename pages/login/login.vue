@@ -62,7 +62,6 @@
 			};
 		},
 		onLoad(option){
-			console.log(option.register);
 			if(option.register === 'successs'){
 				
 			}
