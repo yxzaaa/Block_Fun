@@ -163,7 +163,7 @@
 				uni.removeStorage({
 					key:'userInfo',
 					success:res=>{
-						uni.navigateTo({
+						uni.reLaunch({
 							url:'../login/login'
 						})
 					}

@@ -48,7 +48,7 @@ const httpRequest = (options)=>{
 	uni.request({
 		url:baseurl + options.url,
 		header:options.header || {
-			"Content-Type":"application/x-www-form-urlencoded",
+			"Content-Type":"application/json",
 			"Authorization":uni.getStorageSync('userInfo').token || '',
 			"Mall":uni.getStorageSync('userInfo').mall || ''
 		},

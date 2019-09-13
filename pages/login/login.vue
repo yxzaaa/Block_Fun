@@ -10,11 +10,11 @@
 			<view class="login-form">
 				<view class="login-form-item">
 					<image class="login-form-label" :src="imageLib.phone"></image>
-					<input type="text" class="login-form-input" placeholder="手机号码" maxlength="11" v-model="mobile"/>
+					<input type="number" class="login-form-input" placeholder="手机号码" maxlength="11" v-model="mobile"/>
 				</view>
 				<view class="login-form-item">
 					<image class="login-form-label" :src="imageLib.password"></image>
-					<input type="text" class="login-form-input"  placeholder="登录密码" password maxlength="16" v-model="password"/>
+					<input type="password" class="login-form-input"  placeholder="登录密码" password maxlength="16" v-model="password"/>
 				</view>
 				<view style="padding-top:90upx;">
 					<fun-button value="登 录" large @handle="login"></fun-button>

@@ -10,19 +10,19 @@
 			<view class="login-form">
 				<view class="login-form-item">
 					<image class="login-form-label" :src="imageLib.phone"></image>
-					<input type="text" class="login-form-input" placeholder="手机号码" v-model="phone"/>
+					<input type="number" class="login-form-input" placeholder="手机号码" v-model="phone"/>
 				</view>
 				<view class="login-form-item">
 					<image class="login-form-label" :src="imageLib.password"></image>
-					<input type="text" class="login-form-input"  placeholder="登录密码" password v-model="password"/>
+					<input type="password" class="login-form-input"  placeholder="登录密码" password v-model="password"/>
 				</view>
 				<view class="login-form-item">
 					<image class="login-form-label" :src="imageLib.password"></image>
-					<input type="text" class="login-form-input"  placeholder="确认密码" password v-model="confirmPassword"/>
+					<input type="password" class="login-form-input"  placeholder="确认密码" password v-model="confirmPassword"/>
 				</view>
 				<view class="login-form-item">
 					<image class="login-form-label" :src="imageLib.cert"></image>
-					<input type="text" class="login-form-input"  placeholder="验证码" style="width:420upx;" v-model="checkCode"/>
+					<input type="number" class="login-form-input"  placeholder="验证码" style="width:420upx;" v-model="checkCode"/>
 					<text style="width:180upx;text-align: center;color:#DA53A2;font-size: 28upx;" @click="getCode">
 						{{codeDelay === 0?'获取验证码':codeDelay+' s'}}
 					</text>
@@ -81,13 +81,7 @@
 			getCode(){
 				if(this.codeDelay === 0 && this.phone.length === 11){
 					this.$http({
-						url:'/v1/users/register/send-code',
-						data:{
-							login_name:'86'+this.phone
-						},
-						header:{
-							"Content-Type":"application/x-www-form-urlencoded"
-						},
+						url:'/v1/users/register/send-code?login_name='+'86'+this.phone,
 						success:res=>{
 							console.log(res);
 							if(res.code == 200){
@@ -131,11 +125,11 @@
 							console.log(res);
 							if(res.code == 200){
 								uni.navigateTo({
-									url:'../login/login?register=success&authorization='+res.result.authorization,
+									url:'../login/login?register=success',
 								})
 							}else{
 								uni.showToast({
-									title:res.error,
+									title:res.message,
 									icon:'none'
 								})
 							}
