@@ -27,13 +27,12 @@
 					</view>
 					<!-- 图片描述 -->
 					<view class="guess-content" style="margin-left:20upx;margin-top:0;">
-						<span style="font-size: 28upx;color:#fff;">{{item.title}}</span>
-						<text style="font-size:24upx;color:#999999;margin-top:12upx;">{{item.consume}} {{item.amount}}</text>
+						<span style="font-size: 28upx;color:#fff;">{{item.title.substring(0,40)+' ...'}}</span>
+						<text style="font-size:24upx;color:#999999;margin-top:4upx;">{{item.consume}} {{item.amount}}</text>
 						<span style="color:#DA53A2;">
 							<span style="font-size:24upx;margin-right:8upx;display: inline-block;font-family:'Montserrat-Bold';">{{item.symbol}}</span>
 							<span style="display: inline-block;font-family:'Montserrat-Bold';">{{item.price.split('.')[0]}}</span>
 							<span style="font-size:24upx;display: inline-block;font-family:'Montserrat-Bold';">{{item.price.split('.')[1]?'.'+item.price.split('.')[1]:''}}</span>
-							
 						</span>
 					</view>
 				</view>

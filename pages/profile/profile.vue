@@ -10,7 +10,7 @@
 			<image src="../../static/bg/logo.png" style="width:124upx;height:124upx;"></image>
 			<view class="info">
 				<span class="id">13936525463</span>
-				<span class="users" style="margin-top:30upx;">
+				<span class="users" style="margin-top:20upx;">
 					<span class="user" style="margin-right:44upx;font-size:24upx;font-family: Montserrat-bold;color:#999999;">
 						UID：100001
 					</span>
@@ -195,6 +195,7 @@
 				font-weight: 600;
 				font-size: 32upx;
 				color:#fff;
+				padding-top:8upx;
 			}
 		}
 	}

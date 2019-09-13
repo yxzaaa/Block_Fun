@@ -8,7 +8,7 @@
 			:buttons="navButtons"
 		/>
 		<view class="app-container full">
-			<horizon-tab :tabs="statusTabs" padding="60"></horizon-tab>
+			<horizon-tab :tabs="statusTabs" padding="45"></horizon-tab>
 			<!-- 收益 -->
 			<view class="earnbox">
 				<view class="earning">

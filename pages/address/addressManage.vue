@@ -9,7 +9,7 @@
 		/>
 		<view class="content" style="padding:40upx;">
 			<view class="row b-b">
-				<text class="tit" style="padding:0px;">收货人姓名</text>
+				<text class="tit" style="padding-top:0px;">收货人姓名</text>
 				<input class="input" type="text" v-model="addressData.name" placeholder="请输入收货人姓名" placeholder-class="placeholder" />
 			</view>
 			<view class="row b-b">
@@ -33,7 +33,7 @@
 		</view>
 		<view class="fixed-buttons">
 			<view class="button-group">
-				<fun-button value="保存并使用" width="670upx"  large url="../confirm-order/confirm-order"></fun-button>
+				<fun-button value="保存并使用" width="670upx"  large url="../order-management/order-management"></fun-button>
 			</view>
 		</view>
 	</view>
@@ -132,7 +132,7 @@
 
 <style lang="scss">
 	.content{
-		margin: 160upx 40upx 0;
+		margin: 200upx 40upx 0;
 		border-radius:10upx;
 		background: #493740;
 	}
@@ -145,17 +145,18 @@
 		
 		
 		.tit{
-			
 			font-size: 30upx;
 			color: #fff;
-			padding-top:30upx;
+			padding-top:40upx;
+			padding-bottom:10upx;
+			display: block;
 		}
 		.input{
 			flex: 1;
 			font-size: 26upx;
 			height:80upx;
-			color: rgba(255,255,255,.5);
-			border-bottom:1px solid rgba(255,255,255,.2);
+			color: #fff;
+			border-bottom:1px solid rgba(255,255,255,.1);
 		}
 		.icon-shouhuodizhi{
 			font-size: 36upx;

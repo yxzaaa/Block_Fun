@@ -68,11 +68,10 @@
 <script>
 	import UniNavBar from '@/components/uni-nav-bar/uni-nav-bar.vue';
 	import UniBackground from '@/components/uni-background/uni-background.vue';
-	
 	export default {
 		components:{
 			UniNavBar,
-			UniBackground,
+			UniBackground
 		},
 		data() {
 			return {

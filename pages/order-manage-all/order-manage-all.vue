@@ -10,7 +10,7 @@
 		<view class="app-container full">
 			
 			<!-- 顶部滑动 -->
-			<horizon-tab :tabs="statusTabs" padding="55"></horizon-tab>
+			<horizon-tab :tabs="statusTabs" padding="45"></horizon-tab>
 			
 			<view class="managebox"> <!-- 待办管理 -->
 				<view class="backlog"> 
