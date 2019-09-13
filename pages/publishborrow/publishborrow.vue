@@ -2,7 +2,7 @@
 	<view class="container">
 		<uni-background src="../../static/bg1.jpg"/>
 		<uni-nav-bar title="发布借贷挂单" textColor="#fff" :opacity="scroll" layout="center" :buttons="navButtons"></uni-nav-bar>
-		<div class="app-container full fixbutton">
+		<div class="app-container full fixbutton" style="padding-bottom:190upx;">
 			<view class="modal-box" v-if="showModal">
 				<view class="modal">
 					<view class="modal-top-item">

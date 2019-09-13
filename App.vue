@@ -455,7 +455,7 @@
 	}
 	.app-container{
 		&.full{
-			padding-top:174upx;
+			padding-top:194upx;
 		}
 		&.fixbutton{
 			padding-bottom:120upx;

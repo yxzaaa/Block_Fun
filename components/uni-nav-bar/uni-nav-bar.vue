@@ -165,8 +165,8 @@
 		top:0;
 		left:0;
 		width:100%;
-		padding-top:56upx;
-		height:144upx;
+		padding-top:66upx;
+		height:164upx;
 		z-index:998;
 		display:flex;
 		align-items:center;
