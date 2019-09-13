@@ -11,35 +11,25 @@
 				<swiper-item v-for="(item,index) in imgList" :key="index">
 					<view class="image-wrapper">
 						<image
-							:src="item.src" 
+							:src="item" 
 							mode="aspectFill"
 							style="width:100%;height:738upx;"
 						></image>
 					</view>
 				</swiper-item>
 			</swiper>
-			<!-- <view class="scroll-view-wrapper">
-				<scroll-view class="episode-panel" :class="{Skeleton:!loaded}" scroll-x>
-					<view v-for="(item, index) in data.episodeList" :key="index"
-						:class="{current: currentEpd===item}"
-						@click="changeEpd(index)"
-					>
-						{{item}}
-					</view>
-				</scroll-view>
-			</view> -->
 			<view class="info">
 				<view class="title">
-					<text style="margin-top:40upx;">
-						<span style="font-size:30upx;margin-right:10upx;font-family:'Montserrat-Bold';">{{symbol}}</span>
-						<span style="font-size:40upx;font-family:'Montserrat-Bold';">{{money.split('.')[0]}}</span>
-						<span style="font-size: 30upx;font-family:'Montserrat-Bold';">{{money.split('.')[1]?'.' + money.split('.')[1]:''}}</span>
-					</text>
+					<span style="margin-top:40upx;">
+						<span style="font-size:30upx;margin-right:10upx;font-family:'Montserrat-Bold';">￥</span>
+						<span style="font-size:40upx;font-family:'Montserrat-Bold';">{{price.split('.')[0]}}</span>
+						<span style="font-size: 30upx;font-family:'Montserrat-Bold';">{{price.split('.')[1]?'.' + price.split('.')[1]:''}}</span>
+					</span>
 					
-					<text style="color:#999999;font-size:24upx;margin-top:16upx;">{{consume}} {{amount}}</text>
-					<text style="background:#DA53A2;height:32upx;width:64upx;text-align: center;font-size:24upx;color:#fff;margin-top:16upx;">{{character}}</text>
+					<text style="color:#999999;font-size:24upx;margin-top:16upx;">消耗积分 {{credit}}</text>
+					<text style="background:#DA53A2;height:32upx;width:64upx;text-align: center;font-size:24upx;color:#fff;margin-top:16upx;">{{catname}}</text>
 					<text style="color:#fff;font-size: 32upx;margin-top:16upx;">{{title}}</text>
-					<text style="color:#999999;font-size: 24upx;margin-top:16upx;width:670upx;height:322upx;line-height:44upx;">{{content}}</text>
+					<text style="color:#999999;font-size: 24upx;margin-top:16upx;width:670upx;line-height:44upx;">{{content}}</text>
 				</view>
 			</view>
 			
@@ -48,23 +38,23 @@
 				<view class="section-tit">相关推荐</view>
 				<view class="guess-list">
 					<view 
-						v-for="(item, index) in guessList" :key="index"
+						v-for="(item, index) in guessList" :key="item.itemid"
 						class="guess-item"
 						style="padding-top:16upx;"
 					>
 					<!-- 引入图片 -->
 						<view class="image-wrapper">
-							<image 
+							<!-- <image 
 								:src="item.src" 
 								mode="aspectFill"
-							></image>
+							></image> -->
 						</view>
 						<!-- 图片描述 -->
 						<view class="guess-content" style="margin-left:20upx;margin-top:0;">
-							<span class='title clamp' style="font-size:24upx;color:#fff;white-space: normal;width:448upx;height:88upx;">{{item.title}}</span>
-							<span class="clamp" style="font-size:24upx;color:#999999;margin-top:14upx;">{{item.consume}} {{item.amount}}</span>
+							<span class='title clamp' style="font-size:24upx;color:#fff;white-space: normal;width:448upx;">{{item.title}}</span>
+							<span class="clamp" style="font-size:24upx;color:#999999;margin-top:14upx;">消耗积分 {{item.credit}}</span>
 							<span class="clamp" style="margin-top:8upx;color:#DA53A2;font-family:'Montserrat-Bold';">
-								<span style="font-size:24upx;margin-right:8upx;font-family:'Montserrat-Bold';">{{item.symbol}}</span>
+								<span style="font-size:24upx;margin-right:8upx;font-family:'Montserrat-Bold';">￥</span>
 								<span style="font-family:'Montserrat-Bold';">{{item.price.split('.')[0]}}</span>
 								<span style="font-size:24upx;font-family:'Montserrat-Bold';">{{item.price.split('.')[1]?'.'+item.price.split('.')[1]:''}}</span>
 							</span>
@@ -81,7 +71,7 @@
 				</view>
 				
 				<view class="button-group" style="width:500upx;">
-					<fun-button value="加入购物车" type="light" width="240upx" large></fun-button>
+					<fun-button value="加入购物车" type="light" width="240upx" large @handle="addCart"></fun-button>
 					<fun-button value="立即购买" width="240upx" large url="../order-management/order-management"></fun-button>
 				</view>
 			</view>
@@ -105,61 +95,6 @@
 		data() {
 			return {
 				scroll:0,
-				loaded: false,
-				currentEpd: 1,
-				symbol:"￥",
-				money: '6044.13',
-				consume: '消耗积分',
-				amount:'4000',
-				favorite: true,
-				character:"日用",
-				title:"日本ANESSA安耐晒进口金平安热沙防晒乳防水隔离SPF50+60ml",
-				content:"防晒霜，是指添加了能阻隔或吸收紫外线的防晒剂来达到防治肌肤被晒黑、晒伤的化妆品、根据防晒原理可将防晒霜分为物理防晒霜、化学防晒霜、防晒霜需要根据具体的对象来选择不同SPF或PA值的产品。以达到防晒的目的。防晒霜的作用原理是将皮肤与紫外线隔离开来。防晒乳跟防晒霜，主要区别在于物理性状，霜剂一般的含水量在60%左右，看上去比较“稠”，呈膏状；而乳液，含水量在70%以上，看上去比较稀，有流动性。",
-				imgList: [
-					{
-						src: '../../static/bg/detail1.png'
-					},
-					{
-						src: 'http://img.pconline.com.cn/images/upload/upc/tx/itbbs/1309/06/c4/25310541_1378426131583.jpg'
-					},
-					{
-						src: 'http://img.pconline.com.cn/images/upload/upc/tx/photoblog/1610/26/c4/28926240_1477451226577_mthumb.jpg'
-					},
-					{
-						src: 'http://picture.ik123.com/uploads/allimg/190219/12-1Z219105139.jpg'
-					}, 
-				],
-				guessList: [{
-						src: '../../static/bg/iphonex.png',
-						src1:'../../static/bg/checkbox.png',
-						title: 'Apple iPhone X (A1865) 256GB 深空灰色 移动联通电信4G手机',
-						consume:'消耗积分',
-						amount:'4000',
-						symbol:"￥",
-						price:'6444.13',
-						number:'0'
-					},
-					{
-						src: '../../static/bg/p30.png',
-						src1:'../../static/bg/check.png',
-						title: '华为P30 (A1865) 256GB 深空灰色 移动联通电信4G手机',
-						consume:'消耗积分',
-						amount:'4000',
-						symbol:"￥",
-						price:'4999.21',
-						number:'0',
-					},
-					{
-						src: '../../static/bg/apple.png',
-						src1:'../../static/bg/checkbox.png',
-						title: 'Apple iPhone X(A1865) 256GB 深空灰色 移动联通电信4G手机',
-						consume:'消耗积分',
-						amount:'4000',
-						symbol:"￥",
-						price:'4999.21',
-						number:'0',
-					},
-				],
 				navButtons:{
 					back:{
 						type:'circle',
@@ -179,16 +114,53 @@
 					// textbtn:{
 					// 	text:'取消'
 					// }
-				}
+				},
+				credit:'',
+				catname:'',
+				title:'',
+				content:'',
+				price:'',
+				imgList:[],
+				guessList:[]
 			};
 		},
 		onPageScroll(val){
 			this.scroll = val.scrollTop;
 		},
-		onLoad(){
+		onLoad(option){
+			this.$http({
+				url:'/mall/show',
+				data:{
+					itemid:option.id,
+				},
+				success:res=>{
+					if(res.code == 200){
+						this.credit = res.result.credit;
+						this.catname = res.result.catname;
+						this.title = res.result.title;
+						this.content = res.result.content;
+						this.imgList = res.result.img;
+						this.price = res.result.price;
+						this.guessList = res.result.rec
+					}
+				}
+			})
 		},
 		methods:{
-			
+			addCart(res){
+				this.$http({
+					url:'/mall/cart',
+					data:{
+						
+					},
+					success:res=>{
+						console.log(res);
+						
+					}
+					
+				})
+			   
+			}
 		},
 	}
 </script>

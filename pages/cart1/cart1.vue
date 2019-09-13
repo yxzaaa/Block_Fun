@@ -98,6 +98,7 @@
 					},
 					
 				},
+				
 				guessList: [{
 						src: '../../static/bg/iphonex.png',
 						src1:'../../static/bg/checkbox.png',
@@ -137,7 +138,9 @@
 		onPageScroll(val){
 			this.scroll = val.scrollTop;
 		},
+		onLoad(){
 		
+		},
 		methods:{
 		}
 		
