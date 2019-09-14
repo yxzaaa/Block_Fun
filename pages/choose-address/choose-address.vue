@@ -69,7 +69,17 @@
 		onPageScroll(val){
 			this.scroll = val.scrollTop;
 		},
-		
+		onLoad(){
+			//获取收货地址列表
+			this.$http({
+				url:'/member/address',
+				success:res=>{
+					console.log(res);
+				}
+			})
+		},
+		methods:{
+		}
 	}
 
 		

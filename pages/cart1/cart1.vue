@@ -31,7 +31,7 @@
 						</view>
 						<!-- 图片描述 -->
 						<view class="guess-content" style="margin-left:20upx;margin-top:0;">
-							<span style="font-size: 28upx;color:#fff;">{{item.title.substring(0,40)+' ...'}}</span>
+							<span style="font-size: 28upx;color:#fff;">{{item.title.substring(0,30)+' ...'}}</span>
 							<text style="font-size:24upx;color:#999999;margin-top:8upx;">{{item.consume}} {{item.amount}}</text>
 							<span style="color:#DA53A2; position:relative;">
 								<span style="font-size:24upx;margin-right:8upx;display: inline-block;font-family:'Montserrat-Bold';">{{item.symbol}}</span>

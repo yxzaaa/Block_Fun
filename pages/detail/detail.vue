@@ -51,7 +51,7 @@
 						</view>
 						<!-- 图片描述 -->
 						<view class="guess-content" style="margin-left:20upx;margin-top:0;">
-							<span class='title clamp' style="font-size:28upx;color:#fff;white-space: normal;width:448upx;height:88upx;">{{item.title.substring(0,40)+' ...'}}</span>
+							<span class='title clamp' style="font-size:28upx;color:#fff;white-space: normal;width:448upx;height:88upx;">{{item.title.substring(0,30)+' ...'}}</span>
 							<span class="clamp" style="font-size:24upx;color:#999999;margin-top:12upx;">{{item.consume}} {{item.amount}}</span>
 							<span class="clamp" style="margin-top:12upx;color:#DA53A2;font-family:'Montserrat-Bold';">
 								<span style="font-size:24upx;margin-right:8upx;font-family:'Montserrat-Bold';">{{item.symbol}}</span>

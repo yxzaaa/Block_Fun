@@ -20,9 +20,9 @@
 					}
 				});
 			}else{
-				// uni.reLaunch({
-				// 	url:'/pages/login/login'
-				// })
+				uni.reLaunch({
+					url:'/pages/login/login'
+				})
 			}
 			
 		},
