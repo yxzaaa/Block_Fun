@@ -10,13 +10,26 @@
 			:buttons="navButtons"
 		/>
 		<!-- 新建收货地址 -->
-		<navigator url="../address/addressManage">
+		<navigator class="tosite" url="../choose-address/choose-address" v-if="hasDefault">
+			<view class="site">
+				<image src="../../static/bg/location.png" style="width:64upx;height:64upx;"></image>
+				<span class="person-info">
+					<span class="name-phone">
+						<span class="name" style="font-size:28upx;color:#fff;">{{addressData.truename}}</span>
+						<span class="phone" style="font-size:24upx;color:#999999;">{{addressData.mobile}}</span>
+					</span>
+					<span class="adress" style="font-size:24upx;display: block;color:#999999;width:500upx;">{{addressData.address}}</span>
+				</span>
+			</view>
+			<image src="../../static/bg/right.png" style="width:40upx;height:40upx;"></image>
+		</navigator>
+		<navigator url="../address/addressManage" v-else>
 			<view class="address">
-					<view class="site">
-						<image src="../../static/bg/location.png" style="width:64upx;height:64upx;"></image>
-						<view class="toaddress" url="../address/addressManage">新建收货地址</view>
-					</view>		
-					<image src="../../static/bg/right.png" style="width:40upx;height:40upx;"></image>	
+				<view class="site">
+					<image src="../../static/bg/location.png" style="width:64upx;height:64upx;"></image>
+					<view class="toaddress" url="../address/addressManage">新建收货地址</view>
+				</view>		
+				<image src="../../static/bg/right.png" style="width:40upx;height:40upx;"></image>	
 			</view>
 		</navigator>
 		<!-- 购物车详情 -->
@@ -37,13 +50,13 @@
 					</view>
 					<!-- 图片描述 -->
 					<view class="guess-content" style="margin-left:20upx;margin-top:0;">
-						<span style="font-size: 28upx;color:#fff;">{{item.title}}</span>
-						<text style="font-size:24upx;color:#999999;margin-top:12upx;">{{item.consume}} {{item.amount}}</text>
+						<span style="font-size: 28upx;color:#fff;">{{item.title.substring(0,36)+' ...'}}</span>
+						<text style="font-size:24upx;color:#999999;margin-top:8upx;">{{item.consume}} {{item.amount}}</text>
 						<span style="color:#DA53A2;position:relative;">
 							<span style="font-size:24upx;margin-right:8upx;display: inline-block;font-family:'Montserrat-Bold';">{{item.symbol}}</span>
 							<span style="display: inline-block;font-family:'Montserrat-Bold';">{{item.price.split('.')[0]}}</span>
 							<span style="font-size:24upx;display: inline-block;font-family:'Montserrat-Bold';">{{item.price.split('.')[1]?'.'+item.price.split('.')[1]:''}}</span>
-							<span class="cut" style="position:absolute;right:50upx;bottom:4upx;display: inline-block;">
+							<span class="cut" style="position:absolute;right:10upx;bottom:8upx;display: inline-block;">
 								<span style="margin-right:20upx;font-size:30upx;color:#fff;font-weight: bold;display: inline-block;"> - </span>
 								<span style="display:inline-block;#99999;background:#280617;font-size:24upx;color:#fff;width:64upx;height:40upx;line-height: 40upx;text-align: center;">{{item.number}}</span>
 								<span style="margin-left:20upx;font-size:30upx;color:#fff;font-weight: bold;display: inline-block;"> + </span>
@@ -68,7 +81,7 @@
 							<span style="font-size: 24upx;color:#fff;">4000</span>
 						</span>
 					</view>
-					<fun-button value="提交订单" width="240upx" url="../order-management/order-management"></fun-button>
+					<fun-button value="提交订单" large wsssidth="240upx" url="../order-management/order-management"></fun-button>
 				</view>
 			</view>
 		</view>
@@ -94,9 +107,9 @@
 						type:'normal',
 						text:'取消'
 					},
-					
-					
 				},
+				hasDefault:false,
+				addressData:{},
 				guessList: [{
 						src: '../../static/bg/iphonex.png',
 						src1:'../../static/bg/checkbox.png',
@@ -133,6 +146,21 @@
 		onPageScroll(val){
 			this.scroll = val.scrollTop;
 		},
+		onShow(){
+			if(uni.getStorageSync('currAddress')){
+				this.hasDefault = true;
+				this.addressData = uni.getStorageSync('currAddress');
+				uni.removeStorageSync('currAddress');
+			}else{
+				//获取收货地址列表
+				this.$http({
+					url:'/member/address',
+					success:res=>{
+						console.log(res);
+					}
+				})
+			}
+		},
 		methods:{
 			
 		}
@@ -141,12 +169,46 @@
 </script>
 
 <style lang="scss" scoped>
+	.tosite{
+		width:750upx;
+		height:140upx;
+		padding:40upx;
+		margin-top:186upx;
+		border-bottom:1px solid rgba(255,255,255,0.1);
+		display:flex;
+		align-items:center;
+		justify-content:space-between;
+		.tosite{
+			display: flex;
+		}
+		.site{
+			width:686upx;
+			height:106upx;
+			display: flex;
+			align-items: center;
+			.person-info{
+				margin-left:20upx;
+				.name-phone{
+					display: flex;
+					align-items: center;
+				}
+				.phone{
+					margin-left:20upx;
+				}
+			}
+			.toaddress{
+				color:#fff;
+				font-size:28upx;
+				margin-left:32upx;
+			}
+		}
+		
+	}
 	.address{
 		width:750upx;
-		height:64upx;
 		padding:40upx;
-		padding-top:214upx;
-		padding-bottom:80upx;
+		margin-top:186upx;
+		height:140upx;
 		border-bottom:1px solid rgba(255,255,255,0.1);
 		display:flex;
 		align-items:center;
@@ -157,7 +219,7 @@
 			.toaddress{
 				color:#fff;
 				font-size:28upx;
-				margin-left:32upx;
+				margin-left:16upx;
 			}
 		}
 		

@@ -10,7 +10,7 @@
 			<image src="../../static/bg/logo.png" style="width:124upx;height:124upx;"></image>
 			<view class="info">
 				<span class="id">13936525463</span>
-				<span class="users" style="margin-top:30upx;">
+				<span class="users" style="margin-top:20upx;">
 					<span class="user" style="margin-right:44upx;font-size:24upx;font-family: Montserrat-bold;color:#999999;">
 						UID：100001
 					</span>
@@ -95,6 +95,7 @@
 					</view>
 					<image src="../../static/bg/jiantou.png"></image>
 				</view>
+				<view class="item-horizen"></view>
 			</navigator>
 			<navigator url="../realname-attest/realname-attest">
 				<view class="action-item">
@@ -104,6 +105,7 @@
 					</view>
 					<image src="../../static/bg/jiantou.png"></image>
 				</view>
+				<view class="item-horizen"></view>
 			</navigator>
 			<navigator url="../security/security">
 				<view class="action-item">
@@ -113,6 +115,7 @@
 					</view>
 					<image src="../../static/bg/jiantou.png"></image>
 				</view>
+				<view class="item-horizen"></view>
 			</navigator>
 			<navigator url="../helpcenter/helpcenter">
 				<view class="action-item">
@@ -122,6 +125,7 @@
 					</view>
 					<image src="../../static/bg/jiantou.png"></image>
 				</view>
+				<view class="item-horizen"></view>
 			</navigator>
 			<navigator url="../aboutus/aboutus">
 				<view class="action-item" style="border:none;margin-bottom: 0;">
@@ -191,6 +195,7 @@
 				font-weight: 600;
 				font-size: 32upx;
 				color:#fff;
+				padding-top:8upx;
 			}
 		}
 	}
@@ -273,23 +278,19 @@
 		background: rgba(45, 31, 37,.8);
 		border-radius: 8upx;
 		margin:40upx 40upx 0;
-		padding:40upx 30upx;
 		.action-item{
 			display:flex;
-			width:610upx;
-			line-height:80upx;
-			align-items: center;
-			border-bottom:1px solid rgba(255,255,255,0.1);
+			width:670upx;
 			justify-content:space-between;
-			margin-bottom:39upx;
+			padding:40upx 30upx;
 			view{
 				display:flex;
 				justify-content:space-between;
 				align-items:center;
-				line-heihgt:80upx;
 				image{
 					width:36upx;
 					height:36upx;
+					margin-top:0px;
 					margin-right:40upx;
 					
 				}
@@ -302,8 +303,13 @@
 				width:26upx;
 				height:26upx;
 				margin-top: 6upx;
-				margin-right:4upx;
 			}
+		}
+		.item-horizen{
+			width:610upx;
+			height:2upx;
+			background: rgba(255,255,255,0.2);
+			margin:0px 30upx;
 		}
 	}
 	.exit{

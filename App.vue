@@ -13,16 +13,16 @@
 			let userInfo = uni.getStorageSync('userInfo') || '';
 			if(userInfo){
 				//更新登陆状态
-				uni.getStorage({
-					key: 'userInfo',
-					success: (res) => {
-						this.login(res);
-					}
-				});
+				// uni.getStorage({
+				// 	key: 'userInfo',
+				// 	success: (res) => {
+				// 		this.login(res);
+				// 	}
+				// });
 			}else{
-				uni.reLaunch({
-					url:'/pages/login/login'
-				})
+				// uni.reLaunch({
+				// 	url:'/pages/login/login'
+				// })
 			}
 			
 		},
@@ -455,7 +455,7 @@
 	}
 	.app-container{
 		&.full{
-			padding-top:174upx;
+			padding-top:194upx;
 		}
 		&.fixbutton{
 			padding-bottom:120upx;
@@ -887,8 +887,8 @@
 		border-bottom:1px solid rgba(255,255,255,0.2);
 		.fix-tabs-item{
 			width:50%;
-			line-height: 72upx;
-			height:72upx;
+			line-height: 76upx;
+			height:76upx;
 			display:flex;
 			justify-content:center;
 			text{

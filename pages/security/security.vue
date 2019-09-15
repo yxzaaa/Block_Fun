@@ -1,5 +1,5 @@
 <template>
-	<view>
+	<view class="container">
 		<uni-background />
 		<uni-nav-bar 
 			title="安全中心" 
@@ -7,51 +7,59 @@
 			:opacity="scroll"
 			:buttons="navButtons"
 		/>
-		<view class="savebox">
-			<navigator url="../amendpaypassword/amendpaypassword">
-				<view class="design">
-					<view class="left">
-						<image src="../../static/bg/password.png"></image>
-						<span>支付密码</span>
+		<view class="app-container full">
+			<view class="savebox">
+				<navigator url="../amendpaypassword/amendpaypassword">
+					<view class="design">
+						<view class="left">
+							<image src="../../static/bg/password.png"></image>
+							<span>支付密码</span>
+						</view>
+						<view class="right">
+							<span>修改</span>
+							<image src="../../static/bg/right.png"></image>
+						</view>
 					</view>
-					<view class="right">
-						<span>修改</span>
-						<image src="../../static/bg/right.png"></image>
+					<view class="item-horizen"></view>
+				</navigator>
+				<navigator url="../forgetpaypassword/forgetpaypassword">
+					<view class="design">
+						<view class="left">
+							<image src="../../static/bg/lock.png"></image>
+							<span>登录密码</span>
+						</view>
+						<view class="right">
+							<span>修改</span>
+							<image src="../../static/bg/right.png"></image>
+						</view>
 					</view>
-				</view>
-			</navigator>
-			<navigator url="../forgetpaypassword/forgetpaypassword">
-				<view class="design">
-					<view class="left">
-						<image src="../../static/bg/lock.png"></image>
-						<span>登录密码</span>
+					<view class="item-horizen"></view>
+				</navigator>
+				<navigator url="../forgetpaypassword/forgetpaypassword">
+					<view class="design">
+						<view class="left">
+							<image src="../../static/bg/finger.png"></image>
+							<span>指纹登录</span>
+						</view>
+						<view class="right">
+							<span>设置</span>
+							<image src="../../static/bg/right.png"></image>
+						</view>
 					</view>
-					<view class="right">
-						<span>修改</span>
-						<image src="../../static/bg/right.png"></image>
+					<view class="item-horizen"></view>
+				</navigator>
+				<navigator url="../forgetpaypassword/forgetpaypassword">
+					<view class="design">
+						<view class="left">
+							<image src="../../static/bg/load.png"></image>
+							<span>版本更新</span>
+						</view>
+						<view class="right">
+							<span>已经是最新的版本</span>
+							<image src="../../static/bg/right.png"></image>
+						</view>
 					</view>
-				</view>
-			</navigator>
-			
-			<view class="design">
-				<view class="left">
-					<image src="../../static/bg/finger.png"></image>
-					<span>指纹登录</span>
-				</view>
-				<view class="right">
-					<span>设置</span>
-					<image src="../../static/bg/right.png"></image>
-				</view>
-			</view>
-			<view class="design" style="border:none;height:42upx;">
-				<view class="left">
-					<image src="../../static/bg/load.png"></image>
-					<span>版本更新</span>
-				</view>
-				<view class="right">
-					<span>已经是最新的版本</span>
-					<image src="../../static/bg/right.png"></image>
-				</view>
+				</navigator>
 			</view>
 		</view>
 	</view>
@@ -60,11 +68,10 @@
 <script>
 	import UniNavBar from '@/components/uni-nav-bar/uni-nav-bar.vue';
 	import UniBackground from '@/components/uni-background/uni-background.vue';
-	
 	export default {
 		components:{
 			UniNavBar,
-			UniBackground,
+			UniBackground
 		},
 		data() {
 			return {
@@ -89,22 +96,25 @@
 <style lang="scss" scoped>
 	.savebox{
 		width:670upx;
-		height:482upx;
 		background: #2D1F25;
-		border-radius: 4px;
-		margin:216upx 40upx;
-		padding:40upx 30upx;
+		border-radius: 8upx;
+		margin:0px 40upx;
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;	
+		.item-horizen{
+			width:610upx;
+			height:2upx;
+			background: rgba(255,255,255,0.2);
+			margin:0px 30upx;
+		}
 		.design{
 			display: flex;
 			justify-content: space-between;
 			align-items: flex-start;
 			// margin-bottom: 39upx;
-			width:610upx;
-			height:81upx;
-			border-bottom:1px solid rgba(255,255,255,0.1);
+			width:670upx;
+			padding:40upx 30upx;
 			.left{
 				display: flex;
 				align-items: center;
@@ -112,12 +122,11 @@
 				image{
 					width:36upx;
 					height:36upx;
-					border:1px dashed rgba(255,255,255,0.5);
 					margin-right: 40upx;					
 				}
 				span{
 					font-size:28upx;
-					color: #FFFFFF;
+					color: #fff;
 				}
 			}
 			.right{
@@ -125,11 +134,11 @@
 				align-items: center;
 				justify-content: space-between;
 				image{
-					width:26upx;
-					height:26upx;					
+					width:30upx;
+					height:30upx;					
 				}
 				span{
-					margin-right: 20upx;
+					margin-right: 16upx;
 					font-size: 24upx;
 					color: #FFFFFF;
 					opacity: 0.5;

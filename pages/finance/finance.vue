@@ -7,18 +7,18 @@
 			:opacity="scroll"
 			:buttons="navButtons"
 		/>
-		<view style="margin:224upx 30upx 0;font-size:24upx;color:#fff;opacity: 0.5;">
+		<view style="margin:224upx 40upx 0;font-size:24upx;color:#fff;opacity: 0.5;">
 			总资产
 		</view>
-		<view class="fortune" style="display: flex;justify-content: space-between;width:750upx;padding:0 30upx;margin-top: 16upx;align-items: flex-end;">
+		<view class="fortune" style="display: flex;justify-content: space-between;width:750upx;padding:0 40upx;margin-top: 16upx;align-items: center;">
 			<span>
 				<span style="font-size: 36upx;color:#fff;font-family: Montserrat-Bold;margin-right:10upx;">$</span>
 				<span style="font-size: 60upx;color:#fff;font-family: Montserrat-Bold">6888.68</span>
 			</span>
-			<span style="font-size:24upx;color:#fff;opacity: 0.5;">资产类型3种</span>
+			<span style="font-size:26upx;color:#fff;opacity: 0.5;">资产类型3种</span>
 		</view>
 		<view class="fortunetype">
-			<view style="font-size:32upx;color:#fff;margin:116upx 30upx 0;">
+			<view style="font-size:28upx;color:#fff;margin:100upx 40upx 0;">
 				资产类型：<span>矿机</span>
 			</view>
 			<view class="typeinfo">
@@ -38,7 +38,7 @@
 			</view>
 		</view>
 		<view class="fortunetype">
-			<view style="font-size:32upx;color:#fff;margin:0 30upx 0;">
+			<view style="font-size:28upx;color:#fff;margin:0 40upx 0;">
 				资产类型：<span>USDT</span>
 			</view>
 			<view class="typeinfo">
@@ -58,7 +58,7 @@
 			</view>
 		</view>
 		<view class="fortunetype">
-			<view style="font-size:32upx;color:#fff;margin:0 30upx 0;">
+			<view style="font-size:28upx;color:#fff;margin:0 40upx 0;">
 				资产类型：<span>运算力</span>
 			</view>
 			<view class="typeinfo">
@@ -117,13 +117,13 @@
 
 <style lang="scss" scoped>
 	.typeinfo{
-		width:690upx;
-		height:212upx;
-		margin:24upx 30upx 54upx;
+		width:670upx;
+		margin:20upx 40upx 50upx;
 		padding:40upx;
 		background: #2D1F25;
 		display: flex;
 		justify-content: space-between;
+		border-radius:8upx;
 		view{
 			display: flex;
 			flex-direction: column;
@@ -137,8 +137,9 @@
 			.numb{
 				font-style: normal;
 				font-weight: 600;
-				font-size: 28upx;
-				color: #FFFFFF;
+				font-size: 32upx;
+				padding-top:30upx;
+				color: #fff;
 			}
 		}
 	}

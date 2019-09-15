@@ -5,31 +5,31 @@
 			:opacity="scroll"
 			:buttons="navButtons"
 		/>
-		<view style="width:288upx;height:68upx;line-height:68upx;margin:216upx 40upx 0;color:#fff;font-size: 48upx;">
-			修改支付密码
+		<view class="app-container full" style="padding-left:40upx;padding-right:40upx;">
+			<view style="width:670upx;line-height:68upx;color:#fff;font-size: 48upx;">
+				修改支付密码
+			</view>
+			<view style="line-height:40upx;color:#fff;font-size: 28upx;padding-top:30upx;">请输入原支付密码</view>
+			<view style="width:670upx;padding-top:60upx;">
+				<possword-inputer size="94upx" background="rgba(255,255,255,0.1)" fontSize="48upx"></possword-inputer>
+			</view>
+			<view style="color:#DA53A2;font-size: 28upx;padding-top:30upx;padding-bottom:80upx;">忘记密码？</view>
+			<fun-button value="提交" block large width="670upx"></fun-button>
 		</view>
-		<view style="width:224upx;height:40upx;line-height:40upx;margin:20upx 40upx 0;color:#fff;font-size: 28upx;">请输入原支付密码</view>
-		<view class="input">
-			<view></view>
-			<view></view>
-			<view></view>
-			<view></view>
-			<view></view>
-			<view></view>
-		</view>
-		<view style="margin:0 40upx;color:#DA53A2;font-size: 28upx;">忘记密码？</view>
-		<view class="commit">确认</view>
 	</view>
 </template>
 
 <script>
 	import UniNavBar from '@/components/uni-nav-bar/uni-nav-bar.vue';
 	import UniBackground from '@/components/uni-background/uni-background.vue';
-	
+	import FunButton from '@/components/fun-button.vue';
+	import PosswordInputer from '@/components/possword-inputer.vue';
 	export default {
 		components:{
 			UniNavBar,
 			UniBackground,
+			FunButton,
+			PosswordInputer
 		},
 		data() {
 			return {

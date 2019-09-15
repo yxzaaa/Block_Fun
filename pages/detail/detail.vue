@@ -7,7 +7,7 @@
 			:buttons="navButtons"			
 		/>
 		<view class="app-container fixbutton">
-			<swiper class="carousel" indicator-dots=true circular=true interval="3000" duration="700">
+			<swiper class="carousel" indicator-dots=true circular=true interval="3000" duration="700" indicator-active-color="#DA53A2">
 				<swiper-item v-for="(item,index) in imgList" :key="index">
 					<view class="image-wrapper">
 						<image
@@ -20,11 +20,19 @@
 			</swiper>
 			<view class="info">
 				<view class="title">
+<<<<<<< HEAD
 					<span style="margin-top:40upx;">
 						<span style="font-size:30upx;margin-right:10upx;font-family:'Montserrat-Bold';">￥</span>
 						<span style="font-size:40upx;font-family:'Montserrat-Bold';">{{price.split('.')[0]}}</span>
 						<span style="font-size: 30upx;font-family:'Montserrat-Bold';">{{price.split('.')[1]?'.' + price.split('.')[1]:''}}</span>
 					</span>
+=======
+					<text style="margin-top:40upx;">
+						<span style="font-size:30upx;margin-right:6upx;font-family:'Montserrat-Bold';">{{symbol}}</span>
+						<span style="font-size:40upx;font-family:'Montserrat-Bold';">{{money.split('.')[0]}}</span>
+						<span style="font-size: 30upx;font-family:'Montserrat-Bold';">{{money.split('.')[1]?'.' + money.split('.')[1]:''}}</span>
+					</text>
+>>>>>>> df70283ae0a2593a4a9266409e8726aedff756d4
 					
 					<text style="color:#999999;font-size:24upx;margin-top:16upx;">消耗积分 {{credit}}</text>
 					<text style="background:#DA53A2;height:32upx;width:64upx;text-align: center;font-size:24upx;color:#fff;margin-top:16upx;">{{catname}}</text>
@@ -37,10 +45,15 @@
 			<view class="guess">
 				<view class="section-tit">相关推荐</view>
 				<view class="guess-list">
+<<<<<<< HEAD
 					<view 
 						v-for="(item, index) in guessList" :key="item.itemid"
+=======
+					<navigator
+						v-for="(item, index) in guessList" :key="index"
+>>>>>>> df70283ae0a2593a4a9266409e8726aedff756d4
 						class="guess-item"
-						style="padding-top:16upx;"
+						url="../detail/detail"
 					>
 					<!-- 引入图片 -->
 						<view class="image-wrapper">
@@ -51,23 +64,30 @@
 						</view>
 						<!-- 图片描述 -->
 						<view class="guess-content" style="margin-left:20upx;margin-top:0;">
+<<<<<<< HEAD
 							<span class='title clamp' style="font-size:24upx;color:#fff;white-space: normal;width:448upx;">{{item.title}}</span>
 							<span class="clamp" style="font-size:24upx;color:#999999;margin-top:14upx;">消耗积分 {{item.credit}}</span>
 							<span class="clamp" style="margin-top:8upx;color:#DA53A2;font-family:'Montserrat-Bold';">
 								<span style="font-size:24upx;margin-right:8upx;font-family:'Montserrat-Bold';">￥</span>
+=======
+							<span class='title clamp' style="font-size:28upx;color:#fff;white-space: normal;width:448upx;height:88upx;">{{item.title.substring(0,36)+' ...'}}</span>
+							<span class="clamp" style="font-size:24upx;color:#999999;margin-top:12upx;">{{item.consume}} {{item.amount}}</span>
+							<span class="clamp" style="margin-top:12upx;color:#DA53A2;font-family:'Montserrat-Bold';">
+								<span style="font-size:24upx;margin-right:8upx;font-family:'Montserrat-Bold';">{{item.symbol}}</span>
+>>>>>>> df70283ae0a2593a4a9266409e8726aedff756d4
 								<span style="font-family:'Montserrat-Bold';">{{item.price.split('.')[0]}}</span>
 								<span style="font-size:24upx;font-family:'Montserrat-Bold';">{{item.price.split('.')[1]?'.'+item.price.split('.')[1]:''}}</span>
 							</span>
 							
 						</view>
-					</view>
+					</navigator>
 				</view>
 			</view>
 			
 			<!-- 底部按钮 -->
-			<view class="fixed-buttons" style="display: flex;justify-content: space-between;">
-				<view style="width:72upx;height:72upx;" class="button-group">
-					<image src="../../static/bg/listen.png" style="width:72upx;height:72upx;"></image>
+			<view class="fixed-buttons" style="display: flex;justify-content: space-between;align-items: center;">
+				<view style="width:66upx;height:44upx;padding-left:30upx;" class="button-group">
+					<image src="../../static/bg/listen.png" style="width:36upx;height:44upx;"></image>
 				</view>
 				
 				<view class="button-group" style="width:500upx;">
@@ -243,6 +263,7 @@
 	}
 
 	.section-tit {
+		width:670upx;
 		font-size: 32upx;
 		color: #fff;
 		margin-bottom: 30upx;

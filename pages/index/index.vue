@@ -195,7 +195,7 @@
 				margin-right:15upx;
 			}
 			text{
-				font-size: 22upx;
+				font-size: 24upx;
 				color:#999;
 				max-width: 500upx;
 				overflow: hidden;
@@ -205,7 +205,7 @@
 		}
 		.more-detail{
 			color:#666;
-			font-size: 22upx;
+			font-size: 24upx;
 			line-height: 40upx;
 		}
 	}

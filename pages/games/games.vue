@@ -23,7 +23,7 @@
 		<view style="padding:60upx 40upx 40upx;display: flex;justify-content: space-between;align-items: center;">
 			<span style="font-size: 32upx;color:#fff;">游戏圈</span>
 			<span style="display: flex; align-items: center;">
-				<span style="color:#fff;opacity: 0.5;font-size: 20upx;margin-right:4upx;">更多</span>
+				<span style="color:#fff;opacity: 0.5;font-size: 24upx;margin-right:4upx;">更多</span>
 				<image src="../../static/bg/right2.png" style="width:16upx;height:32upx;"></image>
 			</span>
 		</view>

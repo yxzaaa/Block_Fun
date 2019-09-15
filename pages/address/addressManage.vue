@@ -9,31 +9,35 @@
 		/>
 		<view class="content" style="padding:40upx;">
 			<view class="row b-b">
-				<text class="tit" style="padding:0px;">收货人姓名</text>
-				<input class="input" type="text" v-model="addressData.name" placeholder="请输入收货人姓名" placeholder-class="placeholder" />
+				<text class="tit" style="padding-top:0px;">收货人姓名</text>
+				<input class="input" type="text" v-model="getterName" placeholder="请输入收货人姓名"/>
 			</view>
 			<view class="row b-b">
 				<text class="tit">手机号</text>
-				<input class="input" type="number" placeholder="请输入11位手机号" placeholder-class="placeholder" />
+				<input v-model="phone" class="input" type="number" placeholder="请输入11位手机号"/>
 			</view>
 			<view class="row b-b">
 				<text class="tit">所属区域</text>
-				<input class="input" type="text" placeholder="请选择市区" placeholder-class="placeholder" />
-				
+				<picker mode="multiSelector" :range="rangeData" :range-key="'name'" @columnchange="setAddressData" @change="changeArea" :disabled="loadingMPData"
+					style="position:relative;"
+				>
+					<input v-model="area" class="input" type="text" :placeholder="loadingMPData?'正在加载省市区信息...':'请选择省市区'" disabled>
+					<image :src="imageLib.shape" style="width:24upx;height:12upx;position: absolute;top:34upx;right:10upx;"></image>
+				</picker>
 			</view>
 			<view class="row b-b"> 
 				<text class="tit">详细地址</text>
-				<input class="input" type="text" placeholder="请选择市区" placeholder-class="placeholder" />
+				<input v-model="address" class="input" type="text" placeholder="请输入详细地址"/>
 			</view>
 			
 		</view>
-		<view class="default" style="padding:30upx 40upx;display: flex;align-items: center;">
-			<image src="../../static/bg/Group.png" style="width:40upx;height:40upx;margin-right:14upx;"></image>
+		<view class="default" style="padding:30upx 40upx;display: flex;align-items: center;" @click="isdefault = isdefault?false:true">
+			<image :src="isdefault?imageLib.check:imageLib.checkbox" style="width:40upx;height:40upx;margin-right:14upx;"></image>
 			<text style="color:#fff;font-size: 24upx;">设为默认</text>
 		</view>
 		<view class="fixed-buttons">
 			<view class="button-group">
-				<fun-button value="保存并使用" width="670upx"  large url="../confirm-order/confirm-order"></fun-button>
+				<fun-button @handle="addressPlus" value="保存并使用" width="670upx"  large></fun-button>
 			</view>
 		</view>
 	</view>
@@ -52,89 +56,148 @@
 		data() {
 			return {
 				scroll:0,
-				addressData: {
-					name: '',
-					mobile: '',
-					addressName: '在地图选择',
-					address: '',
-					area: '',
-					default: false
-				},
 				navButtons:{
 					back:{
 						type:'normal',
 						text:'取消'
 					}
 				},
+				imageLib:{
+					check:'../../static/bg/check.png',
+					checkbox:'../../static/bg/checkbox.png',
+					shape:'../../static/icons/Shape1.png',
+				},
+				getterName:'',
+				phone:'',
+				area:'',
+				areaid:null,
+				address:'',
+				isdefault:false,
+				rangeData:[],
+				addressData:[],
+				loadingMPData:true,
+				province:new Set(),
+				citys:new Set(),
+				areas:new Set()
 			}
 		},
 		onPageScroll(val){
 			this.scroll=val.scrollTop
 		},
 		onLoad(option){
-			let title = '新增收货地址';
-			if(option.type==='edit'){
-				title = '编辑收货地址'
-				
-				this.addressData = JSON.parse(option.data)
-			}
-			this.manageType = option.type;
-			uni.setNavigationBarTitle({
-				title
+			//收货地址数据
+			this.$http({
+				url:'/file/static/area.json',
+				method:'GET',
+				success:res=>{
+					this.addressData = new Set(res);
+					this.addressData.forEach((element)=>{
+					    if(element.parentid == 0){
+							this.province.add(element);
+						}
+					});
+					var provinceID = Array.from(this.province)[0].areaid;
+					this.addressData.forEach((element)=>{
+					    if(element.parentid == provinceID){
+							this.citys.add(element);
+						}
+					});
+					var cityID = Array.from(this.citys)[0].areaid;
+					this.addressData.forEach((element)=>{
+					    if(element.parentid == cityID){
+							this.areas.add(element);
+						}
+					});
+					this.rangeData = [Array.from(this.province),Array.from(this.citys),Array.from(this.areas)];
+					this.loadingMPData = false;
+				}
 			})
 		},
-		
 		methods: {
-			switchChange(e){
-				this.addressData.default = e.detail;
+			//切换省市区
+			changeArea(e){
+				var values = e.detail.value;
+				values[1] = values[1] === null?0:values[1];
+				values[2] = values[2] === null?0:values[2];
+				this.area = Array.from(this.province)[values[0]].name + Array.from(this.citys)[values[1]].name;
+				this.areaid = Array.from(this.citys)[values[1]].areaid;
+				if(Array.from(this.areas)[values[2]]){
+					this.area += Array.from(this.areas)[values[2]].name;
+					this.areaid = Array.from(this.areas)[values[2]].areaid;
+				}
 			},
-			
-			//地图选择地址
-			chooseLocation(){
-				uni.chooseLocation({
-					success: (data)=> {
-						this.addressData.addressName = data.name;
-						this.addressData.address = data.name;
+			//设置省市区数据
+			setAddressData(e){
+				var column = e.detail.column;
+				var value = e.detail.value;
+				if(column == 0){
+					this.citys.clear();
+					this.areas.clear();
+					var provinceID = Array.from(this.province)[value].areaid;
+					this.addressData.forEach((element)=>{
+					    if(element.parentid == provinceID){
+							this.citys.add(element);
+						}
+					});
+					var cityID = Array.from(this.citys)[0].areaid;
+					this.addressData.forEach((element)=>{
+					    if(element.parentid == cityID){
+							this.areas.add(element);
+						}
+					});
+					this.rangeData = [Array.from(this.province),Array.from(this.citys),Array.from(this.areas)];
+				}else if(column == 1){
+					this.areas.clear();
+					var cityID = Array.from(this.citys)[value].areaid;
+					this.addressData.forEach((element)=>{
+					    if(element.parentid == cityID){
+							this.areas.add(element);
+						}
+					});
+					this.rangeData = [Array.from(this.province),Array.from(this.citys),Array.from(this.areas)];
+				}
+			},
+			//添加收货地址
+			addressPlus(){
+				this.$http({
+					url:'/member/address',
+					data:{
+						action:'add',
+						areaid:this.areaid,
+						truename:this.getterName,
+						mobile:'86'+this.phone,
+						address:this.address,
+						default:this.isdefault?1:0
+					},
+					success:res=>{
+						console.log(res);
+						if(res.code == 200){
+							uni.setStorage({
+								key:'currAddress',
+								data:{
+									truename:this.getterName,
+									mobile:'86'+this.phone,
+									address:this.area + this.address,
+								},
+								success:()=>{
+									uni.navigateBack({
+										delta:1
+									})
+								}
+							})
+						}
 					}
 				})
-			},
-			
-			//提交
-			confirm(){
-				let data = this.addressData;
-				if(!data.name){
-					this.$api.msg('请填写收货人姓名');
-					return;
-				}
-				if(!/(^1[3|4|5|7|8][0-9]{9}$)/.test(data.mobile)){
-					this.$api.msg('请输入正确的手机号码');
-					return;
-				}
-				if(!data.address){
-					this.$api.msg('请在地图选择所在位置');
-					return;
-				}
-				if(!data.area){
-					this.$api.msg('请填写门牌号信息');
-					return;
-				}
-				
-				//this.$api.prePage()获取上一页实例，可直接调用上页所有数据和方法，在App.vue定义
-				this.$api.prePage().refreshList(data, this.manageType);
-				this.$api.msg(`地址${this.manageType=='edit' ? '修改': '添加'}成功`);
-				setTimeout(()=>{
-					uni.navigateBack()
-				}, 800)
-			},
+			}
 		}
 	}
 </script>
 
 <style lang="scss">
 	.content{
-		margin: 160upx 40upx 0;
+		margin: 200upx 40upx 0;
 		border-radius:10upx;
-		background: #493740;
+		background: rgba(45, 31, 37, 0.7);
 	}
 
 	.row{
@@ -145,17 +208,18 @@
 		
 		
 		.tit{
-			
 			font-size: 30upx;
 			color: #fff;
-			padding-top:30upx;
+			padding-top:40upx;
+			padding-bottom:10upx;
+			display: block;
 		}
 		.input{
 			flex: 1;
 			font-size: 26upx;
 			height:80upx;
-			color: rgba(255,255,255,.5);
-			border-bottom:1px solid rgba(255,255,255,.2);
+			color: #fff;
+			border-bottom:1px solid rgba(255,255,255,.1);
 		}
 		.icon-shouhuodizhi{
 			font-size: 36upx;

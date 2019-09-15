@@ -16,7 +16,7 @@
 						class="guess-item"		
 					>
 					<!-- 引入图片 -->
-						<view style="line-height: 160upx;padding-right:40upx;">
+						<view style="line-height: 160upx;padding-right:40upx;display: flex;align-items: center;">
 							<image
 								:src="item.src1" 
 								style="width:40upx;height:40upx;"
@@ -31,13 +31,13 @@
 						</view>
 						<!-- 图片描述 -->
 						<view class="guess-content" style="margin-left:20upx;margin-top:0;">
-							<span style="font-size: 28upx;color:#fff;">{{item.title}}</span>
-							<text style="font-size:24upx;color:#999999;margin-top:12upx;">{{item.consume}} {{item.amount}}</text>
-							<span style="margin-top:12upx;color:#DA53A2;">
+							<span style="font-size: 28upx;color:#fff;">{{item.title.substring(0,36)+' ...'}}</span>
+							<text style="font-size:24upx;color:#999999;margin-top:8upx;">{{item.consume}} {{item.amount}}</text>
+							<span style="color:#DA53A2; position:relative;">
 								<span style="font-size:24upx;margin-right:8upx;display: inline-block;font-family:'Montserrat-Bold';">{{item.symbol}}</span>
 								<span style="display: inline-block;font-family:'Montserrat-Bold';">{{item.price.split('.')[0]}}</span>
 								<span style="font-size:24upx;display: inline-block;font-family:'Montserrat-Bold';">{{item.price.split('.')[1]?'.'+item.price.split('.')[1]:''}}</span>
-								<span class="cut" style="position:absolute;right:50upx;display: inline-block;">
+								<span class="cut" style="position:absolute;right:10upx;display: inline-block;bottom:8upx;">
 									<span style="margin-right:20upx;font-size:30upx;color:#fff;font-weight: bold;display: inline-block;"> - </span>
 									<span style="display:inline-block;#99999;background:#280617;font-size:24upx;color:#fff;width:64upx;height:40upx;line-height: 40upx;text-align: center;">{{item.number}}</span>
 									<span style="margin-left:20upx;font-size:30upx;color:#fff;font-weight: bold;display: inline-block;"> + </span>
@@ -66,7 +66,7 @@
 								<span style="font-size: 24upx;color:#fff;">4000</span>
 							</span>
 						</view>
-						<fun-button value="去结算" width="240upx" url="../order-management/order-management"></fun-button>
+						<fun-button value="去结算" large width="240upx" url="../order-management/order-management"></fun-button>
 					</view>
 				</view>
 			</view>

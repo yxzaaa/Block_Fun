@@ -8,7 +8,7 @@
 			:buttons="navButtons"
 		/>
 		<view class="app-container full" style="padding-left:40upx;padding-right:40upx;">
-			<view class="currency-box">
+			<view class="currency-box"  style="padding-right:30upx">
 				<span style="color:#fff;opacity: 0.5;font-size: 24upx;">币种</span>
 				<view class="text">
 					<image src="../../static/bg/tree.png"></image>
@@ -16,26 +16,38 @@
 					<span style="color:#fff;font-size: 26upx;padding-left:10upx;border-left:1px solid rgba(255,255,255,0.5);margin-left:16upx;">Forest</span>
 				</view>
 			</view>
-			<view class="assignment-box">
-				<view class="Uid">
-					<span>UID</span>
-					<input type="text" placeholder="请输入对方UID">
-				</view>
-				<view class="assignment-number">
-					<span class="number">转让数量</span>
-					<view>
-						<input type="text" placeholder="可用余额 100 Xdag">
-						<span class="button">全部转出</span>
+			<view class="fun-card" style="width:670upx;">
+				<view class="fun-card-item">
+					<view class="form-item">
+						<view class="form-label">UID</view>
+						<view class="form-value-box">
+							<view class="form-input-box" style="padding-bottom:20upx">
+								<input class="form-input-field" placeholder="请输入对方UID"/>
+							</view>
+						</view>
 					</view>
-					<span class="upper-limit">每次转出上限100</span>
+					<view class="form-item">
+						<view class="form-label">转让数量</view>
+						<view class="form-value-box" style="padding-bottom:10upx">
+							<view class="form-input-box" style="padding-bottom:20upx">
+								<input class="form-input-field" placeholder="可用余额 100 Xdag"/>
+								<view class="form-input-btns">
+									<text>全部转出</text>
+								</view>
+							</view>
+						</view>
+						<view style="font-size: 24upx;color:#999;padding-bottom:30upx;">每次转出上限100</view>
+					</view>
+					<view class="form-item">
+						<view class="form-label" style="margin-bottom:20upx;">添加备注</view>
+						<view class="input-field" style="padding:20upx 30upx;">
+							<input style="width:100%;font-size: 26upx;color:#c7c7c7;" placeholder="点击添加"/>
+						</view>
+					</view>
 				</view>
-				<view class="add-remark">
-					<span>添加备注</span>
-					<input type="text" placeholder="点击添加">
+				<view class="submit-btn">
+					确认转让
 				</view>
-			</view>
-			<view class="confirm-btn">
-				确认转让
 			</view>
 			<view class="invite">
 				<image src="../../static/bg/add.png"></image>
@@ -142,18 +154,18 @@
 				font-size: 24upx;
 				color: #FFFFFF;			
 				opacity: 0.5;
-				margin-bottom:18upx;
+				padding-bottom:18upx;
 			}
 		}
 		.assignment-number{
 			width:590upx;
-			margin-top:61upx;
+			padding-top:50upx;
 			.number{
 				font-size: 28upx;
 				color: #FFFFFF;
 			}
 			view{
-				margin-top:34upx;
+				padding-top:30upx;
 				display:flex;
 				justify-content:space-between;
 				border-bottom:1px solid rgba(255,255,255,0.1);
@@ -176,21 +188,21 @@
 		}
 		.add-remark{
 			width:610upx;
-			margin-top:58upx;
+			padding-top:50upx;
 			span{
 				font-size: 28upx;
 				color: #FFFFFF;
+				display: block;
+				padding-bottom:20upx;
 			}
-			input{
+			view{
 				width:610upx;
-				height:88upx;
 				background: #15030B;
-				border-radius: 10upx;
-				padding:28upx 0 24upx 30upx;
+				border-radius: 8upx;
+				padding:30upx;
 				font-size: 26upx;
-				color: #FFFFFF;
+				color: #fff;
 				opacity: 0.5;
-				margin-top:20upx;
 			}
 		}
 	}
@@ -204,7 +216,7 @@
 		border-radius:0 0 8upx 8upx;
 	}
 	.invite{
-		width:220upx;
+		width:210upx;
 		margin:40upx auto;
 		display:flex;
 		justify-content:space-between;
@@ -241,10 +253,10 @@
 			span{
 				width:48upx;
 				height:48upx;
+				line-height: 48upx;
 				border:6upx solid #fff;
 				border-radius: 50%;
 				text-align: center;
-				line-height:48upx;
 			}
 		}
 		.text{

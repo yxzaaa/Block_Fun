@@ -11,10 +11,10 @@
 			<horizon-tab :tabs="statusTabs" padding="45"></horizon-tab>
 			<!-- 收益 -->
 			<view class="earnbox">
-				<view class="earning" style="margin-top:40upx;">
+				<view class="earning">
 					<view class="earn-text">
 						<view class="earn-img" style="width:36upx;height:36upx;margin-right: 24upx;">
-							<image src="../../static/bg/dig.png" style="width:100%;height:100%"></image>
+							<image src="../../static/icons/icon.png" style="width:36upx;height:36upx"></image>
 						</view>
 						<view class="earn-pro">
 							<span style="color:#fff;font-size: 28upx;">挖矿收益</span>
@@ -32,7 +32,7 @@
 				<view class="earning">
 					<view class="earn-text">
 						<view class="earn-img" style="width:36upx;height:36upx;margin-right: 24upx;">
-							<image src="../../static/bg/wallet.png" style="width:36upx;height:36upx"></image>
+							<image src="../../static/icons/icon-1.png" style="width:36upx;height:36upx"></image>
 						</view>
 						<view class="earn-pro">
 							<span style="color:#fff;font-size: 28upx;">推广收益</span>
@@ -50,7 +50,7 @@
 				<view class="earning">
 					<view class="earn-text">
 						<view class="earn-img" style="width:36upx;height:36upx;margin-right: 24upx;">
-							<image src="../../static/bg/buy.png" style="width:36upx;height:36upx"></image>
+							<image src="../../static/icons/icon-2.png" style="width:36upx;height:36upx"></image>
 						</view>
 						<view class="earn-pro">
 							<span style="color:#fff;font-size: 28upx;">购买矿机</span>
@@ -68,7 +68,7 @@
 				<view class="earning">
 					<view class="earn-text">
 						<view class="earn-img" style="width:36upx;height:36upx;margin-right: 24upx;">
-							<image src="../../static/bg/exchange.png" style="width:36upx;height:36upx"></image>
+							<image src="../../static/icons/icon-3.png" style="width:36upx;height:36upx"></image>
 						</view>
 						<view class="earn-pro">
 							<span style="color:#fff;font-size: 28upx;">兑换资格</span>
@@ -86,7 +86,7 @@
 				<view class="earning">
 					<view class="earn-text">
 						<view class="earn-img" style="width:36upx;height:36upx;margin-right: 24upx;">
-							<image src="../../static/bg/wallet.png" style="width:36upx;height:36upx"></image>
+							<image src="../../static/icons/icon.png" style="width:36upx;height:36upx"></image>
 						</view>
 						<view class="earn-pro">
 							<span style="color:#fff;font-size: 28upx;">转入</span>
@@ -104,7 +104,7 @@
 				<view class="earning">
 					<view class="earn-text">
 						<view class="earn-img" style="width:36upx;height:36upx;margin-right: 24upx;">
-							<image src="../../static/bg/change.png" style="width:36upx;height:36upx"></image>
+							<image src="../../static/icons/icon.png" style="width:36upx;height:36upx"></image>
 						</view>
 						<view class="earn-pro">
 							<span style="color:#fff;font-size: 28upx;">转出</span>
@@ -122,7 +122,7 @@
 				<view class="earning">
 					<view class="earn-text">
 						<view class="earn-img" style="width:36upx;height:36upx;margin-right: 24upx;">
-							<image src="../../static/bg/wallet.png" style="width:36upx;height:36upx"></image>
+							<image src="../../static/icons/icon-1.png" style="width:36upx;height:36upx"></image>
 						</view>
 						<view class="earn-pro">
 							<span style="color:#fff;font-size: 28upx;">挖矿收益</span>
@@ -183,7 +183,7 @@
 		width:100%;
 		padding:0 30upx;
 		.earning{
-			margin-top:78upx;
+			padding-top:60upx;
 			display: flex;
 			justify-content: space-between;
 			align-items: center;
@@ -193,6 +193,9 @@
 				.earn-pro{
 					display: flex;
 					flex-direction: column;
+					span{
+						line-height: 36upx;
+					}
 				}
 			}
 			.earn-price{

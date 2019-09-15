@@ -49,8 +49,8 @@ const httpRequest = (options)=>{
 		url:baseurl + options.url,
 		header:options.header || {
 			"Content-Type":"application/json",
-			"Authorization":uni.getStorageSync('userInfo').token || '',
-			"Mall":uni.getStorageSync('userInfo').mall || ''
+			"Authorization":uni.getStorageSync('userInfo').token,
+			"Mall":uni.getStorageSync('userInfo').mall
 		},
 		method:options.method || "POST",
 		data:options.data,
