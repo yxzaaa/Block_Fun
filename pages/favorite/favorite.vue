@@ -3,7 +3,7 @@
 		<uni-background /> <!-- 背景色-->
 		<!-- 导航栏 -->
 		<uni-nav-bar 	
-			title="购物车"
+			title="收藏夹"
 			textColor="#fff"
 			:opacity="scroll"
 			:buttons="navButtons"
@@ -30,18 +30,13 @@
 							></image>
 						</view>
 						<!-- 图片描述 -->
-						<view class="guess-content" style="margin-left:24upx;margin-top:0;">
-							<span style="font-size: 28upx;color:#fff;">{{item.title}}</span>
-							<text style="font-size:24upx;color:#999999;margin-top:12upx;">{{item.consume}} {{item.amount}}</text>
-							<span style="margin-top:12upx;color:#DA53A2;">
+						<view class="guess-content" style="margin-left:20upx;margin-top:0;">
+							<span style="font-size: 28upx;color:#fff;">{{item.title.substring(0,36)+' ...'}}</span>
+							<text style="font-size:24upx;color:#999999;margin-top:4upx;">{{item.consume}} {{item.amount}}</text>
+							<span style="color:#DA53A2;">
 								<span style="font-size:24upx;margin-right:8upx;display: inline-block;font-family:'Montserrat-Bold';">{{item.symbol}}</span>
 								<span style="display: inline-block;font-family:'Montserrat-Bold';">{{item.price.split('.')[0]}}</span>
 								<span style="font-size:24upx;display: inline-block;font-family:'Montserrat-Bold';">{{item.price.split('.')[1]?'.'+item.price.split('.')[1]:''}}</span>
-								<span class="cut" style="position:absolute;right:50upx;display: inline-block;">
-									<span style="margin-right:24upx;font-size:30upx;color:#fff;font-weight: bold;display: inline-block;"> - </span>
-									<span style="display:inline-block;#99999;background:#280617;font-size:24upx;color:#fff;width:64upx;height:40upx;line-height: 40upx;text-align: center;">{{item.number}}</span>
-									<span style="margin-left:24upx;font-size:30upx;color:#fff;font-weight: bold;display: inline-block;"> + </span>
-								</span>
 							</span>
 						</view>
 					</view>
@@ -79,8 +74,8 @@
 						text:'取消'
 					},
 					textbtn:{
-						text:"完成",
-						url:"../favorite/favorite-manage"
+						text:"管理",
+						type:'handle',
 					},
 					
 				},
@@ -115,6 +110,7 @@
 						number:'0',
 					},
 				],
+				isManager:'false',
 				data:{
 					guessList:[{},{}],
 				}
@@ -125,6 +121,9 @@
 		},
 		
 		methods:{
+			handle(){
+				this.text = '完成'
+			}
 		}
 		
 	}

@@ -63,7 +63,7 @@
 			</navigator>	
 		</view>
 		<view class="managebox">
-			<navigator url="../favorite/favorite-manage">
+			<navigator url="../favorite/favorite">
 				<view class="manage">
 					<span class="title">收藏夹</span>
 					<view>

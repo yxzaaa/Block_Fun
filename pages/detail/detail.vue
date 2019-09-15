@@ -7,6 +7,50 @@
 			:buttons="navButtons"			
 		/>
 		<view class="app-container fixbutton">
+			<view class="choose-box" v-if="specModal">
+				<view class="choose">
+					<view class="goods">
+						<view class="goods-info">
+							<view class="img">
+								<image src="../../static/bg/detail1.png"></image>
+							</view>
+							<view class="title">
+								<span>
+									<span style="font-size:30upx;font-family:'Montserrat-Bold';">￥</span>
+									<span style="font-size:40upx;font-family:'Montserrat-Bold';">354</span>
+									<span style="font-size: 30upx;font-family:'Montserrat-Bold';">.12</span>
+								</span>
+								<text style="color:#999999;font-size:24upx;margin-top:16upx;">消耗积分 4000</text>
+							</view>
+						</view>
+						<view class="img" @click = "specModal=false">
+							<image src="../../static/bg/close.png"></image>
+						</view>
+					</view>
+					<view class="pramabox">
+						<span>参数</span>
+						<view class="param">
+							<span>10ml</span>
+							<span>50ml</span>
+							<span>100ml</span>
+							<span>200ml</span>
+						</view>
+					</view>
+					<view class="numberbox">
+						<span>数量</span>
+						<span class="cut" style="position: relative;top:-4upx;">
+							<span style="margin-right:20upx;font-size:36upx;color:#fff;font-weight: bold;display: inline-block;"> - </span>
+							<span style="display:inline-block;#99999;background: #15030B;font-size:28upx;color:#fff;width:72upx;line-height: 40upx;text-align: center;"> 0 </span>
+							<span style="margin-left:20upx;font-size:36upx;color:#fff;font-weight: bold;display: inline-block;"> + </span>
+						</span>
+					</view>
+					<view class="fixed-buttons" style="display: flex;justify-content: center;align-items: center;">
+						<view class="button-group" style="width:670upx;">
+							<fun-button value="确定" width="670upx" large @handle = "modalConfirm"></fun-button>
+						</view>
+					</view>
+				</view>
+			</view>
 			<swiper class="carousel" indicator-dots=true circular=true interval="3000" duration="700" indicator-active-color="#DA53A2">
 				<swiper-item v-for="(item,index) in imgList" :key="index">
 					<view class="image-wrapper">
@@ -71,12 +115,12 @@
 				</view>
 				
 				<view class="button-group" style="width:500upx;">
-					<fun-button value="加入购物车" type="light" width="240upx" large @handle="addCart"></fun-button>
-					<fun-button value="立即购买" width="240upx" large url="../order-management/order-management"></fun-button>
+					<fun-button value="加入购物车" type="light" width="240upx" large @handle="openModal('cart')"></fun-button>
+					<fun-button value="立即购买" width="240upx" large url="../order-management/order-management" @handle="openModal('buy')"></fun-button>
 				</view>
 			</view>
 		</view>
-		
+	</view>
 	</view>
 </template>
 
@@ -121,7 +165,10 @@
 				content:'',
 				price:'',
 				imgList:[],
-				guessList:[]
+				guessList:[],
+				codeList:[],
+				specModal:false,
+				modalType:'',
 			};
 		},
 		onPageScroll(val){
@@ -129,37 +176,44 @@
 		},
 		onLoad(option){
 			this.$http({
-				url:'/mall/show',
-				data:{
-					itemid:option.id,
-				},
+				url:'/mall/show?itemid='+option.id,
 				success:res=>{
+					console.log(res);
 					if(res.code == 200){
-						this.credit = res.result.credit;
-						this.catname = res.result.catname;
-						this.title = res.result.title;
-						this.content = res.result.content;
-						this.imgList = res.result.img;
-						this.price = res.result.price;
-						this.guessList = res.result.rec
+						this.credit = res.data.credit;
+						this.catname = res.data.catname;
+						this.title = res.data.title;
+						this.content = res.data.content;
+						this.imgList = res.data.img;
+						this.price = res.data.price;
+						this.guessList = res.data.rec
 					}
 				}
 			})
 		},
 		methods:{
-			addCart(res){
-				this.$http({
-					url:'/mall/cart',
-					data:{
+			openModal(type){
+				this.specModal = true;
+				this.modalType = type;
+			},
+			modalConfirm(){
+				if(this.modalType =='cart'){
+					this.specModal = false;
+					this.$http({
+						url:'/mall/cart',
+						type:'application/x-www-form-urlencoded',
+						data:{
+							code:'',
+						},
+						success:res=>{
+							console.log(res);
+							
+						}
 						
-					},
-					success:res=>{
-						console.log(res);
-						
-					}
+					})
+				}else{
 					
-				})
-			   
+				}
 			}
 		},
 	}
@@ -332,4 +386,95 @@
 		left:0;
 		background:#2F282B;
 	}
+	.choose-box{
+		width:750upx;
+		height:100vh;
+		background:rgba(0,0,0,0.5);
+		position: fixed;
+		left:0;
+		top:0;
+		z-index:1000;
+		.choose{
+			width:750upx;
+			height:716upx;
+			background: #281920;
+			position: absolute;
+			bottom:0;
+			padding:40upx;
+			.goods{
+				display: flex;
+				align-items: flex-start;
+				justify-content: space-between;
+				.goods-info{
+					display:flex;
+				
+					.img{
+						border-radius:8upx;
+						width:160upx;
+						height:160upx;
+						overflow:hidden;
+						image{
+							width:100%;
+							height:100%;
+						}
+					}
+					.title{
+						display: flex;
+						flex-direction: column;
+						justify-content: flex-end;
+						margin-left:20upx;
+						span{
+							color: #DA53A2;
+							font-weight: 600;
+						}
+						text{
+							color:#999999;
+							margin-top:20upx;
+						}
+					}
+				}
+				
+				.img{
+					width:40upx;
+					height:40upx;
+					image{
+						width:100%;
+						height:100%;
+					}
+				}
+			}
+			.pramabox{
+				margin-top: 60upx;
+				span{
+					font-size: 28upx;
+					color:#ffffff;
+				}
+				.param{
+					display: flex;
+					justify-content: flex-start;
+					margin-top:40upx;
+					span{
+						color:#ffffff;
+						padding:28upx 20upx;
+						background:#15030B;
+						border-radius: 8upx;
+						margin-right:20upx;
+						font-size: 24upx;
+						
+					}
+				}
+			}
+			.numberbox{
+				display: flex;
+				justify-content: space-between;
+				align-items: flex-start;
+				margin-top:60upx;
+				span{
+					color:#ffffff;
+					font-size:28upx;
+				}
+			}
+		}
+	}
+	
 </style>

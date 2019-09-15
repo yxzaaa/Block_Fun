@@ -62,22 +62,10 @@
 				hotList:[],
 				loading:false,
 				navButtons:{
-					// back:{
-					// 	type:'circle'
-					// },
-					// share:{
-					// 	type:'circle'
-					// },
-					// love:{
-					// 	type:'circle'
-					// },
 					cart:{
 						type:'normal',
 						url:'../cart1/cart1'
 					},
-					// textbtn:{
-					// 	text:'取消'
-					// }
 				}
 			};
 		},
@@ -90,9 +78,9 @@
 				success:res=>{
 					console.log(res);
 					if(res.code == 200){
-						this.bannerList = res.result.ad;
-						this.typeList = res.result.cat;
-						this.hotList = res.result.hot;
+						this.bannerList = res.data.ad;
+						this.typeList = res.data.cat;
+						this.hotList = res.data.hot;
 					}
 				}
 			})
