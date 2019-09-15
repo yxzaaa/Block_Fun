@@ -2,9 +2,7 @@
 	<view>
 		<uni-background />
 		<uni-nav-bar 
-			title="购物" 
 			layout="search" 
-			textColor="#fff" 
 			:opacity="scroll"
 			:buttons="navButtons"
 		/>
@@ -27,18 +25,6 @@
 			return {
 				scroll:0,
 				navButtons:{
-					// back:{
-					// 	type:'circle'
-					// },
-					// share:{
-					// 	type:'circle'
-					// },
-					// love:{
-					// 	type:'circle'
-					// },
-					// cart:{
-					// 	type:'normal'
-					// },
 					textbtn:{
 						text:'取消',
 						

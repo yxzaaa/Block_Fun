@@ -1,11 +1,11 @@
 <template>
-	<view class="flow-box" style="">
+	<view class="flow-box">
 		<view class="item"
 			:class="left[index] == 1 ? 'left' : ''"
 			v-for="(item, index) in newList" :key="index"
 			:data-index="index"
-			 @click="choose"
-			 :style="{marginBottom:index==newList.length-1 || index==newList.length-2?'130upx':'',top:top[index]+'px'}"
+			@click="choose"
+			:style="{marginBottom:index==newList.length-1 || index==newList.length-2?'130upx':'',top:top[index]+'px'}"
 			 >
 			<view class="pic">
 				<image class="image" mode="widthFix" :src="item.image" style="width: 100%; display: block;" ></image>
@@ -25,9 +25,6 @@
 				</view>
 			</view>
 		</view>
-		<view class="loading" v-show="loading" :style="'top: ' + loadingTop + 'px'" >
-			<image src="/static/nairenk-waterfall-flow/loading.gif" style="width: 80upx; height: 80upx;"></image>
-		</view>
 	</view>
 </template>
 
@@ -40,11 +37,6 @@
 				default() {
 					return []
 				}
-			},
-			// 加载动画
-			loading: {
-				type: Boolean,
-				default: false
 			}
 		},
 		data() {
@@ -54,7 +46,6 @@
 				boxHeight: [],
 				top: [], 
 				left: [],
-				loadingTop: 0
 			}
 		},
 		watch: {
@@ -108,7 +99,6 @@
 							this.left.push(index);
 							this.$set(this.newList[i], 'top', minHeight + 10);
 							this.$set(this.newList[i], 'left', index);
-							this.loadingTop = this.boxHeight[index];
 						}
 					}
 				}).exec();

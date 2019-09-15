@@ -251,6 +251,10 @@
             "path" : "pages/passwordback/passwordback",
             "style" : {}
         }
+        ,{
+            "path" : "pages/editAddress/editAddress",
+            "style" : {}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",

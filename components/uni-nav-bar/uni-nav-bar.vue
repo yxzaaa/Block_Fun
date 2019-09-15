@@ -147,7 +147,7 @@
 					uni.navigateBack({
 						delta:1
 					})
-				}else if(obj.text === 'handle'){
+				}else if(obj.text === 'handle' || obj.type === 'handle'){
 					this.$emit('handle',obj.classify)
 				}else{
 					uni.navigateTo({

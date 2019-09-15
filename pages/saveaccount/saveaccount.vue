@@ -30,7 +30,7 @@
 						<fun-button 
 							type="text" 
 							color="#DA53A2" 
-							icon="../../static/icons/copy.png" 
+							icon="/static/icons/copy.png" 
 							value="复制地址" 
 							large
 							width="200upx"

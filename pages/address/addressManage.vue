@@ -10,24 +10,24 @@
 		<view class="content" style="padding:40upx;">
 			<view class="row b-b">
 				<text class="tit" style="padding-top:0px;">收货人姓名</text>
-				<input class="input" type="text" v-model="getterName" placeholder="请输入收货人姓名"/>
+				<input class="input" type="text" v-model="getterName" placeholder="请输入收货人姓名" placeholder-style="color:rgba(255,255,255,0.5)"/>
 			</view>
 			<view class="row b-b">
 				<text class="tit">手机号</text>
-				<input v-model="phone" class="input" type="number" placeholder="请输入11位手机号"/>
+				<input v-model="phone" class="input" type="number" placeholder="请输入11位手机号" placeholder-style="color:rgba(255,255,255,0.5)"/>
 			</view>
 			<view class="row b-b">
 				<text class="tit">所属区域</text>
 				<picker mode="multiSelector" :range="rangeData" :range-key="'name'" @columnchange="setAddressData" @change="changeArea" :disabled="loadingMPData"
 					style="position:relative;"
 				>
-					<input v-model="area" class="input" type="text" :placeholder="loadingMPData?'正在加载省市区信息...':'请选择省市区'" disabled>
+					<input v-model="area" class="input" type="text" :placeholder="loadingMPData?'正在加载省市区信息...':'请选择省市区'" disabled placeholder-style="color:rgba(255,255,255,0.5)">
 					<image :src="imageLib.shape" style="width:24upx;height:12upx;position: absolute;top:34upx;right:10upx;"></image>
 				</picker>
 			</view>
 			<view class="row b-b"> 
 				<text class="tit">详细地址</text>
-				<input v-model="address" class="input" type="text" placeholder="请输入详细地址"/>
+				<input v-model="address" class="input" type="text" placeholder="请输入详细地址" placeholder-style="color:rgba(255,255,255,0.5)"/>
 			</view>
 			
 		</view>
@@ -75,6 +75,7 @@
 				isdefault:false,
 				rangeData:[],
 				addressData:[],
+				delta:1,
 				loadingMPData:true,
 				province:new Set(),
 				citys:new Set(),
@@ -85,6 +86,10 @@
 			this.scroll=val.scrollTop
 		},
 		onLoad(option){
+			console.log(option);
+			if(option.delta){
+				this.delta = parseInt(option.delta);
+			}
 			//收货地址数据
 			this.$http({
 				url:'/file/static/area.json',
@@ -169,6 +174,7 @@
 						address:this.address,
 						default:this.isdefault?1:0
 					},
+					type:'application/x-www-form-urlencoded',
 					success:res=>{
 						console.log(res);
 						if(res.code == 200){
@@ -177,13 +183,18 @@
 								data:{
 									truename:this.getterName,
 									mobile:'86'+this.phone,
-									address:this.area + this.address,
+									full:this.area + this.address,
 								},
 								success:()=>{
 									uni.navigateBack({
-										delta:1
+										delta:this.delta
 									})
 								}
+							})
+						}else{
+							uni.showToast({
+								title:res.message,
+								icon:'none'
 							})
 						}
 					}
@@ -208,7 +219,7 @@
 		
 		
 		.tit{
-			font-size: 30upx;
+			font-size: 28upx;
 			color: #fff;
 			padding-top:40upx;
 			padding-bottom:10upx;
@@ -216,9 +227,9 @@
 		}
 		.input{
 			flex: 1;
-			font-size: 26upx;
+			font-size: 24upx;
 			height:80upx;
-			color: #fff;
+			color: rgba(255,255,255,0.7);
 			border-bottom:1px solid rgba(255,255,255,.1);
 		}
 		.icon-shouhuodizhi{

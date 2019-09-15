@@ -27,7 +27,7 @@
 						<view class="form-value-box">
 							<view style="display: flex;justify-content: space-between;">
 								<text style="font-size:24upx;color:#999;">txid</text>
-								<fun-button type="text" color="#DA53A2" icon="../../static/icons/copy.png" value="复制"></fun-button>
+								<fun-button type="text" color="#DA53A2" icon="/static/icons/copy.png" value="复制"></fun-button>
 							</view>
 							<view style="color:#fff;font-family:'Montserrat-Bold';font-size:24upx;">1gmHhylYGlhyHLhlkgesLmnXWibFAWohJD</view>
 						</view>
@@ -37,7 +37,7 @@
 						<view class="form-value-box">
 							<view style="display: flex;justify-content: space-between;">
 								<text style="font-size:24upx;color:#999;">txid</text>
-								<fun-button type="text" color="#DA53A2" icon="../../static/icons/copy.png" value="复制"></fun-button>
+								<fun-button type="text" color="#DA53A2" icon="/static/icons/copy.png" value="复制"></fun-button>
 							</view>
 							<view style="color:#fff;font-family:'Montserrat-Bold';font-size:24upx;">1gmHhylYGlhyHLhlkgesLmnXWibFAWohJD</view>
 						</view>

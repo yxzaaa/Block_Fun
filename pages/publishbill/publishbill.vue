@@ -9,7 +9,7 @@
 						value="发布" 
 						width="670upx"  
 						large 
-						icon="../../static/icons/icon_send.png"
+						icon="/static/icons/icon_send.png"
 						@handle="openVip()"
 					></fun-button>
 				</view>
