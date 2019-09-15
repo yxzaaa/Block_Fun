@@ -149,6 +149,9 @@
 </script>
 
 <style lang="scss" scoped> 
+	.swiper-box{
+		height:calc(100vh - 274upx);
+	}
 	.debitbox{
 		width:670upx;
 		background: rgba(45, 31, 37,0.8);
@@ -156,7 +159,6 @@
 		margin-bottom:30upx;
 		.debit-info{
 			width:100%;
-			height:186upx;
 			padding:40upx;
 			display: flex;
 			justify-content: space-between;
@@ -186,21 +188,19 @@
 					span{
 						font-size: 22upx;					
 						color: #FFFFFF;
-						margin-left:12upx;
+						margin-left:8upx;
 					}
 				}
 			}
 		}
 		.debit-btn{
 			width:670upx;
-			height:123upx;
 			padding:29upx 40upx 30upx 438upx;
 			display:flex;
 			justify-content:flex-end;
 			
 			view{
 				width:192upx;
-				height:64upx;
 				background: #DA53A2;
 				border-radius: 200upx;
 				text-align: center;

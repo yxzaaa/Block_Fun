@@ -8,7 +8,7 @@
 			:buttons="navButtons"
 		/>
 		<view class="app-container full" style="padding-left:40upx;padding-right:40upx;">
-			<view class="currency-box">
+			<view class="currency-box"  style="padding-right:30upx">
 				<span style="color:#fff;opacity: 0.5;font-size: 24upx;">币种</span>
 				<view class="text">
 					<image src="../../static/bg/tree.png"></image>
@@ -21,19 +21,15 @@
 					<view class="form-item">
 						<view class="form-label">UID</view>
 						<view class="form-value-box">
-							<view class="form-input-box">
+							<view class="form-input-box" style="padding-bottom:20upx">
 								<input class="form-input-field" placeholder="请输入对方UID"/>
-								<view class="form-input-btns">
-									<image :src="imageLib.scan" />
-									<image :src="imageLib.contacts" />
-								</view>
 							</view>
 						</view>
 					</view>
 					<view class="form-item">
 						<view class="form-label">转让数量</view>
-						<view class="form-value-box">
-							<view class="form-input-box">
+						<view class="form-value-box" style="padding-bottom:10upx">
+							<view class="form-input-box" style="padding-bottom:20upx">
 								<input class="form-input-field" placeholder="可用余额 100 Xdag"/>
 								<view class="form-input-btns">
 									<text>全部转出</text>
@@ -258,6 +254,7 @@
 			span{
 				width:48upx;
 				height:48upx;
+				line-height: 48upx;
 				border:6upx solid #fff;
 				border-radius: 50%;
 				text-align: center;

@@ -222,7 +222,7 @@
 
 <style lang="scss" scoped>
 	.swiper-box{
-		height:calc(100vh - 336upx);
+		height:calc(100vh - 356upx);
 	}
 	.fiexd-btn{
 		position: fixed;
@@ -253,7 +253,7 @@
 				opacity: 0.5;
 				font-size: 24upx;
 				margin-right:40upx;
-				padding:10upx 0upx;
+				padding:12upx 0upx;
 				&.active{
 					border-bottom:2upx solid #fff;
 					opacity: 1;

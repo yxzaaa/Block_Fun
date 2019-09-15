@@ -172,12 +172,12 @@
 		align-items:center;
 		.back-btn{
 			position:absolute;
-			bottom:8upx;
+			bottom:14upx;
 			left:24upx;
 		}
 		.right-btn-list{
 			position:absolute;
-			bottom:8upx;
+			bottom:14upx;
 			right:30upx;
 			display:flex;
 			justify-content:flex-end;

@@ -18,25 +18,26 @@
 			</view>
 			<view class="row b-b">
 				<text class="tit">所属区域</text>
-				<input v-model="area" class="input" type="text" placeholder="请选择市区">
-					<picker mode="multiSelector">
-						
-					</picker>
-				</input>
+				<picker mode="multiSelector" :range="rangeData" :range-key="'name'" @columnchange="setAddressData" @change="changeArea" :disabled="loadingMPData"
+					style="position:relative;"
+				>
+					<input v-model="area" class="input" type="text" :placeholder="loadingMPData?'正在加载省市区信息...':'请选择省市区'" disabled>
+					<image :src="imageLib.shape" style="width:24upx;height:12upx;position: absolute;top:34upx;right:10upx;"></image>
+				</picker>
 			</view>
 			<view class="row b-b"> 
 				<text class="tit">详细地址</text>
-				<input v-model="address" class="input" type="text" placeholder="请选择市区"/>
+				<input v-model="address" class="input" type="text" placeholder="请输入详细地址"/>
 			</view>
 			
 		</view>
-		<view class="default" style="padding:30upx 40upx;display: flex;align-items: center;">
-			<image src="../../static/bg/Group.png" style="width:40upx;height:40upx;margin-right:14upx;"></image>
+		<view class="default" style="padding:30upx 40upx;display: flex;align-items: center;" @click="isdefault = isdefault?false:true">
+			<image :src="isdefault?imageLib.check:imageLib.checkbox" style="width:40upx;height:40upx;margin-right:14upx;"></image>
 			<text style="color:#fff;font-size: 24upx;">设为默认</text>
 		</view>
 		<view class="fixed-buttons">
 			<view class="button-group">
-				<fun-button @handle="addressPlus" value="保存并使用" width="670upx"  large url="../order-management/order-management"></fun-button>
+				<fun-button @handle="addressPlus" value="保存并使用" width="670upx"  large></fun-button>
 			</view>
 		</view>
 	</view>
@@ -61,32 +62,130 @@
 						text:'取消'
 					}
 				},
+				imageLib:{
+					check:'../../static/bg/check.png',
+					checkbox:'../../static/bg/checkbox.png',
+					shape:'../../static/icons/Shape1.png',
+				},
 				getterName:'',
 				phone:'',
 				area:'',
+				areaid:null,
 				address:'',
-				isdefault:false
+				isdefault:false,
+				rangeData:[],
+				addressData:[],
+				loadingMPData:true,
+				province:new Set(),
+				citys:new Set(),
+				areas:new Set()
 			}
 		},
 		onPageScroll(val){
 			this.scroll=val.scrollTop
 		},
 		onLoad(option){
-			
+			//收货地址数据
+			this.$http({
+				url:'/file/static/area.json',
+				method:'GET',
+				success:res=>{
+					this.addressData = new Set(res);
+					this.addressData.forEach((element)=>{
+					    if(element.parentid == 0){
+							this.province.add(element);
+						}
+					});
+					var provinceID = Array.from(this.province)[0].areaid;
+					this.addressData.forEach((element)=>{
+					    if(element.parentid == provinceID){
+							this.citys.add(element);
+						}
+					});
+					var cityID = Array.from(this.citys)[0].areaid;
+					this.addressData.forEach((element)=>{
+					    if(element.parentid == cityID){
+							this.areas.add(element);
+						}
+					});
+					this.rangeData = [Array.from(this.province),Array.from(this.citys),Array.from(this.areas)];
+					this.loadingMPData = false;
+				}
+			})
 		},
 		methods: {
-			//收货地址数据
-			
+			//切换省市区
+			changeArea(e){
+				var values = e.detail.value;
+				values[1] = values[1] === null?0:values[1];
+				values[2] = values[2] === null?0:values[2];
+				this.area = Array.from(this.province)[values[0]].name + Array.from(this.citys)[values[1]].name;
+				this.areaid = Array.from(this.citys)[values[1]].areaid;
+				if(Array.from(this.areas)[values[2]]){
+					this.area += Array.from(this.areas)[values[2]].name;
+					this.areaid = Array.from(this.areas)[values[2]].areaid;
+				}
+			},
+			//设置省市区数据
+			setAddressData(e){
+				var column = e.detail.column;
+				var value = e.detail.value;
+				if(column == 0){
+					this.citys.clear();
+					this.areas.clear();
+					var provinceID = Array.from(this.province)[value].areaid;
+					this.addressData.forEach((element)=>{
+					    if(element.parentid == provinceID){
+							this.citys.add(element);
+						}
+					});
+					var cityID = Array.from(this.citys)[0].areaid;
+					this.addressData.forEach((element)=>{
+					    if(element.parentid == cityID){
+							this.areas.add(element);
+						}
+					});
+					this.rangeData = [Array.from(this.province),Array.from(this.citys),Array.from(this.areas)];
+				}else if(column == 1){
+					this.areas.clear();
+					var cityID = Array.from(this.citys)[value].areaid;
+					this.addressData.forEach((element)=>{
+					    if(element.parentid == cityID){
+							this.areas.add(element);
+						}
+					});
+					this.rangeData = [Array.from(this.province),Array.from(this.citys),Array.from(this.areas)];
+				}
+			},
 			//添加收货地址
 			addressPlus(){
 				this.$http({
 					url:'/member/address',
 					data:{
 						action:'add',
-						
+						areaid:this.areaid,
+						truename:this.getterName,
+						mobile:'86'+this.phone,
+						address:this.address,
+						default:this.isdefault?1:0
 					},
 					success:res=>{
-						
+						console.log(res);
+						if(res.code == 200){
+							uni.setStorage({
+								key:'currAddress',
+								data:{
+									truename:this.getterName,
+									mobile:'86'+this.phone,
+									address:this.area + this.address,
+								},
+								success:()=>{
+									uni.navigateBack({
+										delta:1
+									})
+								}
+							})
+						}
 					}
 				})
 			}
@@ -98,7 +197,7 @@
 	.content{
 		margin: 200upx 40upx 0;
 		border-radius:10upx;
-		background: #493740;
+		background: rgba(45, 31, 37, 0.7);
 	}
 
 	.row{

@@ -10,20 +10,20 @@
 			:buttons="navButtons"
 		/>
 		<!-- 新建收货地址 -->
-		<navigator class="tosite" url="../choose-address/choose-address">
+		<navigator class="tosite" url="../choose-address/choose-address" v-if="hasDefault">
 			<view class="site">
 				<image src="../../static/bg/location.png" style="width:64upx;height:64upx;"></image>
 				<span class="person-info">
 					<span class="name-phone">
-						<span class="name" style="font-size:28upx;color:#fff;">王依依</span>
-						<span class="phone" style="font-size:24upx;color:#999999;;">133xxxx1232</span>
+						<span class="name" style="font-size:28upx;color:#fff;">{{addressData.truename}}</span>
+						<span class="phone" style="font-size:24upx;color:#999999;">{{addressData.mobile}}</span>
 					</span>
-					<span class="adress" style="font-size:24upx;display: block;color:#999999;;">北京市朝阳区朝阳路朝阳小区10号楼102</span>
+					<span class="adress" style="font-size:24upx;display: block;color:#999999;width:500upx;">{{addressData.address}}</span>
 				</span>
 			</view>
 			<image src="../../static/bg/right.png" style="width:40upx;height:40upx;"></image>
 		</navigator>
-		<navigator url="../address/addressManage">
+		<navigator url="../address/addressManage" v-else>
 			<view class="address">
 				<view class="site">
 					<image src="../../static/bg/location.png" style="width:64upx;height:64upx;"></image>
@@ -50,7 +50,7 @@
 					</view>
 					<!-- 图片描述 -->
 					<view class="guess-content" style="margin-left:20upx;margin-top:0;">
-						<span style="font-size: 28upx;color:#fff;">{{item.title.substring(0,30)+' ...'}}</span>
+						<span style="font-size: 28upx;color:#fff;">{{item.title.substring(0,36)+' ...'}}</span>
 						<text style="font-size:24upx;color:#999999;margin-top:8upx;">{{item.consume}} {{item.amount}}</text>
 						<span style="color:#DA53A2;position:relative;">
 							<span style="font-size:24upx;margin-right:8upx;display: inline-block;font-family:'Montserrat-Bold';">{{item.symbol}}</span>
@@ -107,9 +107,9 @@
 						type:'normal',
 						text:'取消'
 					},
-					
-					
 				},
+				hasDefault:false,
+				addressData:{},
 				guessList: [{
 						src: '../../static/bg/iphonex.png',
 						src1:'../../static/bg/checkbox.png',
@@ -146,6 +146,21 @@
 		onPageScroll(val){
 			this.scroll = val.scrollTop;
 		},
+		onShow(){
+			if(uni.getStorageSync('currAddress')){
+				this.hasDefault = true;
+				this.addressData = uni.getStorageSync('currAddress');
+				uni.removeStorageSync('currAddress');
+			}else{
+				//获取收货地址列表
+				this.$http({
+					url:'/member/address',
+					success:res=>{
+						console.log(res);
+					}
+				})
+			}
+		},
 		methods:{
 			
 		}
@@ -173,6 +188,10 @@
 			align-items: center;
 			.person-info{
 				margin-left:20upx;
+				.name-phone{
+					display: flex;
+					align-items: center;
+				}
 				.phone{
 					margin-left:20upx;
 				}
