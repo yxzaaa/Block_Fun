@@ -10,11 +10,11 @@
 			<view class="login-form">
 				<view class="login-form-item">
 					<image class="login-form-label" :src="imageLib.phone"></image>
-					<input type="text" class="login-form-input" placeholder="手机号码" maxlength="11" v-model="mobile"/>
+					<input type="number" class="login-form-input" placeholder="手机号码" maxlength="11" v-model="mobile"/>
 				</view>
 				<view class="login-form-item">
 					<image class="login-form-label" :src="imageLib.password"></image>
-					<input type="text" class="login-form-input"  placeholder="登录密码" password maxlength="16" v-model="password"/>
+					<input type="password" class="login-form-input"  placeholder="登录密码" password maxlength="16" v-model="password"/>
 				</view>
 				<view style="padding-top:90upx;">
 					<fun-button value="登 录" large @handle="login"></fun-button>
@@ -62,27 +62,25 @@
 			};
 		},
 		onLoad(option){
-			console.log(option.register);
-			if(option.register === 'success'){
+			if(option.register === 'successs'){
 				
 			}
 		},
 		methods:{
 			login(){
 				this.$http({
-					url:'/member/login',
+					url:'/v1/users/login',
 					data:{
-						mobile:'86'+this.mobile,
-						password:this.password
+						login_name:'86'+this.mobile,
+						password:this.password,
+						password_hash:this.$md5(this.password)
 					},
 					success:res=>{
 						console.log(res);
 						if(res.code == 200){
 							uni.setStorage({
 								key: 'userInfo',
-								data:{
-									token:res.result.authorization
-								},
+								data:res.data,
 								success:res=>{
 									uni.switchTab({
 										url:'../index/index'
@@ -91,7 +89,7 @@
 							})
 						}else{
 							uni.showToast({
-								title:res.error,
+								title:res.message,
 								icon:'none'
 							})
 						}

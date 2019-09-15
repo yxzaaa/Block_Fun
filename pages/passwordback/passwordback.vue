@@ -10,19 +10,19 @@
 			<view class="login-form">
 				<view class="login-form-item">
 					<image class="login-form-label" :src="imageLib.phone"></image>
-					<input type="text" class="login-form-input" placeholder="手机号码" maxlength="11"/>
+					<input type="number" class="login-form-input" placeholder="手机号码" maxlength="11" v-model="phone"/>
 				</view>
 				<view class="login-form-item">
 					<image class="login-form-label" :src="imageLib.cert"></image>
-					<input type="text" class="login-form-input"  placeholder="验证码" style="width:420upx;" maxlength="6"/>
-					<text style="width:180upx;text-align: right;color:#DA53A2;font-size: 28upx;">获取验证码</text>
+					<input type="number" class="login-form-input"  placeholder="验证码" style="width:420upx;" maxlength="6" v-model="checkCode"/>
+					<text style="width:180upx;text-align: center;color:#DA53A2;font-size: 28upx;" @click="getCode">{{codeDelay === 0?'获取验证码':codeDelay+' s'}}</text>
 				</view>
 				<view class="login-form-item">
 					<image class="login-form-label" :src="imageLib.password"></image>
-					<input type="text" class="login-form-input"  placeholder="请输入8~16位新密码" password maxlength="16"/>
+					<input type="password" class="login-form-input"  placeholder="请输入8~16位新密码" password maxlength="16" v-model="password"/>
 				</view>
 				<view style="padding-top:90upx;">
-					<fun-button value="确 认" large></fun-button>
+					<fun-button value="确 认" large @handle="pwdBack"></fun-button>
 				</view>
 				<!-- <view style="padding-top:20upx;">
 					<fun-button value="取消" type="text" color="#999" width="630upx"></fun-button>
@@ -56,9 +56,71 @@
 					password:'../../static/icons/icon_mima.png',
 					cert:'../../static/icons/icon_yanzhengma.png',
 					code:'../../static/icons/icon_yaoqingma.png',
-				}
+				},
+				codeDelay:0,
+				codeTimer:null,
+				phone:'',
+				checkCode:'',
+				password:'',
 			};
 		},
+		methods:{
+			getCode(){
+				if(this.codeDelay === 0 && this.phone.length === 11){
+					this.$http({
+						url:'/v1/users/login/forget-login-password/send-code?login_name=86'+this.phone,
+						success:res=>{
+							console.log(res);
+							if(res.code == 200){
+								this.codeDelay = 60;
+								this.codeTimer = setInterval(()=>{
+									if(this.codeDelay>0){
+										this.codeDelay --;
+									}else{
+										clearInterval(this.codeTimer);
+										this.codeTimer = null;
+									}
+								},1000);
+							}else{
+								uni.showToast({
+									title:res.message,
+									icon:'none'
+								})
+							}
+						}
+					})
+				}else if(this.phone.length !== 11){
+					uni.showToast({
+						title:"请输入正确的手机号码",
+						icon:'none'
+					})
+				}
+			},
+			pwdBack(){
+				this.$http({
+					url:'/v1/users/login/forget-login-password/reset',
+					data:{
+						login_name:'86'+this.phone,
+						new_password:this.password,
+						new_password_hash:this.$md5(this.password),
+						validate_code:this.checkCode
+					},
+					success:res=>{
+						console.log(res)
+						if(res.code == 200){
+							uni.navigateTo({
+								url:'../login/login?passwordback=success',
+							})
+						}else{
+							uni.showToast({
+								title:res.message,
+								icon:'none'
+							})
+						}
+					}
+				})
+			}
+		}
 	}
 </script>
 

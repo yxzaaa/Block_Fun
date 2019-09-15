@@ -133,7 +133,7 @@
 				</view>
 			</navigator>
 		</view>
-		<view class="exit">
+		<view class="exit" @click="logout">
 			退出登录
 		</view>
 	</view>
@@ -158,6 +158,18 @@
 		onPageScroll(val){
 			this.scroll = val.scrollTop;
 		},
+		methods:{
+			logout(){
+				uni.removeStorage({
+					key:'userInfo',
+					success:res=>{
+						uni.reLaunch({
+							url:'../login/login'
+						})
+					}
+				})
+			}
+		}
 		
 	}
 </script>
