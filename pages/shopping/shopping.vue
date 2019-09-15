@@ -10,17 +10,25 @@
 		/>
 		<view class="app-container">
 			<view class="banner-box">
-
-				<image src="../../static/bg/dream.png" style="width:100%;height:726upx"/>
+				<swiper :indicator-dots="true" :autoplay="true" style="height:340upx;">
+					<block v-for="(item,index) in bannerList"
+					:key="index"
+					>
+						<swiper-item>
+							<image :src="item" style="width:100%;height:100%"/>
+						</swiper-item>
+					</block>
+				</swiper>
 			</view>
 			<view class="section-header">
 				<text class="section-title" style="color:#fff;font-size: 32upx;">商品类别</text>
 			</view>
 			
 			<view class="type-box">
-				<block v-for="(item,index) in typeList" :key="index">
-					<navigator style="margin-bottom:30upx;" :url="'../detail/detail?id='+item.id">
-						<image :src="item.image" style="width:100%;display:block;height:240upx"/>
+				<block v-for="(item,index) in typeList" :key="item.catid">
+					<navigator style="margin-bottom:30upx;position: relative;" :url="'../detail/detail?id='+item.catid">
+						<image :src="item.img" style="width:100%;display:block;height:240upx"/>
+						<span style="position: absolute; left:50upx;top:50%;margin-top:-32upx;line-height:64upx;font-size: 32upx;color:#fff;font-weight: bold;">{{item.title}}</span>
 					</navigator>
 				</block>
 			</view>
@@ -29,7 +37,7 @@
 				<text class="section-title">热门商品</text>
 			</view>
 			<view>
-				<waterfall-flow :list="list" :loading="loading"></waterfall-flow>
+				<waterfall-flow :list="hotList" :loading="loading" @click="toDetail"></waterfall-flow>
 			</view>
 		</view>
 	</view>
@@ -49,50 +57,9 @@
 		data() {
 			return {
 				scroll:0,
-				typeList:[
-					{	
-						id:1,
-						image:"../../static/bg/daily.png"
-					},
-					{	
-						id:2,
-						image:"../../static/bg/numerical.png"
-					},
-					{	
-						id:3,
-						image:"../../static/bg/brand.png"
-					},
-					{	
-						id:4,
-						image:"../../static/bg/gift.png"
-					}
-				],
-				list:[{
-						id: 1,
-						image: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1553493711400&di=e6c84132e52932ffaf8fc5025ed46824&imgtype=0&src=http%3A%2F%2Fimg5.duitang.com%2Fuploads%2Fitem%2F201303%2F31%2F20130331124639_svhNV.thumb.700_0.jpeg",
-						title: "我的左手吗？呵…我把它送给了新世界",
-						content:"消耗积分",
-						consume:4000,
-						symbol:"￥",
-						money:"394.93"
-						
-					},{
-						id: 2,
-						image: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1553493784989&di=4e0dea29f039774a9478af73f5742920&imgtype=0&src=http%3A%2F%2Fphoto.16pic.com%2F00%2F51%2F49%2F16pic_5149719_b.jpg",
-						title: "我是要成为海贼王的男人",
-						content:"消耗积分",
-						consume:4000,
-						symbol:"￥",
-						money:"3242"
-					},{
-						id: 3,
-						image: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1553493871657&di=26eeaf4e2a8dc15be242029ce2073c8b&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201506%2F05%2F20150605173646_ehdVy.jpeg",
-						title: "我不是天生的王者，但骨子里流着不让我低头的血液",
-						content:"消耗积分",
-						consume:4000,
-						symbol:"￥",
-						money:"1220"
-					}],
+				bannerList:[],
+				typeList:[],
+				hotList:[],
 				loading:false,
 				navButtons:{
 					// back:{
@@ -117,6 +84,26 @@
 		onPageScroll(val){
 			this.scroll = val.scrollTop;
 		},
+		onLoad(){
+			this.$http({
+				url:'/index/index',
+				success:res=>{
+					console.log(res);
+					if(res.code == 200){
+						this.bannerList = res.result.ad;
+						this.typeList = res.result.cat;
+						this.hotList = res.result.hot;
+					}
+				}
+			})
+		},
+		methods:{
+			toDetail(res){
+				uni.navigateTo({
+					url:"../detail/detail?id="+res
+				})
+			}
+		}
 	}
 </script>
 

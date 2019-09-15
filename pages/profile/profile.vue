@@ -225,7 +225,6 @@
 				span{
 					font-size:24upx;
 					color: #DA53A2;
-					font-family:  PingFang SC;
 				}
 				
 			}
@@ -262,14 +261,13 @@
 					margin-right:12upx;
 					display: block;
 					color: #DA53A2;
-					font-family: Montserrat;
+					font-family: Montserrat-Bold;
 					font-style: normal;
 					font-weight: 600;
 					font-size: 24upx;
 				}
 				.text{
 					color:#999999;
-					font-family: PingFang SC;
 					font-size: 24upx;
 				}
 			}
@@ -299,7 +297,6 @@
 				span{
 					font-size:28upx;
 					color: #fff;
-					font-family: PingFang SC;
 				}
 			}
 			image{

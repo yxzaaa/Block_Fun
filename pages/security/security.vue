@@ -121,7 +121,6 @@
 					margin-right: 40upx;					
 				}
 				span{
-					font-family: Noto Sans S Chinese;
 					font-size:28upx;
 					color: #fff;
 				}
@@ -136,7 +135,6 @@
 				}
 				span{
 					margin-right: 16upx;
-					font-family: PingFang SC;
 					font-size: 24upx;
 					color: #FFFFFF;
 					opacity: 0.5;

@@ -2,25 +2,25 @@
 	<view class="flow-box">
 		<view class="item"
 			:class="left[index] == 1 ? 'left' : ''"
-			v-for="(item, index) in newList" :key="index"
+			v-for="(item, index) in newList" :key="item.id"
 			:data-index="index"
-			@click="choose"
-			:style="{marginBottom:index==newList.length-1 || index==newList.length-2?'130upx':'',top:top[index]+'px'}"
+			 @click="choose(item.id)"
+			 :style="{marginBottom:index==newList.length-1 || index==newList.length-2?'130upx':'',top:top[index]+'px'}"
 			 >
 			<view class="pic">
-				<image class="image" mode="widthFix" :src="item.image" style="width: 100%; display: block;" ></image>
+				<image class="image" mode="widthFix" :src="item.img" style="width: 100%; display: block;" ></image>
 			</view>
 			<view class="content">
 				<view class="item-title" style="color:#fff;font-size:14px; margin-bottom:5px;">{{item.title}}</view>
 				<view class="user">
-					<text class="item-content">{{item.content}}</text>
-					<text class="item-consume">{{item.consume}}</text>
+					<text class="item-content">消耗积分</text>
+					<text class="item-consume">{{item.credit}}</text>
 				</view>
 				<view>
-					<text style="color:#DA53A2;font-size:28upx;margin-right:5upx;font-family:'Montserrat-Bold';">{{item.symbol}}</text>
+					<text style="color:#DA53A2;font-size:28upx;margin-right:5upx;font-family:'Montserrat-Bold';">￥</text>
 					<span style="color:#DA53A2;font-size:36upx;font-family:'Montserrat-Bold';">
-						{{item.money.split('.')[0]}}
-						<span style="font-size: 24upx;font-family:'Montserrat-Bold';">{{item.money.split('.')[1]?'.'+item.money.split('.')[1]:''}}</span>
+						{{item.price.split('.')[0]}}
+						<span style="font-size: 24upx;font-family:'Montserrat-Bold';">{{item.price.split('.')[1]?'.'+item.price.split('.')[1]:''}}</span>
 					</span>
 				</view>
 			</view>
@@ -104,9 +104,8 @@
 				}).exec();
 			},
 			// 选中
-			choose(e) {
-				let index = e.currentTarget.dataset.index;
-				this.$emit('click', this.newList[index]);
+			choose(id) {
+				this.$emit('click', id);
 			}
 		}
 	}
@@ -151,9 +150,9 @@
 		width: 220upx;
 		overflow: hidden;
 		font-size: 26upx;
-		color: #666;
+		color: #999;
 		.item-consume{
-			color:#fff
+			color:#999;
 		}
 	}
 	.loading {
