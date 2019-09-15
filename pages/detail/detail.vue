@@ -4,7 +4,8 @@
 		<uni-background />
 		<uni-nav-bar 
 			:opacity="scroll"
-			:buttons="navButtons"			
+			:buttons="navButtons"	
+			@handle="buttonHandler"
 		/>
 		<view class="app-container fixbutton">
 			<view class="choose-box" v-if="specModal">
@@ -145,15 +146,19 @@
 						text:'取消'
 					},
 					share:{
-						type:'circle'
+						type:'circle',
+						classify:'share',
+						text:'handle'
 					},
 					love:{
 						type:'circle',
+						classify:'love',
+						text:'handle'
 						
 					},
 					cart:{
 						type:'circle',
-						url:"../cart1/cart1"
+						url:"../cart1/cart1",
 					},
 					// textbtn:{
 					// 	text:'取消'
@@ -169,6 +174,7 @@
 				codeList:[],
 				specModal:false,
 				modalType:'',
+				productId:''
 			};
 		},
 		onPageScroll(val){
@@ -186,7 +192,8 @@
 						this.content = res.data.content;
 						this.imgList = res.data.img;
 						this.price = res.data.price;
-						this.guessList = res.data.rec
+						this.guessList = res.data.rec;
+						this.productId = res.data.id;
 					}
 				}
 			})
@@ -213,6 +220,25 @@
 					})
 				}else{
 					
+				}
+			},
+			buttonHandler(type){
+				if(type == 'love'){
+					this.$http({
+						url:'/member/favorite',
+						type:'application/x-www-form-urlencoded',
+						data:{
+							action:'add',
+							id:this.productId,
+						},
+						success:res=>{
+							if(res.code == 200){
+								uni.showToast({
+									title:'商品收藏成功~'
+								})
+							}
+						}
+					})
 				}
 			}
 		},

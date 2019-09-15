@@ -7,6 +7,7 @@
 			textColor="#fff"
 			:opacity="scroll"
 			:buttons="navButtons"
+			@handle="changeManage"
 		/>
 		<view class="app-container fixbutton full">
 			<view class="guess">
@@ -16,9 +17,9 @@
 						class="guess-item"		
 					>
 					<!-- 引入图片 -->
-						<view style="line-height: 160upx;padding-right:40upx;">
+						<view style="line-height: 160upx;padding-right:40upx;" v-if="isManager" @click="itemChoose(index)">
 							<image
-								:src="item.src1" 
+								:src="item.isActive?imageLib.checked:imageLib.check" 
 								style="width:40upx;height:40upx;"
 							></image>
 						</view>
@@ -30,7 +31,7 @@
 							></image>
 						</view>
 						<!-- 图片描述 -->
-						<view class="guess-content" style="margin-left:20upx;margin-top:0;">
+						<view class="guess-content" :style="{marginLeft:'20upx',marginTop:'0',width:isManager?'420upx':'500upx'}">
 							<span style="font-size: 28upx;color:#fff;">{{item.title.substring(0,36)+' ...'}}</span>
 							<text style="font-size:24upx;color:#999999;margin-top:4upx;">{{item.consume}} {{item.amount}}</text>
 							<span style="color:#DA53A2;">
@@ -42,10 +43,10 @@
 					</view>
 				</view>
 			</view>
-			<view class="fixed-buttons">
+			<view class="fixed-buttons" v-if="isManager">
 				<view class="button-group">
-					<view class="check">
-						<image src="../../static/bg/checkbox.png"></image>
+					<view class="check" @click="chooseAll">
+						<image :src="isChooseAll?imageLib.checked:imageLib.check"></image>
 						<span>全选</span>
 					</view>
 					<fun-button value="删除" width="240upx"></fun-button>
@@ -79,9 +80,13 @@
 					},
 					
 				},
+				imageLib:{
+					checked: '../../static/bg/check.png',
+					check:'../../static/bg/checkbox.png',
+				},
 				guessList: [{
-						src: '../../static/bg/iphonex.png',
-						src1:'../../static/bg/checkbox.png',
+						src: '../../static/bg/p30.png',
+						isActive:false,
 						title: 'Apple iPhone X (A1865) 256GB 深空灰色 移动联通电信4G手机',
 						consume:'消耗积分',
 						amount:'4000',
@@ -91,7 +96,7 @@
 					},
 					{
 						src: '../../static/bg/p30.png',
-						src1:'../../static/bg/check.png',
+						isActive:false,
 						title: '华为P30 (A1865) 256GB 深空灰色 移动联通电信4G手机',
 						consume:'消耗积分',
 						amount:'4000',
@@ -101,7 +106,7 @@
 					},
 					{
 						src: '../../static/bg/apple.png',
-						src1:'../../static/bg/checkbox.png',
+						isActive:false,
 						title: 'Apple iPhone X(A1865) 256GB 深空灰色 移动联通电信4G手机',
 						consume:'消耗积分',
 						amount:'4000',
@@ -110,7 +115,8 @@
 						number:'0',
 					},
 				],
-				isManager:'false',
+				isManager:false,
+				isChooseAll:false,
 				data:{
 					guessList:[{},{}],
 				}
@@ -121,8 +127,48 @@
 		},
 		
 		methods:{
-			handle(){
-				this.text = '完成'
+			changeManage(){
+				if(this.isManager){
+					this.isManager = false;
+					this.navButtons.textbtn = {
+						text:"管理",
+						type:'handle',
+					}
+				}else{
+					this.isManager = true;
+					this.navButtons.textbtn = {
+						text:"完成",
+						type:'handle',
+					}
+				}
+			},
+			itemChoose(index){
+				if(this.guessList[index].isActive){
+					this.guessList[index].isActive = false;
+				}else{
+					this.guessList[index].isActive = true;
+				}
+				var isAll = true;
+				this.guessList.map(item=>{
+					if(item.isActive == false){
+						isAll = false;
+						return;
+					}
+				});
+				this.isChooseAll = isAll;
+			},
+			chooseAll(){
+				if(this.isChooseAll){
+					this.isChooseAll = false;
+					this.guessList.map(item=>{
+						item.isActive = false;
+					})
+				}else{
+					this.isChooseAll = true;
+					this.guessList.map(item=>{
+						item.isActive = true;
+					})
+				}
 			}
 		}
 		
@@ -156,7 +202,7 @@
 		}
 		.guess-content{
 			height:160upx;
-			width:424upx;
+			width:420upx;
 			span,text{
 				display: block;
 			}
