@@ -18,7 +18,7 @@
 						<span class="name" style="font-size:28upx;color:#fff;">{{addressData.truename}}</span>
 						<span class="phone" style="font-size:24upx;color:#999999;">{{addressData.mobile}}</span>
 					</span>
-					<span class="adress" style="font-size:24upx;display: block;color:#999999;width:500upx;">{{addressData.address}}</span>
+					<span class="adress" style="font-size:24upx;display: block;color:#999999;width:500upx;">{{addressData.full}}</span>
 				</span>
 			</view>
 			<image src="../../static/bg/right.png" style="width:40upx;height:40upx;"></image>
@@ -148,7 +148,6 @@
 		},
 		onShow(){
 			if(uni.getStorageSync('currAddress')){
-				this.hasDefault = true;
 				this.addressData = uni.getStorageSync('currAddress');
 				uni.removeStorageSync('currAddress');
 			}else{
@@ -157,6 +156,10 @@
 					url:'/member/address',
 					success:res=>{
 						console.log(res);
+						if(res.code == 200 && res.data.length>0){
+							this.hasDefault = true;
+							this.addressData = res.data[0];
+						}
 					}
 				})
 			}

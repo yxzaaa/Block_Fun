@@ -35,31 +35,27 @@
 					</view>
 					<view class="item-horizen"></view>
 				</navigator>
-				<navigator url="../forgetpaypassword/forgetpaypassword">
-					<view class="design">
-						<view class="left">
-							<image src="../../static/bg/finger.png"></image>
-							<span>指纹登录</span>
-						</view>
-						<view class="right">
-							<span>设置</span>
-							<image src="../../static/bg/right.png"></image>
-						</view>
+				<view class="design">
+					<view class="left">
+						<image src="../../static/bg/finger.png"></image>
+						<span>指纹登录</span>
 					</view>
-					<view class="item-horizen"></view>
-				</navigator>
-				<navigator url="../forgetpaypassword/forgetpaypassword">
-					<view class="design">
-						<view class="left">
-							<image src="../../static/bg/load.png"></image>
-							<span>版本更新</span>
-						</view>
-						<view class="right">
-							<span>已经是最新的版本</span>
-							<image src="../../static/bg/right.png"></image>
-						</view>
+					<view class="right">
+						<span>设置</span>
+						<image src="../../static/bg/right.png"></image>
 					</view>
-				</navigator>
+				</view>
+				<view class="item-horizen"></view>
+				<view class="design">
+					<view class="left">
+						<image src="../../static/bg/load.png"></image>
+						<span>版本更新</span>
+					</view>
+					<view class="right">
+						<span>已经是最新的版本</span>
+						<image src="../../static/bg/right.png"></image>
+					</view>
+				</view>
 			</view>
 		</view>
 	</view>

@@ -253,7 +253,7 @@
 			span{
 				width:48upx;
 				height:48upx;
-				line-height: 48upx;
+				line-height: 36upx;
 				border:6upx solid #fff;
 				border-radius: 50%;
 				text-align: center;

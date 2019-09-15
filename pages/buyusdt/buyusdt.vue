@@ -22,7 +22,7 @@
 			</view>
 			<view class="fixed-buttons">
 				<view class="button-group">
-					<fun-button value="购买" width="670upx" large @handle="letgo()" icon="../../static/icons/icon_buy_light.png"></fun-button>
+					<fun-button value="购买" width="670upx" large @handle="letgo()" icon="/static/icons/icon_buy_light.png"></fun-button>
 				</view>
 			</view>
 			<view style="padding:0upx 40upx">

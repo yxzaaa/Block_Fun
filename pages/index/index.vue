@@ -32,7 +32,7 @@
 								<image class="wallet-list-avatar" :src="item.avatar"></image>
 								<view class="title-box">
 									<text style="font-size:32upx;color:#fff;font-family:'Montserrat-Bold';">{{item.title}}</text>
-									<text style="font-size:24upx;color:#999;font-family:'Montserrat-Light';">{{item.blockNum}}</text>
+									<text style="font-size:24upx;color:#999;font-family:'Montserrat-Bold';">{{item.blockNum}}</text>
 								</view>
 								<view>
 									<image class="button-image" :src="imageLib.union"/>
@@ -48,8 +48,8 @@
 							<view class="fun-card-buttons">
 								<fun-button type="text" value="查看账单" :url="'../xdogwallet/xdogwallet?id='+item.walletid" />
 								<view class="button-group" style="width:340upx;">
-									<fun-button type="light" value="转账" :url="'../transaccount/transaccount?id='+item.walletid" icon="../../static/icons/zhuanrang-tiny.png" />
-									<fun-button value="收款" :url="'../saveaccount/saveaccount?id='+item.walletid" icon="../../static/icons/shoukuan.png" />
+									<fun-button type="light" value="转账" :url="'../transaccount/transaccount?id='+item.walletid" icon="/static/icons/zhuanrang-tiny.png" />
+									<fun-button value="收款" :url="'../saveaccount/saveaccount?id='+item.walletid" icon="/static/icons/shoukuan.png" />
 								</view>
 							</view>
 						</view>
