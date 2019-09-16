@@ -21,6 +21,7 @@
 									<span style="font-size:40upx;font-family:'Montserrat-Bold';">354</span>
 									<span style="font-size: 30upx;font-family:'Montserrat-Bold';">.12</span>
 								</span>
+								<text style="color:#999999;font-size:24upx;margin-top:16upx;">库存 {{currStock}} 件</text>
 								<text style="color:#999999;font-size:24upx;margin-top:16upx;">消耗积分 4000</text>
 							</view>
 						</view>
@@ -28,7 +29,7 @@
 							<image src="../../static/bg/close.png"></image>
 						</view>
 					</view>
-					<scroll-view style="width:100%;height:420upx;" scroll-y>
+					<scroll-view style="width:100%;height:452upx;" scroll-y>
 						<block v-for="(elem,index) in skuNames" :key="index">
 							<view class="pramabox" >
 								<span>{{elem.title}}</span>
@@ -37,16 +38,16 @@
 										v-for="(val,i) in elem.item" 
 										:key="i" 
 										v-if="i>0"
-										@click="setSkuActive(index,i)" 
-										:class="[i==skuActive[index].active?'active':'',]"
-									>{{val}}</span>
+										@click="setSkuActive(index,i,val.stock)" 
+										:class="[i==skuActive[index].active?'active':'',val.stock === 0?'nostock':'']"
+									>{{val.value}}</span>
 								</view>
 							</view>
 						</block>
 						<view class="numberbox">
 							<span>数量</span>
 							<span class="cut">
-								<image :src="imageLib.jian" style="width:40upx;height:40upx;" @click="buyCount = buyCount>0?buyCount-1:0"></image>
+								<image :src="imageLib.jian" style="width:40upx;height:40upx;" @click="buyCount = buyCount>1?buyCount-1:1"></image>
 								<span>{{buyCount}}</span>
 								<image :src="imageLib.add" style="width:40upx;height:40upx;" @click="addCount"></image>
 							</span>
@@ -184,13 +185,14 @@
 				guessList:[],
 				codeList:[],
 				specModal:false,
-				buyCount:0,
+				buyCount:1,
 				modalType:'',
 				productId:'',
 				skuNames:[],
 				skuCodes:[],
 				currStock:0,
-				skuActive:[]
+				skuActive:[],
+				totalStock:0,
 			};
 		},
 		onPageScroll(val){
@@ -217,8 +219,19 @@
 								title:elem.title,
 								active:null
 							})
+							elem.item.map((val,index)=>{
+								elem.item[index] = {
+									value:val,
+									stock:null
+								}
+							})
 						})
-						console.log(this.skuActive);
+						Object.keys(this.skuCodes).forEach(key => {
+						     this.totalStock += parseInt(this.skuCodes[key]);
+						})
+						this.currStock = this.totalStock;
+						this.skuCodes['1-1-1'] = 0;
+						this.skuCodes['1-2-2'] = 0;
 					}
 				}
 			})
@@ -228,27 +241,100 @@
 				this.modalType = type;
 				this.$refs.popup.open();
 			},
-			setSkuActive(index,i){
-				if(this.skuActive[index].active == i){
-					this.skuActive[index].active = null;
-				}else{
-					this.skuActive[index].active = i;
-				}
-				var allSku = true;
-				this.currStock = 0;
-				this.skuActive.map(item=>{
-					if(item.active == null){
-						allSku = false;
-						return;
+			setSkuActive(index,i,stock){
+				if(stock !== 0){
+					if(this.skuActive[index].active == i){
+						this.skuActive[index].active = null;
+					}else{
+						this.skuActive[index].active = i;
 					}
-				})
-				if(allSku){
-					var code = this.productId;
+					var allSku = true;
+					this.currStock = 0;
 					this.skuActive.map(item=>{
-						code += '-'+item.active;
-					});
-					this.currStock = this.skuCodes[code];
+						if(item.active == null){
+							allSku = false;
+							return;
+						}
+					})
+					if(allSku){
+						if(index == 0 && this.skuActive[index].active){
+							this.skuNames[1].item.map((item,index1)=>{
+								if(index1>0){
+									var code = this.productId+'-'+i+'-'+index1;
+									item.stock = this.skuCodes[code];
+								}
+							})
+						}else if(index == 1 && this.skuActive[index].active){
+							this.skuNames[0].item.map((item,index1)=>{
+								if(index1>0){
+									var code = this.productId+'-'+i+'-'+index1;
+									item.stock = this.skuCodes[code];
+								}
+							})
+						}
+						var code = this.productId;
+						this.skuActive.map(item=>{
+							code += '-'+item.active;
+						});
+						this.currStock = this.skuCodes[code];
+						this.buyCount = this.buyCount>this.currStock?this.currStock:this.buyCount;
+					}else if(this.skuNames.length == 2){
+						this.currStock = 0;
+						if(!this.skuActive[1].active && !this.skuActive[0].active){
+							this.currStock = this.totalStock;
+							this.skuNames[1].item.map((item,index1)=>{
+								if(index1>0){
+									var code = this.productId+'-'+i+'-'+index1;
+									item.stock = null;
+								}
+							})
+							this.skuNames[0].item.map((item,index1)=>{
+								if(index1>0){
+									var code = this.productId+'-'+i+'-'+index1;
+									item.stock = null;
+								}
+							})
+						}else if(index == 0 && this.skuActive[index].active){
+							console.log(index);
+							this.skuNames[1].item.map((item,index1)=>{
+								if(index1>0){
+									var code = this.productId+'-'+i+'-'+index1;
+									item.stock = this.skuCodes[code];
+									this.currStock += item.stock;
+								}
+							})
+						}else if(index == 1 && this.skuActive[index].active){
+							this.skuNames[0].item.map((item,index1)=>{
+								if(index1>0){
+									var code = this.productId+'-'+i+'-'+index1;
+									item.stock = this.skuCodes[code];
+									this.currStock += item.stock;
+								}
+							})
+						}else if(index == 0 && !this.skuActive[index].active){
+							this.skuNames[1].item.map((item,index1)=>{
+								if(index1>0){
+									var code = this.productId+'-'+i+'-'+index1;
+									item.stock = null;
+									this.currStock += this.skuCodes[code];
+								}
+							})
+						}else if(index == 1 && !this.skuActive[index].active){
+							this.skuNames[0].item.map((item,index1)=>{
+								if(index1>0){
+									var code = this.productId+'-'+i+'-'+index1;
+									item.stock = null;
+									this.currStock += this.skuCodes[code];
+								}
+							})
+						}
+					}
 				}
+				var code = this.productId;
+				this.skuActive.map(item=>{
+					code += '-'+item.active;
+				});
+				console.log('code',code);
 			},
 			addCount(){
 				this.buyCount = this.buyCount<this.currStock?this.buyCount+1:this.currStock;
@@ -282,7 +368,19 @@
 							},
 							success:res=>{
 								console.log(res);
-								this.$refs.popup.close();
+								if(res.code == 200){
+									this.$refs.popup.close();
+									uni.showToast({
+										title:'商品已添加到购物车~',
+										icon:'none'
+									})
+								}else{
+									this.$refs.popup.close();
+									uni.showToast({
+										title:res.message,
+										icon:'none'
+									})
+								}
 							}
 						})
 					}else if(this.modalType == 'buy'){
@@ -385,7 +483,7 @@
 					margin-right:20upx;
 					font-size: 24upx;
 					&.active{
-						box-shadow: 0px 0px 2upx 2upx #DA53A2 inset;
+						box-shadow: 0px 0px 1upx 2upx #DA53A2 inset;
 						color:#DA53A2;
 					}
 					&.nostock{
@@ -398,7 +496,7 @@
 			display: flex;
 			justify-content: space-between;
 			align-items: flex-start;
-			padding-top:60upx;
+			padding:60upx 0upx;
 			span{
 				color:#ffffff;
 				font-size:28upx;
