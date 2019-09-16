@@ -8,7 +8,7 @@
 			@handle="buttonHandler"
 		/>
 		<view class="app-container fixbutton">
-			<view class="choose-box" v-if="specModal">
+			<uni-popup ref="popup" type="bottom">
 				<view class="choose">
 					<view class="goods">
 						<view class="goods-info">
@@ -24,34 +24,41 @@
 								<text style="color:#999999;font-size:24upx;margin-top:16upx;">消耗积分 4000</text>
 							</view>
 						</view>
-						<view class="img" @click = "specModal=false">
+						<view class="img" @click = "$refs.popup.close()">
 							<image src="../../static/bg/close.png"></image>
 						</view>
 					</view>
-					<view class="pramabox">
-						<span>参数</span>
-						<view class="param">
-							<span>10ml</span>
-							<span>50ml</span>
-							<span>100ml</span>
-							<span>200ml</span>
+					<scroll-view style="width:100%;height:420upx;" scroll-y>
+						<block v-for="(elem,index) in skuNames" :key="index">
+							<view class="pramabox" >
+								<span>{{elem.title}}</span>
+								<view class="param">
+									<span 
+										v-for="(val,i) in elem.item" 
+										:key="i" 
+										v-if="i>0"
+										@click="setSkuActive(index,i)" 
+										:class="[i==skuActive[index].active?'active':'',]"
+									>{{val}}</span>
+								</view>
+							</view>
+						</block>
+						<view class="numberbox">
+							<span>数量</span>
+							<span class="cut">
+								<image :src="imageLib.jian" style="width:40upx;height:40upx;" @click="buyCount = buyCount>0?buyCount-1:0"></image>
+								<span>{{buyCount}}</span>
+								<image :src="imageLib.add" style="width:40upx;height:40upx;" @click="addCount"></image>
+							</span>
 						</view>
-					</view>
-					<view class="numberbox">
-						<span>数量</span>
-						<span class="cut" style="position: relative;top:-4upx;">
-							<span style="margin-right:20upx;font-size:36upx;color:#fff;font-weight: bold;display: inline-block;"> - </span>
-							<span style="display:inline-block;#99999;background: #15030B;font-size:28upx;color:#fff;width:72upx;line-height: 40upx;text-align: center;"> 0 </span>
-							<span style="margin-left:20upx;font-size:36upx;color:#fff;font-weight: bold;display: inline-block;"> + </span>
-						</span>
-					</view>
+					</scroll-view>
 					<view class="fixed-buttons" style="display: flex;justify-content: center;align-items: center;">
 						<view class="button-group" style="width:670upx;">
 							<fun-button value="确定" width="670upx" large @handle = "modalConfirm"></fun-button>
 						</view>
 					</view>
 				</view>
-			</view>
+			</uni-popup>
 			<swiper class="carousel" indicator-dots=true circular=true interval="3000" duration="700" indicator-active-color="#DA53A2">
 				<swiper-item v-for="(item,index) in imgList" :key="index">
 					<view class="image-wrapper">
@@ -117,7 +124,7 @@
 				
 				<view class="button-group" style="width:500upx;">
 					<fun-button value="加入购物车" type="light" width="240upx" large @handle="openModal('cart')"></fun-button>
-					<fun-button value="立即购买" width="240upx" large url="../order-management/order-management" @handle="openModal('buy')"></fun-button>
+					<fun-button value="立即购买" width="240upx" large @handle="openModal('buy')"></fun-button>
 				</view>
 			</view>
 		</view>
@@ -130,12 +137,14 @@
 	import UniBackground from '@/components/uni-background/uni-background.vue';
 	import FunButton from '@/components/fun-button.vue';
 	import share from '@/components/share';
+	import uniPopup from "@/components/uni-popup/uni-popup.vue";
 	export default {
 		components: {
 			share,
 			UniNavBar,
 			UniBackground,
-			FunButton
+			FunButton,
+			uniPopup
 		},
 		data() {
 			return {
@@ -153,16 +162,18 @@
 					love:{
 						type:'circle',
 						classify:'love',
-						text:'handle'
-						
+						text:'handle',
+						active:true
 					},
 					cart:{
 						type:'circle',
 						url:"../cart1/cart1",
+						active:false
 					},
-					// textbtn:{
-					// 	text:'取消'
-					// }
+				},
+				imageLib:{
+					add:'../../static/icons/ic_add.png',
+					jian:'../../static/icons/ic_jian.png'
 				},
 				credit:'',
 				catname:'',
@@ -173,8 +184,13 @@
 				guessList:[],
 				codeList:[],
 				specModal:false,
+				buyCount:0,
 				modalType:'',
-				productId:''
+				productId:'',
+				skuNames:[],
+				skuCodes:[],
+				currStock:0,
+				skuActive:[]
 			};
 		},
 		onPageScroll(val){
@@ -194,32 +210,89 @@
 						this.price = res.data.price;
 						this.guessList = res.data.rec;
 						this.productId = res.data.id;
+						this.skuNames = res.data.sku.name;
+						this.skuCodes = res.data.sku.code;
+						this.skuNames.forEach(elem=>{
+							this.skuActive.push({
+								title:elem.title,
+								active:null
+							})
+						})
+						console.log(this.skuActive);
 					}
 				}
 			})
 		},
 		methods:{
 			openModal(type){
-				this.specModal = true;
 				this.modalType = type;
+				this.$refs.popup.open();
+			},
+			setSkuActive(index,i){
+				if(this.skuActive[index].active == i){
+					this.skuActive[index].active = null;
+				}else{
+					this.skuActive[index].active = i;
+				}
+				var allSku = true;
+				this.currStock = 0;
+				this.skuActive.map(item=>{
+					if(item.active == null){
+						allSku = false;
+						return;
+					}
+				})
+				if(allSku){
+					var code = this.productId;
+					this.skuActive.map(item=>{
+						code += '-'+item.active;
+					});
+					this.currStock = this.skuCodes[code];
+				}
+			},
+			addCount(){
+				this.buyCount = this.buyCount<this.currStock?this.buyCount+1:this.currStock;
+				if(this.buyCount == this.currStock){
+					uni.showToast({
+						title:'亲，达到库存上限了哟~',
+						icon:'none'
+					})
+				}
 			},
 			modalConfirm(){
-				if(this.modalType =='cart'){
-					this.specModal = false;
-					this.$http({
-						url:'/mall/cart',
-						type:'application/x-www-form-urlencoded',
-						data:{
-							code:'',
-						},
-						success:res=>{
-							console.log(res);
-							
-						}
-						
+				var allSku = true;
+				this.skuActive.map(item=>{
+					if(item.active == null){
+						allSku = false;
+						return;
+					}
+				})
+				if(allSku && this.buyCount>0){
+					var code = this.productId;
+					this.skuActive.map(item=>{
+						code += '-'+item.active;
 					})
+					if(this.modalType =='cart'){
+						this.$http({
+							url:'/mall/cart',
+							type:'application/x-www-form-urlencoded',
+							data:{
+								code,
+								num:this.buyCount
+							},
+							success:res=>{
+								console.log(res);
+								this.$refs.popup.close();
+							}
+						})
+					}else if(this.modalType == 'buy'){
+						
+					}
 				}else{
-					
+					uni.showToast({
+						title:'亲，请选择商品规格哦~',
+						icon:'none'
+					})
 				}
 			},
 			buttonHandler(type){
@@ -246,9 +319,108 @@
 </script>
 
 <style lang="scss" scoped>
-	// page{
-	// 	background: $page-color-base;
-	// }
+	.choose{
+		width:750upx;
+		height:800upx;
+		background: #281920;
+		padding:40upx;
+		.goods{
+			display: flex;
+			align-items: flex-start;
+			justify-content: space-between;
+			padding-bottom:30upx;
+			.goods-info{
+				display:flex;
+			
+				.img{
+					border-radius:8upx;
+					width:160upx;
+					height:160upx;
+					overflow:hidden;
+					image{
+						width:100%;
+						height:100%;
+					}
+				}
+				.title{
+					display: flex;
+					flex-direction: column;
+					justify-content: flex-end;
+					margin-left:20upx;
+					span{
+						color: #DA53A2;
+						font-weight: 600;
+					}
+					text{
+						color:#999999;
+						margin-top:20upx;
+					}
+				}
+			}
+			
+			.img{
+				width:40upx;
+				height:40upx;
+				image{
+					width:100%;
+					height:100%;
+				}
+			}
+		}
+		.pramabox{
+			padding-top: 40upx;
+			span{
+				font-size: 28upx;
+				color:#ffffff;
+			}
+			.param{
+				display: flex;
+				justify-content: flex-start;
+				padding-top:40upx;
+				span{
+					color:#ffffff;
+					padding:24upx;
+					background:#15030B;
+					border-radius: 8upx;
+					margin-right:20upx;
+					font-size: 24upx;
+					&.active{
+						box-shadow: 0px 0px 2upx 2upx #DA53A2 inset;
+						color:#DA53A2;
+					}
+					&.nostock{
+						opacity: 0.5;
+					}
+				}
+			}
+		}
+		.numberbox{
+			display: flex;
+			justify-content: space-between;
+			align-items: flex-start;
+			padding-top:60upx;
+			span{
+				color:#ffffff;
+				font-size:28upx;
+				line-height:64upx;
+			}
+			span.cut{
+				display: flex;
+				justify-content: space-between;
+				width:200upx;
+				align-items: center;
+				span{
+					line-height: 64upx;
+					font-size: 26upx;
+					text-align: center;
+					padding:0upx 30upx;
+					background: #15030B;
+					border-radius: 8upx;
+					
+				}
+			}
+		}
+	}
 
 	.carousel {
 		height:738upx;
@@ -411,96 +583,6 @@
 		bottom:0;
 		left:0;
 		background:#2F282B;
-	}
-	.choose-box{
-		width:750upx;
-		height:100vh;
-		background:rgba(0,0,0,0.5);
-		position: fixed;
-		left:0;
-		top:0;
-		z-index:1000;
-		.choose{
-			width:750upx;
-			height:716upx;
-			background: #281920;
-			position: absolute;
-			bottom:0;
-			padding:40upx;
-			.goods{
-				display: flex;
-				align-items: flex-start;
-				justify-content: space-between;
-				.goods-info{
-					display:flex;
-				
-					.img{
-						border-radius:8upx;
-						width:160upx;
-						height:160upx;
-						overflow:hidden;
-						image{
-							width:100%;
-							height:100%;
-						}
-					}
-					.title{
-						display: flex;
-						flex-direction: column;
-						justify-content: flex-end;
-						margin-left:20upx;
-						span{
-							color: #DA53A2;
-							font-weight: 600;
-						}
-						text{
-							color:#999999;
-							margin-top:20upx;
-						}
-					}
-				}
-				
-				.img{
-					width:40upx;
-					height:40upx;
-					image{
-						width:100%;
-						height:100%;
-					}
-				}
-			}
-			.pramabox{
-				margin-top: 60upx;
-				span{
-					font-size: 28upx;
-					color:#ffffff;
-				}
-				.param{
-					display: flex;
-					justify-content: flex-start;
-					margin-top:40upx;
-					span{
-						color:#ffffff;
-						padding:28upx 20upx;
-						background:#15030B;
-						border-radius: 8upx;
-						margin-right:20upx;
-						font-size: 24upx;
-						
-					}
-				}
-			}
-			.numberbox{
-				display: flex;
-				justify-content: space-between;
-				align-items: flex-start;
-				margin-top:60upx;
-				span{
-					color:#ffffff;
-					font-size:28upx;
-				}
-			}
-		}
 	}
 	
 </style>
