@@ -125,7 +125,14 @@
 		onPageScroll(val){
 			this.scroll = val.scrollTop;
 		},
-		
+		onLoad(){
+			this.$http({
+				url:'/member/favorite',
+				success:res=>{
+					console.log(res)
+				}
+			})
+		},
 		methods:{
 			changeManage(){
 				if(this.isManager){
