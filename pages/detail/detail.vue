@@ -231,7 +231,6 @@
 						})
 						this.currStock = this.totalStock;
 						this.skuCodes['1-1-1'] = 0;
-						this.skuCodes['1-2-2'] = 0;
 					}
 				}
 			})
@@ -249,7 +248,6 @@
 						this.skuActive[index].active = i;
 					}
 					var allSku = true;
-					this.currStock = 0;
 					this.skuActive.map(item=>{
 						if(item.active == null){
 							allSku = false;
@@ -257,14 +255,22 @@
 						}
 					})
 					if(allSku){
-						if(index == 0 && this.skuActive[index].active){
+						var code = this.productId;
+						this.skuActive.map(item=>{
+							code += '-'+item.active;
+						});
+						this.currStock = this.skuCodes[code];
+						this.buyCount = this.buyCount>this.currStock?this.currStock:this.buyCount;
+					}
+					if(this.skuNames.length == 2 && allSku){
+						if(index == 0){
 							this.skuNames[1].item.map((item,index1)=>{
 								if(index1>0){
 									var code = this.productId+'-'+i+'-'+index1;
 									item.stock = this.skuCodes[code];
 								}
 							})
-						}else if(index == 1 && this.skuActive[index].active){
+						}else if(index == 1){
 							this.skuNames[0].item.map((item,index1)=>{
 								if(index1>0){
 									var code = this.productId+'-'+i+'-'+index1;
@@ -272,12 +278,6 @@
 								}
 							})
 						}
-						var code = this.productId;
-						this.skuActive.map(item=>{
-							code += '-'+item.active;
-						});
-						this.currStock = this.skuCodes[code];
-						this.buyCount = this.buyCount>this.currStock?this.currStock:this.buyCount;
 					}else if(this.skuNames.length == 2){
 						this.currStock = 0;
 						if(!this.skuActive[1].active && !this.skuActive[0].active){
@@ -330,11 +330,6 @@
 						}
 					}
 				}
-				var code = this.productId;
-				this.skuActive.map(item=>{
-					code += '-'+item.active;
-				});
-				console.log('code',code);
 			},
 			addCount(){
 				this.buyCount = this.buyCount<this.currStock?this.buyCount+1:this.currStock;
@@ -359,10 +354,12 @@
 						code += '-'+item.active;
 					})
 					if(this.modalType =='cart'){
+						//添加购物车
 						this.$http({
 							url:'/mall/cart',
 							type:'application/x-www-form-urlencoded',
 							data:{
+								action:'add',
 								code,
 								num:this.buyCount
 							},
@@ -384,7 +381,10 @@
 							}
 						})
 					}else if(this.modalType == 'buy'){
-						
+						//立即购买
+						uni.navigateTo({
+							url: '../order-management/order-management?code='+code+'&num='+this.buyCount,
+						});
 					}
 				}else{
 					uni.showToast({
@@ -410,6 +410,8 @@
 							}
 						}
 					})
+				}else if(type == 'cart'){
+					
 				}
 			}
 		},

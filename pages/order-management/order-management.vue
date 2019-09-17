@@ -146,22 +146,37 @@
 		onPageScroll(val){
 			this.scroll = val.scrollTop;
 		},
+		onLoad(option){
+			//获取当前订单信息
+			var item = [{}];
+			item[0][option.code] = option.num;
+			console.log(item);
+			this.$http({
+				url:'/mall/buy',
+				type:'application/x-www-form-urlencoded',
+				data:{
+					item:JSON.stringify(item)
+				},
+				success:res=>{
+					console.log(res);
+					if(res.code == 200){
+						if(res.data.address.length>0){
+							this.hasDefault = true;
+							this.addressData = res.data.address[0];
+							this.addressData.full = res.data.address[0].address;
+						}
+						//设置订单商品信息
+						this.guessList = res.data.mall[0].item;
+					}else{
+						
+					}
+				}
+			})
+		},
 		onShow(){
 			if(uni.getStorageSync('currAddress')){
 				this.addressData = uni.getStorageSync('currAddress');
 				uni.removeStorageSync('currAddress');
-			}else{
-				//获取收货地址列表
-				this.$http({
-					url:'/member/address',
-					success:res=>{
-						console.log(res);
-						if(res.code == 200 && res.data.length>0){
-							this.hasDefault = true;
-							this.addressData = res.data[0];
-						}
-					}
-				})
 			}
 		},
 		methods:{
