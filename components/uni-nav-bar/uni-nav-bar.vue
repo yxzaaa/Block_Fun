@@ -42,7 +42,7 @@
 			<!-- 设置图标 -->
 			<view
 				@click="navigatorBack(buttons && buttons.setting)"
-				:class="['icon-box',buttons && buttons.share && buttons.share.type=='circle'?'circle':'']" 
+				:class="['icon-box',buttons && buttons.setting && buttons.setting.type=='circle'?'circle':'']" 
 				v-if="buttons && buttons.setting"
 				:style="{backgroundColor:buttons && buttons.setting && buttons.setting.type=='circle'?'rgba(0,0,0,'+(backOpacity-priviteOpacity)+')':'transparent'}"
 			>
@@ -64,7 +64,10 @@
 				v-if="buttons && buttons.love"
 				:style="{backgroundColor:buttons && buttons.love && buttons.love.type=='circle'?'rgba(0,0,0,'+(backOpacity-priviteOpacity)+')':'transparent'}"
 			>
-				<image class="icon-img" src="../../static/icons/love.png" />
+				<!-- 未激活状态 -->
+				<image v-if="buttons && buttons.love && !buttons.love.active" class="icon-img" src="../../static/icons/love.png" />
+				<!-- 激活状态 -->
+				<image v-if="buttons && buttons.love && buttons.love.active" class="icon-img" src="../../static/icons/love-active.png" />
 			</view>
 			<!-- 购物车图标 -->
 			<view 
@@ -73,7 +76,10 @@
 				v-if="buttons && buttons.cart"
 				:style="{backgroundColor:buttons && buttons.cart && buttons.cart.type=='circle'?'rgba(0,0,0,'+(backOpacity-priviteOpacity)+')':'transparent'}"
 			>
-				<image class="icon-img" src="../../static/icons/cart.png" />	
+				<!-- 未激活状态 -->
+				<image v-if="buttons && buttons.cart && !buttons.cart.active" class="icon-img" src="../../static/icons/cart.png" />	
+				<!-- 激活状态 -->
+				<image v-if="buttons && buttons.cart && buttons.cart.active" class="icon-img" src="../../static/icons/cart-active.png" />
 			</view>
 			<!-- 搜索图标 -->
 			<view
