@@ -13,11 +13,11 @@
 			<view class="guess">
 				<view class="guess-list">
 					<view 
-						v-for="(item, index) in guessList" :key="index"
+						v-for="(item, index) in favoriteList" :key="index"
 						class="guess-item"		
 					>
 					<!-- 引入图片 -->
-						<view style="line-height: 160upx;padding-right:40upx;" v-if="isManager" @click="itemChoose(index)">
+						<view style="line-height: 160upx;padding-right:40upx;" v-if="isManager" @click="itemChoose(index,item.id)">
 							<image
 								:src="item.isActive?imageLib.checked:imageLib.check" 
 								style="width:40upx;height:40upx;"
@@ -25,7 +25,7 @@
 						</view>
 						<view class="image-wrapper">
 							<image 
-								:src="item.src" 
+								:src="item.img" 
 								mode="aspectFill"
 								style="width:160upx;height:160upx;"
 							></image>
@@ -33,9 +33,9 @@
 						<!-- 图片描述 -->
 						<view class="guess-content" :style="{marginLeft:'20upx',marginTop:'0',width:isManager?'420upx':'500upx'}">
 							<span style="font-size: 28upx;color:#fff;">{{item.title.substring(0,36)+' ...'}}</span>
-							<text style="font-size:24upx;color:#999999;margin-top:4upx;">{{item.consume}} {{item.amount}}</text>
+							<text style="font-size:24upx;color:#999999;margin-top:4upx;">消耗积分 {{item.credit}}</text>
 							<span style="color:#DA53A2;">
-								<span style="font-size:24upx;margin-right:8upx;display: inline-block;font-family:'Montserrat-Bold';">{{item.symbol}}</span>
+								<span style="font-size:24upx;margin-right:8upx;display: inline-block;font-family:'Montserrat-Bold';">￥</span>
 								<span style="display: inline-block;font-family:'Montserrat-Bold';">{{item.price.split('.')[0]}}</span>
 								<span style="font-size:24upx;display: inline-block;font-family:'Montserrat-Bold';">{{item.price.split('.')[1]?'.'+item.price.split('.')[1]:''}}</span>
 							</span>
@@ -49,7 +49,7 @@
 						<image :src="isChooseAll?imageLib.checked:imageLib.check"></image>
 						<span>全选</span>
 					</view>
-					<fun-button value="删除" width="240upx"></fun-button>
+					<fun-button value="删除" width="240upx" @handle="deleteFav"></fun-button>
 				</view>
 			</view>
 		</view>
@@ -84,48 +84,29 @@
 					checked: '../../static/bg/check.png',
 					check:'../../static/bg/checkbox.png',
 				},
-				guessList: [{
-						src: '../../static/bg/p30.png',
-						isActive:false,
-						title: 'Apple iPhone X (A1865) 256GB 深空灰色 移动联通电信4G手机',
-						consume:'消耗积分',
-						amount:'4000',
-						symbol:"￥",
-						price:'6444.13',
-						number:'0'
-					},
-					{
-						src: '../../static/bg/p30.png',
-						isActive:false,
-						title: '华为P30 (A1865) 256GB 深空灰色 移动联通电信4G手机',
-						consume:'消耗积分',
-						amount:'4000',
-						symbol:"￥",
-						price:'4999.21',
-						number:'0',
-					},
-					{
-						src: '../../static/bg/apple.png',
-						isActive:false,
-						title: 'Apple iPhone X(A1865) 256GB 深空灰色 移动联通电信4G手机',
-						consume:'消耗积分',
-						amount:'4000',
-						symbol:"￥",
-						price:'4999.21',
-						number:'0',
-					},
-				],
+				favoriteList:[],
+				ids:new Set(),
 				isManager:false,
 				isChooseAll:false,
-				data:{
-					guessList:[{},{}],
-				}
 			};
 		},
 		onPageScroll(val){
 			this.scroll = val.scrollTop;
 		},
-		
+		onLoad(){
+			this.$http({
+				url:'/member/favorite',
+				success:res=>{
+					console.log(res);
+					if(res.code == 200){
+						this.favoriteList = res.data;
+						this.favoriteList.map(item=>{
+							item.isActive = false;
+						})
+					}
+				}
+			})
+		},
 		methods:{
 			changeManage(){
 				if(this.isManager){
@@ -142,14 +123,16 @@
 					}
 				}
 			},
-			itemChoose(index){
-				if(this.guessList[index].isActive){
-					this.guessList[index].isActive = false;
+			itemChoose(index,id){
+				if(this.favoriteList[index].isActive){
+					this.favoriteList[index].isActive = false;
+					this.ids.delete(id);
 				}else{
-					this.guessList[index].isActive = true;
+					this.favoriteList[index].isActive = true;
+					this.ids.add(id);
 				}
 				var isAll = true;
-				this.guessList.map(item=>{
+				this.favoriteList.map(item=>{
 					if(item.isActive == false){
 						isAll = false;
 						return;
@@ -160,15 +143,27 @@
 			chooseAll(){
 				if(this.isChooseAll){
 					this.isChooseAll = false;
-					this.guessList.map(item=>{
+					this.ids.clear();
+					this.favoriteList.map(item=>{
 						item.isActive = false;
 					})
 				}else{
 					this.isChooseAll = true;
-					this.guessList.map(item=>{
+					this.favoriteList.map(item=>{
+						this.ids.add(item.id);
 						item.isActive = true;
 					})
 				}
+			},
+			deleteFav(){
+				// this.$http({
+				// 	url:'/member/favorite',
+				// 	type:'application/x-www-form-urlencoded',
+				// 	data:{
+				// 		action:'delete',
+				// 		id:Array.from(this.ids)
+				// 	}
+				// })
 			}
 		}
 		

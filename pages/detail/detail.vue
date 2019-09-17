@@ -235,7 +235,7 @@
 				}
 			})
 		},
-		methods:{
+		methods:{ 
 			openModal(type){
 				this.modalType = type;
 				this.$refs.popup.open();

@@ -10,7 +10,7 @@
 		<view class="app-container full">
 			
 			<!-- 顶部滑动 -->
-			<horizon-tab :tabs="statusTabs" padding="45"></horizon-tab>
+			<horizon-tab :tabs="statusTabs" padding="45" @click="toggleStatus" ></horizon-tab>
 			
 			<view class="managebox"> <!-- 待办管理 -->
 				<view class="backlog"> 
@@ -171,7 +171,7 @@
 				</view>
 				<view class="goodslist">
 					<view class="goods"
-					v-for="(item,index) in imgList"
+					v-for="(item,index) in orderList"
 					:key = "index"
 					>
 						<view class="image">
@@ -226,13 +226,13 @@
 					}
 				},
 				statusTabs:[
-					{id:1,text:'全部'},
-					{id:2,text:'待付款'},
-					{id:3,text:'处理中'},
-					{id:4,text:'待收货'},
-					{id:5,text:'已完成'},
+					{id:-1,text:'全部'},
+					{id:1,text:'待付款'},
+					{id:2,text:'处理中'},
+					{id:3,text:'待收货'},
+					{id:4,text:'已完成'},
 				],
-				imgList:[
+				orderList:[
 					{
 						id:1,
 						title:'Apple iPhone X (A1865) 256GB 深空灰色 移动联通电信4G手机',
@@ -257,8 +257,25 @@
 		onPageScroll(val){
 			this.scroll = val.scrollTop;
 		},
+		// onLoad(){
+		// 	this.$http({
+		// 		url:'order/show?id',
+		// 		success:res=>{
+		// 			console.log(res)
+		// 		}
+		// 	})
+		// },
 		methods: {
-			
+			toggleStatus(index){
+				console.log(this.statusTabs[index].id);
+				this.$http({
+					url:'/member/order?nav='+this.statusTabs[index].id+'&page=1',
+					success:res=>{
+						console.log(res);
+						this.orderList = res.data.item;
+					}
+				})
+			}
 		}
 	}
 </script>
