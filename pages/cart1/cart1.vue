@@ -77,7 +77,7 @@
 						<image :src="isChooseAll?imageLib.checked:imageLib.check"></image>
 						<span>全选</span>
 					</view>
-					<fun-button value="删除" width="240upx"></fun-button>
+					<fun-button value="删除" width="240upx" large></fun-button>
 				</view>
 			</view>
 		</view>
