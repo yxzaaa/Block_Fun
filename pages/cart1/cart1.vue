@@ -112,7 +112,7 @@
 					checked:'../../static/bg/check.png',
 					check:'../../static/bg/checkbox.png',
 				},
-				isManager:false,
+				isManager:true,
 				isChooseAll:false,
 				guessList: [{
 						src: '../../static/bg/iphonex.png',
@@ -163,13 +163,13 @@
 				if(this.isManager){
 					this.isManager = false;
 					this.navButtons.textbtn = {
-						text:'管理',
+						text:'完成',
 						type:'handle',
 					}
 				}else{
 					this.isManager = true;
 					this.navButtons.textbtn = {
-						text:'完成',
+						text:'管理',
 						type:'handle',
 					}
 				}

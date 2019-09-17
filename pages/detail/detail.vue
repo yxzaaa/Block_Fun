@@ -164,7 +164,7 @@
 						type:'circle',
 						classify:'love',
 						text:'handle',
-						active:true
+						active:false
 					},
 					cart:{
 						type:'circle',
@@ -212,6 +212,7 @@
 						this.price = res.data.price;
 						this.guessList = res.data.rec;
 						this.productId = res.data.id;
+						this.navButtons.love.active = res.data.favorite == 1?true:false;
 						this.skuNames = res.data.sku.name;
 						this.skuCodes = res.data.sku.code;
 						this.skuNames.forEach(elem=>{
@@ -395,21 +396,28 @@
 			},
 			buttonHandler(type){
 				if(type == 'love'){
-					this.$http({
-						url:'/member/favorite',
-						type:'application/x-www-form-urlencoded',
-						data:{
-							action:'add',
-							id:this.productId,
-						},
-						success:res=>{
-							if(res.code == 200){
-								uni.showToast({
-									title:'商品收藏成功~'
-								})
+					if(this.navButtons.love.active == false){
+						this.$http({
+							url:'/member/favorite',
+							type:'application/x-www-form-urlencoded',
+							data:{
+								action:'add',
+								id:this.productId,
+							},
+							success:res=>{
+								if(res.code == 200){
+									uni.showToast({
+										title:'商品收藏成功~'
+									})
+									this.navButtons.love.active = true;
+								}
 							}
-						}
-					})
+						})
+					}else{
+						uni.navigateTo({
+							url: '../favorite/favorite',
+						});
+					}
 				}else if(type == 'cart'){
 					
 				}
