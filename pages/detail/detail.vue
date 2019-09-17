@@ -198,7 +198,7 @@
 				}
 			})
 		},
-		methods:{
+		methods:{ 
 			openModal(type){
 				this.specModal = true;
 				this.modalType = type;
@@ -210,7 +210,7 @@
 						url:'/mall/cart',
 						type:'application/x-www-form-urlencoded',
 						data:{
-							code:'',
+							code:'', 
 						},
 						success:res=>{
 							console.log(res);
