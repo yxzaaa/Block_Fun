@@ -43,25 +43,25 @@
 				<!-- 引入图片 -->
 					<view class="image-wrapper">
 						<image 
-							:src="item.src" 
+							:src="item.img" 
 							mode="aspectFill"
 							style="width:160upx;height:160upx;"
 						></image>
 					</view>
 					<!-- 图片描述 -->
 					<view class="guess-content" style="margin-left:20upx;margin-top:0;">
-						<span style="font-size: 28upx;color:#fff;">{{item.title.substring(0,36)+' ...'}}</span>
-						<text style="font-size:24upx;color:#999999;margin-top:8upx;">{{item.consume}} {{item.amount}}</text>
-						<span style="color:#DA53A2;position:relative;">
-							<span style="font-size:24upx;margin-right:8upx;display: inline-block;font-family:'Montserrat-Bold';">{{item.symbol}}</span>
-							<span style="display: inline-block;font-family:'Montserrat-Bold';">{{item.price.split('.')[0]}}</span>
-							<span style="font-size:24upx;display: inline-block;font-family:'Montserrat-Bold';">{{item.price.split('.')[1]?'.'+item.price.split('.')[1]:''}}</span>
-							<span class="cut" style="position:absolute;right:10upx;bottom:8upx;display: inline-block;">
-								<span style="margin-right:20upx;font-size:30upx;color:#fff;font-weight: bold;display: inline-block;"> - </span>
-								<span style="display:inline-block;#99999;background:#280617;font-size:24upx;color:#fff;width:64upx;height:40upx;line-height: 40upx;text-align: center;">{{item.number}}</span>
-								<span style="margin-left:20upx;font-size:30upx;color:#fff;font-weight: bold;display: inline-block;"> + </span>
+						<view style="font-size: 28upx;color:#fff;height:80upx;">{{item.title.length>36?item.title.substring(0,36)+' ...':item.title}}</view>
+						<view style="font-size:24upx;color:#999999;margin-top:8upx;">消耗积分 {{item.credit}}</view>
+						<view style="display: flex;justify-content: space-between;align-items: center;">
+							<span style="color:#DA53A2;">
+								<span style="font-size:24upx;display: inline-block;font-family:'Montserrat-Bold';">￥</span>
+								<span style="display: inline-block;font-family:'Montserrat-Bold';">{{item.price.split('.')[0]}}</span>
+								<span style="font-size:24upx;display: inline-block;font-family:'Montserrat-Bold';">{{item.price.split('.')[1]?'.'+item.price.split('.')[1]:''}}</span>
 							</span>
-						</span>
+							<span class="cut" style="display: inline-block;color:rgba(255,255,255,0.5);font-size: 24upx;">
+								数量：{{item.num}}
+							</span>
+						</view>
 					</view>
 				</view>
 			</view>
@@ -73,12 +73,12 @@
 						<span class="cash">
 							<span style="font-size: 24upx;color:#999999">现金：</span>
 							<span style="font-size: 24upx;color:#DA53A2;font-family:'Montserrat-Bold';">￥</span>
-							<span style="font-size: 28upx;color:#DA53A2;font-family:'Montserrat-Bold';">6444.</span>
-							<span style="font-size: 24upx;color:#DA53A2;font-family:'Montserrat-Bold';">12</span>
+							<span style="font-size: 32upx;color:#DA53A2;font-family:'Montserrat-Bold';">{{String(totalCount.toFixed(4)).split('.')[0]}}.</span>
+							<span style="font-size: 24upx;color:#DA53A2;font-family:'Montserrat-Bold';">{{String(totalCount.toFixed(4)).split('.')[1]}}</span>
 						</span>
 						<span>
 							<span style="font-size: 24upx;color:#999999;">积分：</span>
-							<span style="font-size: 24upx;color:#fff;">4000</span>
+							<span style="font-size: 24upx;color:#fff;">{{totalCredit}}</span>
 						</span>
 					</view>
 					<fun-button value="提交订单" large wsssidth="240upx" url="../order-management/order-management"></fun-button>
@@ -110,37 +110,9 @@
 				},
 				hasDefault:false,
 				addressData:{},
-				guessList: [{
-						src: '../../static/bg/iphonex.png',
-						src1:'../../static/bg/checkbox.png',
-						title: 'Apple iPhone X (A1865) 256GB 深空灰色 移动联通电信4G手机',
-						consume:'消耗积分',
-						amount:'4000',
-						symbol:"￥",
-						price:'6444.13',
-						number:'0'
-					},
-					{
-						src: '../../static/bg/p30.png',
-						src1:'../../static/bg/check.png',
-						title: '华为P30 (A1865) 256GB 深空灰色 移动联通电信4G手机',
-						consume:'消耗积分',
-						amount:'4000',
-						symbol:"￥",
-						price:'4999.21',
-						number:'0',
-					},
-					{
-						src: '../../static/bg/apple.png',
-						src1:'../../static/bg/checkbox.png',
-						title: 'Apple iPhone X(A1865) 256GB 深空灰色 移动联通电信4G手机',
-						consume:'消耗积分',
-						amount:'4000',
-						symbol:"￥",
-						price:'4999.21',
-						number:'0',
-					},
-				],
+				guessList: [],
+				totalCount:0,
+				totalCredit:0,
 			};
 		},
 		onPageScroll(val){
@@ -151,6 +123,7 @@
 			var item = [{}];
 			item[0][option.code] = option.num;
 			console.log(item);
+			item=[{'1-1-1':3},{'1-4-5':6},{'1-2-3':2}];
 			this.$http({
 				url:'/mall/buy',
 				type:'application/x-www-form-urlencoded',
@@ -158,7 +131,6 @@
 					item:JSON.stringify(item)
 				},
 				success:res=>{
-					console.log(res);
 					if(res.code == 200){
 						if(res.data.address.length>0){
 							this.hasDefault = true;
@@ -167,6 +139,11 @@
 						}
 						//设置订单商品信息
 						this.guessList = res.data.mall[0].item;
+						this.guessList.map(val=>{
+							this.totalCount += parseFloat(val.price);
+							this.totalCredit += parseInt(val.credit);
+						})
+						console.log(this.totalCount);
 					}else{
 						
 					}
@@ -263,9 +240,11 @@
 		.image-wrapper{
 			width: 160upx;
 			height: 160upx;
-			border-radius: 10upx;
+			border-radius: 8upx;
+			overflow: hidden;
 		}
 		.guess-content{
+			width:490upx;
 			height:160upx;
 			span,text{
 				display: block;
