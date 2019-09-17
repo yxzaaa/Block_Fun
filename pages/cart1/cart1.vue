@@ -13,7 +13,7 @@
 			<view class="guess">
 				<view class="guess-list">
 					<view 
-						v-for="(item, index) in guessList" :key="index"
+						v-for="(item, index) in cartList" :key="index"
 						class="guess-item"		
 					>
 					<!-- 引入图片 -->
@@ -25,7 +25,7 @@
 						</view>
 						<view class="image-wrapper">
 							<image 
-								:src="item.src" 
+								:src="item.img" 
 								mode="aspectFill"
 								style="width:160upx;height:160upx;"
 							></image>
@@ -33,14 +33,14 @@
 						<!-- 图片描述 -->
 						<view class="guess-content" style="margin-left:20upx;margin-top:0;">
 							<span style="font-size: 28upx;color:#fff;">{{item.title.substring(0,36)+' ...'}}</span>
-							<text style="font-size:24upx;color:#999999;margin-top:8upx;">{{item.consume}} {{item.amount}}</text>
+							<text style="font-size:24upx;color:#999999;margin-top:8upx;">消耗积分 {{item.credit}}</text>
 							<span style="color:#DA53A2; position:relative;">
-								<span style="font-size:24upx;margin-right:8upx;display: inline-block;font-family:'Montserrat-Bold';">{{item.symbol}}</span>
+								<span style="font-size:24upx;margin-right:8upx;display: inline-block;font-family:'Montserrat-Bold';">￥</span>
 								<span style="display: inline-block;font-family:'Montserrat-Bold';">{{item.price.split('.')[0]}}</span>
 								<span style="font-size:24upx;display: inline-block;font-family:'Montserrat-Bold';">{{item.price.split('.')[1]?'.'+item.price.split('.')[1]:''}}</span>
 								<span class="cut" style="position:absolute;right:10upx;display: inline-block;bottom:8upx;">
 									<span style="margin-right:20upx;font-size:30upx;color:#fff;font-weight: bold;display: inline-block;"> - </span>
-									<span style="display:inline-block;#99999;background:#280617;font-size:24upx;color:#fff;width:64upx;height:40upx;line-height: 40upx;text-align: center;">{{item.number}}</span>
+									<span style="display:inline-block;#99999;background:#280617;font-size:24upx;color:#fff;width:64upx;height:40upx;line-height: 40upx;text-align: center;">1</span>
 									<span style="margin-left:20upx;font-size:30upx;color:#fff;font-weight: bold;display: inline-block;"> + </span>
 								</span>
 							</span>
@@ -112,76 +112,53 @@
 					checked:'../../static/bg/check.png',
 					check:'../../static/bg/checkbox.png',
 				},
-				isManager:false,
+				isManager:true,
 				isChooseAll:false,
-				guessList: [{
-						src: '../../static/bg/iphonex.png',
-						isActive:false,
-						title: 'Apple iPhone X (A1865) 256GB 深空灰色 移动联通电信4G手机',
-						consume:'消耗积分',
-						amount:'4000',
-						symbol:"￥",
-						price:'6444.13',
-						number:'0'
-					},
-					{
-						src: '../../static/bg/p30.png',
-						isActive:false,
-						title: '华为P30 (A1865) 256GB 深空灰色 移动联通电信4G手机',
-						consume:'消耗积分',
-						amount:'4000',
-						symbol:"￥",
-						price:'4999.21',
-						number:'0',
-					},
-					{
-						src: '../../static/bg/apple.png',
-						isActive:false,
-						title: 'Apple iPhone X(A1865) 256GB 深空灰色 移动联通电信4G手机',
-						consume:'消耗积分',
-						amount:'4000',
-						symbol:"￥",
-						price:'4999.21',
-						number:'0',
-					},
+				cartList:[
 				],
-				data:{
-					guessList:[{},{}],
-				}
 			};
 		},
 		onPageScroll(val){
 			this.scroll = val.scrollTop;
 		},
-		// onLoad(){
-		// 	this.$http({
-		// 		url:'/mall/cart'
-		// 	})
-		// },
+		onLoad(){
+			this.$http({
+				url:'/mall/cart',
+				success:res=>{
+					console.log(res);
+					if(res.code == 200){
+						this.cartList = res.data[0].item;
+						this.cartList.map(item=>{
+							item.isActive = false;
+						})
+					}
+				}
+			})
+		},
 		methods:{
 			changeManage(){
 				if(this.isManager){
 					this.isManager = false;
 					this.navButtons.textbtn = {
-						text:'管理',
+						text:'完成',
 						type:'handle',
 					}
 				}else{
 					this.isManager = true;
 					this.navButtons.textbtn = {
-						text:'完成',
+						text:'管理',
 						type:'handle',
 					}
 				}
 			},
 			itemChoose(index){
-				if(this.guessList[index].isActive){
-					this.guessList[index].isActive = false;
+				if(this.cartList[index].isActive){
+					this.cartList[index].isActive = false;
 				}else{
-					this.guessList[index].isActive = true;
+					this.cartList[index].isActive = true;
 				}
 				var isAll = true;
-				this.guessList.map(item=>{
+				this.cartList.map(item=>{
 					if(item.isActive == false){
 						isAll = false;
 						return;
@@ -192,12 +169,12 @@
 			chooseAll(){
 				if(this.isChooseAll){
 					this.isChooseAll = false;
-					this.guessList.map(item=>{
+					this.cartList.map(item=>{
 						item.isActive = false;
 					})
 				}else{
 					this.isChooseAll = true;
-					this.guessList.map(item=>{
+					this.cartList.map(item=>{
 						item.isActive = true;
 					})
 				}
