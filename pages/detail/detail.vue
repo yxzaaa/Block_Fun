@@ -74,7 +74,7 @@
 			<view class="info">
 				<view class="title">
 					<span style="margin-top:40upx;">
-						<span style="font-size:30upx;margin-right:10upx;font-family:'Montserrat-Bold';">￥</span>
+						<span style="font-size:30upx;margin-right:4upx;font-family:'Montserrat-Bold';">￥</span>
 						<span style="font-size:40upx;font-family:'Montserrat-Bold';">{{price.split('.')[0]}}</span>
 						<span style="font-size: 30upx;font-family:'Montserrat-Bold';">{{price.split('.')[1]?'.' + price.split('.')[1]:''}}</span>
 					</span>
@@ -97,14 +97,14 @@
 					>
 					<!-- 引入图片 -->
 						<view class="image-wrapper">
-							<!-- <image 
-								:src="item.src" 
+							<image 
+								:src="item.img" 
 								mode="aspectFill"
-							></image> -->
+							></image>
 						</view>
 						<!-- 图片描述 -->
 						<view class="guess-content" style="margin-left:20upx;margin-top:0;">
-							<span class='title clamp' style="font-size:24upx;color:#fff;white-space: normal;width:448upx;">{{item.title}}</span>
+							<view class='title clamp' style="height:106upx;font-size:28upx;color:#fff;white-space: normal;width:450upx;">{{item.title.length>36?item.title.substring(0,36)+' ...':item.title}}</view>
 							<span class="clamp" style="font-size:24upx;color:#999999;margin-top:14upx;">消耗积分 {{item.credit}}</span>
 							<span class="clamp" style="margin-top:8upx;color:#DA53A2;font-family:'Montserrat-Bold';">
 								<span style="font-size:24upx;margin-right:8upx;font-family:'Montserrat-Bold';">￥</span>
@@ -623,6 +623,7 @@
 			width: 200upx;
 			height: 200upx;
 			border-radius: 10upx;
+			overflow:hidden;
 			image{
 				width:200upx;
 				height:200upx;
