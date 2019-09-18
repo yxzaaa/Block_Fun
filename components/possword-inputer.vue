@@ -6,7 +6,7 @@
 		<text class="item-text" :style="{width:size,height:size,lineHeight:size,fontSize:fontSize,background:background}">{{password[3]}}</text>
 		<text class="item-text" :style="{width:size,height:size,lineHeight:size,fontSize:fontSize,background:background}">{{password[4]}}</text>
 		<text class="item-text" :style="{width:size,height:size,lineHeight:size,fontSize:fontSize,background:background}">{{password[5]}}</text>
-		<input type="number" class="password-input" maxlength="6" v-model="password" @blur="inputBlur" :focus="true"/>
+		<input type="number" class="password-input" maxlength="6" v-model="password" @input="changeValue" :focus="true"/>
 	</view>
 </template>
 
@@ -24,6 +24,15 @@
 			background:{
 				type:String,
 				default:'#F2F8FF'
+			},
+			value:{
+				type:String,
+				default:''
+			}
+		},
+		watch:{
+			value(val,oldVal){
+				this.password = val;
 			}
 		},
 		data() {
@@ -35,9 +44,9 @@
 		mounted(){
 		},
 		methods:{
-			inputBlur(){
-				this.password = '';
-			},
+			changeValue(){
+				this.$emit('input',this.password);
+			}
 		}
 	}
 </script>

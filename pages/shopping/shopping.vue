@@ -26,7 +26,7 @@
 			
 			<view class="type-box">
 				<block v-for="(item,index) in typeList" :key="item.catid">
-					<view style="margin-bottom:30upx;position: relative;">
+					<view style="margin-bottom:30upx;position: relative;height:240upx;">
 						<image :src="item.img" style="width:100%;display:block;height:240upx"/>
 						<span style="position: absolute; left:50upx;top:50%;margin-top:-32upx;line-height:64upx;font-size: 32upx;color:#fff;font-weight:bold;">{{item.title}}</span>
 					</view>

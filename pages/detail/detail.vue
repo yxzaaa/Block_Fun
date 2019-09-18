@@ -354,6 +354,8 @@
 					this.skuActive.map(item=>{
 						code += '-'+item.active;
 					})
+					var skuInfo = {};
+					skuInfo[code] = this.buyCount;
 					if(this.modalType =='cart'){
 						//添加购物车
 						this.$http({
@@ -382,10 +384,17 @@
 							}
 						})
 					}else if(this.modalType == 'buy'){
-						//立即购买
-						uni.navigateTo({
-							url: '../order-management/order-management?code='+code+'&num='+this.buyCount,
-						});
+						//设置商品代码
+						uni.setStorage({
+							key:'skuCode',
+							data:[skuInfo],
+							success:()=>{
+								//立即购买
+								uni.navigateTo({
+									url: '../order-management/order-management',
+								});
+							}
+						})
 					}
 				}else{
 					uni.showToast({

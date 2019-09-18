@@ -81,7 +81,7 @@
 							<span style="font-size: 24upx;color:#fff;">{{totalCredit}}</span>
 						</span>
 					</view>
-					<fun-button value="提交订单" large wsssidth="240upx" url="../order-management/order-management"></fun-button>
+					<fun-button @handle="submitOrder" value="提交订单" large wsssidth="240upx"></fun-button>
 				</view>
 			</view>
 		</view>
@@ -113,22 +113,20 @@
 				guessList: [],
 				totalCount:0,
 				totalCredit:0,
+				items:[],
 			};
 		},
 		onPageScroll(val){
 			this.scroll = val.scrollTop;
 		},
-		onLoad(option){
+		onLoad(){
 			//获取当前订单信息
-			var item = [{}];
-			item[0][option.code] = option.num;
-			console.log(item);
-			item=[{'1-1-1':3},{'1-4-5':6},{'1-2-3':2}];
+			this.items = uni.getStorageSync('skuCode');
 			this.$http({
 				url:'/mall/buy',
 				type:'application/x-www-form-urlencoded',
 				data:{
-					item:JSON.stringify(item)
+					item:JSON.stringify(this.items)
 				},
 				success:res=>{
 					if(res.code == 200){
@@ -140,8 +138,8 @@
 						//设置订单商品信息
 						this.guessList = res.data.mall[0].item;
 						this.guessList.map(val=>{
-							this.totalCount += parseFloat(val.price);
-							this.totalCredit += parseInt(val.credit);
+							this.totalCount += parseFloat(val.price)*val.num;
+							this.totalCredit += parseInt(val.credit)*val.num;
 						})
 						console.log(this.totalCount);
 					}else{
@@ -157,7 +155,28 @@
 			}
 		},
 		methods:{
-			
+			//提交订单
+			submitOrder(){
+				this.$http({
+					url:'/mall/buy',
+					type:'application/x-www-form-urlencoded',
+					data:{
+						item:JSON.stringify(this.items),
+						truename:this.addressData.truename,
+						address:this.addressData.full,
+						mobile:this.addressData.mobile,
+						submit:1
+					},
+					success:res=>{
+						console.log(res);
+						if(res.code == 200){
+							uni.navigateTo({
+								url:'../pay-order/pay-order?amount='+res.data.amount+'&id='+res.data.id
+							})
+						}
+					}
+				})
+			}
 		}
 		
 	}

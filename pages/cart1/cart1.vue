@@ -152,7 +152,6 @@
 				}
 			},
 			itemChoose(index){
-				console.log(index);
 				if(this.cartList[index].isActive){
 					this.cartList[index].isActive = false;
 				}else{
