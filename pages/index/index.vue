@@ -1,6 +1,6 @@
 <template>
 	<view class="container">
-		<uni-background />
+		<uni-background/>
 		<uni-nav-bar title="Blockfun" textColor="#fff" :opacity="scroll" layout="left" :buttons="navButtons"></uni-nav-bar>
 		<view class="app-container">
 			<view class="wallet-banner">
@@ -143,6 +143,9 @@
 		onPageScroll(val){
 			this.scroll = val.scrollTop;
 		},
+		onPullDownRefresh(){
+			console.log('aaa');
+		}
 	}
 </script>
 

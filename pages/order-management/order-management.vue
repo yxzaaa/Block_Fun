@@ -9,85 +9,85 @@
 			:opacity="scroll"
 			:buttons="navButtons"
 		/>
-		<!-- 新建收货地址 -->
-		<navigator class="tosite" url="../choose-address/choose-address" v-if="hasDefault">
-			<view class="site">
-				<image src="../../static/bg/location.png" style="width:64upx;height:64upx;"></image>
-				<span class="person-info">
-					<span class="name-phone">
-						<span class="name" style="font-size:28upx;color:#fff;">{{addressData.truename}}</span>
-						<span class="phone" style="font-size:24upx;color:#999999;">{{addressData.mobile}}</span>
-					</span>
-					<span class="adress" style="font-size:24upx;display: block;color:#999999;width:500upx;">{{addressData.full}}</span>
-				</span>
-			</view>
-			<image src="../../static/bg/right.png" style="width:40upx;height:40upx;"></image>
-		</navigator>
-		<navigator url="../address/addressManage" v-else>
-			<view class="address">
+		<view class="app-container full">
+			<!-- 新建收货地址 -->
+			<navigator class="tosite" url="../choose-address/choose-address" v-if="hasDefault">
 				<view class="site">
 					<image src="../../static/bg/location.png" style="width:64upx;height:64upx;"></image>
-					<view class="toaddress" url="../address/addressManage">新建收货地址</view>
-				</view>		
-				<image src="../../static/bg/right.png" style="width:40upx;height:40upx;"></image>	
-			</view>
-		</navigator>
-		<!-- 购物车详情 -->
-		<view class="guess">
-			<view class="guess-list">
-				<view 
-					v-for="(item, index) in guessList"
-					:key="index"
-					class="guess-item"	
-				>
-				<!-- 引入图片 -->
-					<view class="image-wrapper">
-						<image 
-							:src="item.img" 
-							mode="aspectFill"
-							style="width:160upx;height:160upx;"
-						></image>
-					</view>
-					<!-- 图片描述 -->
-					<view class="guess-content" style="margin-left:20upx;margin-top:0;">
-						<view style="font-size: 28upx;color:#fff;height:80upx;">{{item.title.length>36?item.title.substring(0,36)+' ...':item.title}}</view>
-						<view style="font-size:24upx;color:#999999;margin-top:8upx;">消耗积分 {{item.credit}}</view>
-						<view style="display: flex;justify-content: space-between;align-items: center;">
-							<span style="color:#DA53A2;">
-								<span style="font-size:24upx;display: inline-block;font-family:'Montserrat-Bold';">￥</span>
-								<span style="display: inline-block;font-family:'Montserrat-Bold';">{{item.price.split('.')[0]}}</span>
-								<span style="font-size:24upx;display: inline-block;font-family:'Montserrat-Bold';">{{item.price.split('.')[1]?'.'+item.price.split('.')[1]:''}}</span>
-							</span>
-							<span class="cut" style="display: inline-block;color:rgba(255,255,255,0.5);font-size: 24upx;">
-								数量：{{item.num}}
-							</span>
+					<span class="person-info">
+						<span class="name-phone">
+							<span class="name" style="font-size:28upx;color:#fff;">{{addressData.truename}}</span>
+							<span class="phone" style="font-size:24upx;color:#999999;">{{addressData.mobile}}</span>
+						</span>
+						<span class="adress" style="font-size:24upx;display: block;color:#999999;width:500upx;">{{addressData.full}}</span>
+					</span>
+				</view>
+				<image src="../../static/bg/right.png" style="width:40upx;height:40upx;"></image>
+			</navigator>
+			<navigator url="../address/addressManage" v-else>
+				<view class="address">
+					<view class="site">
+						<image src="../../static/bg/location.png" style="width:64upx;height:64upx;"></image>
+						<view class="toaddress" url="../address/addressManage">新建收货地址</view>
+					</view>		
+					<image src="../../static/bg/right.png" style="width:40upx;height:40upx;"></image>	
+				</view>
+			</navigator>
+			<!-- 购物车详情 -->
+			<view class="guess">
+				<view class="guess-list">
+					<view 
+						v-for="(item, index) in guessList"
+						:key="index"
+						class="guess-item"	
+					>
+					<!-- 引入图片 -->
+						<view class="image-wrapper">
+							<image 
+								:src="item.img" 
+								mode="aspectFill"
+								style="width:160upx;height:160upx;"
+							></image>
+						</view>
+						<!-- 图片描述 -->
+						<view class="guess-content" style="margin-left:20upx;margin-top:0;">
+							<view style="font-size: 28upx;color:#fff;height:80upx;">{{item.title.length>36?item.title.substring(0,36)+' ...':item.title}}</view>
+							<view style="font-size:24upx;color:#999999;margin-top:8upx;">消耗积分 {{item.credit}}</view>
+							<view style="display: flex;justify-content: space-between;align-items: center;">
+								<span style="color:#DA53A2;">
+									<span style="font-size:24upx;display: inline-block;font-family:'Montserrat-Bold';">￥</span>
+									<span style="display: inline-block;font-family:'Montserrat-Bold';">{{item.price.split('.')[0]}}</span>
+									<span style="font-size:24upx;display: inline-block;font-family:'Montserrat-Bold';">{{item.price.split('.')[1]?'.'+item.price.split('.')[1]:''}}</span>
+								</span>
+								<span class="cut" style="display: inline-block;color:rgba(255,255,255,0.5);font-size: 24upx;">
+									数量：{{item.num}}
+								</span>
+							</view>
 						</view>
 					</view>
 				</view>
 			</view>
-		</view>
-		<view class="fixed-buttons">
-			<view class="button-group">
-				<view class="finish">
-					<view class="price">
-						<span class="cash">
-							<span style="font-size: 24upx;color:#999999">现金：</span>
-							<span style="font-size: 24upx;color:#DA53A2;font-family:'Montserrat-Bold';">￥</span>
-							<span style="font-size: 32upx;color:#DA53A2;font-family:'Montserrat-Bold';">{{String(totalCount.toFixed(4)).split('.')[0]}}.</span>
-							<span style="font-size: 24upx;color:#DA53A2;font-family:'Montserrat-Bold';">{{String(totalCount.toFixed(4)).split('.')[1]}}</span>
-						</span>
-						<span>
-							<span style="font-size: 24upx;color:#999999;">积分：</span>
-							<span style="font-size: 24upx;color:#fff;">{{totalCredit}}</span>
-						</span>
+			<view class="fixed-buttons">
+				<view class="button-group">
+					<view class="finish">
+						<view class="price">
+							<span class="cash">
+								<span style="font-size: 24upx;color:#999999">现金：</span>
+								<span style="font-size: 24upx;color:#DA53A2;font-family:'Montserrat-Bold';">￥</span>
+								<span style="font-size: 32upx;color:#DA53A2;font-family:'Montserrat-Bold';">{{String(totalCount.toFixed(4)).split('.')[0]}}.</span>
+								<span style="font-size: 24upx;color:#DA53A2;font-family:'Montserrat-Bold';">{{String(totalCount.toFixed(4)).split('.')[1]}}</span>
+							</span>
+							<span>
+								<span style="font-size: 24upx;color:#999999;">积分：</span>
+								<span style="font-size: 24upx;color:#fff;">{{totalCredit}}</span>
+							</span>
+						</view>
+						<fun-button @handle="submitOrder" value="提交订单" large wsssidth="240upx"></fun-button>
 					</view>
-					<fun-button @handle="submitOrder" value="提交订单" large wsssidth="240upx"></fun-button>
 				</view>
 			</view>
 		</view>
 	</view>
-				
-		
 </template>
 <script>
 	import UniNavBar from '@/components/uni-nav-bar/uni-nav-bar.vue';
@@ -187,7 +187,6 @@
 		width:750upx;
 		height:140upx;
 		padding:40upx;
-		margin-top:186upx;
 		border-bottom:1px solid rgba(255,255,255,0.1);
 		display:flex;
 		align-items:center;

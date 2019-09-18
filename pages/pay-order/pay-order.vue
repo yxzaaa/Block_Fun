@@ -113,7 +113,7 @@
 					},
 					success:res=>{
 						uni.navigateTo({
-							url:'../order-finished/order-finished?id='+this.orderId
+							url:'../pay-result/pay-result?id='+this.orderId
 						})
 					}
 				})

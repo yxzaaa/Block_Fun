@@ -1,144 +1,146 @@
 <template>
-	<view>
+	<view class="container">
 		<uni-background :src="imageLib.bg"/>
 		<uni-nav-bar 
 			:opacity="scroll"
 			title="我的"
 			textColor="#fff"
 		/>
-		<view class="user-info">
-			<image src="../../static/bg/logo.png" style="width:124upx;height:124upx;"></image>
-			<view class="info">
-				<span class="id">13936525463</span>
-				<span class="users" style="margin-top:20upx;">
-					<span class="user" style="margin-right:44upx;font-size:24upx;font-family: Montserrat-bold;color:#999999;">
-						UID：100001
+		<view class="app-container full">
+			<view class="user-info">
+				<image src="../../static/bg/logo.png" style="width:124upx;height:124upx;"></image>
+				<view class="info">
+					<span class="id">13936525463</span>
+					<span class="users" style="margin-top:20upx;">
+						<span class="user" style="margin-right:44upx;font-size:24upx;font-family: Montserrat-bold;color:#999999;">
+							UID：100001
+						</span>
+						<span style="font-size:24upx;color:#999999;border:1px solid #999999;padding:4upx 24upx;border-radius:6upx;">一键复制</span>
 					</span>
-					<span style="font-size:24upx;color:#999999;border:1px solid #999999;padding:4upx 24upx;border-radius:6upx;">一键复制</span>
-				</span>
-			</view>
-		</view>
-		<view class="activity">
-			<view class="active">
-				<view>
-						<image src="../../static/bg/task.png"></image>
-						<span>每日任务</span>
-				</view>
-				<view>
-					<image src="../../static/bg/friends.png"></image>
-					<span>我的好友</span>
-				</view>
-				<view>
-					<image src="../../static/bg/invite.png"></image>
-					<span>邀请好友</span>
 				</view>
 			</view>
-		</view>
-		<view class="managebox">
-			<!-- 点击跳转到订单管理页面 -->
-			<navigator url="../order-manage-all/order-manage-all">
+			<view class="activity">
+				<view class="active">
+					<view>
+							<image src="../../static/bg/task.png"></image>
+							<span>每日任务</span>
+					</view>
+					<view>
+						<image src="../../static/bg/friends.png"></image>
+						<span>我的好友</span>
+					</view>
+					<view>
+						<image src="../../static/bg/invite.png"></image>
+						<span>邀请好友</span>
+					</view>
+				</view>
+			</view>
+			<view class="managebox">
+				<!-- 点击跳转到订单管理页面 -->
+				<navigator url="../order-manage-all/order-manage-all">
+					<view class="manage">
+						<span class="title">订单管理</span>
+						<view>
+							<span class="goodsinfo">
+								<span class="number">5</span>
+								<span class="text">条订单信息</span>
+							</span>
+							<image src="../../static/bg/message.png" style="width:72upx;height:72upx;"></image>
+						</view>
+					</view>
+				</navigator>
+				<!-- 点击跳转到购物车页面 -->
+				<navigator url="../cart1/cart1">
+					<view class="manage">
+						<span class="title">购物车</span>
+						<view>
+							<span class="goodsinfo">
+								<span class="number">1</span>
+								<span class="text">条商品信息</span>
+							</span>
+							<image src="../../static/bg/cart.png" style="width:72upx;height:72upx;"></image>
+						</view>
+					</view>
+				</navigator>	
+			</view>
+			<view class="managebox">
+				<navigator url="../favorite/favorite">
+					<view class="manage">
+						<span class="title">收藏夹</span>
+						<view>
+							<span class="goodsinfo">
+								<span class="number">5</span>
+								<span class="text">条收藏信息</span>
+							</span>
+							<image src="../../static/bg/sign.png" style="width:72upx;height:72upx;"></image>
+						</view>
+					</view>
+				</navigator>
 				<view class="manage">
-					<span class="title">订单管理</span>
+					<span class="title">在线客服</span>
 					<view>
 						<span class="goodsinfo">
 							<span class="number">5</span>
-							<span class="text">条订单信息</span>
+							<span class="text">条客服信息</span>
 						</span>
-						<image src="../../static/bg/message.png" style="width:72upx;height:72upx;"></image>
+						<image src="../../static/bg/service.png" style="width:72upx;height:72upx;"></image>
 					</view>
-				</view>
-			</navigator>
-			<!-- 点击跳转到购物车页面 -->
-			<navigator url="../cart1/cart1">
-				<view class="manage">
-					<span class="title">购物车</span>
-					<view>
-						<span class="goodsinfo">
-							<span class="number">1</span>
-							<span class="text">条商品信息</span>
-						</span>
-						<image src="../../static/bg/cart.png" style="width:72upx;height:72upx;"></image>
-					</view>
-				</view>
-			</navigator>	
-		</view>
-		<view class="managebox">
-			<navigator url="../favorite/favorite">
-				<view class="manage">
-					<span class="title">收藏夹</span>
-					<view>
-						<span class="goodsinfo">
-							<span class="number">5</span>
-							<span class="text">条收藏信息</span>
-						</span>
-						<image src="../../static/bg/sign.png" style="width:72upx;height:72upx;"></image>
-					</view>
-				</view>
-			</navigator>
-			<view class="manage">
-				<span class="title">在线客服</span>
-				<view>
-					<span class="goodsinfo">
-						<span class="number">5</span>
-						<span class="text">条客服信息</span>
-					</span>
-					<image src="../../static/bg/service.png" style="width:72upx;height:72upx;"></image>
 				</view>
 			</view>
-		</view>
-		<view class="action">
-			<navigator url="../finance/finance">
-				<view class="action-item">
-					<view>
-						<image src="../../static/bg/finance.png"></image>
-						<span>我的财务</span>
+			<view class="action">
+				<navigator url="../finance/finance">
+					<view class="action-item">
+						<view>
+							<image src="../../static/bg/finance.png"></image>
+							<span>我的财务</span>
+						</view>
+						<image src="../../static/bg/jiantou.png"></image>
 					</view>
-					<image src="../../static/bg/jiantou.png"></image>
-				</view>
-				<view class="item-horizen"></view>
-			</navigator>
-			<navigator url="../realname-attest/realname-attest">
-				<view class="action-item">
-					<view>
-						<image src="../../static/bg/realname.png"></image>
-						<span>实名认证</span>
+					<view class="item-horizen"></view>
+				</navigator>
+				<navigator url="../realname-attest/realname-attest">
+					<view class="action-item">
+						<view>
+							<image src="../../static/bg/realname.png"></image>
+							<span>实名认证</span>
+						</view>
+						<image src="../../static/bg/jiantou.png"></image>
 					</view>
-					<image src="../../static/bg/jiantou.png"></image>
-				</view>
-				<view class="item-horizen"></view>
-			</navigator>
-			<navigator url="../security/security">
-				<view class="action-item">
-					<view>
-						<image src="../../static/bg/save.png"></image>
-						<span>安全中心</span>
+					<view class="item-horizen"></view>
+				</navigator>
+				<navigator url="../security/security">
+					<view class="action-item">
+						<view>
+							<image src="../../static/bg/save.png"></image>
+							<span>安全中心</span>
+						</view>
+						<image src="../../static/bg/jiantou.png"></image>
 					</view>
-					<image src="../../static/bg/jiantou.png"></image>
-				</view>
-				<view class="item-horizen"></view>
-			</navigator>
-			<navigator url="../helpcenter/helpcenter">
-				<view class="action-item">
-					<view>
-						<image src="../../static/bg/help.png"></image>
-						<span>帮助中心</span>
+					<view class="item-horizen"></view>
+				</navigator>
+				<navigator url="../helpcenter/helpcenter">
+					<view class="action-item">
+						<view>
+							<image src="../../static/bg/help.png"></image>
+							<span>帮助中心</span>
+						</view>
+						<image src="../../static/bg/jiantou.png"></image>
 					</view>
-					<image src="../../static/bg/jiantou.png"></image>
-				</view>
-				<view class="item-horizen"></view>
-			</navigator>
-			<navigator url="../aboutus/aboutus">
-				<view class="action-item" style="border:none;margin-bottom: 0;">
-					<view>
-						<image src="../../static/bg/about.png"></image>
-						<span>关于我们</span>
+					<view class="item-horizen"></view>
+				</navigator>
+				<navigator url="../aboutus/aboutus">
+					<view class="action-item" style="border:none;margin-bottom: 0;">
+						<view>
+							<image src="../../static/bg/about.png"></image>
+							<span>关于我们</span>
+						</view>
+						<image src="../../static/bg/jiantou.png"></image>
 					</view>
-					<image src="../../static/bg/jiantou.png"></image>
-				</view>
-			</navigator>
-		</view>
-		<view class="exit" @click="logout">
-			退出登录
+				</navigator>
+			</view>
+			<view class="exit" @click="logout">
+				退出登录
+			</view>		
 		</view>
 	</view>
 </template>
@@ -183,7 +185,6 @@
 		display: flex;
 		width:490upx;
 		height:124upx;
-		margin-top:216upx;
 		margin-left:40upx;
 		justify-content:space-between;
 		.info{

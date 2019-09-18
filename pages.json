@@ -9,7 +9,8 @@
 		},{
             "path" : "pages/shopping/shopping",
             "style" : {
-				"navigationBarTitleText": "购物"
+				"navigationBarTitleText": "购物",
+				"enablePullDownRefresh":true
 			}
         },{
             "path" : "pages/games/games",
@@ -252,8 +253,10 @@
 		"navigationBarTextStyle": "white",
 		"navigationBarTitleText": "uni-app",
 		"navigationBarBackgroundColor": "#FFFFFF",
-		"backgroundColor": "#f8f8f8",
-		"navigationStyle":"custom"
+		"backgroundColor": "#15040c",
+		"navigationStyle":"custom",
+		"enablePullDownRefresh":true,
+		"backgroundTextStyle":"light"
 	},
 	"tabBar": {
 		"color": "#666666",

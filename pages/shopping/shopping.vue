@@ -1,5 +1,5 @@
 <template>
-	<view>
+	<view class="container">
 		<uni-background />
 		<uni-nav-bar 
 			title="购物" 

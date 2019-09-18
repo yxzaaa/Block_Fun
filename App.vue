@@ -453,6 +453,9 @@
 	.placeholder {
 		color: #999999;
 	}
+	.container{
+		position: relative;
+	}
 	.app-container{
 		&.full{
 			padding-top:194upx;

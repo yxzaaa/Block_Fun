@@ -1,6 +1,6 @@
 <template>
 	<!-- 商品详情页1 -->
-	<view>
+	<view class="container">
 		<uni-background />
 		<uni-nav-bar 
 			:opacity="scroll"
