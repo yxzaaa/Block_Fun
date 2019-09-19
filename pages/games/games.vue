@@ -1,71 +1,73 @@
 <template>
 	<!-- 商品详情页1 -->
-	<view>
+	<view class="container">
 		<uni-background />
 		<uni-nav-bar 
 			:opacity="scroll"
 			title="游戏"
 			textColor="#fff"
 		/>
-		<swiper class="carousel" indicator-dots=true circular=true interval="3000" duration="700">
-			<swiper-item v-for="(item,index) in data.imgList" :key="index">
-				<view class="image-wrapper">
-					<image
-						:src="item.src" 
-						:class="item.loaded" 
-						mode="aspectFill"
-						@load="imageOnLoad('imgList', index)" 
-						style="width:670upx;height:520upx;"
-					></image>
+		<view class="app-container full">
+			<swiper class="carousel" indicator-dots=true circular=true interval="3000" duration="700">
+				<swiper-item v-for="(item,index) in data.imgList" :key="index">
+					<view class="image-wrapper">
+						<image
+							:src="item.src" 
+							:class="item.loaded" 
+							mode="aspectFill"
+							@load="imageOnLoad('imgList', index)" 
+							style="width:670upx;height:520upx;"
+						></image>
+					</view>
+				</swiper-item>
+			</swiper>
+			<view style="padding:60upx 40upx 40upx;display: flex;justify-content: space-between;align-items: center;">
+				<span style="font-size: 32upx;color:#fff;">游戏圈</span>
+				<span style="display: flex; align-items: center;">
+					<span style="color:#fff;opacity: 0.5;font-size: 24upx;margin-right:4upx;">更多</span>
+					<image src="../../static/bg/right2.png" style="width:16upx;height:32upx;"></image>
+				</span>
+			</view>
+			<view class="game">
+				<view>
+					<image src="../../static/bg/BetDice.png"></image>
+					<span>BetDice</span>
 				</view>
-			</swiper-item>
-		</swiper>
-		<view style="padding:60upx 40upx 40upx;display: flex;justify-content: space-between;align-items: center;">
-			<span style="font-size: 32upx;color:#fff;">游戏圈</span>
-			<span style="display: flex; align-items: center;">
-				<span style="color:#fff;opacity: 0.5;font-size: 24upx;margin-right:4upx;">更多</span>
-				<image src="../../static/bg/right2.png" style="width:16upx;height:32upx;"></image>
-			</span>
+				<view>
+					<image src="../../static/bg/angry.png"></image>
+					<span>Angry</span>
+				</view>
+				<view>
+					<image src="../../static/bg/nano.png"></image>
+					<span>Nano</span>
+				</view>
+				<view style="margin-right:0;">
+					<image src="../../static/bg/moto.png"></image>
+					<span>MOTO</span>
+				</view>
+				<view>
+					<image src="../../static/bg/war.png"></image>
+					<span>The War</span>
+				</view>
+				<view>
+					<image src="../../static/bg/row.png"></image>
+					<span>Row</span>
+				</view>
+				<view>
+					<image src="../../static/bg/non.png"></image>
+					<span>Non</span>
+				</view>
+				<view style="margin-right:0;">
+					<image src="../../static/bg/thor.png"></image>
+					<span>Thor</span>
+				</view>	
+			</view>
+			<share 
+				ref="share" 
+				:contentHeight="580"
+				:shareList="shareList"
+			></share>
 		</view>
-		<view class="game">
-			<view>
-				<image src="../../static/bg/BetDice.png"></image>
-				<span>BetDice</span>
-			</view>
-			<view>
-				<image src="../../static/bg/angry.png"></image>
-				<span>Angry</span>
-			</view>
-			<view>
-				<image src="../../static/bg/nano.png"></image>
-				<span>Nano</span>
-			</view>
-			<view style="margin-right:0;">
-				<image src="../../static/bg/moto.png"></image>
-				<span>MOTO</span>
-			</view>
-			<view>
-				<image src="../../static/bg/war.png"></image>
-				<span>The War</span>
-			</view>
-			<view>
-				<image src="../../static/bg/row.png"></image>
-				<span>Row</span>
-			</view>
-			<view>
-				<image src="../../static/bg/non.png"></image>
-				<span>Non</span>
-			</view>
-			<view style="margin-right:0;">
-				<image src="../../static/bg/thor.png"></image>
-				<span>Thor</span>
-			</view>	
-		</view>
-		<share 
-			ref="share" 
-			:contentHeight="580"
-			:shareList="shareList"
-		></share>
 	</view>
 </template>
 
@@ -138,7 +140,7 @@
 		width:670upx;
 		height:520upx;
 		background:#fff;
-		margin:196upx 40upx 0;
+		margin:0upx 40upx 0;
 		.image-wrapper{
 			
 			width:100%;

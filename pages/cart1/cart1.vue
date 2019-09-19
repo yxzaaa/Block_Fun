@@ -1,5 +1,5 @@
 <template>
-	<view>	
+	<view class="container">	
 		<uni-background /> <!-- 背景色-->
 		<!-- 导航栏 -->
 		<uni-nav-bar 	
@@ -199,7 +199,7 @@
 		flex-direction: column;
 		justify-content: center;
 		align-items:center;
-		padding:30upx 40upx 10upx;
+		padding:0upx 40upx 10upx;
 	}
 	.guess-list {
 		margin:0 auto;
