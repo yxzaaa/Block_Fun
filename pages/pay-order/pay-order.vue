@@ -1,6 +1,5 @@
 <template>
-	<view>
-		
+	<view class="container">
 		<uni-background /> <!-- 背景色-->
 		<!-- 导航栏 -->
 		<uni-nav-bar 	
@@ -9,52 +8,54 @@
 			:opacity="scroll"
 			:buttons="navButtons"
 		/>
-		<view class="payNumber">
-			<view class="symbolNumber">
-				<span class="symbol">￥</span>
-				<span class="price">{{amountCount}}</span>
-			</view>
-		</view>
-		<view class="payStyle">
-			<view class="cash">
-				<span class="content">
-					现金支付
-				</span>
-				<span class="number">
-					<span>
-						￥{{amountCount}}
-					</span>
-					<image src="../../static/bg/check.png" style="width:32upx;height:32upx;margin-left:16upx;"></image>
-				</span>
-			</view>
-			<!-- <view class="integral">
-				<span class="content">
-					积分支付
-				</span>
-				<span class="number">
-					<span style="font-size:28upx;color:#C7C7C7">
-						4000
-					</span>
-					<image src="../../static/bg/checkbox.png" style="width:32upx;height:32upx;margin-left:16upx;"></image>
-				</span>
-			</view> -->
-		</view>
-		<view class="fixed-buttons">
-			<view class="button-group">
-				<fun-button :value="'现金支付 ￥'+amountCount" width="670upx" large @handle="showModal = true"></fun-button>
-			</view>
-		</view>
-		<view class="modal-box" v-if="showModal">
-			<view class="modal">
-				<view class="modal-top-item">
-					<view class="modal-title">请输入您的支付密码</view>
-					<view class="modal-content">
-						<possword-inputer @input="setPassword" :value="payPassword"></possword-inputer>
-					</view>
+		<view class="app-container full">
+			<view class="payNumber">
+				<view class="symbolNumber">
+					<span class="symbol">￥</span>
+					<span class="price">{{amountCount}}</span>
 				</view>
-				<view class="modal-btns">
-					<view @click="showModal = false">取消</view>
-					<view style="border-left:1px solid #eee;color:#0A61C9;" @click="payOrder">支付</view>
+			</view>
+			<view class="payStyle">
+				<view class="cash">
+					<span class="content">
+						现金支付
+					</span>
+					<span class="number">
+						<span>
+							￥{{amountCount}}
+						</span>
+						<image src="../../static/bg/check.png" style="width:32upx;height:32upx;margin-left:16upx;"></image>
+					</span>
+				</view>
+				<!-- <view class="integral">
+					<span class="content">
+						积分支付
+					</span>
+					<span class="number">
+						<span style="font-size:28upx;color:#C7C7C7">
+							4000
+						</span>
+						<image src="../../static/bg/checkbox.png" style="width:32upx;height:32upx;margin-left:16upx;"></image>
+					</span>
+				</view> -->
+			</view>
+			<view class="fixed-buttons">
+				<view class="button-group">
+					<fun-button :value="'现金支付 ￥'+amountCount" width="670upx" large @handle="showModal = true"></fun-button>
+				</view>
+			</view>
+			<view class="modal-box" v-if="showModal">
+				<view class="modal">
+					<view class="modal-top-item">
+						<view class="modal-title">请输入您的支付密码</view>
+						<view class="modal-content">
+							<possword-inputer @input="setPassword" :value="payPassword"></possword-inputer>
+						</view>
+					</view>
+					<view class="modal-btns">
+						<view @click="showModal = false">取消</view>
+						<view style="border-left:1px solid #eee;color:#0A61C9;" @click="payOrder">支付</view>
+					</view>
 				</view>
 			</view>
 		</view>
@@ -112,9 +113,16 @@
 						password:this.payPassword
 					},
 					success:res=>{
-						uni.navigateTo({
-							url:'../pay-result/pay-result?id='+this.orderId
-						})
+						if(res.code == 200){
+							uni.navigateTo({
+								url:'../pay-result/pay-result?id='+this.orderId
+							})
+						}else{
+							uni.showToast({
+								title:res.message,
+								icon:'none'
+							})
+						}
 					}
 				})
 			}
@@ -125,11 +133,12 @@
 <style lang="scss" scoped>
 	.payNumber{
 		width:750upx;
-		height:68upx;
-		padding:236upx 243upx 0;
+		padding:80upx 0upx;
+		padding-top:60upx;
+		display:flex;
+		justify-content:center;
 		.symbolNumber{
 			width:264upx;
-			height:68upx;
 		}
 		.symbol{
 			font-size:36upx;
@@ -148,9 +157,8 @@
 	.payStyle{
 		width:670upx;
 		background:#2D1F25;
-		margin-top:148upx;
-		margin-left:40upx;
 		padding:40upx;
+		margin:auto;
 		display: flex;
 		flex-direction: column;
 		align-content:start;
