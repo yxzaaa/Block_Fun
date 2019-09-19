@@ -1,5 +1,5 @@
 <template>
-	<view class="nav-bar-box" :style="{justifyContent:layout=='left'?'flex-start':'center',position:opacity <= 80?'absolute':'fixed'}">
+	<view class="nav-bar-box" :style="{justifyContent:layout=='left'?'flex-start':'center',position:opacity == 0?'absolute':'fixed'}">
 		<!-- 左侧布局标题，副标题 -->
 		<view v-if="layout === 'left'" class="left-box">
 			<view class="left-title">{{title}}</view>
@@ -139,7 +139,7 @@
 		},
 		watch:{
 			opacity(val){
-				this.priviteOpacity = (val/180).toFixed(2);
+				this.priviteOpacity = (val/120).toFixed(2);
 			}
 		},
 		mounted(){

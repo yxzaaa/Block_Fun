@@ -23,7 +23,7 @@
 								style="width:40upx;height:40upx;"
 							></image>
 						</view>
-						<view :style="{marginLeft:'20upx',marginTop:'0',width:isManager?'610upx':'690upx',display:'flex',justifyContent:'flex-start'}">
+						<view @click="showDetail(item.id)" :style="{marginLeft:'20upx',marginTop:'0',width:isManager?'610upx':'690upx',display:'flex',justifyContent:'flex-start'}">
 							<view class="image-wrapper">
 								<image 
 									:src="item.img" 
@@ -110,6 +110,11 @@
 			})
 		},
 		methods:{
+			showDetail(id){
+				uni.navigateTo({
+					url:"../detail/detail?id="+id
+				})
+			},
 			changeManage(){
 				if(this.isManager){
 					this.isManager = false;
@@ -195,7 +200,8 @@
 		.image-wrapper{
 			width: 160upx;
 			height: 160upx;
-			border-radius: 10upx;
+			border-radius: 8upx;
+			overflow: hidden;
 		}
 		.guess-content{
 			height:160upx;

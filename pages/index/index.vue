@@ -145,6 +145,11 @@
 		},
 		onPullDownRefresh(){
 			console.log('aaa');
+			uni.vibrateShort({
+			    success: function () {
+			        console.log('success');
+			    }
+			});
 		}
 	}
 </script>
