@@ -7,7 +7,7 @@
 			:opacity="scroll"
 			:buttons="navButtons"
 		/>
-		<view class="app-container">
+		<view class="app-container full">
 			<view class="content" style="padding:40upx;">
 				<view class="row b-b">
 					<text class="tit" style="padding-top:0px;">收货人姓名</text>
@@ -208,7 +208,7 @@
 
 <style lang="scss">
 	.content{
-		margin: 200upx 40upx 0;
+		margin:0px 40upx;
 		border-radius:10upx;
 		background: rgba(45, 31, 37, 0.7);
 	}
