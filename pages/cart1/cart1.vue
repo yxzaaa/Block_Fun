@@ -59,12 +59,12 @@
 							<span class="cash">
 								<span style="font-size: 24upx;color:#999999">现金：</span>
 								<span style="font-size: 24upx;color:#DA53A2;font-family:'Montserrat-Bold';">￥</span>
-								<span style="font-size: 28upx;color:#DA53A2;font-family:'Montserrat-Bold';">6444.</span>
-								<span style="font-size: 24upx;color:#DA53A2;font-family:'Montserrat-Bold';">12</span>
+								<span style="font-size: 28upx;color:#DA53A2;font-family:'Montserrat-Bold';">{{String(totalCount.toFixed(4)).split('.')[0]}}.</span>
+								<span style="font-size: 24upx;color:#DA53A2;font-family:'Montserrat-Bold';">{{String(totalCount.toFixed(4)).split('.')[1]}}</span>
 							</span>
 							<span>
 								<span style="font-size: 24upx;color:#999999;">积分：</span>
-								<span style="font-size: 24upx;color:#fff;">4000</span>
+								<span style="font-size: 24upx;color:#fff;">{{String(totalCredit)}}</span>
 							</span>
 						</view>
 						<fun-button value="去结算" large width="240upx" url="../order-management/order-management"></fun-button>
@@ -116,13 +116,15 @@
 				isChooseAll:false,
 				cartList:[
 				],
+				totalCount:0,
+				totalCredit:0,
 			};
 		},
 		onPageScroll(val){
 			this.scroll = val.scrollTop;
 		},
 		onLoad(){
-			this.$http({
+			this.$http({              
 				url:'/mall/cart',
 				success:res=>{
 					console.log(res);
@@ -130,6 +132,10 @@
 						this.cartList = res.data[0].item;
 						this.cartList.map(item=>{
 							item.isActive = false;
+						});
+						this.cartList.map(val=>{
+							this.totalCount += parseFloat(val.price);
+							this.totalCredit += parseInt(val.credit)
 						})
 					}
 				}
@@ -153,9 +159,11 @@
 			},
 			itemChoose(index){
 				if(this.cartList[index].isActive){
-					this.cartList[index].isActive = false;
+					// this.cartList[index].isActive = false; //方法一
+					this.$set(this.cartList[index],'isActive',false); //方法二
 				}else{
-					this.cartList[index].isActive = true;
+					// this.cartList[index].isActive = true;
+					this.$set(this.cartList[index],'isActive',true);
 				}
 				var isAll = true;
 				this.cartList.map(item=>{
