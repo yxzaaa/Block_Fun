@@ -1,5 +1,5 @@
 <template>
-	<view>
+	<view class="container">
 		<uni-background /> <!-- 背景色-->
 		<!-- 导航栏 -->
 		<uni-nav-bar 	

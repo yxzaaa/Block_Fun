@@ -1,11 +1,12 @@
 <template>
-	<view>
+	<view class="container">
 		<uni-background />
 		<uni-nav-bar 
 			:opacity="scroll"
 			:buttons="navButtons"
 		/>
-		<view style="margin:216upx 40upx 0;color:#fff;font-family: PingFang SC;font-size: 48upx;">忘记支付密码</view>
+		<view class="app-container full"></view>
+		<view style="margin:0upx 40upx 0;color:#fff;font-family: PingFang SC;font-size: 48upx;">忘记支付密码</view>
 		<view class="textbox">
 			<view class="text">
 				<span class="number">手机号</span>

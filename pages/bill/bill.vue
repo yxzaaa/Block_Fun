@@ -1,5 +1,5 @@
 <template>
-	<view>
+	<view class="app-container">
 		<uni-background />
 		<uni-nav-bar 
 			title="我的账单" 
