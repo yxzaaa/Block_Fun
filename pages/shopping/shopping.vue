@@ -1,5 +1,5 @@
 <template>
-	<view>
+	<view class="container">
 		<uni-background />
 		<uni-nav-bar 
 			title="购物" 
@@ -10,12 +10,12 @@
 		/>
 		<view class="app-container">
 			<view class="banner-box">
-				<swiper :indicator-dots="true" :autoplay="true" style="height:340upx;">
+				<swiper :indicator-dots="true" :autoplay="true" style="height:720upx;">
 					<block v-for="(item,index) in bannerList"
 					:key="index"
 					>
 						<swiper-item>
-							<image :src="item" style="width:100%;height:100%"/>
+							<image :src="item" style="width:100%;height:100%"></image>
 						</swiper-item>
 					</block>
 				</swiper>
@@ -26,10 +26,10 @@
 			
 			<view class="type-box">
 				<block v-for="(item,index) in typeList" :key="item.catid">
-					<navigator style="margin-bottom:30upx;position: relative;" :url="'../detail/detail?id='+item.catid">
+					<view style="margin-bottom:30upx;position: relative;height:240upx;">
 						<image :src="item.img" style="width:100%;display:block;height:240upx"/>
-						<span style="position: absolute; left:50upx;top:50%;margin-top:-32upx;line-height:64upx;font-size: 32upx;color:#fff;font-weight: bold;">{{item.title}}</span>
-					</navigator>
+						<span style="position: absolute; left:50upx;top:50%;margin-top:-32upx;line-height:64upx;font-size: 32upx;color:#fff;font-weight:bold;">{{item.title}}</span>
+					</view>
 				</block>
 			</view>
 			

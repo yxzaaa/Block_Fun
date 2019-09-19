@@ -1,6 +1,6 @@
 <template>
 	<!-- 商品详情页1 -->
-	<view>
+	<view class="container">
 		<uni-background />
 		<uni-nav-bar 
 			:opacity="scroll"
@@ -74,7 +74,7 @@
 			<view class="info">
 				<view class="title">
 					<span style="margin-top:40upx;">
-						<span style="font-size:30upx;margin-right:10upx;font-family:'Montserrat-Bold';">￥</span>
+						<span style="font-size:30upx;margin-right:4upx;font-family:'Montserrat-Bold';">￥</span>
 						<span style="font-size:40upx;font-family:'Montserrat-Bold';">{{price.split('.')[0]}}</span>
 						<span style="font-size: 30upx;font-family:'Montserrat-Bold';">{{price.split('.')[1]?'.' + price.split('.')[1]:''}}</span>
 					</span>
@@ -97,14 +97,14 @@
 					>
 					<!-- 引入图片 -->
 						<view class="image-wrapper">
-							<!-- <image 
-								:src="item.src" 
+							<image 
+								:src="item.img" 
 								mode="aspectFill"
-							></image> -->
+							></image>
 						</view>
 						<!-- 图片描述 -->
 						<view class="guess-content" style="margin-left:20upx;margin-top:0;">
-							<span class='title clamp' style="font-size:24upx;color:#fff;white-space: normal;width:448upx;">{{item.title}}</span>
+							<view class='title clamp' style="height:106upx;font-size:28upx;color:#fff;white-space: normal;width:450upx;">{{item.title.length>36?item.title.substring(0,36)+' ...':item.title}}</view>
 							<span class="clamp" style="font-size:24upx;color:#999999;margin-top:14upx;">消耗积分 {{item.credit}}</span>
 							<span class="clamp" style="margin-top:8upx;color:#DA53A2;font-family:'Montserrat-Bold';">
 								<span style="font-size:24upx;margin-right:8upx;font-family:'Montserrat-Bold';">￥</span>
@@ -164,7 +164,7 @@
 						type:'circle',
 						classify:'love',
 						text:'handle',
-						active:true
+						active:false
 					},
 					cart:{
 						type:'circle',
@@ -212,6 +212,7 @@
 						this.price = res.data.price;
 						this.guessList = res.data.rec;
 						this.productId = res.data.id;
+						this.navButtons.love.active = res.data.favorite == 1?true:false;
 						this.skuNames = res.data.sku.name;
 						this.skuCodes = res.data.sku.code;
 						this.skuNames.forEach(elem=>{
@@ -353,6 +354,8 @@
 					this.skuActive.map(item=>{
 						code += '-'+item.active;
 					})
+					var skuInfo = {};
+					skuInfo[code] = this.buyCount;
 					if(this.modalType =='cart'){
 						//添加购物车
 						this.$http({
@@ -381,10 +384,17 @@
 							}
 						})
 					}else if(this.modalType == 'buy'){
-						//立即购买
-						uni.navigateTo({
-							url: '../order-management/order-management?code='+code+'&num='+this.buyCount,
-						});
+						//设置商品代码
+						uni.setStorage({
+							key:'skuCode',
+							data:[skuInfo],
+							success:()=>{
+								//立即购买
+								uni.navigateTo({
+									url: '../order-management/order-management',
+								});
+							}
+						})
 					}
 				}else{
 					uni.showToast({
@@ -395,21 +405,28 @@
 			},
 			buttonHandler(type){
 				if(type == 'love'){
-					this.$http({
-						url:'/member/favorite',
-						type:'application/x-www-form-urlencoded',
-						data:{
-							action:'add',
-							id:this.productId,
-						},
-						success:res=>{
-							if(res.code == 200){
-								uni.showToast({
-									title:'商品收藏成功~'
-								})
+					if(this.navButtons.love.active == false){
+						this.$http({
+							url:'/member/favorite',
+							type:'application/x-www-form-urlencoded',
+							data:{
+								action:'add',
+								id:this.productId,
+							},
+							success:res=>{
+								if(res.code == 200){
+									uni.showToast({
+										title:'商品收藏成功~'
+									})
+									this.navButtons.love.active = true;
+								}
 							}
-						}
-					})
+						})
+					}else{
+						uni.navigateTo({
+							url: '../favorite/favorite',
+						});
+					}
 				}else if(type == 'cart'){
 					
 				}
@@ -623,6 +640,7 @@
 			width: 200upx;
 			height: 200upx;
 			border-radius: 10upx;
+			overflow:hidden;
 			image{
 				width:200upx;
 				height:200upx;

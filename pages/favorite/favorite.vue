@@ -17,28 +17,30 @@
 						class="guess-item"		
 					>
 					<!-- 引入图片 -->
-						<view style="line-height: 160upx;padding-right:40upx;" v-if="isManager" @click="itemChoose(index,item.id)">
+						<view style="line-height: 160upx;padding-right:30upx;" v-if="isManager" @click="itemChoose(index,item.id)">
 							<image
 								:src="item.isActive?imageLib.checked:imageLib.check" 
 								style="width:40upx;height:40upx;"
 							></image>
 						</view>
-						<view class="image-wrapper">
-							<image 
-								:src="item.img" 
-								mode="aspectFill"
-								style="width:160upx;height:160upx;"
-							></image>
-						</view>
-						<!-- 图片描述 -->
-						<view class="guess-content" :style="{marginLeft:'20upx',marginTop:'0',width:isManager?'420upx':'500upx'}">
-							<span style="font-size: 28upx;color:#fff;">{{item.title.substring(0,36)+' ...'}}</span>
-							<text style="font-size:24upx;color:#999999;margin-top:4upx;">消耗积分 {{item.credit}}</text>
-							<span style="color:#DA53A2;">
-								<span style="font-size:24upx;margin-right:8upx;display: inline-block;font-family:'Montserrat-Bold';">￥</span>
-								<span style="display: inline-block;font-family:'Montserrat-Bold';">{{item.price.split('.')[0]}}</span>
-								<span style="font-size:24upx;display: inline-block;font-family:'Montserrat-Bold';">{{item.price.split('.')[1]?'.'+item.price.split('.')[1]:''}}</span>
-							</span>
+						<view :style="{marginLeft:'20upx',marginTop:'0',width:isManager?'610upx':'690upx',display:'flex',justifyContent:'flex-start'}">
+							<view class="image-wrapper">
+								<image 
+									:src="item.img" 
+									mode="aspectFill"
+									style="width:160upx;height:160upx;"
+								></image>
+							</view>
+							<!-- 图片描述 -->
+							<view class="guess-content" :style="{marginLeft:'20upx',marginTop:'0',width:isManager?'420upx':'500upx'}">
+								<span style="font-size: 28upx;color:#fff;">{{item.title.substring(0,36)+' ...'}}</span>
+								<text style="font-size:24upx;color:#999999;margin-top:4upx;">消耗积分 {{item.credit}}</text>
+								<span style="color:#DA53A2;">
+									<span style="font-size:24upx;margin-right:8upx;display: inline-block;font-family:'Montserrat-Bold';">￥</span>
+									<span style="display: inline-block;font-family:'Montserrat-Bold';">{{item.price.split('.')[0]}}</span>
+									<span style="font-size:24upx;display: inline-block;font-family:'Montserrat-Bold';">{{item.price.split('.')[1]?'.'+item.price.split('.')[1]:''}}</span>
+								</span>
+							</view>
 						</view>
 					</view>
 				</view>
@@ -49,7 +51,7 @@
 						<image :src="isChooseAll?imageLib.checked:imageLib.check"></image>
 						<span>全选</span>
 					</view>
-					<fun-button value="删除" width="240upx" @handle="deleteFav"></fun-button>
+					<fun-button value="删除" width="240upx" @handle="deleteFav" large></fun-button>
 				</view>
 			</view>
 		</view>

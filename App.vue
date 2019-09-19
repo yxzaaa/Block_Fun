@@ -20,9 +20,9 @@
 				// 	}
 				// });
 			}else{
-				// uni.reLaunch({
-				// 	url:'/pages/login/login'
-				// })
+				uni.reLaunch({
+					url:'/pages/login/login'
+				})
 			}
 			
 		},
@@ -452,6 +452,9 @@
 
 	.placeholder {
 		color: #999999;
+	}
+	.container{
+		position: relative;
 	}
 	.app-container{
 		&.full{

@@ -9,14 +9,10 @@
 			:opacity="scroll"
 			:buttons="navButtons"
 		/>
-		<view
-			class="payNumber"
-			v-for="(item,index) in paynumber"
-			:key="index"
-		>
+		<view class="payNumber">
 			<view class="symbolNumber">
-				<span class="symbol">{{item.symbol}}</span>
-				<span class="price">{{item.price}}</span>
+				<span class="symbol">￥</span>
+				<span class="price">{{amountCount}}</span>
 			</view>
 		</view>
 		<view class="payStyle">
@@ -24,17 +20,14 @@
 				<span class="content">
 					现金支付
 				</span>
-				<span class="number"
-						v-for="(item,index) in paynumber"
-						:key="index"
-						>
+				<span class="number">
 					<span>
-						{{item.symbol}} {{item.price}}
+						￥{{amountCount}}
 					</span>
 					<image src="../../static/bg/check.png" style="width:32upx;height:32upx;margin-left:16upx;"></image>
 				</span>
 			</view>
-			<view class="integral">
+			<!-- <view class="integral">
 				<span class="content">
 					积分支付
 				</span>
@@ -44,11 +37,25 @@
 					</span>
 					<image src="../../static/bg/checkbox.png" style="width:32upx;height:32upx;margin-left:16upx;"></image>
 				</span>
-			</view>
+			</view> -->
 		</view>
 		<view class="fixed-buttons">
 			<view class="button-group">
-				<fun-button value="现金支付" width="670upx" large url="../pay-result/pay-result"></fun-button>
+				<fun-button :value="'现金支付 ￥'+amountCount" width="670upx" large @handle="showModal = true"></fun-button>
+			</view>
+		</view>
+		<view class="modal-box" v-if="showModal">
+			<view class="modal">
+				<view class="modal-top-item">
+					<view class="modal-title">请输入您的支付密码</view>
+					<view class="modal-content">
+						<possword-inputer @input="setPassword" :value="payPassword"></possword-inputer>
+					</view>
+				</view>
+				<view class="modal-btns">
+					<view @click="showModal = false">取消</view>
+					<view style="border-left:1px solid #eee;color:#0A61C9;" @click="payOrder">支付</view>
+				</view>
 			</view>
 		</view>
 	</view>
@@ -58,11 +65,13 @@
 	import FunButton from '@/components/fun-button.vue';
 	import UniBackground from '@/components/uni-background/uni-background.vue';
 	import UniNavBar from '@/components/uni-nav-bar/uni-nav-bar.vue';
+	import PosswordInputer from '@/components/possword-inputer.vue';
 	export default {
 		components:{
 			UniNavBar,
 			UniBackground,
 			FunButton,
+			PosswordInputer
 		},
 		data() {
 			return {
@@ -73,19 +82,42 @@
 						text:'取消'
 					},
 				},				
-				paynumber:[
-					{
-						symbol:'￥',
-						price:'8398.58',
-					}
-				],
+				amountCount:'',
+				orderId:'',
+				showModal:false,
+				payPassword:'',
 			}
 		},
 		onPageScroll(val){
 			this.scroll = val.scrollTop;
 		},
+		onLoad(option){
+			this.amountCount = option.amount;
+			this.orderId = option.id;
+		},
 		methods: {
-			
+			//设置密码
+			setPassword(val){
+				this.payPassword = val;
+			},
+			//订单支付
+			payOrder(){
+				console.log(this.payPassword);
+				this.payPassword = '';
+				this.$http({
+					url:'/order/pay',
+					type:'application/x-www-form-urlencoded',
+					data:{
+						item:this.orderId,
+						password:this.payPassword
+					},
+					success:res=>{
+						uni.navigateTo({
+							url:'../pay-result/pay-result?id='+this.orderId
+						})
+					}
+				})
+			}
 		}
 	}
 </script>
@@ -100,7 +132,7 @@
 			height:68upx;
 		}
 		.symbol{
-			font-size:28upx;
+			font-size:36upx;
 			font-family:'Montserrat-Bold';
 			color:#DA53A2;
 			font-weight: 600;

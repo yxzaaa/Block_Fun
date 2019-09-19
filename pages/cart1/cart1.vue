@@ -12,40 +12,41 @@
 		<view class="app-container fixbutton full">
 			<view class="guess">
 				<view class="guess-list">
-					<view 
-						v-for="(item, index) in cartList" :key="index"
-						class="guess-item"		
-					>
-					<!-- 引入图片 -->
-						<view style="line-height: 160upx;padding-right:40upx;display: flex;align-items: center;" @click="itemChoose(index)">
-							<image
-								:src="item.isActive?imageLib.checked:imageLib.check" 
-								style="width:40upx;height:40upx;"
-							></image>
-						</view>
-						<view class="image-wrapper">
-							<image 
-								:src="item.img" 
-								mode="aspectFill"
-								style="width:160upx;height:160upx;"
-							></image>
-						</view>
-						<!-- 图片描述 -->
-						<view class="guess-content" style="margin-left:20upx;margin-top:0;">
-							<span style="font-size: 28upx;color:#fff;">{{item.title.substring(0,36)+' ...'}}</span>
-							<text style="font-size:24upx;color:#999999;margin-top:8upx;">消耗积分 {{item.credit}}</text>
-							<span style="color:#DA53A2; position:relative;">
-								<span style="font-size:24upx;margin-right:8upx;display: inline-block;font-family:'Montserrat-Bold';">￥</span>
-								<span style="display: inline-block;font-family:'Montserrat-Bold';">{{item.price.split('.')[0]}}</span>
-								<span style="font-size:24upx;display: inline-block;font-family:'Montserrat-Bold';">{{item.price.split('.')[1]?'.'+item.price.split('.')[1]:''}}</span>
-								<span class="cut" style="position:absolute;right:10upx;display: inline-block;bottom:8upx;">
-									<span style="margin-right:20upx;font-size:30upx;color:#fff;font-weight: bold;display: inline-block;"> - </span>
-									<span style="display:inline-block;#99999;background:#280617;font-size:24upx;color:#fff;width:64upx;height:40upx;line-height: 40upx;text-align: center;">1</span>
-									<span style="margin-left:20upx;font-size:30upx;color:#fff;font-weight: bold;display: inline-block;"> + </span>
+					<block v-for="(item, index) in cartList" :key="index">
+						<view
+							class="guess-item"		
+						>
+						<!-- 引入图片 -->
+							<view style="line-height: 160upx;padding-right:40upx;display: flex;align-items: center;" @click="itemChoose(index)">
+								<image
+									:src="item.isActive?imageLib.checked:imageLib.check" 
+									style="width:40upx;height:40upx;"
+								></image>
+							</view>
+							<view class="image-wrapper">
+								<image 
+									:src="item.img" 
+									mode="aspectFill"
+									style="width:160upx;height:160upx;"
+								></image>
+							</view>
+							<!-- 图片描述 -->
+							<view class="guess-content" style="margin-left:20upx;margin-top:0;">
+								<span style="font-size: 28upx;color:#fff;">{{item.title.substring(0,36)+' ...'}}</span>
+								<text style="font-size:24upx;color:#999999;margin-top:8upx;">消耗积分 {{item.credit}}</text>
+								<span style="color:#DA53A2; position:relative;">
+									<span style="font-size:24upx;margin-right:8upx;display: inline-block;font-family:'Montserrat-Bold';">￥</span>
+									<span style="display: inline-block;font-family:'Montserrat-Bold';">{{item.price.split('.')[0]}}</span>
+									<span style="font-size:24upx;display: inline-block;font-family:'Montserrat-Bold';">{{item.price.split('.')[1]?'.'+item.price.split('.')[1]:''}}</span>
+									<span class="cut" style="position:absolute;right:10upx;display: inline-block;bottom:8upx;">
+										<span style="margin-right:20upx;font-size:30upx;color:#fff;font-weight: bold;display: inline-block;"> - </span>
+										<span style="display:inline-block;#99999;background:#280617;font-size:24upx;color:#fff;width:64upx;height:40upx;line-height: 40upx;text-align: center;">1</span>
+										<span style="margin-left:20upx;font-size:30upx;color:#fff;font-weight: bold;display: inline-block;"> + </span>
+									</span>
 								</span>
-							</span>
+							</view>
 						</view>
-					</view>
+					</block>
 				</view>
 			</view>
 			<view class="fixed-buttons" style="z-index: 1000;" v-if="isManager">
