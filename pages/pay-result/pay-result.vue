@@ -91,7 +91,7 @@
 			this.orderId = option.orderId;
 			//根据订单id获取订单详情，判断支付结果
 			this.$http({
-				url:'/order/show?id='+this.orderId,
+				url:'/order/show?id='+option.orderId,
 				success:res=>{
 					console.log(res);
 					if(res.code == 200){

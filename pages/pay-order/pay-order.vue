@@ -113,16 +113,16 @@
 						password:this.payPassword
 					},
 					success:res=>{
-						if(res.code == 200){
+						// if(res.code == 200){
 							uni.navigateTo({
 								url:'../pay-result/pay-result?id='+this.orderId
 							})
-						}else{
-							uni.showToast({
-								title:res.message,
-								icon:'none'
-							})
-						}
+						// }else{
+						// 	uni.showToast({
+						// 		title:res.message,
+						// 		icon:'none'
+						// 	})
+						// }
 					}
 				})
 			}
