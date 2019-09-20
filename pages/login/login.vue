@@ -78,15 +78,21 @@
 					success:res=>{
 						console.log(res);
 						if(res.code == 200){
-							uni.setStorage({
-								key: 'userInfo',
-								data:res.data,
-								success:res=>{
-									uni.switchTab({
-										url:'../index/index'
-									})
-								}
-							})
+							if(res.data.payment_password_set == 0){
+								//检查本地pay_token设置
+								//跳转已登录状态设置交易密码
+								
+							}else{
+								uni.setStorage({
+									key: 'userInfo',
+									data:res.data,
+									success:res=>{
+										uni.switchTab({
+											url:'../index/index'
+										})
+									}
+								})
+							}
 						}else{
 							uni.showToast({
 								title:res.message,

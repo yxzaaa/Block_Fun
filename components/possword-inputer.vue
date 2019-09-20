@@ -24,15 +24,6 @@
 			background:{
 				type:String,
 				default:'#F2F8FF'
-			},
-			value:{
-				type:String,
-				default:''
-			}
-		},
-		watch:{
-			value(val,oldVal){
-				this.password = val;
 			}
 		},
 		data() {
@@ -44,8 +35,8 @@
 		mounted(){
 		},
 		methods:{
-			changeValue(){
-				this.$emit('input',this.password);
+			changeValue(e){
+				this.$emit('input',e.detail.value);
 			}
 		}
 	}

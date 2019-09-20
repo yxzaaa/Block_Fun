@@ -248,6 +248,10 @@
             "path" : "pages/editAddress/editAddress",
             "style" : {}
         }
+        ,{
+            "path" : "pages/setpaypassword/setpaypassword",
+            "style" : {}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",

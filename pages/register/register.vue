@@ -124,8 +124,9 @@
 						success:res=>{
 							console.log(res);
 							if(res.code == 200){
+								//注册成功后,跳转设置交易密码页面
 								uni.navigateTo({
-									url:'../login/login?register=success',
+									url:'../setpaypassword/setpaypassword?token='+res.data.pay_token
 								})
 							}else{
 								uni.showToast({
