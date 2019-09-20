@@ -19,7 +19,15 @@
 					</view>
 				</view>
 			</view>
-			<fun-button value="设置密码" large block style="margin-top:120upx;" @handle="showModal = true;"></fun-button>
+			<view class="fun-card">
+				<view class="fun-card-item notify" style="display: block;">
+					<input type="number" maxlength="6" placeholder="请输入验证码" style="width:100%;text-align:center;line-height: 64upx;font-size: 28upx;height:64upx;color:#fff;margin-bottom:30upx;">
+					<fun-button :value="codeText" width="240upx" style="margin:auto;"></fun-button>
+				</view>
+			</view>
+			<view style="margin-top:120upx;">
+				<fun-button value="设置密码" large block @handle="showModal = true;"></fun-button>
+			</view>
 			<view class="modal-box" v-if="showModal">
 				<view class="modal">
 					<view class="modal-top-item">
@@ -63,6 +71,7 @@
 				checkCode:'',
 				initPassword:'',
 				needCode:false,
+				codeText:'获取验证码',
 				showModal:false,
 				payToken:''
 			};
@@ -71,7 +80,7 @@
 			if(option.token){
 				//使用pay_token设置交易密码
 				this.payToken = option.token;
-			}else{
+			}else if(option.mobile){
 				//使用验证码设置交易密码
 				this.needCode = true;
 			}
@@ -88,7 +97,15 @@
 					}else{
 						//使用pay_token发送设置支付密码请求
 						this.$http({
-							url:''
+							url:'/v1/users/register/set-pay',
+							data:{
+								pay_token:this.payToken,
+								pay_password:this.initPassword,
+								pay_password_hash:this.$md5(this.initPassword)
+							},
+							success:res=>{
+								console.log(res);
+							}
 						})
 					}
 				}else{

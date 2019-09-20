@@ -392,7 +392,7 @@
 									setTimeout(()=>{
 										this.adding = false;
 										this.navButtons.cart.active = true;
-									},1000)
+									},800)
 								}else{
 									this.$refs.popup.close();
 									uni.showToast({
@@ -487,8 +487,8 @@
 		100%{
 			bottom:calc(100vh - 100upx);
 			left:660upx;
-			width:24upx;
-			height:24upx;
+			width:12upx;
+			height:12upx;
 			border-radius: 12upx;
 			opacity: 0.6;
 		}

@@ -30,7 +30,7 @@
 								</span>
 								<span>
 									<span style="color:#fff;font-size:28upx;font-family: Montserrat-Bold;margin-right: 6upx;">￥</span>
-									<span style="color:#fff;font-size:28upx;font-weight: bold;font-family: Montserrat-Bold;">{{val1.price}}</span>
+									<span style="color:#fff;font-size:28upx;font-weight: bold;font-family: Montserrat-Bold;">{{setPrice(val1.price,val1.number)}}</span>
 								</span>
 							</view>
 						</view>
@@ -84,8 +84,7 @@
 					{id:2,text:'处理中',color:'#F2C94C'},
 					{id:3,text:'待收货',color:'#56CCF2'},
 					{id:4,text:'已完成',color:'#999999'},
-					{id:8,text:'买家关闭订单',color:'#999999'},
-					{id:9,text:'卖家关闭订单',color:'#999999'},
+					{id:8,text:'已取消',color:'#999999'},
 				],
 				orderList:[],
 			}
@@ -106,6 +105,10 @@
 						console.log(this.orderList);
 					}
 				})
+			},
+			setPrice(price,num){
+				var totalPrice = parseFloat(price)*parseInt(num);
+				return totalPrice.toFixed(4);
 			},
 			getStatus(id){
 				var name = '',color = '';

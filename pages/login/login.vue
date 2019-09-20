@@ -81,7 +81,9 @@
 							if(res.data.payment_password_set == 0){
 								//检查本地pay_token设置
 								//跳转已登录状态设置交易密码
-								
+								uni.navigateTo({
+									url:'../setpaypassword/setpaypassword?mobile=86'+this.mobile
+								})
 							}else{
 								uni.setStorage({
 									key: 'userInfo',

@@ -8,7 +8,7 @@
 			:opacity="scroll"
 			:buttons="navButtons"
 		/>
-		<view class="app-container full">
+		<view class="app-container fixbutton full">
 			<!-- 新建收货地址 -->
 			<navigator class="tosite" url="../choose-address/choose-address" v-if="hasDefault">
 				<view class="site">
@@ -51,12 +51,12 @@
 						<!-- 图片描述 -->
 						<view class="guess-content" style="margin-left:20upx;margin-top:0;">
 							<view style="font-size: 28upx;color:#fff;height:80upx;">{{item.title.length>36?item.title.substring(0,36)+' ...':item.title}}</view>
-							<view style="font-size:24upx;color:#999999;margin-top:8upx;">消耗积分 {{item.credit}}</view>
+							<view style="font-size:24upx;color:#999999;margin-top:8upx;">消耗积分 {{item.credit*item.num}}</view>
 							<view style="display: flex;justify-content: space-between;align-items: center;">
 								<span style="color:#DA53A2;">
 									<span style="font-size:24upx;display: inline-block;font-family:'Montserrat-Bold';">￥</span>
-									<span style="display: inline-block;font-family:'Montserrat-Bold';">{{item.price.split('.')[0]}}</span>
-									<span style="font-size:24upx;display: inline-block;font-family:'Montserrat-Bold';">{{item.price.split('.')[1]?'.'+item.price.split('.')[1]:''}}</span>
+									<span style="display: inline-block;font-family:'Montserrat-Bold';">{{getPrice(item.price,item.num,0)}}.</span>
+									<span style="font-size:24upx;display: inline-block;font-family:'Montserrat-Bold';">{{getPrice(item.price,item.num,1)}}</span>
 								</span>
 								<span class="cut" style="display: inline-block;color:rgba(255,255,255,0.5);font-size: 24upx;">
 									数量：{{item.num}}
@@ -137,8 +137,8 @@
 						//设置订单商品信息
 						this.guessList = res.data.mall[0].item;
 						this.guessList.map(val=>{
-							this.totalCount += parseFloat(val.price)*val.num;
-							this.totalCredit += parseInt(val.credit)*val.num;
+							this.totalCount += parseFloat(val.price)*parseInt(val.num);
+							this.totalCredit += parseInt(val.credit)*parseInt(val.num);
 						})
 						console.log(this.totalCount);
 					}else{
@@ -175,7 +175,12 @@
 						}
 					}
 				})
-			}
+			},
+			getPrice(price,num,type){
+				var totalPrice = parseFloat(price)*parseInt(num);
+				totalPrice = totalPrice.toFixed(4);
+				return totalPrice.split('.')[type];
+			},
 		}
 		
 	}
