@@ -9,7 +9,7 @@
 			:buttons="navButtons"
 		/>
 		<view class="app-container">
-			<view class="banner-box">
+			<view class="banner-box" v-if="!loading">
 				<swiper :indicator-dots="true" :autoplay="true" style="height:720upx;">
 					<block v-for="(item,index) in bannerList"
 					:key="index"
@@ -20,11 +20,12 @@
 					</block>
 				</swiper>
 			</view>
+			<Skeleton height="720upx" :loading="loading"></Skeleton>
 			<view class="section-header">
 				<text class="section-title" style="color:#fff;font-size: 32upx;">商品类别</text>
 			</view>
 			
-			<view class="type-box">
+			<view class="type-box" v-if="!loading">
 				<block v-for="(item,index) in typeList" :key="item.catid">
 					<view style="margin-bottom:30upx;position: relative;height:240upx;">
 						<image :src="item.img" style="width:100%;display:block;height:240upx"/>
@@ -32,12 +33,21 @@
 					</view>
 				</block>
 			</view>
+			<view style="padding:40upx" v-if="loading">
+				<Skeleton height="240upx" :loading="loading"></Skeleton>
+				<Skeleton height="240upx" :loading="loading"></Skeleton>
+				<Skeleton height="240upx" :loading="loading"></Skeleton>
+				<Skeleton height="240upx" :loading="loading"></Skeleton>
+			</view>
 			
 			<view class="section-header">
 				<text class="section-title">热门商品</text>
 			</view>
-			<view>
+			<view v-if="!loading">
 				<waterfall-flow :list="hotList" :loading="loading" @click="toDetail"></waterfall-flow>
+			</view>
+			<view style="padding:40upx" v-if="loading">
+				<Skeleton height="240upx" :loading="loading"></Skeleton>
 			</view>
 		</view>
 	</view>
@@ -48,11 +58,13 @@
 	import WaterfallFlow from '@/components/nairenk-waterfall-flow/nairenk-waterfall-flow.vue';// 瀑布流组件
 	import UniNavBar from '@/components/uni-nav-bar/uni-nav-bar.vue';
 	import UniBackground from '@/components/uni-background/uni-background.vue';
+	import Skeleton from '@/components/Skeleton.vue';
 	export default {
 		components:{
 			UniNavBar,
 			UniBackground,
 			WaterfallFlow,
+			Skeleton
 		},
 		data() {
 			return {
@@ -60,7 +72,7 @@
 				bannerList:[],
 				typeList:[],
 				hotList:[],
-				loading:false,
+				loading:true,
 				navButtons:{
 					cart:{
 						type:'normal',
@@ -81,6 +93,7 @@
 						this.bannerList = res.data.ad;
 						this.typeList = res.data.cat;
 						this.hotList = res.data.hot;
+						this.loading = false;
 					}
 				}
 			})

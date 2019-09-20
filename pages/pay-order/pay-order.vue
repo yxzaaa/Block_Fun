@@ -126,6 +126,11 @@
 							}
 						}
 					})
+				}else{
+					uni.showToast({
+						title:"请输入6位支付密码",
+						icon:'none'
+					})
 				}
 			}
 		}

@@ -7,6 +7,7 @@
 			:buttons="navButtons"	
 			@handle="buttonHandler"
 		/>
+		<view class="addcart-item" v-if="adding"></view>
 		<view class="app-container fixbutton">
 			<uni-popup ref="popup" type="bottom">
 				<view class="choose">
@@ -18,11 +19,11 @@
 							<view class="title">
 								<span>
 									<span style="font-size:30upx;font-family:'Montserrat-Bold';">￥</span>
-									<span style="font-size:40upx;font-family:'Montserrat-Bold';">354</span>
-									<span style="font-size: 30upx;font-family:'Montserrat-Bold';">.12</span>
+									<span style="font-size:40upx;font-family:'Montserrat-Bold';">{{price.split('.')[0]}}</span>
+									<span style="font-size: 30upx;font-family:'Montserrat-Bold';">{{price.split('.')[1]?'.' + price.split('.')[1]:''}}</span>
 								</span>
 								<text style="color:#999999;font-size:24upx;margin-top:16upx;">库存 {{currStock}} 件</text>
-								<text style="color:#999999;font-size:24upx;margin-top:16upx;">消耗积分 4000</text>
+								<text style="color:#999999;font-size:24upx;margin-top:16upx;">消耗积分 {{credit}}</text>
 							</view>
 						</view>
 						<view class="img" @click = "$refs.popup.close()">
@@ -60,7 +61,7 @@
 					</view>
 				</view>
 			</uni-popup>
-			<swiper class="carousel" indicator-dots=true circular=true interval="3000" duration="700" indicator-active-color="#DA53A2">
+			<swiper v-if="!loading" class="carousel" indicator-dots=true circular=true interval="3000" duration="700" indicator-active-color="#DA53A2">
 				<swiper-item v-for="(item,index) in imgList" :key="index">
 					<view class="image-wrapper">
 						<image
@@ -71,29 +72,37 @@
 					</view>
 				</swiper-item>
 			</swiper>
-			<view class="info">
+			<Skeleton height="720upx" :loading="loading"></Skeleton>
+			<view class="info" v-if="!loading">
 				<view class="title">
 					<span style="margin-top:40upx;">
 						<span style="font-size:30upx;margin-right:4upx;font-family:'Montserrat-Bold';">￥</span>
 						<span style="font-size:40upx;font-family:'Montserrat-Bold';">{{price.split('.')[0]}}</span>
 						<span style="font-size: 30upx;font-family:'Montserrat-Bold';">{{price.split('.')[1]?'.' + price.split('.')[1]:''}}</span>
 					</span>
-					
 					<text style="color:#999999;font-size:24upx;margin-top:16upx;">消耗积分 {{credit}}</text>
 					<text style="background:#DA53A2;height:32upx;width:64upx;text-align: center;font-size:24upx;color:#fff;margin-top:16upx;">{{catname}}</text>
 					<text style="color:#fff;font-size: 32upx;margin-top:16upx;">{{title}}</text>
 					<text style="color:#999999;font-size: 24upx;margin-top:16upx;width:670upx;line-height:44upx;">{{content}}</text>
 				</view>
 			</view>
+			<view v-if="loading" style="padding:40upx;">
+				<Skeleton width="200upx" height="60upx" :loading="loading"></Skeleton>
+				<Skeleton width="200upx" height="32upx" :loading="loading"></Skeleton>
+				<Skeleton width="64upx" height="32upx" :loading="loading"></Skeleton>
+				<Skeleton height="80upx" :loading="loading"></Skeleton>
+				<Skeleton height="320upx" :loading="loading"></Skeleton>
+			</view>
 			
 			<!-- 相关推荐-->
 			<view class="guess">
 				<view class="section-tit">相关推荐</view>
 				<view class="guess-list">
-					<view 
+					<navigator 
 						v-for="(item, index) in guessList" :key="item.itemid"
 						class="guess-item"
-						url="../detail/detail"
+						:url="'../detail/detail?id='+item.itemid"
+						 v-if="!loading"
 					>
 					<!-- 引入图片 -->
 						<view class="image-wrapper">
@@ -111,9 +120,9 @@
 								<span style="font-family:'Montserrat-Bold';">{{item.price.split('.')[0]}}</span>
 								<span style="font-size:24upx;font-family:'Montserrat-Bold';">{{item.price.split('.')[1]?'.'+item.price.split('.')[1]:''}}</span>
 							</span>
-							
 						</view>
 					</navigator>
+					<Skeleton height="200upx" :loading="loading"></Skeleton>
 				</view>
 			</view>
 			
@@ -139,17 +148,20 @@
 	import FunButton from '@/components/fun-button.vue';
 	import share from '@/components/share';
 	import uniPopup from "@/components/uni-popup/uni-popup.vue";
+	import Skeleton from '@/components/Skeleton.vue';
 	export default {
 		components: {
 			share,
 			UniNavBar,
 			UniBackground,
 			FunButton,
-			uniPopup
+			uniPopup,
+			Skeleton
 		},
 		data() {
 			return {
 				scroll:0,
+				loading:true,
 				navButtons:{
 					back:{
 						type:'circle',
@@ -193,6 +205,7 @@
 				currStock:0,
 				skuActive:[],
 				totalStock:0,
+				adding:false
 			};
 		},
 		onPageScroll(val){
@@ -204,6 +217,7 @@
 				success:res=>{
 					console.log(res);
 					if(res.code == 200){
+						this.loading = false;
 						this.credit = res.data.credit;
 						this.catname = res.data.catname;
 						this.title = res.data.title;
@@ -374,6 +388,11 @@
 										title:'商品已添加到购物车~',
 										icon:'none'
 									})
+									this.adding = true;
+									setTimeout(()=>{
+										this.adding = false;
+										this.navButtons.cart.active = true;
+									},1000)
 								}else{
 									this.$refs.popup.close();
 									uni.showToast({
@@ -436,6 +455,44 @@
 </script>
 
 <style lang="scss" scoped>
+	.addcart-item{
+		position:fixed;
+		z-index:1000;
+		bottom:calc(100vh - 100upx);
+		left:660upx;
+		width:12upx;
+		height:12upx;
+		border-radius: 6upx;
+		background: #DA53A2;
+		animation: addcart 0.6s ease-in-out 1;
+		opacity: 0;
+	}
+	@keyframes addcart{
+		0%{
+			bottom:20upx;
+			left:40upx;
+			width:670upx;
+			height:80upx;
+			border-radius: 40upx;
+			opacity: 0;
+		}
+		30%{
+			bottom:300upx;
+			left:380upx;
+			width:80upx;
+			height:80upx;
+			border-radius: 40upx;
+			opacity: 0.8;
+		}
+		100%{
+			bottom:calc(100vh - 100upx);
+			left:660upx;
+			width:24upx;
+			height:24upx;
+			border-radius: 12upx;
+			opacity: 0.6;
+		}
+	}
 	.choose{
 		width:750upx;
 		height:800upx;

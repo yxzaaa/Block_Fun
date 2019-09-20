@@ -82,6 +82,7 @@
 				</view>
 			</view>
 		</view>
+		
 	</view>
 </template>
 
@@ -119,6 +120,7 @@
 				],
 				totalCount:0,
 				totalCredit:0,
+				
 			};
 		},
 		onPageScroll(val){
@@ -194,6 +196,7 @@
 </script>
 
 <style lang="scss" scoped>
+	
 	.guess {
 		display: flex;
 		flex-direction: column;

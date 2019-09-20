@@ -20,9 +20,9 @@
 				// 	}
 				// });
 			}else{
-				uni.reLaunch({
-					url:'/pages/login/login'
-				})
+				// uni.reLaunch({
+				// 	url:'/pages/login/login'
+				// })
 			}
 			
 		},
@@ -389,11 +389,17 @@
 	}
 	/* 骨架屏替代方案 */
 	.Skeleton {
-		background: #f3f3f3;
-		padding: 20upx 0;
+		background: rgba(255,255,255,0.1);
 		border-radius: 8upx;
+		margin-bottom:12upx;
+		animation: flicker 1.6s infinite;
 	}
-
+	@keyframes flicker
+	{
+		0% {opacity:1;}
+		50% {opacity:0.5;}
+		100% {opacity:1;}
+	}
 	.clamp {
 		overflow: hidden;
 		text-overflow: ellipsis;
