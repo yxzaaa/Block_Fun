@@ -1,5 +1,5 @@
 <template>
-	<view class="container">
+	<view class="container">	
 		<uni-background /> <!-- 背景色-->
 		<!-- 导航栏 -->
 		<uni-nav-bar 	
@@ -104,27 +104,29 @@
 			//订单支付
 			payOrder(){
 				console.log(this.payPassword);
-				this.payPassword = '';
-				this.$http({
-					url:'/order/pay',
-					type:'application/x-www-form-urlencoded',
-					data:{
-						item:this.orderId,
-						password:this.payPassword
-					},
-					success:res=>{
-						// if(res.code == 200){
-							uni.navigateTo({
-								url:'../pay-result/pay-result?id='+this.orderId
-							})
-						// }else{
-						// 	uni.showToast({
-						// 		title:res.message,
-						// 		icon:'none'
-						// 	})
-						// }
-					}
-				})
+				if(this.payPassword.length === 6){
+					this.$http({
+						url:'/order/pay',
+						type:'application/x-www-form-urlencoded',
+						data:{
+							item:this.orderId,
+							password:this.payPassword
+						},
+						success:res=>{
+							if(res.code == 200){
+								this.showModal = false;
+								uni.navigateTo({
+									url:'../pay-result/pay-result?id='+this.orderId
+								})
+							}else{
+								uni.showToast({
+									title:res.message,
+									icon:'none'
+								})
+							}
+						}
+					})
+				}
 			}
 		}
 	}
@@ -158,6 +160,7 @@
 		width:670upx;
 		background:#2D1F25;
 		padding:40upx;
+		border-radius: 8upx;
 		margin:auto;
 		display: flex;
 		flex-direction: column;

@@ -1,6 +1,6 @@
 <template>
 	<scroll-view class="tab-box" scroll-x="true" scroll-left="0">
-		<block v-for="(item,index) in tabs" :key="item.id">
+		<block v-for="(item,index) in tabs" :key="index">
 			<view :class="['tab-item',activeTab == index?'active':'']" @click="toggleActive(index)" :style="{paddingLeft:padding+'upx',paddingRight:padding+'upx'}">{{item.text}}</view>
 		</block>
 	</scroll-view>
@@ -43,12 +43,11 @@
 			color:rgba(255,255,255,.5);
 			font-size:28upx;
 			line-height: 72upx;
-			transition:all .2s;
+			transition:all .1s;
 			position:relative;
 			&.active{
 				transform: scale(1.1);
 				color:#fff;
-				font-weight: bold;
 			}
 		}
 	}

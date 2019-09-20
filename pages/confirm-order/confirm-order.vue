@@ -1,5 +1,5 @@
 <template>
-	<view>
+	<view class="container">
 		<uni-background />
 		<uni-nav-bar 
 			title="确认订单" 
@@ -7,68 +7,70 @@
 			:opacity="scroll"
 			:buttons="navButtons"
 		/>
-		<navigator class="tosite" url="../choose-address/choose-address">
-			<view class="site">
-				<image src="../../static/bg/location.png" style="width:64upx;height:64upx;"></image>
-				<span class="person-info">
-					<span class="name-phone">
-						<span class="name" style="font-size:28upx;color:#fff;">王依依</span>
-						<span class="phone" style="font-size:24upx;color:#999999;;">133xxxx1232</span>
+		<view class="app-container">
+			<navigator class="tosite" url="../choose-address/choose-address">
+				<view class="site">
+					<image src="../../static/bg/location.png" style="width:64upx;height:64upx;"></image>
+					<span class="person-info">
+						<span class="name-phone">
+							<span class="name" style="font-size:28upx;color:#fff;">王依依</span>
+							<span class="phone" style="font-size:24upx;color:#999999;;">133xxxx1232</span>
+						</span>
+						<span class="adress" style="font-size:24upx;display: block;color:#999999;;">北京市朝阳区朝阳路朝阳小区10号楼102</span>
 					</span>
-					<span class="adress" style="font-size:24upx;display: block;color:#999999;;">北京市朝阳区朝阳路朝阳小区10号楼102</span>
-				</span>
-			</view>
-			<image src="../../static/bg/right.png" style="width:40upx;height:40upx;"></image>
-		</navigator>
-		<!-- 购物车详情 -->
-		<view class="guess">
-			<view class="guess-list">
-				<view 
-					v-for="(item, index) in guessList" 
-					:key="index"
-					class="guess-item"	
-				>
-				<!-- 引入图片 -->
-					<view class="image-wrapper">
-						<image 
-							:src="item.src" 
-							mode="aspectFill"
-							style="width:160upx;height:160upx;"
-						></image>
-					</view>
-					<!-- 图片描述 -->
-					<view class="guess-content" style="margin-left:20upx;margin-top:0;">
-						<span style="font-size: 28upx;color:#fff;">{{item.title}}</span>
-						<text style="font-size:24upx;color:#999999;margin-top:12upx;">{{item.consume}} {{item.amount}}</text>
-						<span style="color:#DA53A2;position:relative;">
-							<span style="font-size:24upx;margin-right:8upx;display: inline-block;font-family:'Montserrat-Bold';">{{item.symbol}}</span>
-							<span style="display: inline-block;font-family:'Montserrat-Bold';">{{item.price.split('.')[0]}}</span>
-							<span style="font-size:24upx;display: inline-block;font-family:'Montserrat-Bold';">{{item.price.split('.')[1]?'.'+item.price.split('.')[1]:''}}</span>
-							<span class="cut" style="position:absolute;right:50upx;bottom:4upx;display: inline-block;">
-								<span style="margin-right:20upx;font-size:30upx;color:#fff;font-weight: bold;display: inline-block;"> - </span>
-								<span style="display:inline-block;#99999;background:#280617;font-size:24upx;color:#fff;width:64upx;height:40upx;line-height: 40upx;text-align: center;">{{item.number}}</span>
-								<span style="margin-left:20upx;font-size:30upx;color:#fff;font-weight: bold;display: inline-block;"> + </span>
+				</view>
+				<image src="../../static/bg/right.png" style="width:40upx;height:40upx;"></image>
+			</navigator>
+			<!-- 购物车详情 -->
+			<view class="guess">
+				<view class="guess-list">
+					<view 
+						v-for="(item, index) in guessList" 
+						:key="index"
+						class="guess-item"	
+					>
+					<!-- 引入图片 -->
+						<view class="image-wrapper">
+							<image 
+								:src="item.src" 
+								mode="aspectFill"
+								style="width:160upx;height:160upx;"
+							></image>
+						</view>
+						<!-- 图片描述 -->
+						<view class="guess-content" style="margin-left:20upx;margin-top:0;">
+							<span style="font-size: 28upx;color:#fff;">{{item.title}}</span>
+							<text style="font-size:24upx;color:#999999;margin-top:12upx;">{{item.consume}} {{item.amount}}</text>
+							<span style="color:#DA53A2;position:relative;">
+								<span style="font-size:24upx;margin-right:8upx;display: inline-block;font-family:'Montserrat-Bold';">{{item.symbol}}</span>
+								<span style="display: inline-block;font-family:'Montserrat-Bold';">{{item.price.split('.')[0]}}</span>
+								<span style="font-size:24upx;display: inline-block;font-family:'Montserrat-Bold';">{{item.price.split('.')[1]?'.'+item.price.split('.')[1]:''}}</span>
+								<span class="cut" style="position:absolute;right:50upx;bottom:4upx;display: inline-block;">
+									<span style="margin-right:20upx;font-size:30upx;color:#fff;font-weight: bold;display: inline-block;"> - </span>
+									<span style="display:inline-block;#99999;background:#280617;font-size:24upx;color:#fff;width:64upx;height:40upx;line-height: 40upx;text-align: center;">{{item.number}}</span>
+									<span style="margin-left:20upx;font-size:30upx;color:#fff;font-weight: bold;display: inline-block;"> + </span>
+								</span>
 							</span>
+						</view>
+					</view>
+				</view>
+			</view>
+			<view class="button-group">
+				<view class="finish">
+					<view class="price">
+						<span class="cash">
+							<span style="font-size: 24upx;color:#999999">现金：</span>
+							<span style="font-size: 24upx;color:#DA53A2;font-family:'Montserrat-Bold';">￥</span>
+							<span style="font-size: 28upx;color:#DA53A2;font-family:'Montserrat-Bold';">6444.</span>
+							<span style="font-size: 24upx;color:#DA53A2;font-family:'Montserrat-Bold';">12</span>
+						</span>
+						<span>
+							<span style="font-size: 24upx;color:#999999;">积分：</span>
+							<span style="font-size: 24upx;color:#fff;">4000</span>
 						</span>
 					</view>
+					<fun-button value="提交订单" width="240upx" url="../pay-order/pay-order"></fun-button>
 				</view>
-			</view>
-		</view>
-		<view class="button-group">
-			<view class="finish">
-				<view class="price">
-					<span class="cash">
-						<span style="font-size: 24upx;color:#999999">现金：</span>
-						<span style="font-size: 24upx;color:#DA53A2;font-family:'Montserrat-Bold';">￥</span>
-						<span style="font-size: 28upx;color:#DA53A2;font-family:'Montserrat-Bold';">6444.</span>
-						<span style="font-size: 24upx;color:#DA53A2;font-family:'Montserrat-Bold';">12</span>
-					</span>
-					<span>
-						<span style="font-size: 24upx;color:#999999;">积分：</span>
-						<span style="font-size: 24upx;color:#fff;">4000</span>
-					</span>
-				</view>
-				<fun-button value="提交订单" width="240upx" url="../pay-order/pay-order"></fun-button>
 			</view>
 		</view>
 	</view>

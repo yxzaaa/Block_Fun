@@ -1,5 +1,5 @@
 <template>
-	<view>
+	<view class="container">
 		<uni-background />
 		<uni-nav-bar
 			title="新建收货地址"
@@ -7,37 +7,39 @@
 			:opacity="scroll"
 			:buttons="navButtons"
 		/>
-		<view class="content" style="padding:40upx;">
-			<view class="row b-b">
-				<text class="tit" style="padding-top:0px;">收货人姓名</text>
-				<input class="input" type="text" v-model="getterName" placeholder="请输入收货人姓名" placeholder-style="color:rgba(255,255,255,0.5)"/>
+		<view class="app-container full">
+			<view class="content" style="padding:40upx;">
+				<view class="row b-b">
+					<text class="tit" style="padding-top:0px;">收货人姓名</text>
+					<input class="input" type="text" v-model="getterName" placeholder="请输入收货人姓名" placeholder-style="color:rgba(255,255,255,0.5)"/>
+				</view>
+				<view class="row b-b">
+					<text class="tit">手机号</text>
+					<input v-model="phone" class="input" type="number" placeholder="请输入11位手机号" placeholder-style="color:rgba(255,255,255,0.5)"/>
+				</view>
+				<view class="row b-b">
+					<text class="tit">所属区域</text>
+					<picker mode="multiSelector" :range="rangeData" :range-key="'name'" @columnchange="setAddressData" @change="changeArea" :disabled="loadingMPData"
+						style="position:relative;"
+					>
+						<input v-model="area" class="input" type="text" :placeholder="loadingMPData?'正在加载省市区信息...':'请选择省市区'" disabled placeholder-style="color:rgba(255,255,255,0.5)">
+						<image :src="imageLib.shape" style="width:24upx;height:12upx;position: absolute;top:34upx;right:10upx;"></image>
+					</picker>
+				</view>
+				<view class="row b-b"> 
+					<text class="tit">详细地址</text>
+					<input v-model="address" class="input" type="text" placeholder="请输入详细地址" placeholder-style="color:rgba(255,255,255,0.5)"/>
+				</view>
+				
 			</view>
-			<view class="row b-b">
-				<text class="tit">手机号</text>
-				<input v-model="phone" class="input" type="number" placeholder="请输入11位手机号" placeholder-style="color:rgba(255,255,255,0.5)"/>
+			<view class="default" style="padding:30upx 40upx;display: flex;align-items: center;" @click="isdefault = isdefault?false:true">
+				<image :src="isdefault?imageLib.check:imageLib.checkbox" style="width:40upx;height:40upx;margin-right:14upx;"></image>
+				<text style="color:#fff;font-size: 24upx;">设为默认</text>
 			</view>
-			<view class="row b-b">
-				<text class="tit">所属区域</text>
-				<picker mode="multiSelector" :range="rangeData" :range-key="'name'" @columnchange="setAddressData" @change="changeArea" :disabled="loadingMPData"
-					style="position:relative;"
-				>
-					<input v-model="area" class="input" type="text" :placeholder="loadingMPData?'正在加载省市区信息...':'请选择省市区'" disabled placeholder-style="color:rgba(255,255,255,0.5)">
-					<image :src="imageLib.shape" style="width:24upx;height:12upx;position: absolute;top:34upx;right:10upx;"></image>
-				</picker>
-			</view>
-			<view class="row b-b"> 
-				<text class="tit">详细地址</text>
-				<input v-model="address" class="input" type="text" placeholder="请输入详细地址" placeholder-style="color:rgba(255,255,255,0.5)"/>
-			</view>
-			
-		</view>
-		<view class="default" style="padding:30upx 40upx;display: flex;align-items: center;" @click="isdefault = isdefault?false:true">
-			<image :src="isdefault?imageLib.check:imageLib.checkbox" style="width:40upx;height:40upx;margin-right:14upx;"></image>
-			<text style="color:#fff;font-size: 24upx;">设为默认</text>
-		</view>
-		<view class="fixed-buttons">
-			<view class="button-group">
-				<fun-button @handle="addressPlus" value="保存并使用" width="670upx"  large></fun-button>
+			<view class="fixed-buttons">
+				<view class="button-group">
+					<fun-button @handle="addressPlus" value="保存并使用" width="670upx"  large></fun-button>
+				</view>
 			</view>
 		</view>
 	</view>
@@ -206,7 +208,7 @@
 
 <style lang="scss">
 	.content{
-		margin: 200upx 40upx 0;
+		margin:0px 40upx;
 		border-radius:10upx;
 		background: rgba(45, 31, 37, 0.7);
 	}

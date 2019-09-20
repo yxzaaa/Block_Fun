@@ -1,6 +1,5 @@
 <template>
-	<view>
-		
+	<view class="container">
 		<uni-background /> <!-- 背景色-->
 		<!-- 导航栏 -->
 		<uni-nav-bar 	
@@ -220,7 +219,6 @@
 	.address{
 		width:750upx;
 		padding:40upx;
-		margin-top:186upx;
 		height:140upx;
 		border-bottom:1px solid rgba(255,255,255,0.1);
 		display:flex;
