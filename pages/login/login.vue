@@ -82,7 +82,7 @@
 								//检查本地pay_token设置
 								//跳转已登录状态设置交易密码
 								uni.navigateTo({
-									url:'../setpaypassword/setpaypassword?mobile=86'+this.mobile
+									url:'../setpaypassword/setpaypassword?mobile=86'+this.mobile+'&auth='+res.data.token
 								})
 							}else{
 								uni.setStorage({

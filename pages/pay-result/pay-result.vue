@@ -88,10 +88,10 @@
 			}
 		},
 		onLoad(option){
-			this.orderId = option.orderId;
+			this.orderId = option.id;
 			//根据订单id获取订单详情，判断支付结果
 			this.$http({
-				url:'/order/show?id='+option.orderId,
+				url:'/order/show?id='+this.orderId,
 				success:res=>{
 					console.log(res);
 					if(res.code == 200){

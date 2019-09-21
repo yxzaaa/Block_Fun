@@ -164,6 +164,29 @@
 		onPageScroll(val){
 			this.scroll = val.scrollTop;
 		},
+		onLoad(){
+			//获取用户信息
+			this.$http({
+				url:'/v1/main/users/user-info',
+				success:res=>{
+					if(res.code == 200){
+						uni.setStorage({
+							key: 'userInfo',
+							data:res.data,
+							success:res=>{
+								uni.switchTab({
+									url:'../index/index'
+								})
+							}
+						})
+					}else{
+						uni.navigateTo({
+							url:'../login/login'
+						})
+					}
+				}
+			})
+		},
 		methods:{
 			logout(){
 				uni.removeStorage({

@@ -131,10 +131,14 @@
 					success:res=>{
 						console.log(res);
 						if(res.code == 200){
-							this.cartList = res.data[0].item;
-							this.cartList.map(item=>{
-								item.isActive = false;
-							});
+							if(res.data[0]){
+								this.cartList = res.data[0].item;
+								this.cartList.map(item=>{
+									item.isActive = false;
+								});
+							}else{
+								this.cartList = [];
+							}
 						}
 					}
 				})
@@ -269,6 +273,7 @@
 				console.log(codes.join(','));
 				this.$http({
 					url:'/mall/cart',
+					type:'application/x-www-form-urlencoded',
 					data:{
 						action:'delete',
 						code:codes.join(',')

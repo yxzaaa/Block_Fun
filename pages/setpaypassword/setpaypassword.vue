@@ -21,8 +21,8 @@
 			</view>
 			<view class="fun-card">
 				<view class="fun-card-item notify" style="display: block;">
-					<input type="number" maxlength="6" placeholder="请输入验证码" style="width:100%;text-align:center;line-height: 64upx;font-size: 28upx;height:64upx;color:#fff;margin-bottom:30upx;">
-					<fun-button :value="codeText" width="240upx" style="margin:auto;"></fun-button>
+					<input v-model="checkCode" type="number" maxlength="6" placeholder="请输入验证码" style="width:100%;text-align:center;line-height: 64upx;font-size: 28upx;height:64upx;color:#fff;margin-bottom:30upx;">
+					<fun-button :value="codeDelay == 0?'获取验证码':codeDelay+' s'" width="240upx" style="margin:auto;" @handle="getCode()"></fun-button>
 				</view>
 			</view>
 			<view style="margin-top:120upx;">
@@ -71,29 +71,115 @@
 				checkCode:'',
 				initPassword:'',
 				needCode:false,
-				codeText:'获取验证码',
+				codeDelay:0,
+				codeTimer:null,
 				showModal:false,
-				payToken:''
+				payToken:'',
+				phone:'',
+				auth:'',
 			};
 		},
 		onLoad(option){
 			if(option.token){
 				//使用pay_token设置交易密码
 				this.payToken = option.token;
-			}else if(option.mobile){
+				this.phone = option.mobile;
+				this.password = option.password;
+			}else if(option.auth){
 				//使用验证码设置交易密码
 				this.needCode = true;
+				this.phone = option.mobile;
+				this.auth = option.auth;
 			}
 		},
 		methods:{
 			setPassword(val){
 				this.initPassword = val;
 			},
+			//获取验证码
+			getCode(){
+				if(this.codeDelay === 0 && this.phone.length === 13){
+					this.$http({
+						url:'/v1/users/login/forget-login-password/send-code?login_name='+this.phone,
+						success:res=>{
+							console.log(res);
+							if(res.code == 200){
+								this.codeDelay = 60;
+								this.codeTimer = setInterval(()=>{
+									if(this.codeDelay>0){
+										this.codeDelay --;
+									}else{
+										clearInterval(this.codeTimer);
+										this.codeTimer = null;
+									}
+								},1000);
+							}else{
+								uni.showToast({
+									title:res.message,
+									icon:'none'
+								})
+							}
+						}
+					})
+				}
+			},
 			init(){
-				console.log(this.initPassword);
-				if(this.initPassword.length ==6){
+				if(this.initPassword.length === 8){
 					if(this.needCode){
-						
+						//使用验证码进行初始化支付密码
+						this.$http({
+							url:'/v1/main/users/reset-confirm-account-payment-password',
+							header:{
+								"Content-Type":"application/json",
+								"Authorization":this.auth,
+							},
+							data:{
+								validate_code:this.checkCode,
+								pay_password:this.initPassword,
+								pay_password_hash:this.$md5(this.initPassword)
+							},
+							success:res=>{
+								console.log(res);
+								if(res.code == 200){
+									uni.showToast({
+										title:'支付密码设置成功，请牢记！',
+										icon:'none'
+									})
+									setTimeout(()=>{
+										//延时1s后获取用户信息，放在本地存储中
+										this.$http({
+											url:'/v1/main/users/user-info',
+											header:{
+												"Content-Type":"application/json",
+												"Authorization":this.auth,
+											},
+											success:res=>{
+												if(res.code == 200){
+													uni.setStorage({
+														key: 'userInfo',
+														data:res.data,
+														success:res=>{
+															uni.switchTab({
+																url:'../index/index'
+															})
+														}
+													})
+												}else{
+													uni.navigateTo({
+														url:'../login/login'
+													})
+												}
+											}
+										})
+									},1000)
+								}else{
+									uni.showToast({
+										title:res.message,
+										icon:'none'
+									})
+								}
+							}
+						})
 					}else{
 						//使用pay_token发送设置支付密码请求
 						this.$http({
@@ -105,12 +191,53 @@
 							},
 							success:res=>{
 								console.log(res);
+								if(res.code == 200){
+									//设置成功后给出提示
+									uni.showToast({
+										title:'支付密码设置成功，请牢记！',
+										icon:'none'
+									})
+									setTimeout(()=>{
+										//进行登录操作
+										this.$http({
+											url:'/v1/users/login',
+											data:{
+												login_name:this.phone,
+												password:this.password,
+												password_hash:this.$md5(this.password)
+											},
+											success:res=>{
+												console.log(res);
+												if(res.code == 200){
+													uni.setStorage({
+														key: 'userInfo',
+														data:res.data,
+														success:res=>{
+															uni.switchTab({
+																url:'../index/index'
+															})
+														}
+													})
+												}else{
+													uni.navigateTo({
+														url:'../login/login'
+													})
+												}
+											}
+										})
+									},1000)
+								}else{
+									uni.showToast({
+										title:res.message,
+										icon:'none'
+									})
+								}
 							}
 						})
 					}
 				}else{
 					uni.showToast({
-						title:'请输入六位支付密码',
+						title:'请输入8位支付密码',
 						icon:'none'
 					})
 				}

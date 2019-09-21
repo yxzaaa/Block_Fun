@@ -104,7 +104,7 @@
 			//订单支付
 			payOrder(){
 				console.log(this.payPassword);
-				if(this.payPassword.length === 6){
+				if(this.payPassword.length === 8){
 					this.$http({
 						url:'/order/pay',
 						type:'application/x-www-form-urlencoded',
@@ -128,7 +128,7 @@
 					})
 				}else{
 					uni.showToast({
-						title:"请输入6位支付密码",
+						title:"请输入8位支付密码",
 						icon:'none'
 					})
 				}

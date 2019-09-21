@@ -6,7 +6,9 @@
 		<text class="item-text" :style="{width:size,height:size,lineHeight:size,fontSize:fontSize,background:background}">{{password[3]}}</text>
 		<text class="item-text" :style="{width:size,height:size,lineHeight:size,fontSize:fontSize,background:background}">{{password[4]}}</text>
 		<text class="item-text" :style="{width:size,height:size,lineHeight:size,fontSize:fontSize,background:background}">{{password[5]}}</text>
-		<input type="number" class="password-input" maxlength="6" v-model="password" @input="changeValue" :focus="true"/>
+		<text class="item-text" :style="{width:size,height:size,lineHeight:size,fontSize:fontSize,background:background}">{{password[6]}}</text>
+		<text class="item-text" :style="{width:size,height:size,lineHeight:size,fontSize:fontSize,background:background}">{{password[7]}}</text>
+		<input type="number" class="password-input" maxlength="8" v-model="password" @input="changeValue" :focus="true"/>
 	</view>
 </template>
 
@@ -15,7 +17,7 @@
 		props:{
 			size:{
 				type:String,
-				default:'64upx'
+				default:'54upx'
 			},
 			fontSize:{
 				type:String,
@@ -59,11 +61,11 @@
 		}
 		.item-text{
 			display: block;
-			width:64upx;
-			height:64upx;
-			border-radius: 10upx;
+			width:54upx;
+			height:54upx;
+			border-radius: 8upx;
 			background: #F2F8FF;
-			line-height: 64upx;
+			line-height: 54upx;
 			text-align: center;
 			font-size: 32upx;
 			color:#DA53A2;
