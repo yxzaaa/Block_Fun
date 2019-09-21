@@ -10,10 +10,10 @@
 			<view class="user-info">
 				<image src="../../static/bg/logo.png" style="width:124upx;height:124upx;"></image>
 				<view class="info">
-					<span class="id">13936525463</span>
+					<span class="id">{{userInfo.login_name}}</span>
 					<span class="users" style="margin-top:20upx;">
 						<span class="user" style="margin-right:44upx;font-size:24upx;font-family: Montserrat-bold;color:#999999;">
-							UID：100001
+							UID：{{userInfo.uid}}
 						</span>
 						<span style="font-size:24upx;color:#999999;border:1px solid #999999;padding:4upx 24upx;border-radius:6upx;">一键复制</span>
 					</span>
@@ -22,8 +22,8 @@
 			<view class="activity">
 				<view class="active">
 					<view>
-							<image src="../../static/bg/task.png"></image>
-							<span>每日任务</span>
+						<image src="../../static/bg/task.png"></image>
+						<span>每日任务</span>
 					</view>
 					<view>
 						<image src="../../static/bg/friends.png"></image>
@@ -158,7 +158,8 @@
 				scroll:0,
 				imageLib:{
 					bg:'../../static/bg2.jpg'
-				}
+				},
+				userInfo:{}
 			};
 		},
 		onPageScroll(val){
@@ -170,19 +171,7 @@
 				url:'/v1/main/users/user-info',
 				success:res=>{
 					if(res.code == 200){
-						uni.setStorage({
-							key: 'userInfo',
-							data:res.data,
-							success:res=>{
-								uni.switchTab({
-									url:'../index/index'
-								})
-							}
-						})
-					}else{
-						uni.navigateTo({
-							url:'../login/login'
-						})
+						this.userInfo = res.data;
 					}
 				}
 			})
