@@ -1,8 +1,8 @@
 {
-    "name" : "BlockFun7",
-    "appid" : "__UNI__9CBF870",
+    "name" : "BlockFun",
+    "appid" : "__UNI__E4630DC",
     "description" : "",
-    "versionName" : "1.0.0",
+    "versionName" : "1.1.1",
     "versionCode" : "100",
     "transformPx" : false,
     "app-plus" : {
@@ -43,11 +43,20 @@
                     "<uses-feature android:name=\"android.hardware.camera\"/>",
                     "<uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\"/>",
                     "<uses-permission android:name=\"android.permission.WRITE_SETTINGS\"/>"
-                ]
+                ],
+                "abiFilters" : [ "armeabi-v7a", "arm64-v8a", "x86" ]
             },
             "ios" : {},
             /* ios打包配置 */
-            "sdkConfigs" : {}
+            "sdkConfigs" : {},
+            "icons" : {
+                "android" : {
+                    "hdpi" : "static/bg/logo.png",
+                    "xhdpi" : "static/bg/logo.png",
+                    "xxhdpi" : "static/bg/logo.png",
+                    "xxxhdpi" : "static/bg/logo.png"
+                }
+            }
         }
     },
     /* SDK配置 */

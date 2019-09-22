@@ -14,7 +14,7 @@
 					<view class="goods">
 						<view class="goods-info">
 							<view class="img">
-								<image src="../../static/bg/detail1.png"></image>
+								<image :src="imgList[0]"></image>
 							</view>
 							<view class="title">
 								<span>
@@ -245,7 +245,6 @@
 						     this.totalStock += parseInt(this.skuCodes[key]);
 						})
 						this.currStock = this.totalStock;
-						this.skuCodes['1-1-1'] = 0;
 					}
 				}
 			})
@@ -435,7 +434,8 @@
 							success:res=>{
 								if(res.code == 200){
 									uni.showToast({
-										title:'商品收藏成功~'
+										title:'商品收藏成功~',
+										icon:'none'
 									})
 									this.navButtons.love.active = true;
 								}

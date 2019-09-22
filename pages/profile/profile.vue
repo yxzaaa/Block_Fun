@@ -13,7 +13,7 @@
 					<span class="id">{{userInfo.login_name}}</span>
 					<span class="users" style="margin-top:20upx;">
 						<span class="user" style="margin-right:44upx;font-size:24upx;font-family: Montserrat-bold;color:#999999;">
-							UID：{{userInfo.uid}}
+							UID：{{userInfo.uid.substring(0,16)+'...'}}
 						</span>
 						<span style="font-size:24upx;color:#999999;border:1px solid #999999;padding:4upx 24upx;border-radius:6upx;">一键复制</span>
 					</span>
@@ -165,7 +165,7 @@
 		onPageScroll(val){
 			this.scroll = val.scrollTop;
 		},
-		onLoad(){
+		onShow(){
 			//获取用户信息
 			this.$http({
 				url:'/v1/main/users/user-info',
@@ -195,13 +195,14 @@
 <style lang="scss" scoped>
 	.user-info{
 		display: flex;
-		width:490upx;
+		width:750upx;
+		padding:0px 40upx;
 		height:124upx;
-		margin-left:40upx;
-		justify-content:space-between;
+		justify-content:flex-start;
 		.info{
 			display: flex;
 			flex-direction: column;
+			padding-left:30upx;
 			.id{
 				font-family: Montserrat-bold;
 				font-style: normal;

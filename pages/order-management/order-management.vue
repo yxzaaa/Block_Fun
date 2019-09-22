@@ -149,32 +149,46 @@
 		},
 		onShow(){
 			if(uni.getStorageSync('currAddress')){
-				this.addressData = uni.getStorageSync('currAddress');
-				uni.removeStorageSync('currAddress');
+				uni.getStorage({
+					key:'currAddress',
+					success:res=>{
+						console.log(res);
+						this.hasDefault = true;
+						this.addressData = res.data;
+						uni.removeStorageSync('currAddress');
+					}
+				})
 			}
 		},
 		methods:{
 			//提交订单
 			submitOrder(){
-				this.$http({
-					url:'/mall/buy',
-					type:'application/x-www-form-urlencoded',
-					data:{
-						item:JSON.stringify(this.items),
-						truename:this.addressData.truename,
-						address:this.addressData.full,
-						mobile:this.addressData.mobile,
-						submit:1
-					},
-					success:res=>{
-						console.log(res);
-						if(res.code == 200){
-							uni.navigateTo({
-								url:'../pay-order/pay-order?amount='+res.data.amount+'&id='+res.data.id
-							})
+				if(this.addressData.truename){
+					this.$http({
+						url:'/mall/buy',
+						type:'application/x-www-form-urlencoded',
+						data:{
+							item:JSON.stringify(this.items),
+							truename:this.addressData.truename,
+							address:this.addressData.full,
+							mobile:this.addressData.mobile,
+							submit:1
+						},
+						success:res=>{
+							console.log(res);
+							if(res.code == 200){
+								uni.navigateTo({
+									url:'../pay-order/pay-order?id='+res.data.id
+								})
+							}
 						}
-					}
-				})
+					})
+				}else{
+					uni.showToast({
+						title:'请填写收货地址！',
+						icon:'none'
+					})
+				}
 			},
 			getPrice(price,num,type){
 				var totalPrice = parseFloat(price)*parseInt(num);

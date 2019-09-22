@@ -12,11 +12,11 @@
 			<horizon-tab :tabs="statusTabs" padding="45" @click="toggleStatus" ></horizon-tab>
 			<scroll-view class="order-box" scroll-y>
 				<view class="managebox" v-for="(val,index) in orderList" :key="index"> <!-- 待办管理 -->
-					<view class="backlog"> 
+					<view class="backlog" @click="goDetail(val.id)"> 
 						<span>{{val.id}}</span>
 						<view style="font-size:28upx" :style="{color:getStatus(val.status).color }">{{getStatus(val.status).name}}</view>
 					</view>
-					<view class="goodslist">
+					<view class="goodslist" @click="goDetail(val.id)">
 						<view class="goods" v-for="(val1,index1) in val.item" :key="index1">
 							<view class="image">
 								<image :src="val1.img" style="width:160upx;height:160upx;display: block;"></image>
@@ -46,10 +46,10 @@
 								</span>
 						</span>
 					</view>
-					<view class="button-group" v-if="val.status == 1 || val.status == 2 || val.status == 3">
-						<fun-button class="funbtn1" value="取消订单" width="200upx" background="rgba(41,26,33,0.6)" color="#999" v-if="val.status == 1"></fun-button>
-						<fun-button class="funbtn1" value="去支付" width="200upx" v-if="val.status == 1"></fun-button>
-						<fun-button class="funbtn1" value="确认收货" width="200upx" v-if="val.status == 3 || val.status == 2"></fun-button>
+					<view class="button-group" v-if="val.status == 1 || val.status == 3">
+						<fun-button @handle="cancelOrder(val.id)" class="funbtn1" value="取消订单" width="200upx" background="rgba(41,26,33,0.6)" color="#999" v-if="val.status == 1"></fun-button>
+						<fun-button @handle="goPayOrder(val.id)" class="funbtn1" value="去支付" width="200upx" v-if="val.status == 1"></fun-button>
+						<fun-button @handle="confirmReceipt(val.id)" class="funbtn1" value="确认收货" width="200upx" v-if="val.status == 3"></fun-button>
 					</view>
 				</view>
 			</scroll-view>
@@ -81,12 +81,13 @@
 				statusTabs:[
 					{id:-1,text:'全部',color:''},
 					{id:1,text:'待付款',color:'#DA53A2'},
-					{id:2,text:'处理中',color:'#F2C94C'},
+					{id:2,text:'待发货',color:'#F2C94C'},
 					{id:3,text:'待收货',color:'#56CCF2'},
 					{id:4,text:'已完成',color:'#999999'},
 					{id:8,text:'已取消',color:'#999999'},
 				],
 				orderList:[],
+				currStatus:0
 			}
 		},
 		onPageScroll(val){
@@ -97,13 +98,62 @@
 		},
 		methods: {
 			toggleStatus(index){
-				console.log(index);
+				this.currStatus = index;
 				this.$http({
 					url:'/member/order?nav='+this.statusTabs[index].id+'&page=1',
 					success:res=>{
 						this.orderList = res.data.item;
 						console.log(this.orderList);
 					}
+				})
+			},
+			//确认收货
+			confirmReceipt(id){
+				uni.showModal({
+					title:'确认收货？',
+					content:'确认收货后货款将转到商家账户！',
+					success:(res)=>{
+						if (res.confirm) {
+							this.$http({
+								url:'/order/receive?id='+id,
+								success:res=>{
+									if(res.code == 200){
+										this.toggleStatus(this.currStatus);
+									}
+								}
+							})
+						}
+					}
+				})
+			},
+			goPayOrder(id){
+				console.log(id);
+				uni.navigateTo({
+					url:'../pay-order/pay-order?id='+id
+				})
+			},
+			cancelOrder(id){
+				console.log(id);
+				uni.showModal({
+					title:'取消订单？',
+					content:'亲，确定要抛弃我吗！',
+					success:(res)=>{
+						if (res.confirm) {
+							this.$http({
+								url:'/order/close?id='+id,
+								success:res=>{
+									if(res.code == 200){
+										this.toggleStatus(this.currStatus);
+									}
+								}
+							})
+						}
+					}
+				})
+			},
+			goDetail(id){
+				uni.navigateTo({
+					url:'../order-dealing/order-dealing?id='+id
 				})
 			},
 			setPrice(price,num){
@@ -156,13 +206,13 @@
 			}
 			.goodslist{
 				width:100%;
-				margin:60upx 0 0 0;
+				padding-top:60upx;
 				display: flex;
 				flex-direction: column;
 				flex-shrink:0;
 				.goods{
 					display: flex;
-					margin-bottom:40upx;
+					padding-bottom:40upx;
 					.image{
 						width:160upx;
 						height:160upx;

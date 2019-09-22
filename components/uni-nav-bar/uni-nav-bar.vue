@@ -17,8 +17,8 @@
 		<!-- 搜索框布局 -->
 		<view class="search-bar-box" v-if="layout === 'search'">
 			<div class="search-input-box">
-				<input type="text" class="search-input" placeholder="请输入商品信息" :focus="searchFocus">
-				<image src="../../static/icons/input-search.png" class="input-icon" />
+				<input @input="input" type="text" class="search-input" placeholder="请输入商品信息" :focus="searchFocus">
+				<image src="../../static/icons/input-search.png" class="input-icon" @click="search"/>
 			</div>
 		</view>
 		<!-- 搜索按钮布局，与搜索框配套存在 -->
@@ -160,6 +160,12 @@
 						url:obj.url
 					})
 				}
+			},
+			input(e){
+				this.$emit('input',e.detail.value);
+			},
+			search(){
+				this.$emit('search');
 			}
 		}
 	}

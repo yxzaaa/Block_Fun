@@ -93,8 +93,17 @@
 			this.scroll = val.scrollTop;
 		},
 		onLoad(option){
-			this.amountCount = option.amount;
 			this.orderId = option.id;
+			//根据订单id查询订单详情
+			this.$http({
+				url:'/order/show?id='+this.orderId,
+				success:res=>{
+					console.log(res);
+					if(res.code == 200){
+						this.amountCount = res.data.amount;
+					}
+				}
+			})
 		},
 		methods: {
 			//设置密码
