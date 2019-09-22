@@ -27,21 +27,21 @@
 								<view class="debitbox">
 									<view class="debit-info">
 										<view class="debit">
-											<span class="text">单价USDT</span>
+											<span class="text">USDT价格</span>
 											<span class="number">0.168</span>
 										</view>
 										<view class="debit">
-											<span class="text">投资USDT</span>
+											<span class="text">投资总量</span>
 											<span class="number">800</span>
 										</view>
 										<view class="debit">
-											<span class="text">日利率</span>
+											<span class="text">月利率</span>
 											<span class="number">0.1
 												<span>%</span>
 											</span>
 										</view>
 										<view class="debit">
-											<span class="text">周期</span>
+											<span class="text">月</span>
 											<span class="number">
 												30 <span>天</span>
 											</span>
@@ -64,21 +64,21 @@
 								<view class="debitbox">
 									<view class="debit-info">
 										<view class="debit">
-											<span class="text">单价USDT</span>
+											<span class="text">USDT价格</span>
 											<span class="number">0.168</span>
 										</view>
 										<view class="debit">
-											<span class="text">投资USDT</span>
+											<span class="text">投资总量</span>
 											<span class="number">800</span>
 										</view>
 										<view class="debit">
-											<span class="text">日利率</span>
+											<span class="text">月利率</span>
 											<span class="number">0.1
 												<span>%</span>
 											</span>
 										</view>
 										<view class="debit">
-											<span class="text">周期</span>
+											<span class="text">月</span>
 											<span class="number">
 												30 <span>天</span>
 											</span>

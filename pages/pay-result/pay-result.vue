@@ -11,14 +11,14 @@
 		<view class="app-container full">
 			<view 
 				style="width:750upx;height:200upx;text-align: center;border-bottom:2upx solid rgba(255,255,255,0.2)"
-				v-if="payStatus === '1'"
+				v-if="payStatus !== '1'"
 			>
 				<image src="../../static/bg/pays.png" style="width:280upx;height:104upx;position:relative;left:-8upx;"></image>
 				<span style="display: block;font-size: 28upx;color:#fff;line-height: 48upx;">支付成功</span>
 			</view>
 			<view 
 				style="width:750upx;height:200upx;text-align: center;border-bottom:2upx solid rgba(255,255,255,0.2)"
-				v-if="payStatus !== '1'"
+				v-if="payStatus === '1'"
 			>
 				<image src="../../static/bg/img_right.png" style="width:280upx;height:104upx;position:relative;left:-8upx;"></image>
 				<span style="display: block;font-size: 28upx;color:#fff;line-height: 48upx;">支付失败</span>
@@ -29,22 +29,22 @@
 				:key="index"
 			>
 				<view class="symbolNumber">
-					<span class="symbol">{{item.symbol}}</span>
-					<span class="price">{{item.price}}</span>
+					<span class="symbol">￥</span>
+					<span class="price">{{amount}}</span>
 				</view>
 			</view>
 			<view class="orderinfo">
 				<view class="numinfo">
 					<span class="content">订单编号</span>
-					<span class="ordernum">123123123</span>
+					<span class="ordernum">{{orderId}}</span>
 				</view>
 				<view class="timeinfo">
 					<span class="content">下单时间</span>
-					<span class="date">2019-2-2</span>
+					<span class="date">{{createTime}}</span>
 				</view>
 				<view class="paystyle">
 					<span class="content">支付方式</span>
-					<span class="paynow">现金支付</span>
+					<span class="paynow">{{payment}}</span>
 				</view>
 			</view>
 			<view class="fixed-buttons">
@@ -84,7 +84,10 @@
 					}
 				],
 				orderId:null,
-				payStatus:'1'
+				payStatus:'1',
+				createTime:'',
+				payment:'',
+				amount:'',
 			}
 		},
 		onLoad(option){
@@ -96,6 +99,9 @@
 					console.log(res);
 					if(res.code == 200){
 						this.payStatus = res.data.status;
+						this.createTime = res.data.create;
+						this.payment = res.data.payment;
+						this.amount = res.data.amount;
 					}
 				}
 			})
@@ -111,7 +117,7 @@
 			},
 			orderDetail(){
 				uni.navigateTo({
-					url:'../shopping/shopping'
+					url:'../order-dealing/order-dealing?id='+this.orderId
 				})
 			},
 			rePay(){
@@ -133,7 +139,7 @@
 			height:68upx;
 		}
 		.symbol{
-			font-size:28upx;
+			font-size:32upx;
 			font-family:'Montserrat-Bold';
 			color:#DA53A2;
 			font-weight: 600;

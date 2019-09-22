@@ -19,7 +19,7 @@
 					</view>
 				</view>
 			</view>
-			<view class="fun-card">
+			<view class="fun-card" v-if="needCode">
 				<view class="fun-card-item notify" style="display: block;">
 					<input v-model="checkCode" type="number" maxlength="6" placeholder="请输入验证码" style="width:100%;text-align:center;line-height: 64upx;font-size: 28upx;height:64upx;color:#fff;margin-bottom:30upx;">
 					<fun-button :value="codeDelay == 0?'获取验证码':codeDelay+' s'" width="240upx" style="margin:auto;" @handle="getCode()"></fun-button>

@@ -137,8 +137,8 @@
 			//切换省市区
 			changeArea(e){
 				var values = e.detail.value;
-				values[1] = values[1] === null?0:values[1];
-				values[2] = values[2] === null?0:values[2];
+				values[1] = values[1] === undefined?0:values[1];
+				values[2] = values[2] === undefined?0:values[2];
 				this.area = Array.from(this.province)[values[0]].name + Array.from(this.citys)[values[1]].name;
 				this.areaid = Array.from(this.citys)[values[1]].areaid;
 				if(Array.from(this.areas)[values[2]]){
@@ -244,7 +244,7 @@
 
 <style lang="scss">
 	.content{
-		margin: 200upx 40upx 0;
+		margin: 0upx 40upx 0;
 		border-radius:10upx;
 		background: rgba(45, 31, 37, 0.7);
 	}

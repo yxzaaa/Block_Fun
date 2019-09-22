@@ -20,7 +20,7 @@
 				<text>USDT</text>
 			</view>
 			<view class="user-info">
-				<text style="color:rgba(255,255,255,0.5);font-size: 26upx;">日利率0.1%</text>
+				<text style="color:rgba(255,255,255,0.5);font-size: 26upx;">月利率0.1%</text>
 			</view>
 			<view style="padding:40upx;">
 				<view class="fun-card">
@@ -30,12 +30,12 @@
 								<text class="left-item-label">Forest 单价</text>
 							</view>
 							<view class="right-item">
-								<text class="left-item-name">0.168 USDT</text>
+								<text class="left-item-name">0.168 USDT/X</text>
 							</view>
 						</view>
 						<view class="horizon-list-item">
 							<view class="left-item">
-								<text class="left-item-label">投资总金额</text>
+								<text class="left-item-label">投资总量</text>
 							</view>
 							<view class="right-item">
 								<text class="left-item-name">800 USDT</text>
@@ -57,14 +57,14 @@
 								<text class="left-item-name">10000</text>
 							</view>
 						</view>
-						<view class="horizon-list-item">
+						<!-- <view class="horizon-list-item">
 							<view class="left-item">
 								<text class="left-item-label">还款方式</text>
 							</view>
 							<view class="right-item">
 								<text class="left-item-name">先息后本</text>
 							</view>
-						</view>
+						</view> -->
 						<view class="horizon-list-item">
 							<view class="left-item">
 								<text class="left-item-label">手续费</text>

@@ -17,13 +17,13 @@
 						class="guess-item"		
 					>
 					<!-- 引入图片 -->
-						<view style="line-height: 160upx;padding-right:30upx;" v-if="isManager" @click="itemChoose(index,item.id)">
+						<view style="line-height: 160upx;padding-right:30upx;" v-show="isManager" @click="itemChoose(index,item.id)">
 							<image
-								:src="item.isActive?imageLib.checked:imageLib.check" 
+								:src="item.isActive?imageLib.checked:imageLib.check"
 								style="width:40upx;height:40upx;"
 							></image>
 						</view>
-						<view @click="showDetail(item.id)" :style="{marginLeft:'20upx',marginTop:'0',width:isManager?'610upx':'690upx',display:'flex',justifyContent:'flex-start'}">
+						<view @click="showDetail(item.id)" :style="{marginTop:'0',width:isManager?'610upx':'690upx',display:'flex',justifyContent:'flex-start'}">
 							<view class="image-wrapper">
 								<image 
 									:src="item.img" 
@@ -32,8 +32,8 @@
 								></image>
 							</view>
 							<!-- 图片描述 -->
-							<view class="guess-content" :style="{marginLeft:'20upx',marginTop:'0',width:isManager?'420upx':'500upx'}">
-								<span style="font-size: 28upx;color:#fff;">{{item.title.substring(0,36)+' ...'}}</span>
+							<view class="guess-content" :style="{marginLeft:'20upx',marginTop:'0',width:isManager?'420upx':'490upx'}">
+								<span style="font-size: 28upx;color:#fff;height:80upx;">{{item.title.length>36?item.title.substring(0,36)+' ...':item.title}}</span>
 								<text style="font-size:24upx;color:#999999;margin-top:4upx;">消耗积分 {{item.credit}}</text>
 								<span style="color:#DA53A2;">
 									<span style="font-size:24upx;margin-right:8upx;display: inline-block;font-family:'Montserrat-Bold';">￥</span>
@@ -96,20 +96,23 @@
 			this.scroll = val.scrollTop;
 		},
 		onLoad(){
-			this.$http({
-				url:'/member/favorite',
-				success:res=>{
-					console.log(res);
-					if(res.code == 200){
-						this.favoriteList = res.data;
-						this.favoriteList.map(item=>{
-							item.isActive = false;
-						})
-					}
-				}
-			})
+			this.updateList();
 		},
 		methods:{
+			updateList(){
+				this.$http({
+					url:'/member/favorite',
+					success:res=>{
+						console.log(res);
+						if(res.code == 200){
+							this.favoriteList = res.data;
+							this.favoriteList.map(item=>{
+								item.isActive = false;
+							})
+						}
+					}
+				})
+			},
 			showDetail(id){
 				uni.navigateTo({
 					url:"../detail/detail?id="+id
@@ -131,11 +134,14 @@
 				}
 			},
 			itemChoose(index,id){
-				if(this.favoriteList[index].isActive){
-					this.favoriteList[index].isActive = false;
+				console.log(index,id);
+				if(this.favoriteList[index].isActive === true){
+					// this.favoriteList[index].isActive = false;
+					this.$set(this.favoriteList[index],'isActive',false);
 					this.ids.delete(id);
 				}else{
-					this.favoriteList[index].isActive = true;
+					// this.favoriteList[index].isActive = true;
+					this.$set(this.favoriteList[index],'isActive',true);
 					this.ids.add(id);
 				}
 				var isAll = true;
@@ -163,14 +169,22 @@
 				}
 			},
 			deleteFav(){
-				// this.$http({
-				// 	url:'/member/favorite',
-				// 	type:'application/x-www-form-urlencoded',
-				// 	data:{
-				// 		action:'delete',
-				// 		id:Array.from(this.ids)
-				// 	}
-				// })
+				console.log(Array.from(this.ids));
+				var arr = Array.from(this.ids);
+				this.$http({
+					url:'/member/favorite',
+					type:'application/x-www-form-urlencoded',
+					data:{
+						action:'delete',
+						id:arr.join(',')
+					},
+					success:res=>{
+						console.log(res);
+						if(res.code == 200){
+							this.updateList();
+						}
+					}
+				})
 			}
 		}
 		

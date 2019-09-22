@@ -345,7 +345,9 @@
 		content: "\e617";
 	}
 
-
+	.b-b:after, .b-t:after{
+		border-bottom:none !important;
+	}
 
 
 

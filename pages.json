@@ -121,23 +121,7 @@
             "style" : {}
         }
         ,{
-            "path" : "pages/order-topay/order-topay",
-            "style" : {}
-        }
-        ,{
             "path" : "pages/order-dealing/order-dealing",
-            "style" : {}
-        }
-        ,{
-            "path" : "pages/order-totake/order-totake",
-            "style" : {}
-        }
-        ,{
-            "path" : "pages/order-finished/order-finished",
-            "style" : {}
-        }
-        ,{
-            "path" : "pages/order-cancel/order-cancel",
             "style" : {}
         }
         ,{
@@ -250,6 +234,10 @@
         }
         ,{
             "path" : "pages/setpaypassword/setpaypassword",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/mytransbill/mytransbill",
             "style" : {}
         }
     ],

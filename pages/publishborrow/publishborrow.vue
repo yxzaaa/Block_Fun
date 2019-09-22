@@ -55,7 +55,7 @@
 						</view>
 						<view class="horizon-list-item">
 							<view class="left-item">
-								<text class="left-item-label">投资总金额</text>
+								<text class="left-item-label">投资总量</text>
 							</view>
 							<view class="right-item">
 								<text class="left-item-name">800 USDT</text>
@@ -71,10 +71,10 @@
 						</view>
 						<view class="horizon-list-item">
 							<view class="left-item">
-								<text class="left-item-label">Forest参考价格</text>
+								<text class="left-item-label">USDT价格</text>
 							</view>
 							<view class="right-item">
-								<text class="left-item-name">0.1667 USDT</text>
+								<text class="left-item-name">0.1667 USDT/X</text>
 							</view>
 						</view>
 						<view class="horizon-list-item">
@@ -87,7 +87,7 @@
 						</view>
 						<view class="horizon-list-item">
 							<view class="left-item">
-								<text class="left-item-label">抵押数量</text>
+								<text class="left-item-label">抵押总量</text>
 							</view>
 							<view class="right-item">
 								<input style="font-size: 26upx;color:#fff;text-align: right;" type="text" placeholder="请输入抵押数量"/>
