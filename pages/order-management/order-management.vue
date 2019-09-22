@@ -135,7 +135,14 @@
 							this.addressData.full = res.data.address[0].address;
 						}
 						//设置订单商品信息
-						this.guessList = res.data.mall[0].item;
+						this.guessList = [];
+						res.data.mall.map(val=>{
+							var username = val.username;
+							val.item.map(val1=>{
+								val1.username = username;
+								this.guessList.push(val1);
+							})
+						})
 						this.guessList.map(val=>{
 							this.totalCount += parseFloat(val.price)*parseInt(val.num);
 							this.totalCredit += parseInt(val.credit)*parseInt(val.num);
@@ -178,7 +185,12 @@
 							console.log(res);
 							if(res.code == 200){
 								uni.navigateTo({
-									url:'../pay-order/pay-order?id='+res.data.id
+									url:'../pay-order/pay-order?id='+res.data.id+'&amount='+res.data.amount
+								})
+							}else{
+								uni.showToast({
+									title:res.message,
+									icon:'none'
 								})
 							}
 						}

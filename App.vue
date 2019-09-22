@@ -896,6 +896,7 @@
 		display: flex;
 		justify-content: space-between;
 		border-bottom:1px solid rgba(255,255,255,0.2);
+		position:relative;
 		.fix-tabs-item{
 			width:50%;
 			line-height: 76upx;

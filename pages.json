@@ -240,6 +240,10 @@
             "path" : "pages/mytransbill/mytransbill",
             "style" : {}
         }
+        ,{
+            "path" : "pages/billorders/billorders",
+            "style" : {}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",
