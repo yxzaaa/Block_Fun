@@ -10,7 +10,7 @@
 				<view class="right-item" style="height:48upx;">
 					<picker @change="pickerChange" :value="currClass" :range="classLib" mode="selector">
 						<view style="padding:0upx 20upx;height:100%;background: #2D1F25;line-height: 48upx;color:#fff;display: flex;justify-content: center;align-items: center;">
-							<text style="#999;">{{classLib[currClass]}}</text>
+							<text style="color:#999;">{{classLib[currClass]}}</text>
 							<image :src="imageLib.sanjiao" style="width:20upx;height:14upx;"></image>
 						</view>
 					</picker>
