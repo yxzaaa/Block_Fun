@@ -10,10 +10,10 @@
 		<view class="app-container full">
 			<view class="fix-tabs-box">
 				<view class="fix-tabs-item">
-					<text :class="{active:activeTab == 0}" @click="toggleTab(0)">借款挂单</text>
+					<text :class="{active:activeTab == 1}" @click="toggleTab(1)">借款挂单</text>
 				</view>
 				<view class="fix-tabs-item">
-					<text :class="{active:activeTab == 1}" @click="toggleTab(1)">投资挂单</text>
+					<text :class="{active:activeTab == 2}" @click="toggleTab(2)">投资挂单</text>
 				</view>
 			</view>
 			<swiper class="swiper-box" :current="activeTab" @change="tabChange">
@@ -118,7 +118,8 @@
 		data() {
 			return {
 				scroll:0,
-				activeTab:0,
+				activeTab:1,
+				currpage:1,
 				navButtons:{
 					back:{
 						type:'normal',
@@ -128,7 +129,7 @@
 				imageLib:{
 					add:'../../static/icons/icon_add.png',
 				},
-				borrowList:[
+				borrowList:[ 
 					{},{},{},{}
 				],
 				investList:[
@@ -139,7 +140,23 @@
 		onPageScroll(val){
 			this.scroll = val.scrollTop;
 		},
+		onLoad(){
+			this.updateList();
+		},
 		methods: {
+			//获取挂单列表
+			updateList(){
+				this.$http({
+					url:'/v1/main//debit/debit-list',
+					data:{
+						type:this.activeTab,
+						page:this.currpage
+					},
+					success:res=>{
+						console.log(res);
+					}
+				})
+			},
 			tabChange(value){
 				this.activeTab = value.detail.current;
 			},
