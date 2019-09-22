@@ -48,7 +48,7 @@
 					</view>
 					<view class="button-group" v-if="val.status == 1 || val.status == 3">
 						<fun-button @handle="cancelOrder(val.id)" class="funbtn1" value="取消订单" width="200upx" background="rgba(41,26,33,0.6)" color="#999" v-if="val.status == 1"></fun-button>
-						<fun-button @handle="goPayOrder(val.id)" class="funbtn1" value="去支付" width="200upx" v-if="val.status == 1"></fun-button>
+						<fun-button @handle="goPayOrder(val.id,val.amount)" class="funbtn1" value="去支付" width="200upx" v-if="val.status == 1"></fun-button>
 						<fun-button @handle="confirmReceipt(val.id)" class="funbtn1" value="确认收货" width="200upx" v-if="val.status == 3"></fun-button>
 					</view>
 				</view>
@@ -126,10 +126,10 @@
 					}
 				})
 			},
-			goPayOrder(id){
+			goPayOrder(id,amount){
 				console.log(id);
 				uni.navigateTo({
-					url:'../pay-order/pay-order?id='+id
+					url:'../pay-order/pay-order?id='+id+'&amount='+amount
 				})
 			},
 			cancelOrder(id){

@@ -132,7 +132,14 @@
 						console.log(res);
 						if(res.code == 200){
 							if(res.data[0]){
-								this.cartList = res.data[0].item;
+								this.cartList = [];
+								res.data.map(val=>{
+									var username = val.username;
+									val.item.map(val1=>{
+										val1.username = username;
+										this.cartList.push(val1);
+									})
+								})
 								this.cartList.map(item=>{
 									item.isActive = false;
 								});
