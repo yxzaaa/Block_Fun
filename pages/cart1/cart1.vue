@@ -158,7 +158,7 @@
 			setNum(index,type){
 				if(type == 0){
 					if(this.cartList[index].num > 1){
-						this.cartList[index].num --;
+						this.cartList[index].num--;
 					}
 				}else if(type == 1){
 					if(this.cartList[index].num < this.cartList[index].amount){
@@ -237,7 +237,6 @@
 					}
 				});
 				this.isChooseAll = isAll;
-				
 				this.totalCount = 0;
 				this.totalCredit = 0;
 				this.cartList.map(val=>{

@@ -30,7 +30,7 @@
 								</span>
 								<span>
 									<span style="color:#fff;font-size:28upx;font-family: Montserrat-Bold;margin-right: 6upx;">￥</span>
-									<span style="color:#fff;font-size:28upx;font-weight: bold;font-family: Montserrat-Bold;">{{setPrice(val1.price,val1.number)}}</span>
+									<span style="color:#fff;font-size:28upx;font-weight: bold;font-family: Montserrat-Bold;">{{val1.price}}</span>
 								</span>
 							</view>
 						</view>
@@ -45,7 +45,7 @@
 								{{val.amount}}
 								</span>
 						</span>
-					</view>
+					</view>	
 					<view class="button-group" v-if="val.status == 1 || val.status == 3">
 						<fun-button @handle="cancelOrder(val.id)" class="funbtn1" value="取消订单" width="200upx" background="rgba(41,26,33,0.6)" color="#999" v-if="val.status == 1"></fun-button>
 						<fun-button @handle="goPayOrder(val.id,val.amount)" class="funbtn1" value="去支付" width="200upx" v-if="val.status == 1"></fun-button>
@@ -87,11 +87,15 @@
 					{id:8,text:'已取消',color:'#999999'},
 				],
 				orderList:[],
-				currStatus:0
+				currStatus:0,
+				currPage:1,
 			}
 		},
 		onPageScroll(val){
 			this.scroll = val.scrollTop;
+		},
+		onReachBottom(){
+			console.log('1111')
 		},
 		onLoad(){
 			this.toggleStatus(0);
@@ -100,7 +104,7 @@
 			toggleStatus(index){
 				this.currStatus = index;
 				this.$http({
-					url:'/member/order?nav='+this.statusTabs[index].id+'&page=1',
+					url:'/member/order?nav='+this.statusTabs[index].id+'&page ='+this.currPage,
 					success:res=>{
 						this.orderList = res.data.item;
 						console.log(this.orderList);
@@ -155,10 +159,6 @@
 				uni.navigateTo({
 					url:'../order-dealing/order-dealing?id='+id
 				})
-			},
-			setPrice(price,num){
-				var totalPrice = parseFloat(price)*parseInt(num);
-				return totalPrice.toFixed(4);
 			},
 			getStatus(id){
 				var name = '',color = '';

@@ -174,11 +174,6 @@
 					},		
 				},
 				imageLib:{
-					sold:'../../static/icons/icon_sold.png',
-					bought:'../../static/icons/icon_bought.png',
-					alipay:'../../static/icons/icon_alipay.png',
-					wechatpay:'../../static/icons/icon_wechatpay.png',
-					unionpay:'../../static/icons/icon_unionpay.png',
 					sanjiao:'../../static/icons/sanjiao.png',
 					add:'../../static/icons/icon_add.png',
 				},
