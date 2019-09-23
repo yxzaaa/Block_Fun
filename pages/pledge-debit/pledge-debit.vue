@@ -11,9 +11,9 @@
 			<view class="fiexd-btn" @click="publish()">
 				<image :src="imageLib.add"></image>
 			</view>
-			<view class="fixed-drop-btn" tabIndex="1">
-				<image class="btn" src="../../static/icons/icon_drop.png"></image>
-				<view class="dropdown">
+			<view class="fixed-drop-btn">
+				<image class="btn" src="../../static/icons/icon_drop.png" @click="toggleDropDown"></image>
+				<view class="dropdown" v-if="dropShow">
 					<navigator url="../billorders/billorders" style="width:100%;padding:24upx 0;display: flex;align-items: center;">
 						<image src="/static/icons/icon_dingdan.png" style="width:40upx;height:40upx;margin-right:20upx;"></image>
 						<text style="font-size: 28upx;color:#DA53A2">我的订单</text>
@@ -141,13 +141,20 @@
 				investList:[
 					{},{},{}
 				],
-				// dropShow:true
+				dropShow:false
 			}
 		},
 		onPageScroll(val){
 			this.scroll = val.scrollTop;
 		},
 		methods: {
+			//请求挂单列表
+			updateList(){
+				
+			},
+			toggleDropDown(){
+				this.dropShow = this.dropShow?false:true;
+			},
 			tabChange(value){
 				this.activeTab = value.detail.current;
 			},
@@ -171,7 +178,7 @@
 		position: fixed;
 		top:210upx;
 		right:40upx;
-		z-index:500;
+		z-index:90;
 		&:focus{
 			outline:none;
 			.dropdown{
@@ -186,13 +193,13 @@
 			height:40upx;
 		}
 		.dropdown{
-			display: none;
 			position:absolute;
 			top:50upx;
 			right:-18upx;
 			width:260upx;
 			height:250upx;
 			padding:40upx;
+			z-index:99;
 			background: url('/static/icons/drop_bg.png') 100% 100%;
 			background-size:100% 100%;
 		}

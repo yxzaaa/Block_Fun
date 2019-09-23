@@ -3,6 +3,20 @@
 		<uni-background src="../../static/bg1.jpg"/>
 		<uni-nav-bar :title="currType == 1?'发布借贷挂单':'发布投资挂单'" textColor="#fff" :opacity="scroll" layout="center" :buttons="navButtons"></uni-nav-bar>
 		<div class="app-container full fixbutton" style="padding-bottom:190upx;">
+			<view class="modal-box" v-if="showPwdModal">
+				<view class="modal">
+					<view class="modal-top-item">
+						<view class="modal-title">请输入您的交易密码</view>
+						<view class="modal-content">
+							<password-inputer @input="setPassword" :value="password"></password-inputer>
+						</view>
+					</view>
+					<view class="modal-btns">
+						<view @click="showPwdModal = false">取消</view>
+						<view style="border-left:1px solid #eee;color:#0A61C9;" @click="publish">发布</view>
+					</view>
+				</view>
+			</view>
 			<view class="modal-box" v-if="showModal">
 				<view class="modal">
 					<view class="modal-top-item">
@@ -24,6 +38,7 @@
 						value="立即发布" 
 						width="670upx"  
 						large 
+						@handle="showPwdModal = true"
 					></fun-button>
 				</view>
 				<view class="certs">
@@ -149,16 +164,19 @@
 	import UniNavBar from '@/components/uni-nav-bar/uni-nav-bar.vue';
 	import UniBackground from '@/components/uni-background/uni-background.vue';
 	import FunButton from '@/components/fun-button.vue';
+	import PasswordInputer from '@/components/possword-inputer.vue';
 	export default {
 		components:{
 			UniNavBar,
 			UniBackground,
-			FunButton
+			FunButton,
+			PasswordInputer
 		},
 		data() {
 			return {
 				scroll:0,
 				showModal:false,
+				showPwdModal:false,
 				checkCert:true,
 				navButtons:{
 					back:{
@@ -223,31 +241,69 @@
 			})
 		},
 		methods:{
+			setPassword(val){
+				this.password = val;
+			},
 			//发布挂单
 			publish(){
 				if(this.currType == 1){
+					//发布借款挂单
 					this.$http({
 						url:'/v1/main/debit/debit-loan-request',
 						data:{
 							coin: this.coinLib[this.currCoin],
 							price: this.price,
-							amount: this.totalCount,
+							amount: this.totalPrice,
 							rate: this.rate/100,
 							month: this.classLib[this.currClass].value,
-							password: "12345678"
+							password: this.password
 						},
 						success:res=>{
-							
+							console.log(res);
+							if(res.code == 200){
+								uni.showToast({
+									title:'发布成功',
+									icon:'none'
+								})
+								uni.navigateBack({
+									delta:1
+								})
+							}else{
+								uni.showToast({
+									title:res.message,
+									icon:'none'
+								})
+							}
 						}
 					})
 				}else{
+					//发布投资挂单
 					this.$http({
 						url:'/v1/main/debit/debit-investment-request',
 						data:{
-							
+							coin: this.coinLib[this.currCoin],
+							price: this.price,
+							amount: this.totalPrice,
+							rate: this.rate/100,
+							month: this.classLib[this.currClass].value,
+							password: this.password
 						},
 						success:res=>{
-							
+							console.log(res);
+							if(res.code == 200){
+								uni.showToast({
+									title:'发布成功',
+									icon:'none'
+								})
+								uni.navigateBack({
+									delta:1
+								})
+							}else{
+								uni.showToast({
+									title:res.message,
+									icon:'none'
+								})
+							}
 						}
 					})
 				}
@@ -255,7 +311,9 @@
 			getTotalPrice(){
 				var price = this.price == ''?0:this.price;
 				var count = this.totalCount == ''?0:this.totalCount;
-				return (parseFloat(price)*parseInt(count)/2).toFixed(2);
+				var unit_price = this.publicLib[this.currCoin].unit_price;
+				this.totalPrice = (parseFloat(price)*parseInt(count)/2).toFixed(2);
+				return (parseFloat(price)*parseInt(count)*parseFloat(unit_price)/2).toFixed(2);
 			},
 			getPreRate(){
 				 var price = this.price == ''?0:this.price;

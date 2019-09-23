@@ -33,7 +33,7 @@ const json = type=>{
 	})
 }
 //定义全局网络请求url
-const baseurl = "http://blockfuntest.dm1.in"
+const baseurl = "https://blockfuntest.dm1.in"
 
 const prePage = ()=>{
 	let pages = getCurrentPages();
