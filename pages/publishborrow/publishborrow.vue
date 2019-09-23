@@ -1,7 +1,7 @@
 <template>
 	<view class="container">
 		<uni-background src="../../static/bg1.jpg"/>
-		<uni-nav-bar title="发布借贷挂单" textColor="#fff" :opacity="scroll" layout="center" :buttons="navButtons"></uni-nav-bar>
+		<uni-nav-bar :title="currType == 1?'发布借贷挂单':'发布投资挂单'" textColor="#fff" :opacity="scroll" layout="center" :buttons="navButtons"></uni-nav-bar>
 		<div class="app-container full fixbutton" style="padding-bottom:190upx;">
 			<view class="modal-box" v-if="showModal">
 				<view class="modal">
@@ -20,7 +20,7 @@
 			</view>
 			<view class="fixed-buttons">
 				<view class="button-group">
-					<fun-button 
+					<fun-button  
 						value="立即发布" 
 						width="670upx"  
 						large 
@@ -32,7 +32,7 @@
 				</view>
 			</view>
 			<view class="user-count" style="padding-top:20upx;">
-				<text style="font-family: 'Montserrat-Bold';font-size:64upx;">800.00</text>
+				<text style="font-family: 'Montserrat-Bold';font-size:64upx;">{{getTotalPrice()}}</text>
 				<text>USDT</text>
 			</view>
 			<view class="user-info" @click="showInfo">
@@ -48,25 +48,31 @@
 							</view>
 							<view class="right-item" style="width:272upx;">
 								<view class="radio-box">
-									<text style="width:50%;" class="active">借款</text>
-									<text style="width:50%;">投资</text>
+									<text style="width:50%;" :class="{'active':currType == 1}" @click="currType = 1">借款</text>
+									<text style="width:50%;" :class="{'active':currType == 2}" @click="currType = 2">投资</text>
 								</view>
 							</view>
 						</view>
-						<view class="horizon-list-item">
+						<!-- <view class="horizon-list-item">
 							<view class="left-item">
 								<text class="left-item-label">投资总量</text>
 							</view>
 							<view class="right-item">
 								<text class="left-item-name">800 USDT</text>
 							</view>
-						</view>
+						</view> -->
 						<view class="horizon-list-item">
 							<view class="left-item">
 								<text class="left-item-label">抵押币种</text>
 							</view>
 							<view class="right-item">
-								<text class="left-item-name">Forest</text>
+								<picker @change="coinChange" :value="currCoin" :range="coinLib" mode="selector">
+									<view 
+									style="padding:0upx 20upx;border-radius: 6upx;height:100%;background: #2D1F25;line-height: 48upx;color:#fff;display: flex;justify-content: center;align-items: center;">
+										<text style="#999;">{{coinLib[currCoin]}}</text>
+										<image :src="imageLib.sanjiao" style="width:20upx;height:14upx;"></image>
+									</view>
+								</picker>
 							</view>
 						</view>
 						<view class="horizon-list-item">
@@ -74,7 +80,7 @@
 								<text class="left-item-label">USDT价格</text>
 							</view>
 							<view class="right-item">
-								<text class="left-item-name">0.1667 USDT/X</text>
+								<text class="left-item-name">{{publicLib[currCoin]?publicLib[currCoin].unit_price:''}} USDT{{coinLib[currCoin] == 'USDT'?'':'/'+coinLib[currCoin]}}</text>
 							</view>
 						</view>
 						<view class="horizon-list-item">
@@ -82,7 +88,7 @@
 								<text class="left-item-label">抵押单价</text>
 							</view>
 							<view class="right-item">
-								<input style="font-size: 26upx;color:#fff;text-align: right;" type="text" placeholder="请输入抵押单价"/>
+								<input v-model="price" style="font-size: 26upx;color:#fff;text-align: right;" type="number" placeholder="请输入抵押单价" placeholder-style="font-size:24upx;"/>
 							</view>
 						</view>
 						<view class="horizon-list-item">
@@ -90,7 +96,7 @@
 								<text class="left-item-label">抵押总量</text>
 							</view>
 							<view class="right-item">
-								<input style="font-size: 26upx;color:#fff;text-align: right;" type="text" placeholder="请输入抵押数量"/>
+								<input v-model="totalCount" style="font-size: 26upx;color:#fff;text-align: right;" type="number" placeholder="请输入抵押总量" placeholder-style="font-size:24upx;"/>
 							</view>
 						</view>
 						<!-- <view style="width:100%;height:3upx;background:rgba(255,255,255,0.2);margin:20upx 0upx;"></view> -->
@@ -99,10 +105,10 @@
 								<text class="left-item-label">抵押周期</text>
 							</view>
 							<view class="right-item" style="height:48upx;">
-								<picker @change="pickerChange" :value="currClass" :range="classLib" mode="selector">
+								<picker @change="pickerChange" :value="currClass" :range="classLib" range-key="name" mode="selector">
 									<view 
 									style="padding:0upx 20upx;border-radius: 6upx;height:100%;background: #2D1F25;line-height: 48upx;color:#fff;display: flex;justify-content: center;align-items: center;">
-										<text style="#999;">{{classLib[currClass]}}</text>
+										<text style="#999;">{{classLib[currClass].name}}</text>
 										<image :src="imageLib.sanjiao" style="width:20upx;height:14upx;"></image>
 									</view>
 								</picker>
@@ -110,10 +116,18 @@
 						</view>
 						<view class="horizon-list-item">
 							<view class="left-item">
+								<text class="left-item-label">月利率</text>
+							</view>
+							<view class="right-item">
+								<input v-model="rate" style="font-size: 26upx;color:#fff;text-align: right;" type="number" placeholder="请输入月利率" placeholder-style="font-size:24upx;"/><span class="symble">%</span>
+							</view>
+						</view>
+						<view class="horizon-list-item">
+							<view class="left-item">
 								<text class="left-item-label">预计利息</text>
 							</view>
 							<view class="right-item">
-								<text class="left-item-name">0.8 USDT</text>
+								<text class="left-item-name">{{getPreRate()}} USDT</text>
 							</view>
 						</view>
 						<view class="horizon-list-item">
@@ -121,7 +135,7 @@
 								<text class="left-item-label">手续费</text>
 							</view>
 							<view class="right-item">
-								<text class="left-item-name">0.8 USDT</text>
+								<text class="left-item-name">{{fee}} USDT</text>
 							</view>
 						</view>
 					</view>
@@ -164,17 +178,97 @@
 					usercount:'+8089.23'
 				},
 				currClass:0,
+				currCoin:0,
 				classLib:[
-					'全部','进行中','仲裁中','已结束'
-				]
+					{
+						value:3,
+						name:'3月'
+					},
+					{
+						value:6,
+						name:'6月'
+					},
+				],
+				coinLib:[],
+				publicLib:[],
+				fee:0,
+				mortgage:0,
+				price:'',
+				totalCount:'',
+				totalPrice:0,
+				preRate:0,
+				rate:'',
+				currType:1,
+				password:''
 			};
 		},
 		onPageScroll(val){
 			this.scroll = val.scrollTop;
 		},
+		onLoad(){
+			//请求币种和参考价格
+			this.$http({
+				url:'/v1/main/debit/debit-preloading',
+				success:res=>{
+					console.log(res);
+					if(res.code == 200){
+						res.data.coin.map(item=>{
+							this.coinLib.push(item.coin);
+						});
+						this.publicLib = res.data.coin;
+						this.fee = res.data.fee;
+						this.mortgage = res.data.mortgage;
+					}
+				}
+			})
+		},
 		methods:{
+			//发布挂单
+			publish(){
+				if(this.currType == 1){
+					this.$http({
+						url:'/v1/main/debit/debit-loan-request',
+						data:{
+							coin: this.coinLib[this.currCoin],
+							price: this.price,
+							amount: this.totalCount,
+							rate: this.rate/100,
+							month: this.classLib[this.currClass].value,
+							password: "12345678"
+						},
+						success:res=>{
+							
+						}
+					})
+				}else{
+					this.$http({
+						url:'/v1/main/debit/debit-investment-request',
+						data:{
+							
+						},
+						success:res=>{
+							
+						}
+					})
+				}
+			},
+			getTotalPrice(){
+				var price = this.price == ''?0:this.price;
+				var count = this.totalCount == ''?0:this.totalCount;
+				return (parseFloat(price)*parseInt(count)/2).toFixed(2);
+			},
+			getPreRate(){
+				 var price = this.price == ''?0:this.price;
+				 var count = this.totalCount == ''?0:this.totalCount;
+				 var rate =  this.rate == ''?0:this.rate;
+				 var month = this.classLib[this.currClass].value;
+				 return ((parseFloat(price)*parseInt(count)/2)*parseFloat(rate)*month/100).toFixed(2);
+			},
 			pickerChange(e){
 				this.currClass = e.target.value;
+			},
+			coinChange(e){
+				this.currCoin = e.target.value;
 			},
 			showInfo(){
 				this.showModal = true;
@@ -192,8 +286,13 @@
 			border-radius: 0px;
 		}
 	}
+	.symble{
+		margin-left:10upx;
+		color:#999;
+	}
 	.user-info{
-		width:750upx;
+		width:230upx;
+		margin:auto;
 		display:flex;
 		justify-content:center;
 		align-items:center;
@@ -201,7 +300,6 @@
 		image{
 			width:48upx;
 			height:48upx;
-			margin-right:20upx;
 		}
 		text{
 			color:#fff;
