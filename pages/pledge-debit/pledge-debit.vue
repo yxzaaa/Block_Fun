@@ -33,82 +33,41 @@
 					<text :class="{active:activeTab == 1}" @click="toggleTab(1)">我要投资</text>
 				</view>
 			</view>
-			<swiper class="swiper-box" :current="activeTab" @change="tabChange">
-				<swiper-item>
-					<scroll-view scroll-y='true' style="width:100%;height:100%;">
-						<view style="padding:40upx;padding-bottom:0px;">
-							<block v-for="(item,index) in borrowList" :key="index">
-								<view class="debitbox">
-									<view class="debit-info">
-										<view class="debit">
-											<span class="text">USDT价格</span>
-											<span class="number">0.168</span>
-										</view>
-										<view class="debit">
-											<span class="text">投资总量</span>
-											<span class="number">800</span>
-										</view>
-										<view class="debit">
-											<span class="text">月利率</span>
-											<span class="number">0.1
-												<span>%</span>
-											</span>
-										</view>
-										<view class="debit">
-											<span class="text">月</span>
-											<span class="number">
-												30 <span>天</span>
-											</span>
-										</view>
-									</view>
-									<view class="debit-btn">
-										<navigator :url="'../borrowpage/borrowpage?id='+index">
-											<view>借款</view>
-										</navigator>
-									</view>
+			<scroll-view scroll-y='true' style="width:100%;height:calc(100vh - 274upx);">
+				<view style="padding:40upx;padding-bottom:0px;">
+					<block v-for="(item,index) in borrowList" :key="index">
+						<view class="debitbox">
+							<view class="debit-info">
+								<view class="debit">
+									<span class="text">USDT价格</span>
+									<span class="number">0.168</span>
 								</view>
-							</block>
-						</view>
-					</scroll-view>
-				</swiper-item>
-				<swiper-item>
-					<scroll-view scroll-y='true' style="width:100%;height:100%;">
-						<view style="padding:40upx;padding-bottom:0px;">
-							<block v-for="(item,index) in investList" :key="index">
-								<view class="debitbox">
-									<view class="debit-info">
-										<view class="debit">
-											<span class="text">USDT价格</span>
-											<span class="number">0.168</span>
-										</view>
-										<view class="debit">
-											<span class="text">投资总量</span>
-											<span class="number">800</span>
-										</view>
-										<view class="debit">
-											<span class="text">月利率</span>
-											<span class="number">0.1
-												<span>%</span>
-											</span>
-										</view>
-										<view class="debit">
-											<span class="text">月</span>
-											<span class="number">
-												30 <span>天</span>
-											</span>
-										</view>
-									</view>
-									<view class="debit-btn">
-										<navigator :url="'../investpage/investpage?id='+index">
-											<view>投资</view>
-										</navigator>
-									</view>
+								<view class="debit">
+									<span class="text">投资总量</span>
+									<span class="number">800</span>
 								</view>
-							</block>
+								<view class="debit">
+									<span class="text">月利率</span>
+									<span class="number">0.1
+										<span>%</span>
+									</span>
+								</view>
+								<view class="debit">
+									<span class="text">月</span>
+									<span class="number">
+										30 <span>天</span>
+									</span>
+								</view>
+							</view>
+							<view class="debit-btn">
+								<navigator :url="'../borrowpage/borrowpage?id='+index">
+									<view>借款</view>
+								</navigator>
+							</view>
 						</view>
-					</scroll-view>
-				</swiper-item>
-			</swiper>
+					</block>
+				</view>
+			</scroll-view>
 		</view>
 	</view>
 </template>
@@ -200,7 +159,7 @@
 			height:250upx;
 			padding:40upx;
 			z-index:99;
-			background: url('/static/icons/drop_bg.png') 100% 100%;
+			background: url('../../static/icons/drop_bg.png') 100% 100%;
 			background-size:100% 100%;
 		}
 	}

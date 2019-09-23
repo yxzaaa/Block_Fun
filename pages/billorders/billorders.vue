@@ -16,139 +16,70 @@
 					<text :class="{active:activeTab == 1}" @click="toggleTab(1)">我的投资</text>
 				</view>
 			</view>
-			<swiper class="swiper-box" :current="activeTab" @change="tabChange">
-				<swiper-item>
-					<scroll-view scroll-y='true' style="width:100%;height:100%;">
-						<view class="totalBox">
-							<view class="borrow">
-								<span class="content">借款总额（USDT）</span>
-								<span class="number">5000</span>
+			<scroll-view scroll-y='true' style="width:100%;height:calc(100vh - 274upx);">
+				<view class="totalBox">
+					<view class="borrow">
+						<span class="content">投资总额（USDT）</span>
+						<span class="number">5000</span>
+					</view>
+					<view class="pledge">
+						<span class="content">我的收益（USTD）</span>
+						<span class="number">100000</span>
+					</view>
+				</view>
+				<view class="selected">
+					<span>订单筛选</span>
+					<view class="right-item" style="height:48upx;">
+						<picker @change="pickerChange" :value="currClass" :range="classLib" mode="selector">
+							<view style="padding:0upx 20upx;font-size:24upx;height:100%;background: #2D1F25;line-height: 48upx;color:#fff;display: flex;justify-content: center;align-items: center;">
+								<text style="color:#999;">{{classLib[currClass]}}</text>
+								<image :src="imageLib.sanjiao" style="width:20upx;height:14upx;"></image>
 							</view>
-							<view class="pledge">
-								<span class="content">抵押总量（Forest）</span>
-								<span class="number">100000</span>
+						</picker>
+					</view>
+					</picker>
+				</view>
+				<view style="padding:40upx;padding-bottom:0px;">
+					<block v-for="(item,index) in borrowList" :key="index">
+						<view class="debitbox">
+							<view class="horizon-list-item">
+								<text style="font-size: 28upx;color:#fff;">进行中</text>
+								<text style="color:#DA53A2;">距离还款日还有10天</text>
 							</view>
-						</view>
-						<view class="selected">
-							<span>订单筛选</span>
-							<view class="right-item" style="height:48upx;">
-								<picker @change="pickerChange" :value="currClass" :range="classLib" mode="selector">
-									<view style="padding:0upx 20upx;font-size:24upx;height:100%;background: #2D1F25;line-height: 48upx;color:#fff;display: flex;justify-content: center;align-items: center;">
-										<text style="color:#999;">{{classLib[currClass]}}</text>
-										<image :src="imageLib.sanjiao" style="width:20upx;height:14upx;"></image>
-									</view>
-								</picker>
+							<view class="order-info">
+								<span>2019/03/15 19:00</span>
+								<span>订单号：
+									<span>asdasdasdasd</span>
+								</span>
 							</view>
-							</picker>
-						</view>
-						<view style="padding:40upx;padding-bottom:0px;">
-							<block v-for="(item,index) in borrowList" :key="index">
-								<view class="debitbox">
-									<view class="horizon-list-item">
-										<text style="font-size: 28upx;color:#fff;">进行中</text>
-										<text style="color:#DA53A2;">距离还款日还有10天</text>
-									</view>
-									<view class="order-info">
-										<span>2019/03/15 19:00</span>
-										<span>订单号：
-											<span>asdasdasdasd</span>
-										</span>
-									</view>
-									<view class="debit-info">
-										<view class="borrow">
-											<span class="content">借款总额（USDT）</span>
-											<span class="number">5000</span>
-										</view>
-										<view class="pledge">
-											<span class="content">抵押总量（Forest）</span>
-											<span class="number">100000</span>
-										</view>
-									</view>
-									<view class="debit-btn">
-										<view>
-											<span class="content">综合利率</span>
-											<span class="number">1.5%</span>
-										</view>
-										<view>
-											<span class="content">周期</span>
-											<span class="number">15天</span>
-										</view>
-										<view>
-											<span class="content">还款日</span>
-											<span class="number">2019/4/12</span>
-										</view>
-									</view>
+							<view class="debit-info">
+								<view class="borrow">
+									<span class="content">投资金额（USDT）</span>
+									<span class="number">5000</span>
 								</view>
-							</block>
-						</view>
-					</scroll-view>
-				</swiper-item>
-				<swiper-item>
-					<scroll-view scroll-y='true' style="width:100%;height:100%;">
-						<view class="totalBox">
-							<view class="borrow">
-								<span class="content">投资总额（USDT）</span>
-								<span class="number">5000</span>
-							</view>
-							<view class="pledge">
-								<span class="content">我的收益（USTD）</span>
-								<span class="number">100000</span>
-							</view>
-						</view>
-						<view class="selected">
-							<span>订单筛选</span>
-							<view class="right-item" style="height:48upx;">
-								<picker @change="pickerChange" :value="currClass" :range="classLib" mode="selector">
-									<view style="padding:0upx 20upx;font-size:24upx;height:100%;background: #2D1F25;line-height: 48upx;color:#fff;display: flex;justify-content: center;align-items: center;">
-										<text style="color:#999;">{{classLib[currClass]}}</text>
-										<image :src="imageLib.sanjiao" style="width:20upx;height:14upx;"></image>
-									</view>
-								</picker>
-							</view>
-							</picker>
-						</view>
-						<view style="padding:40upx;padding-bottom:0px;">
-							<block v-for="(item,index) in borrowList" :key="index">
-								<view class="debitbox">
-									<view class="horizon-list-item">
-										<text style="font-size: 28upx;color:#fff;">进行中</text>
-										<text style="color:#DA53A2;">距离还款日还有10天</text>
-									</view>
-									<view class="order-info">
-										<span>2019/03/15 19:00</span>
-										<span>订单号：
-											<span>asdasdasdasd</span>
-										</span>
-									</view>
-									<view class="debit-info">
-										<view class="borrow">
-											<span class="content">投资金额（USDT）</span>
-											<span class="number">5000</span>
-										</view>
-										<view class="pledge">
-											<span class="content">到期收益（USDT）</span>
-											<span class="number">100000</span>
-										</view>
-									</view>
-									<view class="debit-btn">
-										<view>
-											<span class="content">综合利率</span>
-											<span class="number">1.5%</span>
-										</view>
-										<view>
-											<span class="content">周期</span>
-											<span class="number">15天</span>
-										</view>
-										<view>
-											<span class="content">投资结束日</span>
-											<span class="number">2019/4/12</span>
-										</view>
-									</view>
+								<view class="pledge">
+									<span class="content">到期收益（USDT）</span>
+									<span class="number">100000</span>
 								</view>
-							</block>
+							</view>
+							<view class="debit-btn">
+								<view>
+									<span class="content">综合利率</span>
+									<span class="number">1.5%</span>
+								</view>
+								<view>
+									<span class="content">周期</span>
+									<span class="number">15天</span>
+								</view>
+								<view>
+									<span class="content">投资结束日</span>
+									<span class="number">2019/4/12</span>
+								</view>
+							</view>
 						</view>
-					</scroll-view>
-				</swiper-item>
+					</block>
+				</view>
+			</scroll-view>
 			</swiper>
 		</view>
 	</view>
