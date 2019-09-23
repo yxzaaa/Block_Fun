@@ -568,7 +568,7 @@
 		width:750upx;
 		padding:20upx 40upx;
 		background: #2F282B;
-		z-index:997;
+		z-index:110;
 		.certs{
 			width:100%;
 			display: flex;
@@ -813,14 +813,21 @@
 			}
 		}
 	}
+	@keyframes show{
+		from {opacity: 0;}
+		to {opacity: 1;}
+	}
 	.modal-box{
+		opacity: 1;
+		animation: show ease 0.3s 1;
+		transition: all .5s;
 		position: fixed;
 		top:0px;
 		left:0px;
 		width:750upx;
 		height:100vh;
 		background: rgba(0,0,0,.5);
-		z-index:1000;
+		z-index:120;
 		display:flex;
 		justify-content:center;
 		align-items:center;

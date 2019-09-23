@@ -16,92 +16,45 @@
 					<text :class="{active:activeTab == 2}" @click="toggleTab(2)">投资挂单</text>
 				</view>
 			</view>
-			<swiper class="swiper-box" :current="activeTab" @change="tabChange">
-				<swiper-item>
-					<scroll-view scroll-y='true' style="width:100%;height:100%;">
-						<view style="padding:40upx;padding-bottom:0px;">
-							<block v-for="(item,index) in borrowList" :key="index">
-								<view class="debitbox">
-									<view class="horizon-list-item">
-										<text>2019/03/15 19:00</text>
-										<text style="color:#DA53A2;">已发布</text>
+				<scroll-view scroll-y='true' style="width:100%;height:calc(100vh - 274upx);">
+					<view style="padding:40upx;padding-bottom:0px;">
+						<block v-for="(item,index) in borrowList" :key="index">
+							<view class="debitbox">
+								<view class="horizon-list-item">
+									<text>{{getDate(item.created_on)}}</text>
+									<text style="color:#DA53A2;">{{statusLib[item.status]}}</text>
+								</view>
+								<view class="debit-info">
+									<view class="debit">
+										<span class="text">USDT价格</span>
+										<span class="number">{{item.price}}</span>
 									</view>
-									<view class="debit-info">
-										<view class="debit">
-											<span class="text">USDT价格</span>
-											<span class="number">0.168</span>
-										</view>
-										<view class="debit">
-											<span class="text">投资总量</span>
-											<span class="number">800</span>
-										</view>
-										<view class="debit">
-											<span class="text">月利率</span>
-											<span class="number">0.1
-												<span>%</span>
-											</span>
-										</view>
-										<view class="debit">
-											<span class="text">月</span>
-											<span class="number">
-												30 <span>天</span>
-											</span>
-										</view>
+									<view class="debit">
+										<span class="text">抵押总量</span>
+										<span class="number">{{getNum(item.amount)}}</span>
 									</view>
-									<view class="debit-btn">
-										<text>七天后过期</text>
-										<navigator :url="'../borrowpage/borrowpage?id='+index">
-											<view>下架</view>
-										</navigator>
+									<view class="debit">
+										<span class="text">放款总量</span>
+										<span class="number">{{getNum(item.total)}}</span>
+									</view>
+									<view class="debit">
+										<span class="text">周期(月)</span>
+										<span class="number">
+											{{item.month}}<span>月</span>
+										</span>
 									</view>
 								</view>
-							</block>
-						</view>
-					</scroll-view>
-				</swiper-item>
-				<swiper-item>
-					<scroll-view scroll-y='true' style="width:100%;height:100%;">
-						<view style="padding:40upx;padding-bottom:0px;">
-							<block v-for="(item,index) in investList" :key="index">
-								<view class="debitbox">
-									<view class="horizon-list-item">
-										<text>2019/03/15 19:00</text>
-										<text style="color:#DA53A2;">已发布</text>
-									</view>
-									<view class="debit-info">
-										<view class="debit">
-											<span class="text">USDT价格</span>
-											<span class="number">0.168</span>
-										</view>
-										<view class="debit">
-											<span class="text">投资总量</span>
-											<span class="number">800</span>
-										</view>
-										<view class="debit">
-											<span class="text">月利率</span>
-											<span class="number">0.1
-												<span>%</span>
-											</span>
-										</view>
-										<view class="debit">
-											<span class="text">月</span>
-											<span class="number">
-												30 <span>天</span>
-											</span>
-										</view>
-									</view>
-									<view class="debit-btn">
-										<text>七天后过期</text>
-										<navigator :url="'../investpage/investpage?id='+index">
-											<view>下架</view>
-										</navigator>
+								<view class="debit-btn">
+									<text>{{getTimeDelay(item.expired_on)}}天后过期</text>
+									<view>
+										<view>{{item.status == 2?'上架':'下架'}}</view>
 									</view>
 								</view>
-							</block>
-						</view>
-					</scroll-view>
-				</swiper-item>
-			</swiper>
+							</view>
+						</block>
+					</view>
+				</scroll-view>
+			</view>
 		</view>
 	</view>
 </template>
@@ -129,12 +82,14 @@
 				imageLib:{
 					add:'../../static/icons/icon_add.png',
 				},
-				borrowList:[ 
-					{},{},{},{}
-				],
-				investList:[
-					{},{},{}
-				]
+				statusLib:{
+					1:"已发布",
+					2:"已下架",
+					3:"已接单",
+					4:"已完成",
+					5:"已过期",
+				},
+				borrowList:[],
 			}
 		},
 		onPageScroll(val){
@@ -144,24 +99,48 @@
 			this.updateList();
 		},
 		methods: {
-			//获取挂单列表
+			//获取我的挂单列表
 			updateList(){
 				this.$http({
-					url:'/v1/main//debit/debit-list',
+					url:'/v1/main/debit/debit-list',
 					data:{
 						type:this.activeTab,
 						page:this.currpage
 					},
 					success:res=>{
-						console.log(res);
+						if(res.code == 200){
+							this.borrowList = res.data.item;
+						}
 					}
 				})
+			},
+			getNum(num){
+				return (parseFloat(num)).toFixed(2);
+			},
+			getDate(timestamp){
+				var date = new Date(timestamp*1000);
+				var year = date.getFullYear();
+				var month = date.getMonth() + 1;
+				var day = date.getDate();
+				var hour = date.getHours();
+				var min = date.getMinutes();
+				month = month>=10?month:'0'+month;
+				day = day>=10?day:'0'+day;
+				hour = hour>=10?hour:'0'+hour;
+				min = min>=10?min:'0'+min;
+				return year+'/'+month+'/'+day+' '+hour+':'+min
+			},
+			getTimeDelay(end){
+				var stamp = new Date().getTime();
+				var overDay = parseInt((end*1000 - stamp)/(24*3600*1000));
+				return overDay;
 			},
 			tabChange(value){
 				this.activeTab = value.detail.current;
 			},
 			toggleTab(index){
 				this.activeTab = index;
+				this.updateList();
 			},
 			publish(){
 				uni.navigateTo({

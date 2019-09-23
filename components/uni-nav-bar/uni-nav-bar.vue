@@ -179,7 +179,7 @@
 		width:100%;
 		padding-top:66upx;
 		height:164upx;
-		z-index:998;
+		z-index:100;
 		display:flex;
 		align-items:center;
 		transition:all 1s;
