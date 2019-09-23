@@ -28,11 +28,11 @@
 						</view>
 						<view class="guess-content" style="margin-left:20upx;margin-top:0;">
 							<span style="font-size: 28upx;color:#fff;height:80upx;">{{item.title.length>36?item.title.substring(0,36)+' ...':item.title}}</span>
-							<text style="font-size:24upx;color:#999999;margin-top:8upx;">消耗积分 {{item.credit*item.num}}</text>
+							<text style="font-size:24upx;color:#999999;margin-top:8upx;">消耗积分 {{item.credit}}</text>
 							<span style="color:#DA53A2; position:relative;">
 								<span style="font-size:24upx;margin-right:8upx;display: inline-block;font-family:'Montserrat-Bold';">￥</span>
-								<span style="display: inline-block;font-family:'Montserrat-Bold';">{{getPrice(item.price,item.num,0)}}.</span>
-								<span style="font-size:24upx;display: inline-block;font-family:'Montserrat-Bold';">{{getPrice(item.price,item.num,1)}}</span>
+								<span style="display: inline-block;font-family:'Montserrat-Bold';">{{getPrice(item.price,0)}}.</span>
+								<span style="font-size:24upx;display: inline-block;font-family:'Montserrat-Bold';">{{getPrice(item.price,1)}}</span>
 								<span class="cut" style="position:absolute;right:10upx;display: inline-block;bottom:8upx;">
 									<span style="margin-right:20upx;font-size:30upx;color:#fff;font-weight: bold;display: inline-block;" @click="setNum(index,0)"> - </span>
 									<span style="display:inline-block;#99999;background:#280617;font-size:24upx;color:#fff;width:64upx;height:40upx;line-height: 40upx;text-align: center;">{{item.num}}</span>
@@ -150,8 +150,8 @@
 					}
 				})
 			},
-			getPrice(price,num,type){
-				var totalPrice = parseFloat(price)*parseInt(num);
+			getPrice(price,type){
+				var totalPrice = parseFloat(price);
 				totalPrice = totalPrice.toFixed(4);
 				return totalPrice.split('.')[type];
 			},
@@ -161,11 +161,11 @@
 						this.cartList[index].num--;
 					}
 				}else if(type == 1){
-					if(this.cartList[index].num < this.cartList[index].amount){
+					if(this.cartList[index].num <this.cartList[index].amount){
 						this.cartList[index].num++;
 					}else{
 						uni.showToast({
-							title:'数量已达库存上限',
+							title:'库存已经不足啦~',
 							icon:'none'
 						})
 					}

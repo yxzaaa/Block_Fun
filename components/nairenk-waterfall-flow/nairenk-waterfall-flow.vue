@@ -105,7 +105,7 @@
 			},
 			// 选中
 			choose(id) {
-				this.$emit('click', id);
+				this.$emit('handle', id);
 			}
 		}
 	}
