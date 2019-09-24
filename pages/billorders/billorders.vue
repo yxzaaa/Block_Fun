@@ -28,16 +28,11 @@
 								<span class="content">抵押总量（Forest）</span>
 								<span class="number">{{mortgage}}</span>
 							</view>
-						</view>
-						<view class="selected">
-							<span>订单筛选</span>
-							<view class="right-item" style="height:48upx;">
-								<picker @change="pickerChange" :value="currClass" :range="classLib" mode="selector">
-									<view style="padding:0upx 20upx;font-size:24upx;height:100%;background: #2D1F25;line-height: 48upx;color:#fff;display: flex;justify-content: center;align-items: center;">
-										<text style="color:#999;">{{classLib[currClass]}}</text>
-										<image :src="imageLib.sanjiao" style="width:20upx;height:14upx;"></image>
-									</view>
-								</picker>
+							<view class="order-info">
+								<span>2019/03/15 19:00</span>
+								<span>订单号：
+									<span>asdasdasdasd</span>
+								</span>
 							</view>
 							</picker>
 						</view>
@@ -145,10 +140,15 @@
 										</view>
 									</view>
 								</view>
-							</block>
+								<view>
+									<span class="content">投资结束日</span>
+									<span class="number">2019/4/12</span>
+								</view>
+							</view>
 						</view>
-					</scroll-view>
-				</swiper-item>
+					</block>
+				</view>
+			</scroll-view>
 			</swiper>
 		</view>
 	</view>

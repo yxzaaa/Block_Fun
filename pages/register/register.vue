@@ -8,28 +8,42 @@
 				<view>X-wallet</view>
 			</view>
 			<view class="login-form">
-				<view class="login-form-item">
-					<image class="login-form-label" :src="imageLib.phone"></image>
-					<input type="number" class="login-form-input" placeholder="手机号码" v-model="phone"/>
+				<view class="login-form-item" style="display: flex;justify-content: space-between;">
+					<view style="display: flex;justify-content: flex-start;">
+						<image class="login-form-label" :src="imageLib.phone"></image>
+						<input type="number" class="login-form-input" style="width:420upx;" placeholder="手机号码" v-model="phone"/>
+					</view>
+					<picker @change="countryChange" :value="currCountry" :range="countryLib" mode="selector">
+						<view 
+						style="padding:0upx 20upx;border-radius: 6upx;background: #2D1F25;line-height: 48upx;color:#fff;display: flex;justify-content: center;align-items: center;margin-right:20upx;">
+							<text style="#999;font-size: 24upx;">{{countryLib[currCountry]}}</text>
+							<image :src="imageLib.sanjiao" style="width:20upx;height:14upx;margin-left:6upx;"></image>
+						</view>
+					</picker>
 				</view>
 				<view class="login-form-item">
 					<image class="login-form-label" :src="imageLib.password"></image>
-					<input type="password" class="login-form-input"  placeholder="登录密码" password v-model="password"/>
+					<input type="password" class="login-form-input" style="width:420upx;"  placeholder="登录密码" password v-model="password"/>
 				</view>
 				<view class="login-form-item">
 					<image class="login-form-label" :src="imageLib.password"></image>
-					<input type="password" class="login-form-input"  placeholder="确认密码" password v-model="confirmPassword"/>
+					<input type="password" class="login-form-input" style="width:420upx;" placeholder="确认密码" password v-model="confirmPassword"/>
 				</view>
 				<view class="login-form-item">
 					<image class="login-form-label" :src="imageLib.cert"></image>
 					<input type="number" class="login-form-input"  placeholder="验证码" style="width:420upx;" v-model="checkCode"/>
-					<text style="width:180upx;text-align: center;color:#DA53A2;font-size: 28upx;" @click="getCode">
+					<text style="width:180upx;text-align: center;color:#DA53A2;font-size: 26upx;" @click="getCode">
 						{{codeDelay === 0?'获取验证码':codeDelay+' s'}}
 					</text>
 				</view>
-				<view class="login-form-item">
-					<image class="login-form-label" :src="imageLib.code"></image>
-					<input type="text" class="login-form-input"  placeholder="邀请码" v-model="visitCode"/>
+				<view class="login-form-item" style="display: flex;justify-content: space-between;">
+					<view style="display: flex;justify-content: flex-start;">
+						<image class="login-form-label" :src="imageLib.code"></image>
+						<input type="text" class="login-form-input" style="width:420upx;" placeholder="邀请码" v-model="visitCode"/>
+					</view>
+					<text style="width:100upx;text-align: center;color:#999;font-size: 26upx;">
+						选填
+					</text>
 				</view>
 				<view style="padding-top:90upx;">
 					<fun-button value="注 册" large @handle="register"></fun-button>
@@ -62,6 +76,7 @@
 				},
 				imageLib:{
 					logo:'../../static/bg/logo.png',
+					sanjiao:'../../static/icons/sanjiao.png',
 					phone:'../../static/icons/icon_shoujihao.png',
 					password:'../../static/icons/icon_mima.png',
 					cert:'../../static/icons/icon_yanzhengma.png',
@@ -74,10 +89,17 @@
 				checkCode:'',
 				visitCode:'',
 				codeDelay:0,
-				codeTimer:null
+				codeTimer:null,
+				currCountry:0,
+				countryLib:[
+					'中国','美国','欧洲','日本'
+				]
 			};
 		},
 		methods:{
+			countryChange(e){
+				this.currCountry = e.target.value;
+			},
 			getCode(){
 				if(this.codeDelay === 0 && this.phone.length === 11){
 					this.$http({

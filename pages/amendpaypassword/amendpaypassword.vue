@@ -11,7 +11,7 @@
 			</view>
 			<view style="line-height:40upx;color:#fff;font-size: 28upx;padding-top:30upx;">请输入原支付密码</view>
 			<view style="width:670upx;padding-top:60upx;">
-				<possword-inputer size="94upx" background="rgba(255,255,255,0.1)" fontSize="48upx"></possword-inputer>
+				<possword-inputer size="74upx" borderColor="rgba(255,255,255,0.4)" fontSize="48upx"></possword-inputer>
 			</view>
 			<view style="color:#DA53A2;font-size: 28upx;padding-top:30upx;padding-bottom:80upx;">忘记密码？</view>
 			<fun-button value="提交" block large width="670upx"></fun-button>
