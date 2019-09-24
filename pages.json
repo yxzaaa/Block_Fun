@@ -244,6 +244,11 @@
             "path" : "pages/billorders/billorders",
             "style" : {}
         }
+   
+        ,{
+            "path" : "pages/repayment/repayment",
+            "style" : {}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",

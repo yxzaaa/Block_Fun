@@ -3,17 +3,33 @@
 		<uni-background src="../../static/bg1.jpg"/>
 		<uni-nav-bar title="我要借款" textColor="#fff" :opacity="scroll" layout="center" :buttons="navButtons"></uni-nav-bar>
 		<div class="app-container full fixbutton">
+			<view class="modal-box" v-if="showPwdModal">
+				<view class="modal">
+					<view class="modal-top-item">
+						<view class="modal-title">请输入您的支付密码</view>
+						<view class="modal-content">
+							<password-inputer @input="setPassword" :value="password"></password-inputer>
+						</view>
+						<view style="font-size: 24upx;color: #1F1A1A;padding:40upx 40upx 20upx;text-align: center;">确定抵押后，您抵押的 Forest 将自动冻结</view>
+					</view>
+					<view class="modal-btns">
+						<view @click="showPwdModal = false">取消</view>
+						<view style="border-left:1px solid #eee;color:#0A61C9;" @click="publish">确定</view>
+					</view>
+				</view>
+			</view>
 			<view class="fixed-buttons">
 				<view class="button-group">
 					<fun-button 
 						value="确定抵押" 
 						width="670upx"  
 						large 
+						@handle="putPassword"
 					></fun-button>
 				</view>
 			</view>
 			<view class="user-info" style="padding-top:40upx;">
-				<text>总利息</text>
+				<text style="font-size: 26upx;">总利息</text>
 			</view>
 			<view class="user-count">
 				<text style="font-family: 'Montserrat-Bold';font-size:64upx;">12</text>
@@ -101,11 +117,13 @@
 	import UniNavBar from '@/components/uni-nav-bar/uni-nav-bar.vue';
 	import UniBackground from '@/components/uni-background/uni-background.vue';
 	import FunButton from '@/components/fun-button.vue';
+	import PasswordInputer from '@/components/possword-inputer.vue';
 	export default {
 		components:{
 			UniNavBar,
 			UniBackground,
-			FunButton
+			FunButton,
+			PasswordInputer
 		},
 		data() {
 			return {
@@ -121,12 +139,23 @@
 					avatar:'../../static/avatar/fortoken.png',
 					username:'Xdog',
 					usercount:'+8089.23'
-				}
+				},
+				showPwdModal:false,
 			};
 		},
 		onPageScroll(val){
 			this.scroll = val.scrollTop;
 		},
+		methods:{
+			putPassword(){
+				if(!this.showPwdModal){
+					this.showPwdModal = true;
+				}
+			},
+			publish(){
+				
+			}
+		}
 	}
 </script>
 

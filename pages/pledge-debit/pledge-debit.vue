@@ -165,6 +165,7 @@
 				uni.navigateTo({
 					url:'../publishborrow/publishborrow'
 				})
+				
 			}
 		}
 	}

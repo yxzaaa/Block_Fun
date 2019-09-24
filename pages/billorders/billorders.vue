@@ -22,11 +22,11 @@
 						<view class="totalBox">
 							<view class="borrow">
 								<span class="content">借款总额（USDT）</span>
-								<span class="number">5000</span>
+								<span class="number">{{debit}}</span>
 							</view>
 							<view class="pledge">
 								<span class="content">抵押总量（Forest）</span>
-								<span class="number">100000</span>
+								<span class="number">{{mortgage}}</span>
 							</view>
 						</view>
 						<view class="selected">
@@ -45,37 +45,37 @@
 							<block v-for="(item,index) in borrowList" :key="index">
 								<view class="debitbox">
 									<view class="horizon-list-item">
-										<text style="font-size: 28upx;color:#fff;">进行中</text>
+										<text style="font-size: 28upx;color:#fff;">{{item.status}}</text>
 										<text style="color:#DA53A2;">距离还款日还有10天</text>
 									</view>
 									<view class="order-info">
-										<span>2019/03/15 19:00</span>
+										<span>{{item.created_on}}</span>
 										<span>订单号：
-											<span>asdasdasdasd</span>
+											<span>{{item.id}}</span>
 										</span>
 									</view>
 									<view class="debit-info">
 										<view class="borrow">
 											<span class="content">借款总额（USDT）</span>
-											<span class="number">5000</span>
+											<span class="number">{{item.total}}</span>
 										</view>
 										<view class="pledge">
 											<span class="content">抵押总量（Forest）</span>
-											<span class="number">100000</span>
+											<span class="number">{{item.amount}}</span>
 										</view>
 									</view>
 									<view class="debit-btn">
 										<view>
 											<span class="content">综合利率</span>
-											<span class="number">1.5%</span>
+											<span class="number">{{item.rate}}</span>
 										</view>
 										<view>
 											<span class="content">周期</span>
-											<span class="number">15天</span>
+											<span class="number">{{item.month}}</span>
 										</view>
 										<view>
 											<span class="content">还款日</span>
-											<span class="number">2019/4/12</span>
+											<span class="number">{{item.expired_on}}</span>
 										</view>
 									</view>
 								</view>
@@ -88,11 +88,11 @@
 						<view class="totalBox">
 							<view class="borrow">
 								<span class="content">投资总额（USDT）</span>
-								<span class="number">5000</span>
+								<span class="number">{{investment}}</span>
 							</view>
 							<view class="pledge">
 								<span class="content">我的收益（USTD）</span>
-								<span class="number">100000</span>
+								<span class="number">{{interest}}</span>
 							</view>
 						</view>
 						<view class="selected">
@@ -111,37 +111,37 @@
 							<block v-for="(item,index) in borrowList" :key="index">
 								<view class="debitbox">
 									<view class="horizon-list-item">
-										<text style="font-size: 28upx;color:#fff;">进行中</text>
+										<text style="font-size: 28upx;color:#fff;">{{item.status}}</text>
 										<text style="color:#DA53A2;">距离还款日还有10天</text>
 									</view>
 									<view class="order-info">
-										<span>2019/03/15 19:00</span>
+										<span>{{item.created_on}}</span>
 										<span>订单号：
-											<span>asdasdasdasd</span>
+											<span>{{item.id}}</span>
 										</span>
 									</view>
 									<view class="debit-info">
 										<view class="borrow">
 											<span class="content">投资金额（USDT）</span>
-											<span class="number">5000</span>
+											<span class="number">{{item.total}}</span>
 										</view>
 										<view class="pledge">
 											<span class="content">到期收益（USDT）</span>
-											<span class="number">100000</span>
+											<span class="number">{{item.interest}}</span>
 										</view>
 									</view>
 									<view class="debit-btn">
 										<view>
 											<span class="content">综合利率</span>
-											<span class="number">1.5%</span>
+											<span class="number">{{item.rate}}</span>
 										</view>
 										<view>
 											<span class="content">周期</span>
-											<span class="number">15天</span>
+											<span class="number">{{item.month}}</span>
 										</view>
 										<view>
 											<span class="content">投资结束日</span>
-											<span class="number">2019/4/12</span>
+											<span class="number">{{item.expired_on}}</span>
 										</view>
 									</view>
 								</view>
@@ -177,12 +177,11 @@
 					sanjiao:'../../static/icons/sanjiao.png',
 					add:'../../static/icons/icon_add.png',
 				},
-				borrowList:[
-					{},{},{},{}
-				],
-				investList:[
-					{},{},{}
-				],
+				borrowList:[{}],
+				debit:0,
+				mortgage:0,
+				investment:0,
+				interest:0,
 				currClass:0,
 				classLib:[
 					'全部','进行中','仲裁中','已结束'
@@ -191,6 +190,27 @@
 		},
 		onPageScroll(val){
 			this.scroll = val.scrollTop;
+		},
+		onLoad(){
+			this.$http({
+				url:'/v1/main/debit/debit-order-list',
+				data:{
+					type:1,
+					satus:0,
+					page:1
+				},
+				success:res=>{
+					console.log(res);
+					if(res.code == 200){
+						this.borrowList = this.res.data.item;
+						this.mortgage = this.res.data.mortgage;
+						this.debit = this.res.data.debit;
+						this.investment = this.res.data.investment;
+						this.interest = this.res.data.interest;
+					}
+				}
+				
+			})
 		},
 		methods: {
 			tabChange(value){
