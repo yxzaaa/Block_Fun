@@ -13,7 +13,7 @@
 					</view>
 					<view class="modal-btns">
 						<view @click="showPwdModal = false">取消</view>
-						<view style="border-left:1px solid #eee;color:#0A61C9;" @click="publish">发布</view>
+						<view style="border-left:1px solid #eee;color:#0A61C9;" @click="acceptBill">{{infos.type == 1?'抵押':'投资'}}</view>
 					</view>
 				</view>
 			</view>
@@ -31,7 +31,7 @@
 				<text>总利息</text>
 			</view>
 			<view class="user-count">
-				<text style="font-family: 'Montserrat-Bold';font-size:64upx;">{{infos.income}}</text>
+				<text style="font-family: 'Montserrat-Bold';font-size:64upx;">{{getNum(infos.income)}}</text>
 				<text>USDT</text>
 			</view>
 			<view class="user-info">
@@ -45,7 +45,7 @@
 								<text class="left-item-label">Forest 单价</text>
 							</view>
 							<view class="right-item">
-								<text class="left-item-name">{{infos.price}} USDT/X</text>
+								<text class="left-item-name">{{infos.price}} USDT/{{infos.unit}}</text>
 							</view>
 						</view>
 						<view class="horizon-list-item">
@@ -116,11 +116,13 @@
 	import UniNavBar from '@/components/uni-nav-bar/uni-nav-bar.vue';
 	import UniBackground from '@/components/uni-background/uni-background.vue';
 	import FunButton from '@/components/fun-button.vue';
+	import PasswordInputer from '@/components/possword-inputer.vue';
 	export default {
 		components:{
 			UniNavBar,
 			UniBackground,
-			FunButton
+			FunButton,
+			PasswordInputer
 		},
 		data() {
 			return {
@@ -137,9 +139,6 @@
 			};
 		},
 		onLoad(){
-			setPassword(val){
-				this.password = val;
-			},
 			//获取挂单信息
 			uni.getStorage({
 				key:'accept_bill_info',
@@ -152,13 +151,38 @@
 			this.scroll = val.scrollTop;
 		},
 		methods:{
+			setPassword(val){
+				this.password = val;
+			},
+			getNum(num){
+				return (parseFloat(num)).toFixed(2);
+			},
 			acceptBill(){
 				//接受此挂单
 				this.$http({
 					url:'/v1/main/debit/debit-order-request',
 					data:{
-						id:infos.id,
-						coin:infos.
+						id:this.infos.id,
+						coin:this.infos.unit,
+						password:this.password
+					},
+					success:res=>{
+						if(res.code == 200){
+							uni.showToast({
+								title:this.infos.type == 1?'抵押成功':'投资成功',
+								icon:'none'
+							})
+							setTimeout(()=>{
+								uni.navigateBack({
+									delta:1
+								})
+							},1000)
+						}else{
+							uni.showToast({
+								title:res.message,
+								icon:'none'
+							})
+						}
 					}
 				})
 			}
