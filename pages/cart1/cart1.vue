@@ -126,11 +126,15 @@
 		},
 		methods:{
 			updateList(){
+				uni.showLoading({
+					title:'购物车加载中...'
+				})
 				this.$http({
 					url:'/mall/cart',
 					success:res=>{
 						console.log(res);
 						if(res.code == 200){
+							uni.hideLoading();
 							if(res.data[0]){
 								this.cartList = [];
 								res.data.map(val=>{

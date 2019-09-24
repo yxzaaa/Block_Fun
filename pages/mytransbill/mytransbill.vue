@@ -102,15 +102,16 @@
 			//获取我的挂单列表
 			updateList(){
 				uni.showLoading({
-					title:'加载中'
+					title:'挂单加载中...'
 				})
 				this.$http({
-					url:'/v1/main/debit/debit-list',
+					url:'/v1/main/debit/debit-my',
 					data:{
 						type:this.activeTab,
 						page:this.currpage
 					},
 					success:res=>{
+						console.log(res);
 						if(res.code == 200){
 							uni.hideLoading();
 							this.borrowList = res.data.item;

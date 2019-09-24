@@ -99,11 +99,16 @@
 		methods: {
 			toggleStatus(index){
 				this.currStatus = index;
+				uni.showLoading({
+					title:'订单加载中...'
+				})
 				this.$http({
 					url:'/member/order?nav='+this.statusTabs[index].id+'&page=1',
 					success:res=>{
-						this.orderList = res.data.item;
-						console.log(this.orderList);
+						if(res.code == 200){
+							uni.hideLoading();
+							this.orderList = res.data.item;
+						}
 					}
 				})
 			},

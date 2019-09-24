@@ -1,14 +1,29 @@
 <template>
 	<view class="container">
 		<uni-background src="../../static/bg1.jpg"/>
-		<uni-nav-bar title="我要借款" textColor="#fff" :opacity="scroll" layout="center" :buttons="navButtons"></uni-nav-bar>
+		<uni-nav-bar :title="infos.type==1?'我要借款':'我要投资'" textColor="#fff" :opacity="scroll" layout="center" :buttons="navButtons"></uni-nav-bar>
 		<div class="app-container full fixbutton">
+			<view class="modal-box" v-if="showPwdModal">
+				<view class="modal">
+					<view class="modal-top-item">
+						<view class="modal-title">请输入您的交易密码</view>
+						<view class="modal-content">
+							<password-inputer @input="setPassword" :value="password"></password-inputer>
+						</view>
+					</view>
+					<view class="modal-btns">
+						<view @click="showPwdModal = false">取消</view>
+						<view style="border-left:1px solid #eee;color:#0A61C9;" @click="publish">发布</view>
+					</view>
+				</view>
+			</view>
 			<view class="fixed-buttons">
 				<view class="button-group">
 					<fun-button 
-						value="确定抵押" 
+						:value="infos.type == 1?'确定抵押':'确认投资'" 
 						width="670upx"  
 						large 
+						@handle="showPwdModal = true"
 					></fun-button>
 				</view>
 			</view>
@@ -16,11 +31,11 @@
 				<text>总利息</text>
 			</view>
 			<view class="user-count">
-				<text style="font-family: 'Montserrat-Bold';font-size:64upx;">12</text>
+				<text style="font-family: 'Montserrat-Bold';font-size:64upx;">{{infos.income}}</text>
 				<text>USDT</text>
 			</view>
 			<view class="user-info">
-				<text style="color:rgba(255,255,255,0.5);font-size: 26upx;">月利率0.1%</text>
+				<text style="color:rgba(255,255,255,0.5);font-size: 26upx;">月利率{{infos.rate*100}}%</text>
 			</view>
 			<view style="padding:40upx;">
 				<view class="fun-card">
@@ -30,7 +45,7 @@
 								<text class="left-item-label">Forest 单价</text>
 							</view>
 							<view class="right-item">
-								<text class="left-item-name">0.168 USDT/X</text>
+								<text class="left-item-name">{{infos.price}} USDT/X</text>
 							</view>
 						</view>
 						<view class="horizon-list-item">
@@ -38,7 +53,7 @@
 								<text class="left-item-label">投资总量</text>
 							</view>
 							<view class="right-item">
-								<text class="left-item-name">800 USDT</text>
+								<text class="left-item-name">{{infos.total}} USDT</text>
 							</view>
 						</view>
 						<view class="horizon-list-item">
@@ -46,7 +61,7 @@
 								<text class="left-item-label">投资周期</text>
 							</view>
 							<view class="right-item">
-								<text class="left-item-name">15 天</text>
+								<text class="left-item-name">{{infos.month}} 月</text>
 							</view>
 						</view>
 						<view class="horizon-list-item">
@@ -54,7 +69,7 @@
 								<text class="left-item-label">抵押总量</text>
 							</view>
 							<view class="right-item">
-								<text class="left-item-name">10000</text>
+								<text class="left-item-name">{{infos.amount}}</text>
 							</view>
 						</view>
 						<!-- <view class="horizon-list-item">
@@ -87,7 +102,7 @@
 								<text class="left-item-label">手续费</text>
 							</view>
 							<view class="right-item">
-								<text class="left-item-name">0.8 USDT</text>
+								<text class="left-item-name">{{infos.fee}} USDT</text>
 							</view>
 						</view>
 					</view>
@@ -116,17 +131,38 @@
 						text:'取消'
 					}
 				},
-				erweima:'../../static/image.png',
-				userInfo:{
-					avatar:'../../static/avatar/fortoken.png',
-					username:'Xdog',
-					usercount:'+8089.23'
-				}
+				infos:{},
+				password:'',
+				showPwdModal:false
 			};
+		},
+		onLoad(){
+			setPassword(val){
+				this.password = val;
+			},
+			//获取挂单信息
+			uni.getStorage({
+				key:'accept_bill_info',
+				success:res=>{
+					this.infos = res.data;
+				}
+			})
 		},
 		onPageScroll(val){
 			this.scroll = val.scrollTop;
 		},
+		methods:{
+			acceptBill(){
+				//接受此挂单
+				this.$http({
+					url:'/v1/main/debit/debit-order-request',
+					data:{
+						id:infos.id,
+						coin:infos.
+					}
+				})
+			}
+		}
 	}
 </script>
 
