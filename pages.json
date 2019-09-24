@@ -244,11 +244,6 @@
             "path" : "pages/billorders/billorders",
             "style" : {}
         }
-   
-        ,{
-            "path" : "pages/repayment/repayment",
-            "style" : {}
-        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",
@@ -257,8 +252,7 @@
 		"backgroundColor": "#15040c",
 		"navigationStyle":"custom",
 		"enablePullDownRefresh":true,
-		"backgroundTextStyle":"light",
-		"onReachBottomDistance":10
+		"backgroundTextStyle":"light"
 	},
 	"tabBar": {
 		"color": "#666666",

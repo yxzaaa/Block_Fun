@@ -1,108 +1,110 @@
 <template>
 	<view class="container">
 		<uni-background src="../../static/bg1.jpg"/>
-		<uni-nav-bar :title="infos.type==1?'我要借款':'我要投资'" textColor="#fff" :opacity="scroll" layout="center" :buttons="navButtons"></uni-nav-bar>
+		<uni-nav-bar title="我要还款" textColor="#fff" :opacity="scroll" layout="center" :buttons="navButtons"></uni-nav-bar>
 		<div class="app-container full fixbutton">
 			<view class="modal-box" v-if="showPwdModal">
 				<view class="modal">
 					<view class="modal-top-item">
-						<view class="modal-title">请输入您的交易密码</view>
+						<view class="modal-title">请输入您的支付密码</view>
 						<view class="modal-content">
 							<password-inputer @input="setPassword" :value="password"></password-inputer>
 						</view>
+						<view style="font-size: 24upx;color: #1F1A1A;padding:40upx 40upx 20upx;text-align: center;">确定抵押后，您抵押的 Forest 将自动冻结</view>
 					</view>
 					<view class="modal-btns">
 						<view @click="showPwdModal = false">取消</view>
-						<view style="border-left:1px solid #eee;color:#0A61C9;" @click="acceptBill">{{infos.type == 1?'抵押':'投资'}}</view>
+						<view style="border-left:1px solid #eee;color:#0A61C9;" @click="publish">确定</view>
 					</view>
 				</view>
 			</view>
 			<view class="fixed-buttons">
 				<view class="button-group">
 					<fun-button 
-						:value="infos.type == 1?'确定抵押':'确认投资'" 
+						value="确定还款" 
 						width="670upx"  
 						large 
-						@handle="showPwdModal = true"
+						@handle="putPassword"
 					></fun-button>
 				</view>
 			</view>
 			<view class="user-info" style="padding-top:40upx;">
-				<text>总利息</text>
+				<text style="font-size: 26upx;">待还金额</text>
 			</view>
 			<view class="user-count">
-				<text style="font-family: 'Montserrat-Bold';font-size:64upx;">{{getNum(infos.income)}}</text>
+				<text style="font-family: 'Montserrat-Bold';font-size:64upx;">1200</text>
 				<text>USDT</text>
 			</view>
 			<view class="user-info">
-				<text style="color:rgba(255,255,255,0.5);font-size: 26upx;">月利率{{infos.rate*100}}%</text>
+				<text style="color:rgba(255,255,255,0.5);font-size: 26upx;">最后还款日:
+					<span>2019/03/30</span>
+				</text>
 			</view>
 			<view style="padding:40upx;">
 				<view class="fun-card">
 					<view class="fun-card-item">
 						<view class="horizon-list-item">
 							<view class="left-item">
-								<text class="left-item-label">Forest 单价</text>
+								<text class="left-item-label">借款金额（USDT）</text>
 							</view>
 							<view class="right-item">
-								<text class="left-item-name">{{infos.price}} USDT/{{infos.unit}}</text>
+								<text class="left-item-name">2000</text>
 							</view>
 						</view>
 						<view class="horizon-list-item">
 							<view class="left-item">
-								<text class="left-item-label">投资总量</text>
+								<text class="left-item-label">抵押数量（Forest）</text>
 							</view>
 							<view class="right-item">
-								<text class="left-item-name">{{infos.total}} USDT</text>
+								<text class="left-item-name">800</text>
 							</view>
 						</view>
 						<view class="horizon-list-item">
 							<view class="left-item">
-								<text class="left-item-label">投资周期</text>
+								<text class="left-item-label">日利率</text>
 							</view>
 							<view class="right-item">
-								<text class="left-item-name">{{infos.month}} 月</text>
+								<text class="left-item-name">0.1%</text>
 							</view>
 						</view>
 						<view class="horizon-list-item">
 							<view class="left-item">
-								<text class="left-item-label">抵押总量</text>
+								<text class="left-item-label">综合利率</text>
 							</view>
 							<view class="right-item">
-								<text class="left-item-name">{{infos.amount}}</text>
-							</view>
-						</view>
-						<!-- <view class="horizon-list-item">
-							<view class="left-item">
-								<text class="left-item-label">我要借款</text>
-							</view>
-							<view class="right-item">
-								<input style="font-size: 26upx;color:#fff;text-align: right;" type="text" placeholder="请输入您的借款金额"/>
-							</view>
-						</view> -->
-						<view style="width:100%;height:3upx;background:rgba(255,255,255,0.2);margin:20upx 0upx;"></view>
-						<!-- <view class="horizon-list-item">
-							<view class="left-item">
-								<text class="left-item-label">需要抵押</text>
-							</view>
-							<view class="right-item">
-								<text class="left-item-name">15 个</text>
+								<text class="left-item-name">1.5%</text>
 							</view>
 						</view>
 						<view class="horizon-list-item">
 							<view class="left-item">
-								<text class="left-item-label">还款方式</text>
+								<text class="left-item-label">手续费（USDT）</text>
 							</view>
 							<view class="right-item">
-								<text class="left-item-name">先息后本</text>
+								<text class="left-item-name">5</text>
 							</view>
-						</view> -->
+						</view>
 						<view class="horizon-list-item">
 							<view class="left-item">
-								<text class="left-item-label">手续费</text>
+								<text class="left-item-label">总利息（USDT）</text>
 							</view>
 							<view class="right-item">
-								<text class="left-item-name">{{infos.fee}} USDT</text>
+								<text class="left-item-name">20 USDT</text>
+							</view>
+						</view>
+						<view class="horizon-list-item">
+							<view class="left-item">
+								<text class="left-item-label">周期</text>
+							</view>
+							<view class="right-item">
+								<text class="left-item-name">15月</text>
+							</view>
+						</view>
+						<view class="horizon-list-item">
+							<view class="left-item">
+								<text class="left-item-label">借款日</text>
+							</view>
+							<view class="right-item">
+								<text class="left-item-name">2019/03/12</text>
 							</view>
 						</view>
 					</view>
@@ -133,58 +135,25 @@
 						text:'取消'
 					}
 				},
-				infos:{},
-				password:'',
-				showPwdModal:false
+				erweima:'../../static/image.png',
+				userInfo:{
+					avatar:'../../static/avatar/fortoken.png',
+					username:'Xdog',
+					usercount:'+8089.23'
+				},
+				showPwdModal:false,
 			};
-		},
-		onLoad(){
-			//获取挂单信息
-			uni.getStorage({
-				key:'accept_bill_info',
-				success:res=>{
-					this.infos = res.data;
-				}
-			})
 		},
 		onPageScroll(val){
 			this.scroll = val.scrollTop;
 		},
 		methods:{
-			setPassword(val){
-				this.password = val;
-			},
-			getNum(num){
-				return (parseFloat(num)).toFixed(2);
-			},
-			acceptBill(){
-				//接受此挂单
-				this.$http({
-					url:'/v1/main/debit/debit-order-request',
-					data:{
-						id:this.infos.id,
-						coin:this.infos.unit,
-						password:this.password
-					},
-					success:res=>{
-						if(res.code == 200){
-							uni.showToast({
-								title:this.infos.type == 1?'抵押成功':'投资成功',
-								icon:'none'
-							})
-							setTimeout(()=>{
-								uni.navigateBack({
-									delta:1
-								})
-							},1000)
-						}else{
-							uni.showToast({
-								title:res.message,
-								icon:'none'
-							})
-						}
-					}
-				})
+			putPassword(){
+				if(this.showPwdModal){
+					this.showPwdModal = false;
+				}else{
+					this.showPwdModal = true;
+				}
 			}
 		}
 	}
@@ -283,7 +252,7 @@
 			}
 			.right-item-text{
 				font-size: 38upx;
-				color:#56CCF2;
+				color:#fff;
 				font-family:'Montserrat-Bold';
 				span{
 					font-family:'Montserrat-Bold';

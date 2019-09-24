@@ -44,7 +44,7 @@
 				<text class="section-title">热门商品</text>
 			</view>
 			<view v-if="!loading">
-				<waterfall-flow :list="hotList" :loading="loading" @handle="toDetail"></waterfall-flow>
+				<waterfall-flow :list="hotList" :loading="loading" @click="toDetail"></waterfall-flow>
 			</view>
 			<view style="padding:40upx" v-if="loading">
 				<Skeleton height="240upx" :loading="loading"></Skeleton>
@@ -100,7 +100,6 @@
 		},
 		methods:{
 			toDetail(res){
-				console.log(res);
 				uni.navigateTo({
 					url:"../detail/detail?id="+res
 				})

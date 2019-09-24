@@ -20,63 +20,126 @@
 				</view>
 				<fun-button value="我的挂单" type="text" color="#DA53A2" url="../mybill/mybill"></fun-button>
 			</view>
-			<scroll-view scroll-y='true' style="width:100%;height:calc(100vh - 360upx);">
-				<view class="fun-card" style="margin:20upx 40upx;">
-					<view class="fun-card-item" style="text-align: center;padding:20upx;">
-						<text style="color:#999;font-size: 26upx;">USDT 市场参考价</text>
-						<text style="color:#DA53A2;font-size: 26upx;padding-left:15upx;font-weight: bold;">6.67 CNY</text>
-					</view>
-				</view>
-				<view class="translist">
-					<block v-for="(item,index) in transList" :key="index">
-						<view class="fun-card" style="margin-bottom: 40upx;">
-							<view class="fun-card-item">
-								<view class="horizon-list-item">
-									<view class="left-item">
-										<image class="left-item-avatar" :src="imageLib.union"></image>
-										<text class="left-item-name">美好即将发生</text>
-									</view>
-									<view class="right-item">
-										<text>11单 · 61.11% 完成率</text>
-									</view>
-								</view>
-								<view class="horizon-list-item">
-									<view style="padding-top:15upx;">
-										<view class="left-item">
-											<text class="left-item-label">数量</text>
-											<text class="left-item-name">10000</text>
-										</view>
-										<view class="left-item" style="padding-top:20upx;">
-											<text class="left-item-label">限额</text>
-											<text class="left-item-name">668.68-66868</text>
-										</view>
-									</view>
-									<view class="right-item" style="display: block;margin-top:20upx;">
-										<view style="text-align: right;color:#fff;">单价</view>
-										<view style="text-align: right;padding-top:10upx;font-size: 32upx;color:#fff;font-family: 'Montserrat-Bold';">
-											<span style="font-size: 24upx;display: inline-block;padding-right:10upx">¥</span>
-											 6.6868
-										</view>
-									</view>
-								</view>
-							</view>
-							<view class="fun-horizen"></view>
-							<view class="fun-card-item">
-								<view class="horizon-list-item">
-									<view class="left-item">
-										<image style="width:24upx;height:24upx;" class="left-item-avatar" :src="imageLib.alipay"></image>
-										<image style="width:24upx;height:24upx;" class="left-item-avatar" :src="imageLib.wechatpay"></image>
-										<image style="width:40upx;height:24upx;" class="left-item-avatar" :src="imageLib.unionpay"></image>
-									</view>
-									<view class="right-item">
-										<fun-button value="购买" width="220upx" url="../buyusdt/buyusdt"></fun-button>
-									</view>
-								</view>
+			<swiper class="swiper-box" :current="activeTab" @change="tabChange">
+				<swiper-item>
+					<scroll-view scroll-y='true' style="width:100%;height:100%;position:relative;">
+						<view class="fun-card" style="margin:20upx 40upx;">
+							<view class="fun-card-item" style="text-align: center;padding:20upx;">
+								<text style="color:#999;font-size: 26upx;">USDT 市场参考价</text>
+								<text style="color:#DA53A2;font-size: 26upx;padding-left:15upx;font-weight: bold;">6.67 CNY</text>
 							</view>
 						</view>
-					</block>
-				</view>
-			</scroll-view>
+						<view class="translist">
+							<block v-for="(item,index) in transList" :key="index">
+								<view class="fun-card" style="margin-bottom: 40upx;">
+									<view class="fun-card-item">
+										<view class="horizon-list-item">
+											<view class="left-item">
+												<image class="left-item-avatar" :src="imageLib.union"></image>
+												<text class="left-item-name">美好即将发生</text>
+											</view>
+											<view class="right-item">
+												<text>11单 · 61.11% 完成率</text>
+											</view>
+										</view>
+										<view class="horizon-list-item">
+											<view style="padding-top:15upx;">
+												<view class="left-item">
+													<text class="left-item-label">数量</text>
+													<text class="left-item-name">10000</text>
+												</view>
+												<view class="left-item" style="padding-top:20upx;">
+													<text class="left-item-label">限额</text>
+													<text class="left-item-name">668.68-66868</text>
+												</view>
+											</view>
+											<view class="right-item" style="display: block;margin-top:20upx;">
+												<view style="text-align: right;color:#fff;">单价</view>
+												<view style="text-align: right;padding-top:10upx;font-size: 32upx;color:#fff;font-family: 'Montserrat-Bold';">
+													<span style="font-size: 24upx;display: inline-block;padding-right:10upx">¥</span>
+													 6.6868
+												</view>
+											</view>
+										</view>
+									</view>
+									<view class="fun-horizen"></view>
+									<view class="fun-card-item">
+										<view class="horizon-list-item">
+											<view class="left-item">
+												<image style="width:24upx;height:24upx;" class="left-item-avatar" :src="imageLib.alipay"></image>
+												<image style="width:24upx;height:24upx;" class="left-item-avatar" :src="imageLib.wechatpay"></image>
+												<image style="width:40upx;height:24upx;" class="left-item-avatar" :src="imageLib.unionpay"></image>
+											</view>
+											<view class="right-item">
+												<fun-button value="购买" width="220upx" url="../buyusdt/buyusdt"></fun-button>
+											</view>
+										</view>
+									</view>
+								</view>
+							</block>
+						</view>
+					</scroll-view>
+				</swiper-item>
+				<swiper-item>
+					<scroll-view scroll-y='true' style="width:100%;height:100%;position:relative;">
+						<view class="fun-card" style="margin:20upx 40upx;">
+							<view class="fun-card-item" style="text-align: center;padding:20upx;">
+								<text style="color:#999;font-size: 26upx;">USDT 市场参考价</text>
+								<text style="color:#DA53A2;font-size: 26upx;padding-left:15upx;font-weight: bold;">6.67 CNY</text>
+							</view>
+						</view>
+						<view class="translist">
+							<block v-for="(item,index) in transList" :key="index">
+								<view class="fun-card" style="margin-bottom: 40upx;">
+									<view class="fun-card-item">
+										<view class="horizon-list-item">
+											<view class="left-item">
+												<image class="left-item-avatar" :src="imageLib.union"></image>
+												<text class="left-item-name">美好即将发生</text>
+											</view>
+											<view class="right-item">
+												<text>11单 · 61.11% 完成率</text>
+											</view>
+										</view>
+										<view class="horizon-list-item">
+											<view style="padding-top:15upx;">
+												<view class="left-item">
+													<text class="left-item-label">数量</text>
+													<text class="left-item-name">10000</text>
+												</view>
+												<view class="left-item" style="padding-top:20upx;">
+													<text class="left-item-label">限额</text>
+													<text class="left-item-name">668.68-66868</text>
+												</view>
+											</view>
+											<view class="right-item" style="display: block;margin-top:20upx;">
+												<view style="text-align: right;color:#fff;">单价</view>
+												<view style="text-align: right;padding-top:10upx;font-size: 32upx;color:#fff;font-family: 'Montserrat-Bold';">
+													<span style="font-size: 24upx;display: inline-block;padding-right:10upx">¥</span>
+													 6.6868
+												</view>
+											</view>
+										</view>
+									</view>
+									<view class="fun-horizen"></view>
+									<view class="fun-card-item">
+										<view class="horizon-list-item">
+											<view class="left-item">
+												<image style="width:24upx;height:24upx;" class="left-item-avatar" :src="imageLib.alipay"></image>
+												<image style="width:24upx;height:24upx;" class="left-item-avatar" :src="imageLib.wechatpay"></image>
+												<image style="width:40upx;height:24upx;" class="left-item-avatar" :src="imageLib.unionpay"></image>
+											</view>
+											<view class="right-item">
+												<fun-button value="购买" width="220upx" url="../buyusdt/buyusdt"></fun-button>
+											</view>
+										</view>
+									</view>
+								</view>
+							</block>
+						</view>
+					</scroll-view>
+				</swiper-item>
+			</swiper>
 		</view>
 	</view>
 </template>

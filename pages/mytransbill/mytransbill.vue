@@ -47,7 +47,7 @@
 								<view class="debit-btn">
 									<text>{{getTimeDelay(item.expired_on)}}天后过期</text>
 									<view>
-										<view @click="billUpOrDown(item.id,item.status)">{{item.status == 2?'上架':'下架'}}</view>
+										<view>{{item.status == 2?'上架':'下架'}}</view>
 									</view>
 								</view>
 							</view>
@@ -101,81 +101,18 @@
 		methods: {
 			//获取我的挂单列表
 			updateList(){
-				uni.showLoading({
-					title:'挂单加载中...'
-				})
 				this.$http({
-					url:'/v1/main/debit/debit-my',
+					url:'/v1/main/debit/debit-list',
 					data:{
 						type:this.activeTab,
 						page:this.currpage
 					},
 					success:res=>{
-						console.log(res);
 						if(res.code == 200){
-							uni.hideLoading();
 							this.borrowList = res.data.item;
 						}
 					}
 				})
-			},
-			//挂单上下架
-			billUpOrDown(id,status){
-				if(status == 2){
-					//挂单上架
-					uni.showModal({
-						title:'提示',
-						content:'上架这条挂单？',
-						confirmText:"上架",
-						success:res=>{
-							if(res.confirm){
-								this.$http({
-									url:'/v1/main/debit/debit-edit',
-									data:{
-										id,
-										type:1
-									},
-									success:res=>{
-										if(res.code == 200){
-											uni.showToast({
-												title:'挂单上架成功',
-												icon:'none'
-											})
-											this.updateList();
-										}
-									}
-								})
-							}
-						}
-					})
-				}else{
-					//挂单下架
-					uni.showModal({
-						title:'提示',
-						content:'下架这条挂单？',
-						confirmText:"下架",
-						success:res=>{
-							if(res.confirm){
-								this.$http({
-									url:'/v1/main/debit/debit-edit',
-									data:{
-										id,
-										type:2
-									},
-									success:res=>{
-										if(res.code == 200){
-											uni.showToast({
-												title:'挂单已下架',
-												icon:'none'
-											})
-											this.updateList();
-										}
-									}
-								})
-							}
-						}
-					})
-				}
 			},
 			getNum(num){
 				return (parseFloat(num)).toFixed(2);
