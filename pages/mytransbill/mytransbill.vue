@@ -47,7 +47,7 @@
 								<view class="debit-btn">
 									<text>{{getTimeDelay(item.expired_on)}}天后过期</text>
 									<view>
-										<view @click="billUpOrDown(item.id,item.status)">{{item.status == 2?'上架':'下架'}}</view>
+										<view>{{item.status == 2?'上架':'下架'}}</view>
 									</view>
 								</view>
 							</view>
@@ -101,19 +101,14 @@
 		methods: {
 			//获取我的挂单列表
 			updateList(){
-				uni.showLoading({
-					title:'挂单加载中...'
-				})
 				this.$http({
-					url:'/v1/main/debit/debit-my',
+					url:'/v1/main/debit/debit-list',
 					data:{
 						type:this.activeTab,
 						page:this.currpage
 					},
 					success:res=>{
-						console.log(res);
 						if(res.code == 200){
-							uni.hideLoading();
 							this.borrowList = res.data.item;
 						}
 					}
