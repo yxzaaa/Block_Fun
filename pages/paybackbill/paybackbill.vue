@@ -1,7 +1,7 @@
 <template>
 	<view class="container">
 		<uni-background src="../../static/bg1.jpg"/>
-		<uni-nav-bar :title="infos.type==1?'我要借款':'我要投资'" textColor="#fff" :opacity="scroll" layout="center" :buttons="navButtons"></uni-nav-bar>
+		<uni-nav-bar title="我要还款" textColor="#fff" :opacity="scroll" layout="center" :buttons="navButtons"></uni-nav-bar>
 		<div class="app-container full fixbutton">
 			<view class="modal-box" v-if="showPwdModal">
 				<view class="modal">
@@ -13,14 +13,14 @@
 					</view>
 					<view class="modal-btns">
 						<view @click="showPwdModal = false">取消</view>
-						<view style="border-left:1px solid #eee;color:#0A61C9;" @click="acceptBill">发布</view>
+						<view style="border-left:1px solid #eee;color:#0A61C9;" @click="acceptBill">还款</view>
 					</view>
 				</view>
 			</view>
 			<view class="fixed-buttons">
 				<view class="button-group">
 					<fun-button 
-						:value="infos.type == 1?'确定抵押':'确认投资'" 
+						value="确定还款" 
 						width="670upx"  
 						large 
 						@handle="showPwdModal = true"
@@ -28,37 +28,61 @@
 				</view>
 			</view>
 			<view class="user-info" style="padding-top:40upx;">
-				<text>总利息</text>
+				<text>待还金额</text>
 			</view>
 			<view class="user-count">
-				<text style="font-family: 'Montserrat-Bold';font-size:64upx;">{{getNum(infos.income)}}</text>
+				<text style="font-family: 'Montserrat-Bold';font-size:64upx;">{{getNum(infos.total)}}</text>
 				<text>USDT</text>
 			</view>
 			<view class="user-info">
-				<text style="color:rgba(255,255,255,0.5);font-size: 26upx;">月利率{{infos.rate*100}}%</text>
+				<text style="color:rgba(255,255,255,0.5);font-size: 26upx;">最后还款日 {{getDate(infos.expired_on)}}</text>
 			</view>
 			<view style="padding:40upx;">
 				<view class="fun-card">
 					<view class="fun-card-item">
 						<view class="horizon-list-item">
 							<view class="left-item">
-								<text class="left-item-label">Forest 单价</text>
+								<text class="left-item-label">借款金额</text>
 							</view>
 							<view class="right-item">
-								<text class="left-item-name">{{getNum(infos.price)}} USDT/{{infos.unit}}</text>
+								<text class="left-item-name">{{getNum(infos.total)}} USDT</text>
 							</view>
 						</view>
 						<view class="horizon-list-item">
 							<view class="left-item">
-								<text class="left-item-label">投资总量</text>
+								<text class="left-item-label">抵押数量</text>
 							</view>
 							<view class="right-item">
-								<text class="left-item-name">{{infos.total}} USDT</text>
+								<text class="left-item-name">{{getNum(infos.amount)}} USDT</text>
 							</view>
 						</view>
 						<view class="horizon-list-item">
 							<view class="left-item">
-								<text class="left-item-label">投资周期</text>
+								<text class="left-item-label">月利率</text>
+							</view>
+							<view class="right-item">
+								<text class="left-item-name">{{infos.rate*100}}%</text>
+							</view>
+						</view>
+						<view class="horizon-list-item">
+							<view class="left-item">
+								<text class="left-item-label">手续费</text>
+							</view>
+							<view class="right-item">
+								<text class="left-item-name">{{infos.fee}} USDT</text>
+							</view>
+						</view>
+						<view class="horizon-list-item">
+							<view class="left-item">
+								<text class="left-item-label">总利息</text>
+							</view>
+							<view class="right-item">
+								<text class="left-item-name">{{infos.interest}} USDT</text>
+							</view>
+						</view>
+						<view class="horizon-list-item">
+							<view class="left-item">
+								<text class="left-item-label">周期</text>
 							</view>
 							<view class="right-item">
 								<text class="left-item-name">{{infos.month}} 月</text>
@@ -66,43 +90,10 @@
 						</view>
 						<view class="horizon-list-item">
 							<view class="left-item">
-								<text class="left-item-label">抵押总量</text>
+								<text class="left-item-label">借款日</text>
 							</view>
 							<view class="right-item">
-								<text class="left-item-name">{{infos.amount}}</text>
-							</view>
-						</view>
-						<!-- <view class="horizon-list-item">
-							<view class="left-item">
-								<text class="left-item-label">我要借款</text>
-							</view>
-							<view class="right-item">
-								<input style="font-size: 26upx;color:#fff;text-align: right;" type="text" placeholder="请输入您的借款金额"/>
-							</view>
-						</view> -->
-						<view style="width:100%;height:3upx;background:rgba(255,255,255,0.2);margin:20upx 0upx;"></view>
-						<!-- <view class="horizon-list-item">
-							<view class="left-item">
-								<text class="left-item-label">需要抵押</text>
-							</view>
-							<view class="right-item">
-								<text class="left-item-name">15 个</text>
-							</view>
-						</view>
-						<view class="horizon-list-item">
-							<view class="left-item">
-								<text class="left-item-label">还款方式</text>
-							</view>
-							<view class="right-item">
-								<text class="left-item-name">先息后本</text>
-							</view>
-						</view> -->
-						<view class="horizon-list-item">
-							<view class="left-item">
-								<text class="left-item-label">手续费</text>
-							</view>
-							<view class="right-item">
-								<text class="left-item-name">{{infos.fee}} USDT</text>
+								<text class="left-item-name">{{getDate(infos.created_on)}}</text>
 							</view>
 						</view>
 					</view>
@@ -141,7 +132,7 @@
 		onLoad(){
 			//获取挂单信息
 			uni.getStorage({
-				key:'accept_bill_info',
+				key:'pay_back_info',
 				success:res=>{
 					this.infos = res.data;
 				}
@@ -157,10 +148,28 @@
 			getNum(num){
 				return (parseFloat(num)).toFixed(2);
 			},
+			getDate(timestamp){
+				var date = new Date(timestamp*1000);
+				var year = date.getFullYear();
+				var month = date.getMonth() + 1;
+				var day = date.getDate();
+				var hour = date.getHours();
+				var min = date.getMinutes();
+				month = month>=10?month:'0'+month;
+				day = day>=10?day:'0'+day;
+				hour = hour>=10?hour:'0'+hour;
+				min = min>=10?min:'0'+min;
+				return year+'/'+month+'/'+day+' '+hour+':'+min
+			},
+			getTimeDelay(end){
+				var stamp = new Date().getTime();
+				var overDay = parseInt((end*1000 - stamp)/(24*3600*1000));
+				return overDay;
+			},
 			acceptBill(){
-				//接受此挂单
+				//确认还款
 				this.$http({
-					url:'/v1/main/debit/debit-order-request',
+					url:'/v1/main/debit/debit-repayment',
 					data:{
 						id:this.infos.id,
 						coin:this.infos.unit,
@@ -169,7 +178,7 @@
 					success:res=>{
 						if(res.code == 200){
 							uni.showToast({
-								title:this.infos.type == 1?'抵押成功':'投资成功',
+								title:'还款成功',
 								icon:'none'
 							})
 							setTimeout(()=>{

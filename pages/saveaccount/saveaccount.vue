@@ -6,13 +6,13 @@
 			<view class="status-box" style="padding:20upx 40upx;">
 				<view class="left-status">
 					<image :src="imageLib.logosmall" style="width:40upx;height:40upx;" />
-					<text style="font-size:30upx;font-family:'Montserrat-Light';color:#fff;">Forbidden Forest Coin</text>
-					<text style="font-size:26upx;color:#999;">Forest</text>
+					<text style="font-size:30upx;font-family:'Montserrat-Light';color:#fff;">Forbidden {{coin}} Coin</text>
+					<text style="font-size:26upx;color:#999;">{{coin}}</text>
 				</view>
 			</view>
 			<view class="fun-card" style="margin:30upx 40upx;width:670upx;">
 				<view class="fun-card-item">
-					<text style="font-size: 24upx;color:#999;">注意：该地址只接收forest资产，如充值其他币种，将无法找回</text>
+					<text style="font-size: 24upx;color:#999;">注意：该地址只接收{{coin}}资产，如充值其他币种，将无法找回</text>
 				</view>
 				<view class="fun-horizen"></view>
 				<view class="fun-card-item">
@@ -65,7 +65,11 @@
 					logosmall:'../../static/icons/logo_small.png'
 				},
 				erweima:'../../static/image.png',
+				coin:''
 			};
+		},
+		onLoad(option){
+			this.coin = option.coin;
 		},
 		onPageScroll(val){
 			this.scroll = val.scrollTop;

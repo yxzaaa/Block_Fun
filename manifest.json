@@ -51,10 +51,23 @@
             "sdkConfigs" : {},
             "icons" : {
                 "android" : {
-                    "hdpi" : "static/bg/logo.png",
-                    "xhdpi" : "static/bg/logo.png",
-                    "xxhdpi" : "static/bg/logo.png",
-                    "xxxhdpi" : "static/bg/logo.png"
+                    "hdpi" : "static/avatar/Group 2.png",
+                    "xhdpi" : "static/avatar/Group 2.png",
+                    "xxhdpi" : "static/avatar/Group 2.png",
+                    "xxxhdpi" : "static/avatar/Group 2.png"
+                },
+                "ios" : {
+                    "appstore" : "static/avatar/Group 2.png",
+                    "iphone" : {
+                        "app@2x" : "static/avatar/Group 2.png",
+                        "app@3x" : "static/avatar/Group 2.png",
+                        "spotlight@2x" : "static/avatar/Group 2.png",
+                        "spotlight@3x" : "static/avatar/Group 2.png",
+                        "settings@2x" : "static/avatar/Group 2.png",
+                        "settings@3x" : "static/avatar/Group 2.png",
+                        "notification@2x" : "static/avatar/Group 2.png",
+                        "notification@3x" : "static/avatar/Group 2.png"
+                    }
                 }
             }
         }

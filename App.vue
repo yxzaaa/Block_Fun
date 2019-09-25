@@ -760,7 +760,8 @@
 			}
 		}
 		.form-input-box{
-			padding:30upx 0upx;
+			padding-top:40upx;
+			padding-bottom:20upx;
 			display: flex;
 			justify-content: space-between;
 			border-bottom:1px solid rgba(255,255,255,.2);

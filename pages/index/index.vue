@@ -25,31 +25,31 @@
 				<text class="section-title">我的钱包</text>
 			</view>
 			<view class="wallet-list">
-				<block v-for="item in walletList" :key="item.walletid">
+				<block v-for="(item,index) in walletList" :key="index">
 					<view class="fun-card">
 						<view class="fun-card-item">
 							<view class="item-horizen">
-								<image class="wallet-list-avatar" :src="item.avatar"></image>
+								<image class="wallet-list-avatar" :src="imageLib.avatar"></image>
 								<view class="title-box">
-									<text style="font-size:32upx;color:#fff;font-family:'Montserrat-Bold';">{{item.title}}</text>
-									<text style="font-size:24upx;color:#999;font-family:'Montserrat-Bold';">{{item.blockNum}}</text>
+									<text style="font-size:32upx;color:#fff;font-family:'Montserrat-Bold';">{{item.coin}}</text>
+									<text style="font-size:24upx;color:#999;font-family:'Montserrat-Bold';overflow: hidden;width:300upx;text-overflow: ellipsis;white-space: nowrap;">{{item.address}}</text>
 								</view>
 								<view>
 									<image class="button-image" :src="imageLib.union"/>
 								</view>
 							</view>
 							<view class="item-horizen count-box">
-								<span class="label-box"><span>$</span>{{item.total}}</span>
+								<span class="label-box"><span>￥</span>{{getNum(item.total_price)}}</span>
 							</view>
 							<view class="item-horizen label-line">
-								<span class="label-box"><span class="label">数量</span>{{item.count}}</span> 
-								<span class="label-box"><span class="label">价格</span>{{item.price}}<span class="kind">{{item.currency}}</span></span> 
+								<span class="label-box"><span class="label">数量</span>{{getNum(item.balance)}}</span> 
+								<span class="label-box"><span class="label">价格</span>{{getNum(item.unit_price)}} USD</span> 
 							</view>
 							<view class="fun-card-buttons">
-								<fun-button type="text" value="查看账单" :url="'../xdogwallet/xdogwallet?id='+item.walletid" />
+								<fun-button type="text" value="查看账单" :url="'../xdogwallet/xdogwallet?coin='+item.coin" />
 								<view class="button-group" style="width:340upx;">
-									<fun-button type="light" value="转账" :url="'../transaccount/transaccount?id='+item.walletid" icon="/static/icons/zhuanrang-tiny.png" />
-									<fun-button value="收款" :url="'../saveaccount/saveaccount?id='+item.walletid" icon="/static/icons/shoukuan.png" />
+									<fun-button @handle="goTransPay(item.coin,item.total_price)" type="light" value="转账" icon="/static/icons/zhuanrang-tiny.png" />
+									<fun-button @handle="goSavePay(item.coin)" value="收款" icon="/static/icons/shoukuan.png" />
 								</view>
 							</view>
 						</view>
@@ -81,9 +81,11 @@
 				imageLib:{
 					message:'../../static/icons/message.png',
 					union:'../../static/icons/Union.png',
-					banner:'../../static/banner.jpg'
+					banner:'../../static/banner.jpg',
+					avatar:'../../static/avatar/fortoken.png'
 				},
 				message:"Forest 矿机即将上线，首批抢购名额1000名",
+				currType:1,
 				buttonList:[
 					{
 						name:'智能锁仓',
@@ -106,50 +108,55 @@
 						link:'../assignment/assignment'
 					},
 				],
-				walletList:[
-					{
-						walletid:1,
-						avatar:'../../static/avatar/fortoken.png',
-						title:'Forset Wallet',
-						blockNum:'0xEc9…x34e518da',
-						total:'8398.58',
-						count:'10000',
-						price:'0.88',
-						currency:'USD'
-					},
-					{
-						walletid:2,
-						avatar:'../../static/avatar/fortoken.png',
-						title:'Forset Wallet',
-						blockNum:'0xEc9…x34e518da',
-						total:'8398.58',
-						count:'10000',
-						price:'0.88',
-						currency:'USD'
-					},
-					{
-						walletid:3,
-						avatar:'../../static/avatar/fortoken.png',
-						title:'Forset Wallet',
-						blockNum:'0xEc9…x34e518da',
-						total:'8398.58',
-						count:'10000',
-						price:'0.88',
-						currency:'USD'
-					},
-				]
+				walletList:[]
 			}
+		},
+		onLoad(){
+			//获取钱包列表
+			uni.showLoading({
+				title:'钱包加载中...'
+			})
+			this.$http({
+				url:'/v1/main/users/account-info',
+				data:{
+					type:this.currType
+				},
+				success:res=>{
+					uni.hideLoading();
+					if(res.code == 200){
+						this.walletList = res.data;
+					}
+				}
+			})
 		},
 		onPageScroll(val){
 			this.scroll = val.scrollTop;
 		},
 		onPullDownRefresh(){
-			console.log('aaa');
-			uni.vibrateShort({
-			    success: function () {
-			        console.log('success');
-			    }
-			});
+			// console.log('aaa');
+			// uni.vibrateShort({
+			//     success: function () {
+			//         console.log('success');
+			//     }
+			// });
+		},
+		methods:{
+			getNum(num){
+				return (parseFloat(num)).toFixed(2);
+			},
+			//去转账
+			goTransPay(coin,total){
+				console.log(total);
+				uni.navigateTo({
+					url:'../transaccount/transaccount?coin='+coin+'&total='+total
+				})
+			},
+			//去收款
+			goSavePay(coin){
+				uni.navigateTo({
+					url:'../saveaccount/saveaccount?coin='+coin
+				})
+			}
 		}
 	}
 </script>

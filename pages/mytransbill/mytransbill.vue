@@ -142,6 +142,11 @@
 												icon:'none'
 											})
 											this.updateList();
+										}else{
+											uni.showToast({
+												title:res.message,
+												icon:'none'
+											})
 										}
 									}
 								})
@@ -169,6 +174,11 @@
 												icon:'none'
 											})
 											this.updateList();
+										}else{
+											uni.showToast({
+												title:res.message,
+												icon:'none'
+											})
 										}
 									}
 								})

@@ -42,7 +42,7 @@
 						<span class="title">订单管理</span>
 						<view>
 							<span class="goodsinfo">
-								<span class="number">5</span>
+								<span class="number">{{orderNum}}</span>
 								<span class="text">条订单信息</span>
 							</span>
 							<image src="../../static/bg/message.png" style="width:72upx;height:72upx;"></image>
@@ -55,7 +55,7 @@
 						<span class="title">购物车</span>
 						<view>
 							<span class="goodsinfo">
-								<span class="number">1</span>
+								<span class="number">{{cartNum}}</span>
 								<span class="text">条商品信息</span>
 							</span>
 							<image src="../../static/bg/cart.png" style="width:72upx;height:72upx;"></image>
@@ -69,7 +69,7 @@
 						<span class="title">收藏夹</span>
 						<view>
 							<span class="goodsinfo">
-								<span class="number">5</span>
+								<span class="number">{{saveNum}}</span>
 								<span class="text">条收藏信息</span>
 							</span>
 							<image src="../../static/bg/sign.png" style="width:72upx;height:72upx;"></image>
@@ -80,7 +80,7 @@
 					<span class="title">在线客服</span>
 					<view>
 						<span class="goodsinfo">
-							<span class="number">5</span>
+							<span class="number">0</span>
 							<span class="text">条客服信息</span>
 						</span>
 						<image src="../../static/bg/service.png" style="width:72upx;height:72upx;"></image>
@@ -159,7 +159,10 @@
 				imageLib:{
 					bg:'../../static/bg2.jpg'
 				},
-				userInfo:{}
+				userInfo:{},
+				orderNum:0,
+				saveNum:0,
+				cartNum:0,
 			};
 		},
 		onPageScroll(val){
@@ -172,6 +175,17 @@
 				success:res=>{
 					if(res.code == 200){
 						this.userInfo = res.data;
+					}
+				}
+			})
+			//获取我的信息
+			this.$http({
+				url:'/member/my',
+				success:res=>{
+					if(res.code == 200){
+						this.orderNum = res.data.order;
+						this.cartNum = res.data.cart;
+						this.saveNum = res.data.favorite;
 					}
 				}
 			})
